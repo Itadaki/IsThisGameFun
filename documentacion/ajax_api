@@ -1,0 +1,51 @@
+Para usar AJAX sobre la api del servidor:
+
+==============
+VOTAR UN JUEGO
+==============
+Enviar json con:
+action - 'vote';
+game_id - id del juego que vota
+vote - voto booleano
+
+el servidor recibe por POST json={}. Valida la cookie de sesion(saca el user_id), el game_id y el voto.
+
+Devuelve json con:
+error - true|false
+msg - mensaje de error
+
+
+
+================================
+CARGAR N JUEGOS MAS A LA LISTA X
+================================
+
+Enviar json con:
+action - uno de los actions de la lista
+offset - n_actual, avanzar_n  -> por ejemplo pedir desde el 5 6 juegos mas: '5,6' (string)
+                                 pedir solo 5 resultados: 5(int)
+
+Devuelve json con:
+un array con n indices.
+Casa posicion trae un objeto con las siguientes propiedades:
+-id
+-name
+-cover
+-totalVotos
+-totalPositivos
+-platforms (array con los datos de cada plataforma a la que pertenece)
+-vote (si el usuario ha votado 0|1, sino null)(usa la cookie de sesion)
+
+
+Lista de ACTIONS
+getLatestGames - trae los ultimos juegos añadidos a la base de datos
+
+getGamesVoted - trae los juegos votados por el usuario ordenados por ID (NECESITA COOKIE O USER_ID)
+    -offset: cuantos hay que traer y la posicion (n_actual, avanzar_n)
+    Opcional:
+    -user_id: especifica el usuario de los votos
+
+getGamesAlphabetical - trae los juegos por orden alfabetico
+    necesita parametros adicionales:
+    -regexp: expresion regular del orden alfabetico. por ejemplo 'empieza por A' = '^a+'
+    -offset: cuantos hay que traer y la posicion (n_actual, avanzar_n)

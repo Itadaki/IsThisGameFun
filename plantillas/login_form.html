@@ -1,0 +1,12 @@
+{error}
+{mensaje}
+<style>
+    .error_pendiente{background: red; color: white}
+    .error_error{background: orange; color: white}
+    .info{background: lightsalmon; color: white}
+</style>
+<form method="post" action="">
+    <label for="user" {validacionUsuario}>Usuario</label> <input type="text" name="user" value="{valorUsuario}"/><br>
+    <label for="password" {validacionPassword}>Contraseña</label> <input type="password" name="password" value=""/><br>
+    <input type="submit" value="LogIn" name="login" />
+</form>
