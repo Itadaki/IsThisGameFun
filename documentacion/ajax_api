@@ -31,10 +31,10 @@ Casa posicion trae un objeto con las siguientes propiedades:
 -id
 -name
 -cover
--totalVotos
--totalPositivos
+-totalVotes
+-totalPositiveVotes
 -platforms (array con los datos de cada plataforma a la que pertenece)
--vote (si el usuario ha votado 0|1, sino null)(usa la cookie de sesion)
+-userVote (si el usuario ha votado 0|1, sino null)(usa la cookie de sesion)
 
 
 Lista de ACTIONS

@@ -54,6 +54,16 @@ where a.user_id = b.user and b.game = c.id and a.user_id = $user_id order by c.i
     return $info;
 }
 
+function getGame($game_id) {
+    $query = "select id, name, cover from isthisgamefun.games where id=$game_id;";
+    return getGames($query)[0];
+}
+
+function getAllGames() {
+    $query = "select id, name, cover from isthisgamefun.games order by id asc;";
+    return getGames($query);
+}
+
 /**
  * Devuelve los ultimos 20 juegos añadidos a la BD en forma de array:<br>
  * [(id, name, cover), ..., (id, name, cover)]
@@ -77,6 +87,29 @@ function getMostVotedGames($offset = 20) {
 }
 
 /**
+ * Devuelve juegos ordenados por plataforma:<br>
+ * Una plataforma: 'N64'.<br>
+ * Varias plataformas: 'N64';
+ * @param type $platform
+ * @param type $offset
+ * @return array|NULL
+ */
+function getGamesByPlatform($platform, $offset = 20) {
+    $platform = strtoupper($platform);
+    $platforms = getPlatforms();
+    $available_platforms = array();
+    foreach ($platforms as $p) {
+        $available_platforms[] = $p['short_name'];
+    }
+    if (in_array($platform, $available_platforms)) {
+        $query = "select a.id, a.name, a.cover from isthisgamefun.games a, isthisgamefun.game_platform b, isthisgamefun.platforms c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $offset";
+        return getGames($query);
+    } else {
+        return NULL;
+    }
+}
+
+/**
  * Para atacar la base de datos de juegos<br>
  * Devuelve el array [(id, name, cover), ..., (id, name, cover)]
  * @global conection $conexion
@@ -95,14 +128,19 @@ function getGames($query) {
         $gameInfo["id"] = $game['id'];
         $gameInfo['name'] = $game['name'];
         $gameInfo['cover'] = $game['cover'];
+        //PLATAFORMAS
+        if ($platforms = getPlatforms($game['id'])) {
+            $gameInfo['platforms'] = $platforms;
+        }
+
         //SI TIENE BALANCE DE VOTOS
         if ($votes = getVoteBalance($game['id'])) {
-            $gameInfo['totalVotos'] = $votes['total'];
-            $gameInfo['totalPositivos'] = $votes['positivos'];
+            $gameInfo['totalVotes'] = $votes['total'];
+            $gameInfo['totalPositiveVotes'] = $votes['positives'];
         }
         //SI HAY SESION SACAR EL VOTO DEL USUARIO A ESTE JUEGO
         if (isset($config['user_id'])) {
-            $gameInfo['vote'] = getVote($game['id'], $config['user_id']);
+            $gameInfo['userVote'] = getVote($game['id'], $config['user_id']);
         }
         $info[] = $gameInfo;
     }
@@ -122,7 +160,7 @@ function getVoteBalance($game_id) {
     $votos = array();
     $querys = array(
         "total" => "select count(vote) as votos from isthisgamefun.user_votes where game=$game_id;", //Votos totales
-        "positivos" => "select count(vote) as votos from isthisgamefun.user_votes where game=$game_id and vote!=0;" //Votos positivos
+        "positives" => "select count(vote) as votos from isthisgamefun.user_votes where game=$game_id and vote!=0;" //Votos positivos
     );
     $errorNo = '';
     $errorMsg = '';
@@ -162,13 +200,17 @@ function getVote($game_id, $user_id) {
  * @param type $game_id
  * @return array
  */
-function getPlatforms($game_id) {
+function getPlatforms($game_id = 0) {
     global $conexion;
-    $query = "select id, name, short_name, icon from isthisgamefun.game_platform, isthisgamefun.platforms where game_platform.platform=platforms.id and game_platform.game=$game_id;";
+    if ($game_id) {
+        $query = "select id, name, short_name, icon from isthisgamefun.game_platform, isthisgamefun.platforms where game_platform.platform=platforms.id and game_platform.game=$game_id;";
+    } else {
+        $query = "select id, name, short_name, icon from isthisgamefun.platforms order by name asc;";
+    }
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);
     if ($errorNo != 0) {
-        return array("error" => "$errorNo: " . mysqli_error($conexion));
+        return array("error" => "$errorNo: " . mysqli_error($conexion), "query" => $query);
     }
     $platforms = array();
     while ($platform = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
@@ -180,4 +222,30 @@ function getPlatforms($game_id) {
         );
     }
     return $platforms;
+}
+
+function getUser($user, $input_type = 'id') {
+    global $conexion;
+    if ($input_type == 'id') {
+        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where user_id=$user;";
+    }
+    if ($input_type == 'name') {
+        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where lower(user_name)=lower($user);";
+    }
+    if ($input_type == 'nick') {
+        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where lower(user_nick) like lower('%$user%');";
+    }
+    if ($input_type == 'search') {
+        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where lower(user_nick) like lower('%$user%') or lower(user_name) like lower('%$user%');";
+    }
+    $resultado = mysqli_query($conexion, $query);
+    $errorNo = mysqli_errno($conexion);
+    if ($errorNo != 0) {
+        return array("error" => "$errorNo: " . mysqli_error($conexion));
+    }
+    $users = array();
+    while ($user = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+        $users[] = $user;
+    }
+    return $users;
 }

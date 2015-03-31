@@ -23,21 +23,21 @@ include_once './vista.php';
 
 
 
-if (isset($_COOKIE['allow_cookies'])) {
-    session_start();
-    echo "<div style='border:1px solid'><h3>SESSION</h3>";
-    var_dump($_SESSION);
-    if (isset($_SESSION['user_id'])) {
-        $config['user_id'] = $_SESSION['user_id'];
-    }
-    echo "</div>";
-}
-
-if (isset($_POST["login"])) {
-    validarLogin();
-} else {
-    displayLoginForm();
-}
+//if (isset($_COOKIE['allow_cookies'])) {
+//    session_start();
+//    echo "<div style='border:1px solid'><h3>SESSION</h3>";
+//    var_dump($_SESSION);
+//    if (isset($_SESSION['user_id'])) {
+//        $config['user_id'] = $_SESSION['user_id'];
+//    }
+//    echo "</div>";
+//}
+//
+//if (isset($_POST["login"])) {
+//    validarLogin();
+//} else {
+//    displayLoginForm();
+//}
 
 
 //function login() {
@@ -73,17 +73,16 @@ function validarLogin() {
     if (isset($_POST["user"]) && !empty($_POST["user"]) && !preg_match("/^[a-zA-ZÑñ0-9_-]{3,}$/", $_POST["user"])) {
         $camposErroneos[] = "user";
     }
-    if (isset($_POST["password"]) && !empty($_POST["password"]) && !preg_match("/^[a-zA-ZÑñ0-9_-]{3,}$/", $_POST["user"])) {
+    if (isset($_POST["password"]) && !empty($_POST["password"]) && !preg_match("/^[a-zA-ZÑñ0-9_-]{3,}$/", $_POST["password"])) {
         $camposErroneos[] = "password";
     }
+    
     if ($camposPendientes or $camposErroneos) {
-//        echo "ERROR";
         displayLoginForm($camposErroneos, $camposPendientes);
     } else {
-
         //Ver si el usuario existe en la BD
         $conexion = conexion();
-        $query = "select user_id, user_nick from isthisgamefun.users where user_name='{$_POST['user']}' and user_pass='{$_POST['password']}'";
+        $query = "select user_id, user_nick, user_level from isthisgamefun.users where user_name='{$_POST['user']}' and user_pass='{$_POST['password']}'";
         $resultado = mysqli_query($conexion, $query);
         $errorNo = mysqli_errno($conexion);
         $errorMsg = mysqli_error($conexion);
@@ -92,15 +91,16 @@ function validarLogin() {
             //Si existe, añadir a la variable de sesion la id y el nick
             $_SESSION['user_id'] = $user["user_id"];
             $_SESSION['user_nick'] = $user['user_nick'];
-
-            var_dump($_SESSION);
+            $_SESSION['user_level'] = $user['user_level'];
+            header("Location: home");
         } else {
             displayLoginForm($camposErroneos, $camposPendientes, true);
         }
-        
-
-
-
-//        visualizarDatos($socios);
     }
+}
+
+
+function logOut(){
+    session_destroy();
+    header("Location: home");
 }

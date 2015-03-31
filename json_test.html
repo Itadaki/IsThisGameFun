@@ -69,7 +69,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
              */
             function crear_json() {
                 var JSONObject = new Object();
-                JSONObject.action='getLatestGames';
+//                JSONObject.action='getLatestGames';
+                JSONObject.action='getGamesVoted';
+                JSONObject.user_id='10';
                 JSONObject.offset = '100';
 //                JSONObject.user_id = 1
                 JSONObject.nocache = Math.random();

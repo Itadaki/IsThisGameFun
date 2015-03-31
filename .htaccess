@@ -8,10 +8,10 @@ RewriteEngine on
 #   El flag [L] le dice al motor que deje de buscar coincidencias en los RewriteRule's
 
 # /user/user_name
-RewriteRule ^user/(\w+)/?$ index.php?user=$1 [L]
+RewriteRule ^user/(\w+)/?$ index.php?section=user&user=$1 [L]
 
 #/games/game_id
-RewriteRule ^games/(\w+)/?$ index.php?section=games&game=$1 [L]
+RewriteRule ^games/([0-9]+)/?$ index.php?section=games&game=$1 [L]
 
 #/seccion
 RewriteRule ^(\w+)/?$ index.php?section=$1 [L]

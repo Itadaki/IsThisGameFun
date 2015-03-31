@@ -23,8 +23,10 @@ $config['db_user'] = 'root';
 $config['db_pass'] = '';
 //$settings[''] = '';
 $config['db_name'] = 'isthisgamefun';
-$config['t_users'] = $config['db_name'].'users';
-$config['t_games'] = $config['db_name'].'games';
-$config['t_user_votes'] = $config['db_name'].'user_votes';
-$config['t_platforms'] = $config['db_name'].'platforms';
-$config['t_game_platform'] = $config['db_name'].'game_platform';
+$config['t_users'] = $config['db_name'].'.users';
+$config['t_games'] = $config['db_name'].'.games';
+$config['t_user_votes'] = $config['db_name'].'.user_votes';
+$config['t_platforms'] = $config['db_name'].'.platforms';
+$config['t_game_platform'] = $config['db_name'].'.game_platform';
+
+$config['server_root'] = '/IsThisGameFun';

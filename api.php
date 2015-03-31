@@ -118,8 +118,8 @@ function dumpGames($games = array()) {
         $datos["id"] = $game['id'];
         $datos["name"] = $game['name'];
         $datos["cover"] = $game['cover'];
-        $datos["totalVotos"] = $votes['total'];
-        $datos["totalPositivos"] = $votes['positivos'];
+        $datos["totalVotes"] = $votes['total'];
+        $datos["totalPositiveVotes"] = $votes['positives'];
         $datos["platforms"] = getPlatforms($game['id']);
         
         //Si viene desde el metodo getGamesVoted
