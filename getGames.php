@@ -17,14 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function getLimit($limit, $offset=0){
+    if($offset>0){
+        return $limit.','.$offset;
+    } else {
+        return $limit;
+    }
+}
+
 /**
  * Devuelve juegos cuyo nombre encaja con el regexp
  * @param type $regexp
  * @param type $offset
  * @return array
  */
-function getGamesAlphabetical($regexp, $offset = 20) {
-    $query = "select id, name, cover from isthisgamefun.games where name regexp '$regexp' order by name limit $offset;";
+function getGamesAlphabetical($regexp, $limit=20, $offset = 0) {
+    $limit = getLimit($limit, $offset);
+    $query = "select id, name, cover from isthisgamefun.games where name regexp '$regexp' order by name limit $limit;";
     return getGames($query);
 }
 
@@ -35,10 +44,10 @@ function getGamesAlphabetical($regexp, $offset = 20) {
  * @param type $user_id
  * @return array
  */
-function getGamesVoted($user_id, $offset = 20) {
+function getGamesVoted($user_id, $limit=20, $offset = 0) {
     global $conexion;
-    $query = "select c.name, c.id, c.cover, b.vote from isthisgamefun.users a, isthisgamefun.user_votes b, isthisgamefun.games c
-where a.user_id = b.user and b.game = c.id and a.user_id = $user_id order by c.id limit $offset;";
+    $limit = getLimit($limit, $offset);
+    $query = "select c.name, c.id, c.cover, b.vote from isthisgamefun.users a, isthisgamefun.user_votes b, isthisgamefun.games c where a.user_id = b.user and b.game = c.id and a.user_id = $user_id order by c.id limit $limit;";
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);
     $errorMsg = mysqli_error($conexion);
@@ -71,18 +80,21 @@ function getAllGames() {
  * @param type $offset
  * @return type
  */
-function getLatestGames($offset = 20) {
-    $query = "select id, name, cover from isthisgamefun.games order by id desc limit $offset;";
+function getLatestGames($limit=20, $offset = 0) {
+    $limit = getLimit($limit, $offset);
+    $query = "select id, name, cover from isthisgamefun.games order by id desc limit $limit;";
     return getGames($query);
 }
 
-function getBestGames($offset = 20) {
-    $query = "select id, name, cover from isthisgamefun.games, isthisgamefun.user_votes where id = game and vote !=0 group by id order by count(*) desc limit $offset";
+function getBestGames($limit=20, $offset = 0) {
+    $limit = getLimit($limit, $offset);
+    $query = "select id, name, cover from isthisgamefun.games, isthisgamefun.user_votes where id = game and vote !=0 group by id order by count(*) desc limit $limit";
     return getGames($query);
 }
 
-function getMostVotedGames($offset = 20) {
-    $query = "select a.id from games a, user_votes b where a.id = b.game group by a.id limit $offset;";
+function getMostVotedGames($limit=20, $offset = 0) {
+    $limit = getLimit($limit, $offset);
+    $query = "select a.id from games a, user_votes b where a.id = b.game group by a.id limit $limit;";
     return getGames($query);
 }
 
@@ -94,7 +106,8 @@ function getMostVotedGames($offset = 20) {
  * @param type $offset
  * @return array|NULL
  */
-function getGamesByPlatform($platform, $offset = 20) {
+function getGamesByPlatform($platform, $limit=20, $offset = 0) {
+    $limit = getLimit($limit, $offset);
     $platform = strtoupper($platform);
     $platforms = getPlatforms();
     $available_platforms = array();
@@ -102,7 +115,7 @@ function getGamesByPlatform($platform, $offset = 20) {
         $available_platforms[] = $p['short_name'];
     }
     if (in_array($platform, $available_platforms)) {
-        $query = "select a.id, a.name, a.cover from isthisgamefun.games a, isthisgamefun.game_platform b, isthisgamefun.platforms c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $offset";
+        $query = "select a.id, a.name, a.cover from isthisgamefun.games a, isthisgamefun.game_platform b, isthisgamefun.platforms c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $limit";
         return getGames($query);
     } else {
         return NULL;

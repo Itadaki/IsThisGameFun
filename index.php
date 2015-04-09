@@ -68,7 +68,7 @@ if (isset($_GET['section'])) {
                 displayUser($_GET['user']);
                 break;
             } else if (isset($config['user_nick'])) {
-                header("Location: user/" . $config['user_nick']);
+                header("Location: {$config['server_root']}user/" . $config['user_nick']);
                 break;
             } else {
                 echo 'No user selected';
@@ -140,7 +140,7 @@ function displayGames($order = 'latest') {
             break;
     }
 }
-
+var_dump(getGamesVoted(10,4));
 //$conexion = conexion();
 //$latestGames = getLatestGames(5);
 //$salida = '';

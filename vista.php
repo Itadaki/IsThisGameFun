@@ -114,10 +114,12 @@ function displayMainPage() {
         "content" => $content,
         "admin" => "Nop"
     );
+    echo "<h2>Best games</h2>";
     var_dump($config);
     if (isset($config['user_level']) && $config['user_level'] == 'admin') {
         $datos['admin'] = 'Eres administrador!!';
     }
+    var_dump(getBestGames());
     $plantilla = "plantillas/base.html";
     $formulario = respuesta($datos, $plantilla);
     print ($formulario);
@@ -128,12 +130,12 @@ function getUserMenu() {
     if (isset($config['user_id']) && isset($config['user_nick'])) {
         $datos = array(
             "user_nick" => $config['user_nick'],
-            "enlace" => "./user/" . $config['user_nick']
+            "enlace" => $config['server_root']."user/" . $config['user_nick']
         );
     } else {
         $datos = array(
             "user_nick" => "Login",
-            "enlace" => "./login"
+            "enlace" => $config['server_root']."login"
         );
     }
     $plantilla = "plantillas/user_menu.html";
@@ -163,7 +165,7 @@ function displayUser($user_nick) {
         }
         $datos = array(
             "user_nick" => $user['user_nick'],
-            "user_avatar" => $config['server_root'] . "/avatars/" . $user['user_avatar'],
+            "user_avatar" => $config['server_root'] . "avatars/" . $user['user_avatar'],
             "content" => $content
         );
         $plantilla = "plantillas/user_profile.html";
@@ -203,7 +205,8 @@ function respuesta($resultados, $plantilla) {
     $file = $plantilla;
     $html = file_get_contents($file);
     foreach ($resultados as $key1 => $valor1)
-        if (count($valor1) > 1) {
+        {
+if (count($valor1) > 1) {
             foreach ($valor1 as $key2 => $valor2) {
                 $cadena = "{" . $key1 . " " . $key2 . "}";
                 $html = str_replace($cadena, $valor2, $html);
@@ -212,5 +215,6 @@ function respuesta($resultados, $plantilla) {
             $cadena = '{' . $key1 . '}';
             $html = str_replace($cadena, $valor1, $html);
         }
+}
     return $html;
 }

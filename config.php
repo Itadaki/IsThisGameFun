@@ -29,4 +29,4 @@ $config['t_user_votes'] = $config['db_name'].'.user_votes';
 $config['t_platforms'] = $config['db_name'].'.platforms';
 $config['t_game_platform'] = $config['db_name'].'.game_platform';
 
-$config['server_root'] = '/IsThisGameFun';
+$config['server_root'] = '/IsThisGameFun/';
