@@ -53,7 +53,7 @@ Para que el motor funcione debes tener habilitado el modulo **mod_rewrite** en e
 
 Es necesario declarar que vas a usar el modulo. Además, para evitar problemas si el modulo se desactiva, utilizaremos el tag `<IfModule>` a la hora de definir las reglas del motor.
 
-```
+```ApacheConf
 <IfModule mod_rewrite.c>
 #Activar el modulo
 RewriteEngine on
@@ -119,12 +119,13 @@ Para realizar la peticion GET tan solo hay que especificar el `game_id` mediante
 
 >http://isthisgamefun.com/api?game_id=66
 El servidor contestará con un JSON con el siguiente formato:
-```
+```JSON
 {
 	"game_id":66,
 	"name":"Game",
 	"cover":"http://isthisgamefun.com/covers/66.png",
-	"platforms":[
+	"platforms":
+	[
 		{
 		"id":11,
 		"name":"Nintendo 64",
@@ -164,14 +165,14 @@ A continuacion se muestran varios ejemplos de petición de un alista de juegos:
 
 **Usando *order***
 Esta peticion devuelve los 20 juegos con el mayor balance de votos positivos.
-```
+```JSON
 {
 	"order":"best"
 }
 ```
 **Usando *order***
 Esta peticion devuelve los 5 juegos con el mayor balance de votos positivos.
-```
+```JSON
 {
 	"order":"best",
 	"limit":5
@@ -179,7 +180,7 @@ Esta peticion devuelve los 5 juegos con el mayor balance de votos positivos.
 ```
 **Usando *offset***
 Esta peticion devuelve los juegos entre la posición 5 y la 15 con el mayor balance de votos positivos.
-```
+```JSON
 {
 	"order":"best",
 	"limit":5,
@@ -188,7 +189,7 @@ Esta peticion devuelve los juegos entre la posición 5 y la 15 con el mayor bala
 ```
 **Usando *offset* sin *limit***
 Esta peticion devuelve los juegos entre la posición 0 y la 10 con el mayor balance de votos positivos.
-```
+```JSON
 {
 	"order":"best",
 	"offset":10
@@ -231,7 +232,7 @@ Los datos imprescindibles para votar son:
 Ademas la peticion debe enviar la cookie de sesion para que el servidor identifique al usuario que vota. Esto significa que solo el propio usuario puede realizar el voto.
 
 A continuación un ejemplo de una petición de voto:
-```
+```JSON
 {
 	"action":"vote",
 	"game_id":66,
@@ -241,14 +242,14 @@ A continuación un ejemplo de una petición de voto:
 La respuesta del servidor a esta petición será un JSON con un error y un mensaje.
 
 Ejemplo de un voto aceptado:
-```
+```JSON
 {
 	"error":false,
 	"msg":"OK"
 }
 ```
 Ejemplo de un voto rechazado:
-```
+```JSON
 {
 	"error":true,
 	"msg":"invalid game_id"
@@ -266,7 +267,7 @@ Este objeto contiene las siguientes posibles variables:
 - `text:'text_to_check'`
 
 A continuación un ejemplo donde se comprueba si un *nick* esta ya en uso:
-```
+```JSON
 {
 	"action":"check",
 	"type":"nick",
@@ -276,7 +277,7 @@ A continuación un ejemplo donde se comprueba si un *nick* esta ya en uso:
 Ante esta petición podemos obtener varias respuestas.
 
 En el caso de que esté disponible:
-```
+```JSON
 {
 	"error":false,
 	"exist":false,
@@ -284,7 +285,7 @@ En el caso de que esté disponible:
 }
 ```
 En el caso de que ya estuviera en uso:
-```
+```JSON
 {
 	"error":false,
 	"exist":true,
@@ -292,7 +293,7 @@ En el caso de que ya estuviera en uso:
 }
 ```
 En el caso de que ocurra un error:
-```
+```JSON
 {
 	"error":true,
 	"msg":"Some needed parameters were missed"
