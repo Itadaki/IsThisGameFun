@@ -20,7 +20,7 @@ include_once './conexion.php';
 include_once './getGames.php';
 include_once './login.php';
 include_once './signin.php';
-//setcookie($config['allow_cookies'], true, time()+60*60*24*30);
+setcookie($config['allow_cookies'], true, time()+60*60*24*30);
 if (isset($_COOKIE[$config['allow_cookies']])) {
     session_cache_expire(1440);
     session_start();

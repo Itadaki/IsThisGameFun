@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Autor = Diego Rodríguez Suárez-Bustillo
  * Fecha = 23-feb-2015
