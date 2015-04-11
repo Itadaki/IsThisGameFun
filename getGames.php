@@ -17,9 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function getLimit($limit, $offset=0){
-    if($offset>0){
-        return $limit.','.$offset;
+function getLimit($limit = 0, $offset = 0) {
+    if ($offset > 0) {
+        return $limit . ',' . $offset;
     } else {
         return $limit;
     }
@@ -31,9 +31,10 @@ function getLimit($limit, $offset=0){
  * @param type $offset
  * @return array
  */
-function getGamesAlphabetical($regexp, $limit=20, $offset = 0) {
+function getGamesAlphabetical($regexp, $limit = 20, $offset = 0) {
+    global $config;
     $limit = getLimit($limit, $offset);
-    $query = "select id, name, cover from isthisgamefun.games where name regexp '$regexp' order by name limit $limit;";
+    $query = "select id, name, cover from {$config['t_games']} where name regexp '$regexp' order by name limit $limit;";
     return getGames($query);
 }
 
@@ -44,10 +45,10 @@ function getGamesAlphabetical($regexp, $limit=20, $offset = 0) {
  * @param type $user_id
  * @return array
  */
-function getGamesVoted($user_id, $limit=20, $offset = 0) {
-    global $conexion;
+function getGamesVoted($user_id, $limit = 20, $offset = 0) {
+    global $conexion, $config;
     $limit = getLimit($limit, $offset);
-    $query = "select c.name, c.id, c.cover, b.vote from isthisgamefun.users a, isthisgamefun.user_votes b, isthisgamefun.games c where a.user_id = b.user and b.game = c.id and a.user_id = $user_id order by c.id limit $limit;";
+    $query = "select c.name, c.id, c.cover, b.vote from {$config['t_users']} a, {$config['t_user_votes']} b, {$config['t_games']} c where a.user_id = b.user and b.game = c.id and a.user_id = $user_id order by c.id limit $limit;";
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);
     $errorMsg = mysqli_error($conexion);
@@ -64,12 +65,14 @@ function getGamesVoted($user_id, $limit=20, $offset = 0) {
 }
 
 function getGame($game_id) {
-    $query = "select id, name, cover from isthisgamefun.games where id=$game_id;";
+    global $config;
+    $query = "select id, name, cover from {$config['t_games']} where id=$game_id;";
     return getGames($query)[0];
 }
 
 function getAllGames() {
-    $query = "select id, name, cover from isthisgamefun.games order by id asc;";
+    global $config;
+    $query = "select id, name, cover from {$config['t_games']} order by id asc;";
     return getGames($query);
 }
 
@@ -80,19 +83,22 @@ function getAllGames() {
  * @param type $offset
  * @return type
  */
-function getLatestGames($limit=20, $offset = 0) {
+function getLatestGames($limit = 20, $offset = 0) {
+    global $config;
     $limit = getLimit($limit, $offset);
-    $query = "select id, name, cover from isthisgamefun.games order by id desc limit $limit;";
+    $query = "select id, name, cover from {$config['t_games']} order by id desc limit $limit;";
     return getGames($query);
 }
 
-function getBestGames($limit=20, $offset = 0) {
+function getBestGames($limit = 20, $offset = 0) {
+    global $config;
     $limit = getLimit($limit, $offset);
-    $query = "select id, name, cover from isthisgamefun.games, isthisgamefun.user_votes where id = game and vote !=0 group by id order by count(*) desc limit $limit";
+    $query = "select id, name, cover from {$config['t_games']}, {$config['t_user_votes']} where id = game and vote !=0 group by id order by count(*) desc limit $limit";
     return getGames($query);
 }
 
-function getMostVotedGames($limit=20, $offset = 0) {
+function getMostVotedGames($limit = 20, $offset = 0) {
+    global $config;
     $limit = getLimit($limit, $offset);
     $query = "select a.id from games a, user_votes b where a.id = b.game group by a.id limit $limit;";
     return getGames($query);
@@ -106,7 +112,8 @@ function getMostVotedGames($limit=20, $offset = 0) {
  * @param type $offset
  * @return array|NULL
  */
-function getGamesByPlatform($platform, $limit=20, $offset = 0) {
+function getGamesByPlatform($platform, $limit = 20, $offset = 0) {
+    global $config;
     $limit = getLimit($limit, $offset);
     $platform = strtoupper($platform);
     $platforms = getPlatforms();
@@ -115,7 +122,7 @@ function getGamesByPlatform($platform, $limit=20, $offset = 0) {
         $available_platforms[] = $p['short_name'];
     }
     if (in_array($platform, $available_platforms)) {
-        $query = "select a.id, a.name, a.cover from isthisgamefun.games a, isthisgamefun.game_platform b, isthisgamefun.platforms c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $limit";
+        $query = "select a.id, a.name, a.cover from {$config['t_games']} a, {$config['t_game_platform']} b, {$config['t_platforms']} c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $limit";
         return getGames($query);
     } else {
         return NULL;
@@ -169,11 +176,11 @@ function getGames($query) {
  * @return array
  */
 function getVoteBalance($game_id) {
-    global $conexion;
+    global $conexion, $config;
     $votos = array();
     $querys = array(
-        "total" => "select count(vote) as votos from isthisgamefun.user_votes where game=$game_id;", //Votos totales
-        "positives" => "select count(vote) as votos from isthisgamefun.user_votes where game=$game_id and vote!=0;" //Votos positivos
+        "total" => "select count(vote) as votos from {$config['t_user_votes']} where game=$game_id;", //Votos totales
+        "positives" => "select count(vote) as votos from {$config['t_user_votes']} where game=$game_id and vote!=0;" //Votos positivos
     );
     $errorNo = '';
     $errorMsg = '';
@@ -197,8 +204,8 @@ function getVoteBalance($game_id) {
  * @return type
  */
 function getVote($game_id, $user_id) {
-    global $conexion;
-    $query = "select vote from isthisgamefun.user_votes where game=$game_id and user=$user_id;";
+    global $conexion, $config;
+    $query = "select vote from {$config['t_user_votes']} where game=$game_id and user=$user_id;";
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);
     if ($errorNo != 0) {
@@ -214,11 +221,11 @@ function getVote($game_id, $user_id) {
  * @return array
  */
 function getPlatforms($game_id = 0) {
-    global $conexion;
+    global $conexion, $config;
     if ($game_id) {
-        $query = "select id, name, short_name, icon from isthisgamefun.game_platform, isthisgamefun.platforms where game_platform.platform=platforms.id and game_platform.game=$game_id;";
+        $query = "select id, name, short_name, icon from {$config['t_game_platform']}, {$config['t_platforms']} where game_platform.platform=platforms.id and game_platform.game=$game_id;";
     } else {
-        $query = "select id, name, short_name, icon from isthisgamefun.platforms order by name asc;";
+        $query = "select id, name, short_name, icon from {$config['t_platforms']} order by name asc;";
     }
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);
@@ -238,18 +245,18 @@ function getPlatforms($game_id = 0) {
 }
 
 function getUser($user, $input_type = 'id') {
-    global $conexion;
+    global $conexion, $config;
     if ($input_type == 'id') {
-        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where user_id=$user;";
+        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where user_id=$user;";
     }
     if ($input_type == 'name') {
-        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where lower(user_name)=lower($user);";
+        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where lower(user_name)=lower($user);";
     }
     if ($input_type == 'nick') {
-        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where lower(user_nick) like lower('%$user%');";
+        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where lower(user_nick) like lower('%$user%');";
     }
     if ($input_type == 'search') {
-        $query = "select user_id, user_nick, user_avatar from isthisgamefun.users where lower(user_nick) like lower('%$user%') or lower(user_name) like lower('%$user%');";
+        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where lower(user_nick) like lower('%$user%') or lower(user_name) like lower('%$user%');";
     }
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);

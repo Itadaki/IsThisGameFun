@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 Diego Rodríguez Suárez-Bustillo
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ function conexion() {
     global $mensajeAbrirConexion;
     global $config;
     $conexion = mysqli_connect($config['db_server'], $config['db_user'], $config['db_pass']);
+    mysqli_select_db($conexion, $config['db_name']);
     $errorNo = mysqli_connect_errno();
     $errorMsg = mysqli_connect_error();
     if ($errorNo == 0) {

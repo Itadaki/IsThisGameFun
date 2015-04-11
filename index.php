@@ -17,10 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 include_once './conexion.php';
-include_once 'getGames.php';
+include_once './getGames.php';
 include_once './login.php';
 include_once './signin.php';
-if (isset($_COOKIE['allow_cookies'])) {
+//setcookie($config['allow_cookies'], true, time()+60*60*24*30);
+if (isset($_COOKIE[$config['allow_cookies']])) {
     session_cache_expire(1440);
     session_start();
     echo "<h3>SESSION</h3>";
@@ -50,6 +51,7 @@ if (isset($_GET['section'])) {
     $section = $_GET['section'];
     switch ($section) {
         case 'home':
+            $conexion = conexion();
             displayMainPage();
             break;
 

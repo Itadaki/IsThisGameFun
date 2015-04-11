@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 Diego Rodríguez Suárez-Bustillo
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,10 +23,18 @@ $config['db_user'] = 'root';
 $config['db_pass'] = '';
 //$settings[''] = '';
 $config['db_name'] = 'isthisgamefun';
-$config['t_users'] = $config['db_name'].'.users';
-$config['t_games'] = $config['db_name'].'.games';
-$config['t_user_votes'] = $config['db_name'].'.user_votes';
-$config['t_platforms'] = $config['db_name'].'.platforms';
-$config['t_game_platform'] = $config['db_name'].'.game_platform';
+$config['t_users'] = 'users';
+$config['t_games'] = 'games';
+$config['t_user_votes'] = 'user_votes';
+$config['t_platforms'] = 'platforms';
+$config['t_game_platform'] = 'game_platform';
+
+$config['t_full_users'] = $config['db_name'] . '.' . $config['t_users'];
+$config['t_full_games'] = $config['db_name'] . '.' . $config['t_games'];
+$config['t_full_user_votes'] = $config['db_name'] . '.' . $config['t_user_votes'];
+$config['t_full_platforms'] = $config['db_name'] . '.' . $config['t_platforms'];
+$config['t_full_game_platform'] = $config['db_name'] . '.' . $config['t_game_platform'];
 
 $config['server_root'] = '/IsThisGameFun/';
+
+$config['allow_cookies'] = 'cookie_compliance';

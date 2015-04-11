@@ -80,7 +80,7 @@ echo json_encode($json_salida);
 function register_vote($user_id, $game_id, $vote) {
 //    if ($vote == 0 || $vote == 1) {
     $conexion = conexion();
-    $query = "insert into isthisgamefun.user_votes values ($user_id, $game_id," . ($vote ? 1 : 0) . ");";
+    $query = "insert into {$config['t_user_votes']} values ($user_id, $game_id," . ($vote ? 1 : 0) . ");";
     $resultado = mysqli_query($conexion, $query);
     $errorNo = mysqli_errno($conexion);
     $errorMsg = mysqli_error($conexion);
