@@ -143,6 +143,7 @@ function displayGames($order = 'latest') {
     }
 }
 var_dump(getGamesVoted(10,4));
+var_dump(getUser(1));
 //$conexion = conexion();
 //$latestGames = getLatestGames(5);
 //$salida = '';

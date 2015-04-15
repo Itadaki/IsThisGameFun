@@ -1,4 +1,4 @@
-<div style="width: 300px; border: 1px solid;display: inline-block; margin: 5px">
+<!--<div style="width: 300px; border: 1px solid;display: inline-block; margin: 5px">
     <ul>
         <li>ID: {id}</li>
         <li>NAME: {name}</li>
@@ -8,4 +8,102 @@
         <li>MI VOTO: {vote}</li>
         {extra}
     </ul>
+</div>-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+    /**{border: 1px solid}*/
+    .pill{border: 1px solid gray;}
+    .pill{
+        padding: 0;
+        margin: 0;
+    }
+    .pill-body{
+        margin: 10px;
+    }
+    .pill-head{
+        background-color: gray;
+        /*border-radius: 10px 10px 0 0;*/
+        min-height: 50px;
+        color: white;
+    }
+
+    .pill-cover{
+        margin: 5px 0;
+    }
+
+    .pill-bottom{
+        margin: 5px 0;
+    }
+</style>
+<div class="container">
+    <!--<div class="col-md-3 col-xs-12">-->
+    <!--TOP-->
+    <div class="pill text-center col-md-3 col-xs-12">
+        <div class="pill-top">
+            <div class="pill-head">
+                <h3 style="display: inline-block; vertical-align: middle; ">Game Name</h3>
+            </div>
+            <!--<img class="pill-cover" width="200" height="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkzIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" alt="...">-->
+            <img class="pill-cover" width="200" height="300" src="../covers/no-cover.png" alt="...">
+        </div>
+        <div class="pill-body">
+            <!--MIDDLE-->
+            <div class="pill-middle">
+                <div class="platforms">
+                    <a href="#"><span class="label label-default label-platform">PS3</span></a>
+                    <a href="#"><span class="label label-default label-platform">PS4</span></a>
+                    <a href="#"><span class="label label-default label-platform">XB360</span></a>
+                    <a href="#"><span class="label label-default label-platform">XBONE</span></a>
+                    <a href="#"><span class="label label-default label-platform">WIIU</span></a>
+                    <a href="#"><span class="label label-default label-platform">WII</span></a>
+                    <a href="#"><span class="label label-default label-platform">N64</span></a>
+                    <a href="#"><span class="label label-default label-platform">SNES</span></a>
+                    <a href="#"><span class="label label-default label-platform">PC</span></a>
+                </div>
+            </div>
+            <!--BOTTOM-->
+            <div class="pill-bottom">
+                <div class="progress" style="margin: 5px 0">
+                    <div class="progress-bar progress-bar-danger" style="width: 35%"></div>
+                    <div class="progress-bar progress-bar-success" style="width: 65%"></div>
+                </div>
+                <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i> Not</button>
+                <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Fun</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!--        <div class="thumbnail text-center">
+                <div class="thumb-head"><h3>Game Name</h3></div>
+                <img width="200" height="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkzIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" alt="...">
+                <div class="bs-component">
+                    <div class="platforms">
+                        <a href="#"><span class="label label-default label-platform">PS3</span></a>
+                        <a href="#"><span class="label label-default label-platform">PS4</span></a>
+                        <a href="#"><span class="label label-default label-platform">XB360</span></a>
+                        <a href="#"><span class="label label-default label-platform">XBONE</span></a>
+                        <a href="#"><span class="label label-default label-platform">WIIU</span></a>
+                        <a href="#"><span class="label label-default label-platform">WII</span></a>
+                        <a href="#"><span class="label label-default label-platform">N64</span></a>
+                        <a href="#"><span class="label label-default label-platform">SNES</span></a>
+                        <a href="#"><span class="label label-default label-platform">PC</span></a>
+                    </div>
+                </div>
+                <div class="caption"> 
+                    <div class="bs-component">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" style="width: 35%"></div>
+                            <div class="progress-bar progress-bar-success" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="bs-component">
+                        <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i> Not</button>
+                        <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Fun</button>
+                    </div>
+                </div>
+            </div>-->
 </div>
+<!--</div>-->
