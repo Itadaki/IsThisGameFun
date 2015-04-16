@@ -24,19 +24,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     margin: 0;
     /*border: 1px solid black;*/
 }
+body{
+    background-image: url('ava7patterns_pattern_1741.png');
+}
 #wrapper{
     border-left: 1px solid black;
     border-right: 1px solid black;
     margin: auto;
     min-height: 800px;
     min-width: 800px;
-    max-width: 1000px
+    max-width: 1000px;
+    background-color: #777777;
 }
 /*---HEADER AND MENU*/
 header{
     height: 150px;
     width: 100%;
-    background-color: #01A7C2;
+    background-color: #333;
 }
 #logo{
     height: 150px;
@@ -65,24 +69,13 @@ header{
     border: 5px solid #f1f1f1;
     border-radius: 60px;
 }
-.sello{
-    background-image: url('images/approvedgreen.png');
-    width:90px;
-    height: 80px;
-    position: relative;
-    background-size: 90px 80px;
-    background-repeat: no-repeat;
-    left:215px;
-    top:30px;
-
-}
 
 #title{
     position: relative;
     top: 30px;
     left: 80px;
     float: left;
-    color: #f1f1f1;
+    color: #01A7C2;
     font-size: 30px;
 }
 .fun{
@@ -112,6 +105,7 @@ header{
     line-height: 50px;
     font-size: 20px;
     text-align: center;
+    
 }
 .menu-button{
     display: inline-block;
@@ -165,8 +159,18 @@ header{
     width: 190px;
     background-color: #e2e2e2;
     text-align: center;
+    
 
 }
+.game-small:hover{
+    transform:scale(1.01,1.01);
+    transition: transform 0.2s;
+}
+.rotate:hover{
+    transform: rotateY(180deg);
+    transition: transform 0.5s;
+}
+
 .game-small a{
     text-decoration: none;
     color: #f1f1f1;
@@ -177,7 +181,7 @@ header{
 }
 .game-title{
     font-size: 20px;
-    background-color: #535353;
+    background-color: #01A7C2;
 }
 .cover-small{
     position: relative;
@@ -277,6 +281,7 @@ header{
     width: 305px;
     background-color: #e2e2e2;
     text-align: center;
+    
 
 }
 .game-carrousel a{
@@ -289,18 +294,18 @@ header{
     width: 75px;
 }
 .game-carrousel .game-title{
-    background-color: #1b8291
+    background-color: #01A7C2;
 }
 .button-carrousel{
-    opacity: 0.2;
+    opacity: 0.4;
     position: relative;
-    background: gray;
+    background: whitesmoke;
     display: inline-block;
     height: 175px;
     width: 60px;
 }
 .button-carrousel:hover{
-    opacity: 0.3;
+    opacity: 0.5;
 }
 .button-carrousel.previous{
     float: left;
@@ -365,12 +370,24 @@ header{
 
 /*---FOOTER*/
 footer{
+    
     clear: both;
     color: whitesmoke;
-    height: 150px;
+    height: 200px;
     width: 100%;
-    background-color: black;
+    background-color: #333;
     position: relative;
     bottom: 0px;
 
+}
+footer.social-bar{
+    border: 1px solid white;
+    position: relative;
+    width: 100px;
+    
+}
+footer.social-icon{
+    border: 1px solid white;
+    width: 20px;
+    height: 20px;
 }
