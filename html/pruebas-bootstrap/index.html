@@ -20,72 +20,77 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="bootstrap.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div id="wrapper">
-            <header>
-                <div id="logo">
-				
-				<div class="red-circle">
-				<div class="white-circle">ITGF</div>
-				</div>			
-				</div>			
-                <div id="title">
-                    <h1>IS THIS GAME <span class="fun">FUN?</span></h1>
-                    <div id="login"><a href="login.html">LogIn</a> / <a href="#">SignUp</a></div>
-                </div>
+        <div id="wrapper" class="container bg-gray3">
+            <header class="bg-gray1 page-header jumbotron">
+                <div id="logo">		
+                    <div id="title">
+                        <h1 class="text-center cl-blue">IS THIS GAME <span class="">FUN?</span></h1>
+                        <div id="login"><a href="login.html">LogIn</a> / <a href="#">SignUp</a></div>
+                    </div>
             </header>
-            <nav id="menu-main">
-                <ul>
-                    <li class="menu-button"><a href="index.html">HOME</a></li>
-                    <li class="menu-button"><a href="games.html">GAMES</a></li>
-                    <li class="menu-button"><a href="login.html">LOGIN</a></li>
-                    <li class="menu-button"><a href="#">ABOUT</a></li>
-                    <li class="menu-button"><a href="contact.html">CONTACT</a></li>
+            <nav class="menu bg-gray2 ">
+                <ul class="nav nav-pills" role="tablist">
+                    <li><a href="index.html">HOME</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            GAMES <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">TOP VOTED</a></li>
+                            <li><a href="#">NEW</a></li>
+                            <li><a href="#">LO Q SEA</a></li>                        
+                        </ul>
+                    </li>
+                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>       
                 </ul>
-            </nav> 
-            <div class="content-main">
-                <article>
-				<h2>Más votados</h2>
-					<div class='button-carrousel previous'>BACK</div>
-						<div class="game-carrousel">
-						<a href="#"><div class="game-title"><span>Default</span></div></a>
-						<img class="cover-carrousel" src="images/default.png" alt="Game-Cover"/>
-						<div class="sello"></div>
-						</div>
-						
-						<div class="game-carrousel">
-						<a href="#"><div class="game-title"><span>Default</span></div></a>
-						<img class="cover-carrousel" src="images/default.png" alt="Game-Cover"/>
-						</div>
-					<div class='button-carrousel next'>NEXT</div>
-				</article>
-				<article>
-				<h2>Ultimos añadidos</h2>
-					<div class='button-carrousel previous'>BACK</div>
-					<div class="game-carrousel">
-						<a href="#"><div class="game-title"><span>Default</span></div></a>
-						<img class="cover-carrousel" src="images/default.png" alt="Game-Cover"/>
-						</div>
-						
-						<div class="game-carrousel">
-						<a href="#"><div class="game-title"><span>Default</span></div></a>
-						<img class="cover-carrousel" src="images/default.png" alt="Game-Cover"/>
-						</div>
-					<div class='button-carrousel next'>NEXT</div>	
-				</article>
-				<article>
-				<h3>Usuarios Conectados</h3>
-				</article>
-				  
-            </div>
+            </nav>
+            <div class="container row">
+                <div class="span12">
+                    <h4 class="text-center">Más votados</h4>
+                    <div class='button-carrousel previous'>BACK</div>
+                    <div class="col-md-4 thumbnail span1">
+                        <a href="#" class=""><div class="h5"><span>Default</span></div></a>
+                        <img class="img-rounded" src="../images/default.png" alt="Game-Cover"/>
+                    </div>
+                    <div class="col-md-4 thumbnail span1">
+                        <a href="#" class=""><div class="h5"><span>Default</span></div></a>
+                        <img class="img-rounded" src="../images/default.png" alt="Game-Cover"/>
+                    </div>
+                    <div class="col-md-4 thumbnail span1">
+                        <a href="#" class=""><div class="h5"><span>Default</span></div></a>
+                        <img class="img-rounded" src="../images/default.png" alt="Game-Cover"/>
+                    </div>
 
-            <!--            <iframe class="content-main-left" src="pastillas.html"></iframe>-->
-            
-            <footer>
-                
-            </footer>
-        </div>
+                    <div class="span12">
+                        <h4 class="text-center">Más votados</h4>
+                        <div class='button-carrousel previous'>BACK</div>
+                        <div class="col-md-4 thumbnail span1">
+                            <a href="#" class=""><div class="h5"><span>Default</span></div></a>
+                            <img class="img-rounded" src="../images/default.png" alt="Game-Cover"/>
+                        </div>
+                        <div class="col-md-4 thumbnail span1">
+                            <a href="#" class=""><div class="h5"><span>Default</span></div></a>
+                            <img class="img-rounded" src="../images/default.png" alt="Game-Cover"/>
+                        </div>
+                        <div class="col-md-4 thumbnail span1">
+                            <a href="#" class=""><div class="h5"><span>Default</span></div></a>
+                            <img class="img-rounded" src="../images/default.png" alt="Game-Cover"/>
+                        </div>
+
+                    </div>    
+                </div>
+            </div>
+                <footer class="modal-footer">
+
+                </footer>
+            </div>
     </body>
 </html>
