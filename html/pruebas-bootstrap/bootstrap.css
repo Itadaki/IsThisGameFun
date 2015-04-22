@@ -102,20 +102,19 @@ img {
 }
 /** **/
 .img-lg{
-    
+    height: 450px;
+    max-width: 300px;
+    margin-bottom: 15px;
 }
 .img-md{
-   height: 230px;
-   width: auto;
-   margin-bottom: 15px;
-
-   /* margin: 0 auto; */
-   /* position: relative; */
-   /* left: 30px; */
-   align-content: center;
+    height: 260px;
+    max-width: 250px;
+    margin-bottom: 15px;
 }
 .img-xs{
-    
+    height: 150px;
+    max-width: 250px;
+    margin: 15px
 }
 svg:not(:root) {
     overflow: hidden;
@@ -1410,7 +1409,7 @@ a.text-danger:hover {
     background-color: #cf303d;
 }
 .cl-red{
-    color: #cf303d;
+    color: #d9534f;
 }
 .bg-gray1{
     color: #ebebeb;
@@ -3092,12 +3091,14 @@ fieldset[disabled] .btn {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-/** **/
+/** provisional**/
 .btn-left{
-   float: left; 
+    width: 50px;
+    float: left; 
 }
 .btn-right{
-   float: right; 
+    width: 50px;
+    float: right; 
 }
 .btn-default {
     color: #ffffff;
@@ -3236,7 +3237,8 @@ fieldset[disabled] .btn-success.active {
 }
 .btn-info {
     color: #ffffff;
-    background-color: #5bc0de;
+    /*background-color: #5bc0de;*/
+    background-color: #01A7C2;
     border-color: transparent;
 }
 .btn-info:hover,
@@ -4058,7 +4060,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
     color: #ffffff;
-    background-color: #df691a;
+    background-color: #01A7C2;
 }
 .nav-stacked > li {
     float: none;
@@ -4918,11 +4920,11 @@ a.badge:focus {
     margin-bottom: 15px;
     margin-top: 15px;
     color: inherit;
-/*    background-color: #4e5d6c;*/
+    /*    background-color: #4e5d6c;*/
 }
 .jumbotron h1,
 .jumbotron .h1 {
-/*    color: inherit;*/
+    /*    color: inherit;*/
 }
 .jumbotron p {
     margin-bottom: 15px;
@@ -5125,7 +5127,8 @@ a.thumbnail.active {
     background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 .progress-bar-info {
-    background-color: #5bc0de;
+    /*background-color: #5bc0de;*/
+    background-color: #01A7C2;
 }
 .progress-striped .progress-bar-info {
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
