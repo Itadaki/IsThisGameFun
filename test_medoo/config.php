@@ -38,7 +38,7 @@ $config['v_game_vote_balance'] = 'game_vote_balance';
 $config['v_most_negative_voted'] = 'most_negative_voted';
 $config['v_most_positive_voted'] = 'most_positive_voted';
 $config['v_most_voted'] = 'most_voted';
-$config['v_saga_vote_balance'] = 'game_saga_balance';
+$config['v_saga_vote_balance'] = 'saga_vote_balance';
 
 $config['t_full_users'] = $config['db_name'] . '.' . $config['t_users'];
 $config['t_full_games'] = $config['db_name'] . '.' . $config['t_games'];

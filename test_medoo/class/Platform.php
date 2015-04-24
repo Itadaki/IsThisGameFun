@@ -19,10 +19,10 @@
 
 class Platform {
 
-    private $id;
-    private $name;
-    private $short_name;
-    private $icon;
+    private $id = NULL;
+    private $name = NULL;
+    private $short_name = NULL;
+    private $icon = NULL;
 
     function __construct($id, $name, $short_name, $icon) {
         $this->id = $id;

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "raveren/kint": "0.9",
+        "catfan/Medoo":"0.9.*"
+    }
+}
