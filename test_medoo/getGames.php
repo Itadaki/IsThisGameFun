@@ -19,7 +19,8 @@
 
 include_once './config.php';
 require '../vendor/autoload.php';
-
+include_once './modelos.php';
+$config['user_id'] = 1;
 $db_config = [
     'database_type' => 'mysql',
     'database_name' => $config['db_name'],
@@ -31,13 +32,15 @@ $db_config = [
 
 $db = new medoo($db_config);
 
-
+header('Content-Type: application/json');
+echo json_encode(getAllGames());
 
 //var_dump($db->select('users',[],'*',[],[]));
 ////////////////////
-$config['user_id'] = 1;
 
-d('s',getAllGames());
+
+//d('s', getAllGames());
+
 //var_dump(getMostVotedGames());
 //echo $db->last_query();
 
@@ -86,23 +89,6 @@ function getGamesVoted($user_id, $limit = 20, $offset = 0) {
     ];
     $columns = ['id', 'name', 'cover', 'vote(userVote)'];
     $where = ['user_id' => $user_id, 'ORDER' => 'id', 'LIMIT' => $limit];
-//    $games = $db->select($config['t_user_votes'], $join, $columns, $where);
-//    $error = $db->error();
-//    $info = array();
-//    if ($error[0] == '00000') {
-//        foreach ($games as $pos => $game) {
-////            foreach ($game as $campo => $valor) {
-////                $info[$pos][$campo]=$valor;
-////            }
-//            $info[$pos]['id'] = $game['id'];
-//            $info[$pos]['name'] = $game['name'];
-//            $info[$pos]['cover'] = $game['cover'];
-//            $info[$pos]['userVote'] = $game['vote'];
-//            if (isset($config['user_id'])) {
-//                $info[$pos]['myVote'] = getVote($game['id'], $config['user_id']);
-//            }
-//        }
-//    }
     $table = $config['t_user_votes'];
     $info = getGames($table, $columns, $where, $join);
     return $info;
@@ -112,15 +98,20 @@ function getGame($game_id) {
     global $db, $config;
     $colummns = ['id', 'name', 'cover'];
     $where = ['id' => $game_id];
-    $resultado = $db->get($config['t_games'], $colummns, $where);
+    $game = $db->get($config['t_games'], $colummns, $where);
     $error = $db->error();
     if ($error[0] == '00000') {
-        $resultado['platforms'] = getPlatforms($resultado['id']);
-        $resultado['vote_valance'] = getVoteBalance($game['id']);
+        $g = new Game($game['id'], $game['name'], $game['cover'], getVoteBalance($game['id']), getPlatforms($game['id']), getSaga($game['id']));
+//        $data[$index]['id'] = $game['id'];
+//        $data[$index]['name'] = $game['name'];
+//        $data[$index]['cover'] = $game['cover'];
+//        $data[$index]['platforms'] = getPlatforms($game['id']);
+//        $data[$index]['vote_valance'] = getVoteBalance($game['id']);
+//        $data[$index]['saga'] = getSaga($game['id']);
         if (isset($config['user_id'])) {
-            $resultado['myVote'] = getVote($resultado['id'], $config['user_id']);
+            $g->setMy_vote(getVote($game['id'], $config['user_id']));
         }
-        return $resultado;
+        return $g;
     } else {
         return null;
     }
@@ -130,20 +121,6 @@ function getAllGames() {
     global $db, $config;
     $columns = ['id', 'name', 'cover'];
     $where = ['ORDER' => 'id ASC', 'LIMIT' => '20'];
-//    $resultados = $db->select($config['t_games'], $columns, $where);
-//    $error = $db->error();
-//    $info = [];
-//    if ($error[0] == '00000') {
-//        foreach ($resultados as $pos => $game) {
-//            $info[$pos]['id'] = $game['id'];
-//            $info[$pos]['name'] = $game['name'];
-//            $info[$pos]['cover'] = $game['cover'];
-//            if (isset($config['user_id'])) {
-//                $info[$pos]['myVote'] = getVote($game['id'], $config['user_id']);
-//            }
-//        }
-//        return $info;
-//    }
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where);
     return $info;
@@ -160,20 +137,6 @@ function getLatestGames($limit = 20, $offset = 0) {
     global $db, $config;
     $columns = ['id', 'name', 'cover'];
     $where = ['ORDER' => 'id DESC', 'LIMIT' => '20'];
-//    $resultados = $db->select($config['t_games'], $columns, $where);
-//    $error = $db->error();
-//    $info = [];
-//    if ($error[0] == '00000') {
-//        foreach ($resultados as $pos => $game) {
-//            $info[$pos]['id'] = $game['id'];
-//            $info[$pos]['name'] = $game['name'];
-//            $info[$pos]['cover'] = $game['cover'];
-//            if (isset($config['user_id'])) {
-//                $info[$pos]['myVote'] = getVote($game['id'], $config['user_id']);
-//            }
-//        }
-//        return $info;
-//    }
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where);
     return $info;
@@ -184,21 +147,6 @@ function getBestGames($limit = 20, $offset = 0) {
     $join = ["[><]{$config['v_game_positive_percentage']}" => ['id' => 'game_id']];
     $columns = ['id', 'name', 'cover', 'positive_percentage'];
     $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => '20'];
-//    $resultados = $db->select($config['t_games'], $join, $columns, $where);
-//    $error = $db->error();
-//    $info = [];
-//    if ($error[0] == '00000') {
-//        foreach ($resultados as $pos => $game) {
-//            $info[$pos]['id'] = $game['id'];
-//            $info[$pos]['name'] = $game['name'];
-//            $info[$pos]['cover'] = $game['cover'];
-//            $info[$pos]['positive_percentage'] = $game['positive_percentage'];
-//            if (isset($config['user_id'])) {
-//                $info[$pos]['myVote'] = getVote($game['id'], $config['user_id']);
-//            }
-//        }
-//        return $info;
-//    }
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where, $join);
     return $info;
@@ -256,7 +204,7 @@ function getGamesByPlatform($platform, $limit = 20, $offset = 0) {
  * @return array
  */
 function getGames($table, $columns = '*', $where = NULL, $join = NULL) {
-    global $db, $config;
+    global $db;
     $resultados = null;
     $error = $db->error();
     $info = [];
@@ -267,23 +215,32 @@ function getGames($table, $columns = '*', $where = NULL, $join = NULL) {
             $resultados = $db->select($table, $columns, $where);
         }
         if ($resultados) {
-            foreach ($resultados as $pos => $game) {
-                foreach ($game as $campo => $valor) {
-                    $info[$pos][$campo] = $valor;
-                }
-                $info[$pos]['platforms'] = getPlatforms($game['id']);
-                $info[$pos]['vote_valance'] = getVoteBalance($game['id']);
-                $info[$pos]['saga'] = getSaga($game['id']);
-                if (isset($config['user_id'])) {
-                    $info[$pos]['myVote'] = getVote($game['id'], $config['user_id']);
-                }
-            }
+            $info = fetchGames($resultados);
         }
         return $info;
     } else {
         var_dump($error);
         return null;
     }
+}
+
+function fetchGames($games) {
+    global $config;
+    $data = [];
+    foreach ($games as $game) {
+        $g = new Game($game['id'], $game['name'], $game['cover'], getVoteBalance($game['id']), getPlatforms($game['id']), getSaga($game['id']));
+//        $data[$index]['id'] = $game['id'];
+//        $data[$index]['name'] = $game['name'];
+//        $data[$index]['cover'] = $game['cover'];
+//        $data[$index]['platforms'] = getPlatforms($game['id']);
+//        $data[$index]['vote_valance'] = getVoteBalance($game['id']);
+//        $data[$index]['saga'] = getSaga($game['id']);
+        if (isset($config['user_id'])) {
+            $g->setMy_vote(getVote($game['id'], $config['user_id']));
+        }
+        $data[]=$g;
+    }
+    return $data;
 }
 
 /**
@@ -299,36 +256,18 @@ function getVoteBalance($game_id) {
     $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
     $where = ['id' => $game_id];
     $resultados = $db->select($config['v_game_vote_balance'], $columns, $where);
-    $info = [];
+    $balance = NULL;
     $error = $db->error();
-    if ($error[0] == '00000') {
+    if ($error[0] == '00000' && !empty($resultados)) {
         foreach ($resultados[0] as $campo => $valor) {
-            $info[$campo] = $valor;
+
+
+            $balance[$campo] = $valor;
         }
+        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
     }
-    return $info;
-
-
-
-
-//    global $conexion, $config;
-//    $votos = array();
-//    $querys = array(
-//        "total" => "select count(vote) as votos from {$config['t_user_votes']} where game=$game_id;", //Votos totales
-//        "positives" => "select count(vote) as votos from {$config['t_user_votes']} where game=$game_id and vote!=0;" //Votos positivos
-//    );
-//    $errorNo = '';
-//    $errorMsg = '';
-//    foreach ($querys as $tipo => $query) {
-//        $resultado = mysqli_query($conexion, $query);
-//        if ($errorNo = mysqli_errno($conexion) != 0) {
-//            $errorMsg = mysqli_error($conexion);
-//            echo "Error sacando los votos totales:<br>$errorNo=$errorMsg en la query $query";
-//            break;
-//        }
-//        $votos[$tipo] = mysqli_fetch_array($resultado, MYSQLI_ASSOC)['votos'];
-//    }
-//    return $votos;
+//    return $info;
+    return $balance;
 }
 
 /**
@@ -346,20 +285,11 @@ function getVote($game_id, $user_id) {
     $error = $db->error();
     if ($error[0] == '00000') {
         if (!empty($resultado)) {
-            return $resultado[0]['vote'];
+            return (int)$resultado[0]['vote'];
         } else {
             return null;
         }
     }
-
-//
-//    $query = "select vote from {$config['t_user_votes']} where game=$game_id and user=$user_id;";
-//    $resultado = mysqli_query($conexion, $query);
-//    $errorNo = mysqli_errno($conexion);
-//    if ($errorNo != 0) {
-//        return array("error" => "$errorNo: " . mysqli_error($conexion));
-//    }
-//    return mysqli_fetch_array($resultado, MYSQLI_ASSOC)['vote'];
 }
 
 /**
@@ -374,28 +304,12 @@ function getPlatforms($game_id = 0) {
     $columns = ['id', 'name', 'short_name', 'icon'];
     $where = ["game" => $game_id];
     $resultados = $db->select($config['t_game_platform'], $join, $columns, $where);
-    return $resultados;
-//    global $conexion, $config;
-//    if ($game_id) {
-//        $query = "select id, name, short_name, icon from {$config['t_game_platform']}, {$config['t_platforms']} where game_platform.platform=platforms.id and game_platform.game=$game_id;";
-//    } else {
-//        $query = "select id, name, short_name, icon from {$config['t_platforms']} order by name asc;";
-//    }
-//    $resultado = mysqli_query($conexion, $query);
-//    $errorNo = mysqli_errno($conexion);
-//    if ($errorNo != 0) {
-//        return array("error" => "$errorNo: " . mysqli_error($conexion), "query" => $query);
-//    }
-//    $platforms = array();
-//    while ($platform = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-//        $platforms[] = array(
-//            "id" => $platform["id"],
-//            "name" => $platform["name"],
-//            "short_name" => $platform["short_name"],
-//            "icon" => $platform["icon"]
-//        );
-//    }
-//    return $platforms;
+    $platforms = [];
+    foreach ($resultados as $resultado) {
+        $platforms[] = new Platform($resultado['id'], $resultado['name'], $resultado['short_name'], $resultado['icon']);
+    }
+//    return $resultados;
+    return $platforms;
 }
 
 function getUser($user, $input_type = 'id') {
@@ -431,26 +345,27 @@ function getSaga($game_id) {
     $where = ["game" => $game_id];
     $resultados = $db->select($config['t_game_saga'], $join, $columns, $where);
     $error = $db->error();
+//    var_dump($resultados);
+//    echo (empty($resultados)?"VACIO":"LLENO")."<br>";
     if ($error[0] == '00000' && !empty($resultados)) {
         $saga_id = $resultados[0]['id'];
-        $resultados[0]['vote_balance'] = getSagaValanceVote($resultados[0]['id']);
-        return $resultados[0];
+        $saga = new Saga($saga_id, $resultados[0]['name'], $resultados[0]['logo'], getSagaVoteBalance($resultados[0]['id']));
+        return $saga;
     } else {
         return NULL;
     }
 }
 
-function getSagaValanceVote($saga_id){
+function getSagaVoteBalance($saga_id) {
     global $db, $config;
     $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
     $where = ['id' => $saga_id];
     $resultados = $db->select($config['v_saga_vote_balance'], $columns, $where);
-    $info = [];
+    $balance = NULL;
     $error = $db->error();
-    if ($error[0] == '00000') {
-        foreach ($resultados[0] as $campo => $valor) {
-            $info[$campo] = $valor;
-        }
+    if ($error[0] == '00000' && !empty($resultados)) {
+        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
     }
-    return $info;
+    return $balance;
 }
+
