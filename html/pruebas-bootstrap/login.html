@@ -56,19 +56,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <div class="container">
                     <div class="form-signin">
-                        <form class="">
-                            <h2 class="form-signin-heading">Please sign in</h2>
-                            <label for="inputEmail" class="sr-only">Email address</label>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                            <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                </label>
-                            </div>
-                            <button class="btn btn-lg bg-azul" type="submit">Sign in</button>
-                        </form>
+                        <div class="col-md-6">
+                            <form class="col-md-6">
+                                <h2 class="form-signin-heading">Please sign in</h2>
+                                <label for="inputEmail" class="sr-only">Email address</label>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="remember-me"> Remember me
+                                    </label>
+                                </div>
+                                <button class="btn btn-lg bg-azul" type="submit">Sign in</button>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6">
+                            <form id="formulario" action="" method="post" novalidate>
+                                <fieldset>
+                                    <label for="nombre">Nombre usuario *</label> 
+                                    <input type="text" id="nombreUsuario" name="nombreUsuario" onchange="validar()">
+                                    <br><br><label for="nombre">Contraseña  *</label> 
+                                    <input type="password" id="contraseña" name="contraseña">
+                                    <br><br><label for="nombre">Repite contraseña  *</label> 
+                                    <input type="password" id="contraseña2" name="contraseña2">
+                                    <br><br><label for="nombre">Nombre  *</label> 
+                                    <input type="text" id="nombre" name="nombre">
+                                    <br><br><label for="apellidos">Apellidos  *</label> 
+                                    <input type="text" id="apellidos" name="apellidos">
+                                    <br><br><label for="telefono">Teléfono  *</label>
+                                    <input type="tel" id="telefono" name="telefono">
+                                    <br><br><label for="email">Email  *</label>
+                                    <input type="email" id="email" name="email">
+                                    <br><br><label for="email2">Confirmar Email  *</label>
+                                    <input type="email" id="email2" name="email2">
+                                </fieldset>
+                                <input class="enviar" type="submit" value="Enviar">
+                            </form>
+                        </div>
 
                     </div> 
                     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
