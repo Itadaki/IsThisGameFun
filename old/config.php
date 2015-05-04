@@ -18,37 +18,16 @@
  */
 
 $config = array();
-
 $config['db_server'] = 'localhost';
 $config['db_user'] = 'root';
 $config['db_pass'] = '';
-$config['db_charset'] = 'utf8';
+//$settings[''] = '';
 $config['db_name'] = 'isthisgamefun';
-
-$config['db_config'] = array(
-    'database_type' => 'mysql',
-    'database_name' => $config['db_name'],
-    'server' => 'localhost',
-    'username' => $config['db_user'],
-    'password' => $config['db_pass'],
-    'charset' => $config['db_charset']
-);
-
 $config['t_users'] = 'users';
 $config['t_games'] = 'games';
 $config['t_user_votes'] = 'user_votes';
 $config['t_platforms'] = 'platforms';
 $config['t_game_platform'] = 'game_platform';
-$config['t_sagas'] = 'sagas';
-$config['t_game_saga'] = 'game_saga';
-$config['t_saga_votes'] = 'saga_votes';
-
-$config['v_game_positive_percentage'] = 'game_positive_percentage';
-$config['v_game_vote_balance'] = 'game_vote_balance';
-$config['v_most_negative_voted'] = 'most_negative_voted';
-$config['v_most_positive_voted'] = 'most_positive_voted';
-$config['v_most_voted'] = 'most_voted';
-$config['v_saga_vote_balance'] = 'saga_vote_balance';
 
 $config['t_full_users'] = $config['db_name'] . '.' . $config['t_users'];
 $config['t_full_games'] = $config['db_name'] . '.' . $config['t_games'];

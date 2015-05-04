@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+Autor = Diego Rodríguez Suárez-Bustillo
+Fecha = 30-mar-2015
+Licencia = gpl30 
+Version = 1.0
+Descripcion = 
+-->
+
+<!--
+Copyright (C) 2015 Diego Rodríguez Suárez-Bustillo
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<html lang="es">
+    <head>
+        <title>RodriBus</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <style>
+            /**{border: 1px solid}*/
+            .pill{border: 1px solid #e7e7e7;}
+            .pill{
+                padding: 0;
+                margin: 0;
+            }
+            .pill-body{
+                margin: 10px;
+            }
+            .pill-head{
+                background-color: #f5f5f5;
+                /*border-radius: 10px 10px 0 0;*/
+                min-height: 50px;
+                color: #777;
+            }
+
+            .pill-cover{
+                margin: 5px 0;
+            }
+
+            .pill-bottom{
+                margin: 5px 0;
+            }
+            
+            .cabecera{
+                position: relative;
+                height: 150px;
+                background-color: #f5f5f5;
+                line-height: 150px;
+            }
+            .cabecera h1{
+/*                float: left;*/
+                display: inline-block;
+                /*margin: 0;*/
+            }
+            .cabecera img{
+                /*float: left;*/
+                /*vertical-align: initial;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 cabecera">
+                    <!--<img src="" width="150" height="150" alt="Logo"/>-->
+                    <h1>Is This Game Fun?</h1>
+                </div>
+            </div>
+            <div class="row">  
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">ITGF?</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> <span class="sr-only">(current)</span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Games <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Best</a></li>
+                                        <li><a href="#">Most</a></li>
+                                        <li><a href="#">Alphabetical</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </div>
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Sign in</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-user"></span> Nekko <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Mi perfil</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+            <div class="row">
+                <ol class="breadcrumb"><li><a href="#">Home</a></li><li><a href="#">Games</a></li><li class="active">Top</li></ol>
+            </div>
+            <div class="row">
+<!--                <div class="col-md-3 col-xs-12">
+                TOP
+                <div class="pill text-center col-md-3 col-xs-12">
+                    <div class="pill-top">
+                        <div class="pill-head">
+                            <h3 style="display: inline-block; vertical-align: middle; ">Game Name</h3>
+                        </div>
+                        <img class="pill-cover" width="200" height="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkzIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" alt="...">
+                        <img class="pill-cover" width="200" height="300" src="../covers/no-cover.png" alt="...">
+                    </div>
+                    <div class="pill-body">
+                        MIDDLE
+                        <div class="pill-middle">
+                            <div class="platforms">
+                                <a href="#"><span class="label label-default label-platform">PS3</span></a>
+                                <a href="#"><span class="label label-default label-platform">PS4</span></a>
+                                <a href="#"><span class="label label-default label-platform">XB360</span></a>
+                                <a href="#"><span class="label label-default label-platform">XBONE</span></a>
+                                <a href="#"><span class="label label-default label-platform">WIIU</span></a>
+                                <a href="#"><span class="label label-default label-platform">WII</span></a>
+                                <a href="#"><span class="label label-default label-platform">N64</span></a>
+                                <a href="#"><span class="label label-default label-platform">SNES</span></a>
+                                <a href="#"><span class="label label-default label-platform">PC</span></a>
+                            </div>
+                        </div>
+                        BOTTOM
+                        <div class="pill-bottom">
+                            <div class="progress" style="margin: 5px 0">
+                                <div class="progress-bar progress-bar-danger" style="width: 35%"></div>
+                                <div class="progress-bar progress-bar-success" style="width: 65%"></div>
+                            </div>
+                            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-minus"></i> Not</button>
+                            <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Fun</button>
+                        </div>
+                    </div>
+                </div>-->
+{pastillas}
+            </div>
+        </div>
+    </body>
+</html>

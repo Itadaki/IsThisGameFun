@@ -18,22 +18,12 @@
  */
 
 $config = array();
-
 $config['db_server'] = 'localhost';
 $config['db_user'] = 'root';
 $config['db_pass'] = '';
 $config['db_charset'] = 'utf8';
+//$config[''] = '';
 $config['db_name'] = 'isthisgamefun';
-
-$config['db_config'] = array(
-    'database_type' => 'mysql',
-    'database_name' => $config['db_name'],
-    'server' => 'localhost',
-    'username' => $config['db_user'],
-    'password' => $config['db_pass'],
-    'charset' => $config['db_charset']
-);
-
 $config['t_users'] = 'users';
 $config['t_games'] = 'games';
 $config['t_user_votes'] = 'user_votes';

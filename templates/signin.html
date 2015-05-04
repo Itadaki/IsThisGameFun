@@ -1,0 +1,21 @@
+{top}
+{menu}
+{error}
+<style>
+    .error_error{background: red}
+    .error_pendiente{background: orange}
+</style>
+<form id="formulario" action="" method="post" novalidate>
+        <label for="nombre" {validateUser}>Nombre usuario *</label> 
+        <input type="text" id="user" name="user" value="{user}" required>
+        <br><br><label for="password" {validatePassword}>Contraseña  *</label> 
+        <input type="password" id="password" name="password" required>
+        <br><br><label for="password2">Repite contraseña  *</label> 
+        <input type="password" id="password2" name="password2" required>
+        <br><br><label for="nick" {validateNick}>Nick  *</label> 
+        <input type="text" id="nick" name="nick" value="{nick}" required>
+        <br><br><label for="email" {validateEmail}>Email  *</label>
+        <input type="email" id="email" name="email" value="{email}" required>
+        <input class="enviar" type="submit" name="signin" value="Sign In">
+</form>
+{bottom}

@@ -7,19 +7,13 @@ RewriteEngine on
 #   Salida: index.php?section=GAMES&order=ORDER
 #   El flag [L] le dice al motor que deje de buscar coincidencias en los RewriteRule's
 
-# /user/user_name
-RewriteRule ^user/(\w+)/?$ index.php?section=user&user=$1 [L]
-
-#/games/game_id
-RewriteRule ^games/([0-9]+)/?$ index.php?section=games&game=$1 [L]
-
-#/seccion
+#/section
 RewriteRule ^(\w+)/?$ index.php?section=$1 [L]
 
-#/seccion/orden
-RewriteRule ^(\w+)/(\w+)/?$ index.php?section=$1&order=$2 [L]
+#/section/action
+RewriteRule ^(\w+)/(\w+)/?$ index.php?section=$1&action=$2 [L]
 
-#/seccion/orden/pagina
-RewriteRule ^(\w+)/(\w+)/([0-9]+)/?$ index.php?section=$1&order=$2&page=$3 [L]
+#/section/action/args...
+RewriteRule ^(\w+)/(\w+)/((\w+/?)+)/?$ index.php?section=$1&action=$2&args=$3 [L]
 
 </IfModule>

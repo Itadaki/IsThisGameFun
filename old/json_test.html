@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+Autor = Diego Rodríguez Suárez-Bustillo
+Fecha = 28-mar-2015
+Licencia = gpl30 
+Version = 1.0
+Descripcion = 
+-->
+
+<!--
+Copyright (C) 2015 Diego Rodríguez Suárez-Bustillo
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <input type="button" value="lanzar script" onclick="launch()"/>
+        <div id="response"></div>
+        <form method="post" action="api.php">
+    User <input type="text" name="json" value="" /><br>
+    <input type="submit" value="LogIn" name="login" />
+</form>
+        <script type="text/javascript">
+            function launch() {
+                peticion_http = inicializa_xhr();
+                if (peticion_http) {
+                    peticion_http.onreadystatechange = procesaRespuesta;
+                    peticion_http.open("POST", "api.php", true);
+
+//                    peticion_http.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                    peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//                    peticion_http.send("json="+crear_json());
+                    peticion_http.send('json=' + crear_json());
+
+                }
+            }
+            var READY_STATE_COMPLETE = 4;
+            var peticion_http = null;
+            //Función para obtener la instancia del objeto XMLHttpRequest
+            function inicializa_xhr() {
+                if (window.XMLHttpRequest) {
+                    return new XMLHttpRequest();
+                }
+                else if (window.ActiveXObject) {
+                    return new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+
+            /*
+             JSON a generar:
+             {comunidad:#comunidad}
+             */
+            function crear_json() {
+                var JSONObject = new Object();
+//                JSONObject.action='getLatestGames';
+                JSONObject.action='getGamesVoted';
+                JSONObject.user_id='10';
+                JSONObject.offset = '100';
+//                JSONObject.user_id = 1
+                JSONObject.nocache = Math.random();
+                var objeto_json = JSON.stringify(JSONObject);
+                console.log('JSON ENVIADO: '+objeto_json);
+                return objeto_json;
+            }
+
+            /*
+             Respuesta del servidor
+             { ciudades : [..., ..., ...] }
+             */
+            function procesaRespuesta() {
+                if (peticion_http.readyState === READY_STATE_COMPLETE) {
+                    if (peticion_http.status === 200) {
+//                        document.getElementById('response').innerHTML = peticion_http.responseText;
+                        console.log("JSON RECIBIDO:" + peticion_http.responseText);
+                        var json = eval('(' + peticion_http.responseText + ')');
+                        for (var i=0; i<json.length;i++){
+                            document.getElementById('response').innerHTML+= '<li>'+json[i].id +' ' +json[i].name+'</li>';
+                        }
+                        console.log(json);
+                    }
+                }
+            }
+            
+            
+            
+            
+            
+            
+        </script>
+    </body>
+</html>
