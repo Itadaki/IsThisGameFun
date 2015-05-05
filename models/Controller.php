@@ -30,13 +30,23 @@ class Controller {
     public $bottom;
     public $data = array();
 
-    public function __construct($top = "templates/top.html", $menu = "templates/menu.html", $bottom = "templates/bottom.html") {
+    public function __construct($top = "templates/frame/top.html", $menu = "templates/frame/menu.html", $bottom = "templates/frame/bottom.html") {
         $this->top = file_get_contents($top);
-        $this->menu = getScriptOutput('templates/create-menu.php');
+        $this->menu = getScriptOutput('templates/frame/create-menu.php');
         $this->bottom = file_get_contents($bottom);
+        $this->addTemplatesToData();
+    }
+    
+    private function addTemplatesToData(){
         $this->data['top'] = $this->top;
+        $this->data['body'] = $this->body;
         $this->data['menu'] = $this->menu;
         $this->data['bottom'] = $this->bottom;
+    }
+    
+    public function build(){
+        $this->addTemplatesToData();
+        return $this->top.$this->menu.$this->body.$this->bottom;
     }
 
 }

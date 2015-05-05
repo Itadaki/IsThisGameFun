@@ -35,12 +35,12 @@ class admin extends Controller {
     }
 
     public function index($args = array()) {
-        $this->data['body'] = file_get_contents('templates/admin.html');
+        $data['body'] = file_get_contents('templates/admin/index.html');
 
         $template = "templates/generic.html";
-        $html = replace($this->data, $template);
+        $this->body = replace($data, $template);
 
-        return $html;
+        return $this->build();
     }
 
     public function users($args = array()) {
@@ -51,13 +51,14 @@ class admin extends Controller {
             $user['server_root'] = '/isthisgamefun/';
             $userHtml .= replace($user, $template);
         }
-        $this->data['list'] = $userHtml;
+        $data['list'] = $userHtml;
 
         $template = "templates/admin/users/users.html";
-        $html = replace($this->data, $template);
-        return $html;
+        $this->body = replace($data, $template);
+        return $this->build();
+        ;
     }
-    
+
     public function games($args = array()) {
         $games = getAllGames(10000);
         $template = "templates/admin/games/game-list.html";
@@ -68,13 +69,13 @@ class admin extends Controller {
             $repl['server_root'] = '/isthisgamefun/';
             $gameHtml .= replace($repl, $template);
         }
-        $this->data['list'] = $gameHtml;
+        $data['list'] = $gameHtml;
 
         $template = "templates/admin/games/games.html";
-        $html = replace($this->data, $template);
-        return $html;
+        $this->body = replace($data, $template);
+        return $this->build();
     }
-    
+
     public function platforms($args = array()) {
         $platforms = getPlatforms();
         $template = "templates/admin/platforms/platform-list.html";
@@ -86,13 +87,13 @@ class admin extends Controller {
             $repl['server_root'] = '/isthisgamefun/';
             $platformsHtml .= replace($repl, $template);
         }
-        $this->data['list'] = $platformsHtml;
+        $data['list'] = $platformsHtml;
 
         $template = "templates/admin/platforms/platforms.html";
-        $html = replace($this->data, $template);
-        return $html;
+        $this->body = replace($data, $template);
+        return $this->build();
     }
-    
+
     public function sagas($args = array()) {
         $sagas = getSaga();
         $template = "templates/admin/sagas/saga-list.html";
@@ -104,11 +105,11 @@ class admin extends Controller {
             $repl['server_root'] = '/isthisgamefun/';
             $sagasHtml .= replace($repl, $template);
         }
-        $this->data['list'] = $sagasHtml;
+        $data['list'] = $sagasHtml;
 
         $template = "templates/admin/sagas/sagas.html";
-        $html = replace($this->data, $template);
-        return $html;
+        $this->body = replace($data, $template);
+        return $this->build();
     }
 
 }

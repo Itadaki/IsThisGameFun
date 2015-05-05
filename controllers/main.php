@@ -22,23 +22,32 @@
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */
-class main extends Controller{
+class main extends Controller {
 
     public function index($args = array()) {
+        //Get array with games
         $latest = getLatestGames();
+        //Transform it into html string
         $latesHtml = replaceGame($latest);
-        
-        $best = getBestGames();
-        $bestHtml = replaceGame($best);
-        
-        $this->data['latest'] = $latesHtml;
-        $this->data['best'] = $bestHtml;
 
-        $template = "templates/index.html";
-        $html = replace($this->data, $template);
+        //Get array with games
+        $best = getBestGames();
+        //Transform it into html string
+        $bestHtml = replaceGame($best);
+
+        //Add the html to an array
+        $data['latest'] = $latesHtml;
+        $data['best'] = $bestHtml;
+        //Use the html array to dump it into the places marked by {} on the template
+        $template = "templates/main/index.html";
+        $body = replace($data, $template);
         
-        return $html;
+        //Add the html to the body
+        $this->body = $body;
+        //Build the pieces of the web and return to client
+        return $this->build();
+
+//        return $html;
     }
 
 }
-

@@ -43,26 +43,26 @@ class signin extends Controller {
      * @return type
      */
     private function displaySignInForm($camposErroneos = array(), $camposPendientes = array()) {
-        $this->data['error'] = '';
+        $data['error'] = '';
         if ($camposErroneos || $camposPendientes) {
             if ($camposErroneos) {
-                $this->data['error'] .= '<p class="error_error">Hay campos no validos.</p>';
+                $data['error'] .= '<p class="error_error">Hay campos no validos.</p>';
             }
             if ($camposPendientes) {
-                $this->data['error'] .= '<p class="error_pendiente">Falta algun campo.</p>';
+                $data['error'] .= '<p class="error_pendiente">Falta algun campo.</p>';
             }
         }
-        $this->data['user'] = setValue('user');
-        $this->data['validateUser'] = validateField('user', $camposPendientes, $camposErroneos);
-        $this->data['nick'] = setValue('nick');
-        $this->data['validateNick'] = validateField('nick', $camposPendientes, $camposErroneos);
-        $this->data['email'] = setValue('email');
-        $this->data['validateEmail'] = validateField('email', $camposPendientes, $camposErroneos);
-        $this->data['validatePassword'] = validateField('password', $camposPendientes, $camposErroneos);
+        $data['user'] = setValue('user');
+        $data['validateUser'] = validateField('user', $camposPendientes, $camposErroneos);
+        $data['nick'] = setValue('nick');
+        $data['validateNick'] = validateField('nick', $camposPendientes, $camposErroneos);
+        $data['email'] = setValue('email');
+        $data['validateEmail'] = validateField('email', $camposPendientes, $camposErroneos);
+        $data['validatePassword'] = validateField('password', $camposPendientes, $camposErroneos);
 
-        $template = "templates/signin.html";
-        $html = replace($this->data, $template);
-        return $html;
+        $template = "templates/signin/signin.html";
+        $this->body = replace($data, $template);
+        return $this->build();
     }
 
     /**

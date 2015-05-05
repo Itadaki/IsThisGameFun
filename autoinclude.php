@@ -23,14 +23,14 @@ include_once './config.php';
 //Include the composer dependencies
 require_once './vendor/autoload.php';
 
-//Include all functions
+//Include all the functions
 foreach (glob("./functions/*.php") as $filename)
 {
     include_once $filename;
 }
 
-//Include all classes
-foreach (glob("./class/*.php") as $filename)
+//Include all the model classes
+foreach (glob("./models/*.php") as $filename)
 {
     include_once $filename;
 }
@@ -41,7 +41,7 @@ foreach (glob("./api/*.php") as $filename)
     include_once $filename;
 }
 
-//Include all controllers
+//Include all the controllers
 foreach (glob("./controllers/*.php") as $filename)
 {
     include_once $filename;

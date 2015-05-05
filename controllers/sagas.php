@@ -25,32 +25,32 @@
 class sagas extends Controller {
 
     public function index($args = array()) {
-        $most = getBestGames();
-        $mostHtml = replaceGame($most);
-
-        $this->data['most'] = $mostHtml;
-
-        $template = "templates/games.html";
-        $html = replace($this->data, $template);
-
-        return $html;
+////        $most = getBestGames();
+////        $mostHtml = replaceGame($most);
+//
+//        $data['sagas'] = $mostHtml;
+//
+//        $template = "templates/games.html";
+//        $this->body = replace($data, $template);
+//
+//        return $this->build();
     }
 
     public function details($args = array()) {
         if (count($args) > 0 && is_numeric($args[0])) {
             $saga = getSagaById($args[0]);
             if ($saga != null) {
-                $data = $saga->getDataArray();
-                $data['vote_balance'] = replace((array) $data['vote_balance'], "templates/vote-balance.html");
+                $subData = $saga->getDataArray();
+                $subData['vote_balance'] = replace((array) $subData['vote_balance'], "templates/common/vote-balance.html");
                 
                 
-                $sagaHtml = replace($data, 'templates/admin/sagas/saga-details.html');
+                $sagaHtml = replace($subData, 'templates/admin/sagas/saga-details.html');
                 
-                $this->data['sagas'] = $sagaHtml;
-                $template = "templates/sagas.html";
-                $html = replace($this->data, $template);
+                $data['sagas'] = $sagaHtml;
+                $template = "templates/sagas/index.html";
+                $this->body = replace($data, $template);
 
-                return $html;
+                return $this->build();
             } else {
                 header('Location: ../../main');
             }

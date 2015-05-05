@@ -28,12 +28,12 @@ class games extends Controller {
         $most = getBestGames();
         $mostHtml = replaceGame($most);
 
-        $this->data['most'] = $mostHtml;
+        $data['games'] = $mostHtml;
 
-        $template = "templates/games.html";
-        $html = replace($this->data, $template);
+        $template = "templates/games/index.html";
+        $this->body = replace($data, $template);
 
-        return $html;
+        return $this->build();
     }
 
     public function top($args = array()) {
@@ -44,38 +44,38 @@ class games extends Controller {
         $best = getBestGames();
         $bestHtml = replaceGame($best);
 
-        $this->data['most'] = $bestHtml;
+        $data['games'] = $bestHtml;
 
-        $template = "templates/games.html";
-        $html = replace($this->data, $template);
+        $template = "templates/games/index.html";
+        $this->body = replace($data, $template);
 
-        return $html;
+        return $this->build();
     }
 
     public function all($args = array()) {
         $all = getAllGames();
         $allHtml = replaceGame($all);
 
-        $this->data['most'] = $allHtml;
+        $data['games'] = $allHtml;
 
-        $template = "templates/games.html";
-        $html = replace($this->data, $template);
+        $template = "templates/games/index.html";
+        $this->body = replace($data, $template);
 
-        return $html;
+        return $this->build();
     }
 
     public function details($args = array()) {
         if (count($args) > 0 && is_numeric($args[0])) {
             $game = getGame($args[0]);
             if ($game != null) {
-                $data[] = $game;
-                $gameHtml = replaceGame($data);
+                $subData[] = $game;
+                $gameHtml = replaceGame($subData);
                 
-                $this->data['most'] = $gameHtml;
-                $template = "templates/games.html";
-                $html = replace($this->data, $template);
+                $data['games'] = $gameHtml;
+                $template = "templates/games/index.html";
+                $this->body = replace($data, $template);
 
-                return $html;
+                return $this->build();
             } else {
                 header('Location: ../../main');
             }

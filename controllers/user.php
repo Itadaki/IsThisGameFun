@@ -28,15 +28,15 @@ class user extends Controller {
         $user = getUser($args[0]);
         //getUser returns false if user doesnt exists
         if ($user) {
-            $this->data['user_id'] = $user['user_id'];
-            $this->data['user_nick'] = $user['user_nick'];
-            $this->data['user_avatar'] = $user['user_avatar'];
-            $this->data['games_voted'] = replaceGame($user['games_voted']);
+            $data['user_id'] = $user['user_id'];
+            $data['user_nick'] = $user['user_nick'];
+            $data['user_avatar'] = $user['user_avatar'];
+            $data['games_voted'] = replaceGame($user['games_voted']);
 
-            $template = "templates/user-profile.html";
-            $html = replace($this->data, $template);
+            $template = "templates/user/user-profile.html";
+            $this->body = replace($data, $template);
 
-            return $html;
+            return $this->build();
         } else {
             //Return to root
             header("Location: ../../");

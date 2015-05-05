@@ -14,12 +14,13 @@
         echo "<li><a href='{$config['server_root']}login/logout'>Logout</a></li>";
         if ($_SESSION['user_level'] == 'admin') {
             echo "<li><a href='{$config['server_root']}admin'>ADMIN panel<ul></a>";
+            //At some poit this has to be replaced by a template
             echo "<ul>
-    <li><a href='{$config['server_root']}admin/users'>Users</a></li>
-    <li><a href='{$config['server_root']}admin/games'>Games</a></li>
-    <li><a href='{$config['server_root']}admin/platforms'>Platforms</a></li>
-    <li><a href='{$config['server_root']}admin/sagas'>Sagas</a></li>
-</ul>";
+                    <li><a href='{$config['server_root']}admin/users'>Users</a></li>
+                    <li><a href='{$config['server_root']}admin/games'>Games</a></li>
+                    <li><a href='{$config['server_root']}admin/platforms'>Platforms</a></li>
+                    <li><a href='{$config['server_root']}admin/sagas'>Sagas</a></li>
+                  </ul>";
             echo "</ul></li>";
         }
     } else {
@@ -28,5 +29,3 @@
     }
     ?>
 </ul>
-<?php
-// return ob_get_clean(); ?>

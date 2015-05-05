@@ -37,21 +37,21 @@ class login extends Controller {
     }
 
     private function displayLogInForm($camposErroneos = array(), $camposPendientes = array()) {
-        $this->data['error'] = '';
+        $data['error'] = '';
         if ($camposErroneos || $camposPendientes) {
             if ($camposErroneos) {
-                $this->data['error'] .= '<p class="error_error">Usuario o contraseña no validos.</p>';
+                $data['error'] .= '<p class="error_error">Usuario o contraseña no validos.</p>';
             }
             if ($camposPendientes) {
-                $this->data['error'] .= '<p class="error_pendiente">Falta un campo.</p>';
+                $data['error'] .= '<p class="error_pendiente">Falta un campo.</p>';
             }
         }
-        $this->data['user'] = setValue('user');
+        $data['user'] = setValue('user');
 
 
-        $template = "templates/login.html";
-        $html = replace($this->data, $template);
-        return $html;
+        $template = "templates/login/login.html";
+        $this->body = replace($data, $template);
+        return $this->build();
     }
 
     private function validateLogIn() {

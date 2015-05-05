@@ -63,7 +63,7 @@ function replaceGame($gameArray) {
                 "short_name" => $platform->short_name,
                 "icon" => $platform->icon
             );
-            $template = "templates/platform.html";
+            $template = "templates/common/platform.html";
             $allPlatforms .= replace($platformData, $template);
         }
 
@@ -72,7 +72,7 @@ function replaceGame($gameArray) {
             /* @var $saga Saga */
             $saga = $game->saga;
 //            $sagaVoteBalanceData = $saga->vote_balance;
-            $sagaVoteBalance = replace((array) $saga->vote_balance, "templates/vote-balance.html");
+            $sagaVoteBalance = replace((array) $saga->vote_balance, "templates/common/vote-balance.html");
             $sagaData = array(
                 "id" => $saga->id,
                 "name" => $saga->name,
@@ -80,7 +80,7 @@ function replaceGame($gameArray) {
                 "logo" => $saga->logo,
                 "vote_balance" => $sagaVoteBalance
             );
-            $template = "templates/saga.html";
+            $template = "templates/common/saga.html";
             $sagaHtml = replace($sagaData, $template);
         } else {
             $sagaHtml = '';
@@ -89,7 +89,7 @@ function replaceGame($gameArray) {
         /* @var $saga  */
 //        $gameVoteBalanceData = $game->vote_balance;
         if ($game->vote_balance != null) {
-            $gameVoteBalance = replace((array) $game->vote_balance, "templates/vote-balance.html");
+            $gameVoteBalance = replace((array) $game->vote_balance, "templates/common/vote-balance.html");
         } else {
             $gameVoteBalance = '';
         }
@@ -104,7 +104,7 @@ function replaceGame($gameArray) {
             "my_vote" => $game->my_vote,
             "user_vote" => $game->user_vote
         );
-        $template = "templates/game.html";
+        $template = "templates/common/game.html";
         $html .= replace($gameData, $template);
     }
     return $html;
