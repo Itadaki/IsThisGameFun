@@ -1,6 +1,6 @@
-<ul>
-    <li>VB +: {positive_votes}</li>
-    <li>VB -: {negative_votes}</li>
-    <li>VB =: {total_votes}</li>
-    <li>VB +%: {positive_percentage}</li>
-</ul>
+<div class="progress progress-bar-danger">
+    <div class="progress-bar-info" role="progressbar" aria-valuenow="{positive_percentage}" aria-valuemin="0" aria-valuemax="100" style="width:{positive_percentage}%">{positive_percentage}%</div>
+</div>
+<button type="button" class="btn btn-info btn-left">SI</button>
+<span class="">{total_votes} votes</span>
+<button type="button" class="btn btn-danger btn-right">NO</button>
