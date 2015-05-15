@@ -100,7 +100,7 @@ function proccessCover($name) {
         $file_name = $name . '.' . pathinfo($_FILES['cover']["name"], PATHINFO_EXTENSION);
         $path = 'covers/' . $file_name;
 
-        move_uploaded_file($_FILES[cover]["tmp_name"], $path);
+        move_uploaded_file($_FILES['cover']["tmp_name"], $path);
     }
 
     return $file_name;

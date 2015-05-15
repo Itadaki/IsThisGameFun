@@ -46,7 +46,7 @@ function replace($data, $template) {
  * @param type $gameArray
  * @return type
  */
-function replaceGame($gameArray) {
+function replaceGame($gameArray, $is_main=false) {
     global $config;
     $html = '';
     foreach ($gameArray as $game) {
@@ -104,7 +104,12 @@ function replaceGame($gameArray) {
             "my_vote" => $game->my_vote,
             "user_vote" => $game->user_vote
         );
-        $template = "templates/common/game.html";
+        if ($is_main){
+            $template = "templates/main/game.html";
+        } else {
+            $template = "templates/common/game.html";
+        }
+        
         $html .= replace($gameData, $template);
     }
     return $html;

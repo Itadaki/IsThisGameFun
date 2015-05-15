@@ -100,10 +100,10 @@ img {
     max-width: 250px;
     margin-bottom: 15px;
 }
-.img-xs{
-    height: 150px;
-    max-width: 250px;
-    margin: 15px
+.img-main{
+    display: block;
+    margin: 0 auto;
+    
 }
 svg:not(:root) {
     overflow: hidden;

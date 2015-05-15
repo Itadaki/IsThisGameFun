@@ -1,15 +1,58 @@
-<form name="new-game" action="/isthisgamefun/admin/games/save" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="{id}" />
-    <label for="name">Name</label><input type="text" id="name" name="name" value="{name}" /><br>
-    <label for="description">Desc.</label> <textarea name="description" rows="4" cols="20">{description}</textarea> <br>
-    <img class="img-md img-responsive" src="/isthisgamefun/covers/{cover}"/><br>
-    <label for="cover">Cover</label><input type="file" id="cover" name="cover" accept="image/jpeg, image/png, image/gif"/><br>
-    <!-- SAGA DROPDOWN -->
-    <label for="cover">Saga</label>{sagas}
-    <br>
-    <!-- GAME PLATFORMS -->
-    {platforms}
-    <br>
-    <input type="submit" value="{action}" name="action"/>
-</form>
-<script src="/isthisgamefun/includes/js/admin-new-edit-game-checkbox.js"></script>
+<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{action} game</h4>
+        </div>			<!-- /modal-header -->
+        <div class="modal-body">
+            <form class="form-horizontal" id="new-game" name="new-game" action="/isthisgamefun/admin/games/save" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{id}" />
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend></legend>
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" value="{name}">
+                        </div>
+                    </div>
+                    <!-- File Button --> 
+                    
+                    <div class="control-group">
+                        <label class="control-label" for="filebutton">Cover</label>
+                        <div class="controls text-left">
+                            <img class="img-md img-responsive" src="/isthisgamefun/covers/{cover}"/>
+                            <input type="file" id="cover" name="cover" accept="image/jpeg, image/png, image/gif" class="input-file"/>
+                            <p class="help-block">JPEG, JPG, PNG and GIF only.</p>
+                        </div>
+                    </div>
+                    <!-- Select Basic -->
+                    <div class="control-group">
+                        <label class="control-label" for="selectbasic">Saga</label>
+                        <div class="controls">
+                            {sagas}
+                        </div>
+                    </div>
+                    <!-- Multiple Checkboxes (inline) -->
+                    <div class="control-group">
+                        <label class="control-label" for="checkboxes">Inline Checkboxes</label>
+                        <div class="controls">
+                           {platforms} 
+                        </div>
+                    </div>
+                    <!-- Textarea -->
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Description</label>
+                        <div class="controls">                     
+                            <textarea id="textarea" name="textarea">{description}</textarea>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+        </div>			<!-- /modal-body -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="{action}" name="action" class="btn btn-primary" form="new-game"/>
+        </div>
+        <script src="/isthisgamefun/includes/js/admin-new-edit-game-checkbox.js"></script>

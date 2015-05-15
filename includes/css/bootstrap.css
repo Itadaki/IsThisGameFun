@@ -101,10 +101,15 @@ img {
     margin:0px auto;
     margin-bottom: 15px;
 }
-.img-xs{
-    height: 150px;
-    max-width: 250px;
-    margin: 15px
+.img-main{
+    /*left: -75px;*/
+    position: relative;
+    top: -100px;
+    width: 100%;
+    transition: width .2s;
+}
+.img-main:hover{
+    width: 110%;
 }
 svg:not(:root) {
     overflow: hidden;

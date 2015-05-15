@@ -28,12 +28,12 @@ class main extends Controller {
         //Get array with games
         $latest = getLatestGames();
         //Transform it into html string
-        $latesHtml = replaceGame($latest);
+        $latesHtml = replaceGame($latest, true);
 
         //Get array with games
         $best = getBestGames();
         //Transform it into html string
-        $bestHtml = replaceGame($best);
+        $bestHtml = replaceGame($best, true);
 
         //Add the html to an array
         $data['latest'] = $latesHtml;

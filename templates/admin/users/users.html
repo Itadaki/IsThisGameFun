@@ -1,3 +1,44 @@
-<table>
-    {list}
-</table>
+<div class="container row voffset3">
+    <div class="col-md-2">
+        <nav class="menu bg-gray2">
+            <ul class="nav">
+                <li class="sidebar-brand">
+                    <a href="games">Game List</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="platforms">Platforms</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="sagas">Sagas</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="users">Users</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="bg-gray1 col-md-10">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><strong>ID</strong></th>
+                    <th><strong>NICK</strong></th>		
+                    <th ><strong>EMAIL</strong></th>
+                    <th ><strong>CREATED AT</strong></th>
+                    <th ><strong>MODIFIED AT</strong></th>
+                    <th ><strong>OPTIONS</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                {list}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->  
