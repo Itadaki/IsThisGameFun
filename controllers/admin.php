@@ -75,27 +75,45 @@ class admin extends Controller {
      * 
      */
     public function games($args = array()) {
-        if (isset($args[0]) && $args[0] == 'add') {
-            $this->body = $this->generateGameForm();
-        }
-        else if (isset($args[0]) && $args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
-            $this->body = $this->generateGameForm($args[1]);
-        }
-        else {
+        if (isset($args[0])) {
+            if ($args[0] == 'add') {
+                return $this->body = $this->generateGameForm();
+            } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+                return $this->generateGameForm($args[1]);
+            } else if ($args[0] == 'save' && isset($_POST['action'])) {
+                $this->saveGame();
+                header('Location: ../../admin');
+            }
+        } else {
 
-        $games = getAllGames(10000);
-        $template = "templates/admin/games/game-list.html";
-        $gameHtml = '';
-        foreach ($games as $game) {
-            $repl['id'] = $game->id;
-            $repl['name'] = $game->name;
-            $repl['server_root'] = '/isthisgamefun/';
-            $gameHtml .= replace($repl, $template);
-        }
-        $data['list'] = $gameHtml;
+            $games = getAllGames(10000);
+            $template = "templates/admin/games/game-list.html";
+            $gameHtml = '';
+            foreach ($games as $game) {
+                $repl['id'] = $game->id;
+                $repl['name'] = $game->name;
+                $repl['server_root'] = '/isthisgamefun/';
 
-        $template = "templates/admin/games/games.html";
-        $this->body = replace($data, $template);
+                $repl['platforms'] = '';
+                foreach ($game->platforms as $platform) {
+                    $plat['id'] = $platform->id;
+                    $plat['name'] = $platform->name;
+                    $plat['short_name'] = $platform->short_name;
+                    $repl['platforms'].= replace($plat, "templates/common/platform.html");
+                }
+
+                if ($game->saga != null) {
+                    $repl['saga'] = $game->saga->name;
+                } else {
+                    $repl['saga'] = '';
+                }
+
+                $gameHtml .= replace($repl, $template);
+            }
+            $data['list'] = $gameHtml;
+
+            $template = "templates/admin/games/games.html";
+            $this->body = replace($data, $template);
         }
         return $this->build();
     }
@@ -154,6 +172,7 @@ class admin extends Controller {
     private function generateGameForm($id = null) {
         //Check if is new game or edit
         $is_edit = $id != null;
+        $action = $is_edit ? 'Modify' : 'Create';
         //Set the templates
         $base_template = "templates/admin/games/new-edit-game.html";
         $saga_dropdown_template = "templates/admin/games/new-edit-game-saga-dropdown.html";
@@ -174,6 +193,7 @@ class admin extends Controller {
             $data['description'] = '';
             $data['cover'] = '';
         }
+        $data['action'] = $action;
 
         //Data for the saga
         $all_sagas = getSaga();
@@ -224,6 +244,23 @@ class admin extends Controller {
         $html = replace($data, $base_template);
 
         return $html;
+    }
+
+    private function saveGame() {
+        $action = $_POST['action'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $platforms = $_POST['platforms']; //array
+        $saga = $_POST['saga']; //id
+
+        $cover = proccessCover($name); //name or null
+
+        if ($action == "Create") {
+            insertGame($name, $description, $platforms, $saga, $cover);
+        } else if ($action == "Modify") {
+            $id = $_POST['id'];
+            updateGame($id, $name, $description, $platforms, $saga, $cover);
+        }
     }
 
 }

@@ -1,13 +1,15 @@
-<form name="new-game" method="POST" enctype="multipart/form-data">
+<form name="new-game" action="/isthisgamefun/admin/games/save" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="{id}" />
     <label for="name">Name</label><input type="text" id="name" name="name" value="{name}" /><br>
     <label for="description">Desc.</label> <textarea name="description" rows="4" cols="20">{description}</textarea> <br>
     <img class="img-md img-responsive" src="/isthisgamefun/covers/{cover}"/><br>
     <label for="cover">Cover</label><input type="file" id="cover" name="cover" accept="image/jpeg, image/png, image/gif"/><br>
+    <!-- SAGA DROPDOWN -->
     <label for="cover">Saga</label>{sagas}
     <br>
-    <!-- SAGA DROPDOWN -->
-    {platforms}
     <!-- GAME PLATFORMS -->
+    {platforms}
+    <br>
+    <input type="submit" value="{action}" name="action"/>
 </form>
 <script src="/isthisgamefun/includes/js/admin-new-edit-game-checkbox.js"></script>

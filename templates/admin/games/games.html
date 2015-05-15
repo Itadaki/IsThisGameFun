@@ -1,3 +1,37 @@
-<table>
-{list}
-</table>
+<div class="container row voffset3">
+    <div class="col-md-2">
+        <nav class="menu bg-gray2">
+            <ul class="nav">
+                <li class="sidebar-brand">
+                    <a href="games">Game List</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="platforms">Platforms</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="sagas">Sagas</a>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="users">Users</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="bg-gray1 col-md-10">
+        <button type="button" class="btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span>Add</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><strong>ID</strong></th>
+                    <th><strong>NAME</strong></th>		
+                    <th ><strong>SAGA</strong></th>
+                    <th ><strong>PLATFORMS</strong></th>
+                    <th ><strong>OPTIONS</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                {list}
+            </tbody>
+        </table>
+    </div>
+</div>
