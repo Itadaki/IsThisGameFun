@@ -34,6 +34,11 @@ class admin extends Controller {
         }
     }
 
+    /**
+     * 
+     * 
+     * 
+     */
     public function index($args = array()) {
         $data['body'] = file_get_contents('templates/admin/index.html');
 
@@ -43,6 +48,11 @@ class admin extends Controller {
         return $this->build();
     }
 
+    /**
+     * 
+     * 
+     * 
+     */
     public function users($args = array()) {
         $users = getUsers();
         $template = "templates/admin/users/user-list.html";
@@ -59,7 +69,20 @@ class admin extends Controller {
         ;
     }
 
+    /**
+     * 
+     * 
+     * 
+     */
     public function games($args = array()) {
+        if (isset($args[0]) && $args[0] == 'add') {
+            $this->body = $this->generateGameForm();
+        }
+        else if (isset($args[0]) && $args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+            $this->body = $this->generateGameForm($args[1]);
+        }
+        else {
+
         $games = getAllGames(10000);
         $template = "templates/admin/games/game-list.html";
         $gameHtml = '';
@@ -73,9 +96,15 @@ class admin extends Controller {
 
         $template = "templates/admin/games/games.html";
         $this->body = replace($data, $template);
+        }
         return $this->build();
     }
 
+    /**
+     * 
+     * 
+     * 
+     */
     public function platforms($args = array()) {
         $platforms = getPlatforms();
         $template = "templates/admin/platforms/platform-list.html";
@@ -94,6 +123,11 @@ class admin extends Controller {
         return $this->build();
     }
 
+    /**
+     * 
+     * 
+     * 
+     */
     public function sagas($args = array()) {
         $sagas = getSaga();
         $template = "templates/admin/sagas/saga-list.html";
@@ -110,6 +144,86 @@ class admin extends Controller {
         $template = "templates/admin/sagas/sagas.html";
         $this->body = replace($data, $template);
         return $this->build();
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+    private function generateGameForm($id = null) {
+        //Check if is new game or edit
+        $is_edit = $id != null;
+        //Set the templates
+        $base_template = "templates/admin/games/new-edit-game.html";
+        $saga_dropdown_template = "templates/admin/games/new-edit-game-saga-dropdown.html";
+        $saga_option_template = "templates/admin/games/new-edit-game-saga-option.html";
+        $platform_checkbox_template = "templates/admin/games/new-edit-game-checkbox.html";
+
+        if ($is_edit) {
+            $game = getGame($id);
+
+            //Raw data from game
+            $data['id'] = $game->id;
+            $data['name'] = $game->name;
+            $data['description'] = $game->description;
+            $data['cover'] = $game->cover;
+        } else {
+            $data['id'] = '';
+            $data['name'] = '';
+            $data['description'] = '';
+            $data['cover'] = '';
+        }
+
+        //Data for the saga
+        $all_sagas = getSaga();
+        //Generate all HTML for each option
+        $saga_option_html = '<option>--Select a Saga--</option>';
+        $check_saga = $is_edit && $game->saga != null;
+        foreach ($all_sagas as $saga) {
+            $temp_data['id'] = $saga->id;
+            $temp_data['name'] = $saga->name;
+            $temp_data['selected'] = '';
+            //Set selected for edit
+            if ($check_saga && $game->saga->id == $temp_data['id']) {
+                $temp_data['selected'] = 'selected';
+            }
+            $saga_option_html .= replace($temp_data, $saga_option_template);
+        }
+
+        //Insert the options into the select
+        //And save on data array for posterior replacement
+        $saga_data['options'] = $saga_option_html;
+        $data['sagas'] = replace($saga_data, $saga_dropdown_template);
+
+
+
+        //Platforms available
+        if ($is_edit) {
+            $platforms_of_the_game = [];
+            foreach ($game->platforms as $plaform) {
+                $platforms_of_the_game[] = $plaform->id;
+            }
+        }
+        $all_platforms = getPlatforms();
+        $platform_checkboxes_html = '';
+        foreach ($all_platforms as $platform) {
+            $temp_data['id'] = $platform->id;
+            $temp_data['name'] = $platform->name;
+            $temp_data['short_name'] = $platform->short_name;
+            $temp_data['checked'] = '';
+            //Set checked for edit
+            if ($is_edit && in_array($temp_data['id'], $platforms_of_the_game)) {
+                $temp_data['checked'] = 'checked';
+            }
+            $platform_checkboxes_html .= replace($temp_data, $platform_checkbox_template);
+        }
+
+        $data['platforms'] = $platform_checkboxes_html;
+
+        $html = replace($data, $base_template);
+
+        return $html;
     }
 
 }

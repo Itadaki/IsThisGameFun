@@ -1,0 +1,79 @@
+<form name="new-game" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{id}" />
+    <label for="name">Name</label><input type="text" id="name" name="name" value="{name}" /><br>
+    <label for="description">Desc.</label> <textarea name="description" rows="4" cols="20">{description}</textarea> <br>
+    <img class="img-md img-responsive" src="/isthisgamefun/covers/{cover}"/><br>
+    <label for="cover">Cover</label><input type="file" id="cover" name="cover" accept="image/jpeg, image/png, image/gif"/><br>
+    <label for="cover">Saga</label>{sagas}
+    <br>
+    <!-- SAGA DROPDOWN -->
+    {platforms}
+    <!-- GAME PLATFORMS -->
+</form>
+<script>
+    $(function () {
+        $('.button-checkbox').each(function () {
+
+            // Settings
+            var $widget = $(this),
+                    $button = $widget.find('button'),
+                    $checkbox = $widget.find('input:checkbox'),
+                    color = $button.data('color'),
+                    settings = {
+                        on: {
+                            icon: 'glyphicon glyphicon-check'
+                        },
+                        off: {
+                            icon: 'glyphicon glyphicon-unchecked'
+                        }
+                    };
+
+            // Event Handlers
+            $button.on('click', function () {
+                $checkbox.prop('checked', !$checkbox.is(':checked'));
+                $checkbox.triggerHandler('change');
+                updateDisplay();
+            });
+            $checkbox.on('change', function () {
+                updateDisplay();
+            });
+
+            // Actions
+            function updateDisplay() {
+                var isChecked = $checkbox.is(':checked');
+
+                // Set the button's state
+                $button.data('state', (isChecked) ? "on" : "off");
+
+                // Set the button's icon
+                $button.find('.state-icon')
+                        .removeClass()
+                        .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                // Update the button's color
+                if (isChecked) {
+                    $button
+                            .removeClass('btn-default')
+                            .addClass('btn-' + color + ' active');
+                }
+                else {
+                    $button
+                            .removeClass('btn-' + color + ' active')
+                            .addClass('btn-default');
+                }
+            }
+
+            // Initialization
+            function init() {
+
+                updateDisplay();
+
+                // Inject the icon if applicable
+                if ($button.find('.state-icon').length == 0) {
+                    $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+                }
+            }
+            init();
+        });
+    });
+</script>
