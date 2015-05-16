@@ -82,11 +82,11 @@ class admin extends Controller {
                 return $this->generateGameForm($args[1]);
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
                 $this->saveGame();
-                header('Location: ../../admin');
+                header('Location: ../games');
             }
         } else {
 
-            $games = getAllGames(10000);
+            $games = getGamesAlphabetically(10000);
             $template = "templates/admin/games/game-list.html";
             $gameHtml = '';
             foreach ($games as $game) {

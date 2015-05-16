@@ -57,6 +57,21 @@ function getGamesAlphabetical($regexp, $limit = 20, $offset = 0) {
 }
 
 /**
+ * Devuelve juegos cuyo nombre encaja con el regexp
+ * @param type $regexp
+ * @param type $offset
+ * @return array
+ */
+function getGamesAlphabetically($limit = 20, $offset = 0) {
+    global $db, $config;
+    $columns = ['id', 'name', 'description', 'cover'];
+    $where = ['ORDER' => 'name ASC', 'LIMIT' => $limit];
+    $table = $config['t_games'];
+    $info = getGames($table, $columns, $where);
+    return $info;
+}
+
+/**
  * Devuelve un array con los datos de juegos votados
  * [(id, name, cover, vote), ..., (id, name, cover, vote)]
  * @global conection $conexion
@@ -119,7 +134,7 @@ function getAllGames($limit = 20, $offset = 0) {
 function getLatestGames($limit = 20, $offset = 0) {
     global $db, $config;
     $columns = ['id', 'name', 'description', 'cover'];
-    $where = ['ORDER' => 'id DESC', 'LIMIT' => '20'];
+    $where = ['ORDER' => 'id DESC', 'LIMIT' => $limit];
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where);
     return $info;
@@ -129,7 +144,7 @@ function getBestGames($limit = 20, $offset = 0) {
     global $db, $config;
     $join = ["[><]{$config['v_game_positive_percentage']}" => ['id' => 'game_id']];
     $columns = ['id', 'name', 'description', 'cover', 'positive_percentage'];
-    $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => '20'];
+    $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => $limit];
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where, $join);
     return $info;
@@ -137,7 +152,7 @@ function getBestGames($limit = 20, $offset = 0) {
 
 function getMostVotedGames($limit = 20, $offset = 0) {
     global $db, $config;
-    $resultados = $db->query("SELECT id, name, description, cover, count(*) as votes from {$config['t_games']}, {$config['t_user_votes']} where id=user group by id order by count(*) desc")->fetchAll();
+    $resultados = $db->query("SELECT id, name, description, cover, count(*) as votes from {$config['t_games']}, {$config['t_user_votes']} where id=user group by id order by count(*) desc limit $limit")->fetchAll();
     $error = $db->error();
     $info = [];
     if ($error[0] == '00000') {

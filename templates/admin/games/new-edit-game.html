@@ -3,7 +3,7 @@
             <h4 class="modal-title">{action} game</h4>
         </div>			<!-- /modal-header -->
         <div class="modal-body">
-            <form class="form-horizontal" id="new-game" name="new-game" action="/isthisgamefun/admin/games/save" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="new-game-{id}" name="new-game" action="/isthisgamefun/admin/games/save" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="{id}" />
                 <fieldset>
                     <!-- Form Name -->
@@ -53,6 +53,6 @@
         </div>			<!-- /modal-body -->
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" value="{action}" name="action" class="btn btn-primary" form="new-game"/>
+            <input type="submit" value="{action}" name="action" class="btn btn-primary" form="new-game-{id}"/>
         </div>
         <script src="/isthisgamefun/includes/js/admin-new-edit-game-checkbox.js"></script>

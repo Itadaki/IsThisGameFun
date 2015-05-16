@@ -48,7 +48,7 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
     $debug_error = $db->error();
 
     //Redefine platforms
-    redefinePlatforms($game_id, $platform_ids);
+    redefinePlatformsRelationships($game_id, $platform_ids);
 
     //Redefine saga
     redefineSagasRelationships($game_id, $saga_id);

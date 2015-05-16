@@ -36,17 +36,23 @@ class Controller {
         $this->bottom = file_get_contents($bottom);
         $this->addTemplatesToData();
     }
-    
-    private function addTemplatesToData(){
+
+    private function addTemplatesToData() {
         $this->data['top'] = $this->top;
         $this->data['body'] = $this->body;
         $this->data['menu'] = $this->menu;
         $this->data['bottom'] = $this->bottom;
     }
-    
-    public function build(){
+
+    public function build() {
         $this->addTemplatesToData();
-        return $this->top.$this->menu.$this->body.$this->bottom;
+        return $this->top . $this->menu . $this->body . $this->bottom;
+    }
+
+    protected function generatePaginator($totalRows, $itemsPerPage, $pageNumber) {
+        $totalPages = ceil($totalRows / $itemsPerPage);
+        $position = (($pageNumber - 1) * $itemsPerPage);
+        //LIMIT $position, $item_per_page
     }
 
 }
