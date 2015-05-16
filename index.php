@@ -52,7 +52,7 @@ setcookie($config['allow_cookies'], true, time()+60*60*24*30);
 if (isset($_COOKIE[$config['allow_cookies']])) {
     session_cache_expire(0);
     session_start();
-    echo '<h6>Session is running</h6>';
+//    echo '<h6>Session is running</h6>';
     if (isset($_SESSION['user_id'])) {
         $config['user_id'] = $_SESSION['user_id'];
         $config['user_nick'] = $_SESSION['user_nick'];

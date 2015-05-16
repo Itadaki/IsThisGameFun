@@ -2,7 +2,7 @@
 
 <nav class="menu bg-gray2">
     <ul class="nav nav-pills " role="tablist">
-        <li><a href="<?php echo $config['server_root'] ?>main">HOME</a></li>
+        <li><a href="<?php echo $config['server_root'] ?>main"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="dropdown active">
             <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $config['server_root'] ?>games">
                 GAMES <span class="caret"></span></a>
@@ -16,8 +16,8 @@
         <?php
         //SI estoy logueado
         if (isset($_SESSION['user_nick'])) {
-            echo "<li><a href='{$config['server_root']}user/profile/{$_SESSION['user_nick']}'>{$_SESSION['user_nick']}</a></li>";
-            echo "<li><a href='{$config['server_root']}login/logout'>Logout</a></li>";
+            echo "<li><a href='{$config['server_root']}user/profile/{$_SESSION['user_nick']}'><span class='glyphicon glyphicon-user'></span> {$_SESSION['user_nick']}</a></li>";
+            echo "<li><a href='{$config['server_root']}login/logout'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
             if ($_SESSION['user_level'] == 'admin') {
                 echo "<li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='{$config['server_root']}admin'>ADMIN panel <span class='caret'></span></a>";
                 //At some poit this has to be replaced by a template
