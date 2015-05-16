@@ -23,9 +23,13 @@
  * @param type $template
  * @return type
  */
-function replace($data, $template) {
+function replace($data, $template, $providing_plain_text = false) {
     $file = $template;
-    $html = file_get_contents($file);
+    if (!$providing_plain_text) {
+        $html = file_get_contents($file);
+    } else {
+        $html = $template;
+    }
     foreach ($data as $key1 => $value1) {
         if (count($value1) > 1) {
             foreach ($value1 as $key2 => $value2) {
@@ -46,7 +50,7 @@ function replace($data, $template) {
  * @param type $gameArray
  * @return type
  */
-function replaceGame($gameArray, $is_main=false) {
+function replaceGame($gameArray, $is_main = false) {
     global $config;
     $html = '';
     foreach ($gameArray as $game) {
@@ -104,17 +108,16 @@ function replaceGame($gameArray, $is_main=false) {
             "my_vote" => $game->my_vote,
             "user_vote" => $game->user_vote
         );
-        if ($is_main){
+        if ($is_main) {
             $template = "templates/main/game.html";
         } else {
             $template = "templates/common/game.html";
         }
-        
+
         $html .= replace($gameData, $template);
     }
     return $html;
 }
-
 
 /**
  * 

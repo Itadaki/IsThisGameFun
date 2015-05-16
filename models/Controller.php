@@ -29,12 +29,28 @@ class Controller {
     public $body;
     public $bottom;
     public $data = array();
+    private $section = array();
 
     public function __construct($top = "templates/frame/top.html", $menu = "templates/frame/menu.html", $bottom = "templates/frame/bottom.html") {
         $this->top = file_get_contents($top);
         $this->menu = getScriptOutput('templates/frame/create-menu.php');
         $this->bottom = file_get_contents($bottom);
-        $this->addTemplatesToData();
+
+        //ADD a key for each section in the menu
+        //ControllerName-active
+        $this->section['main-active'] = '';
+        $this->section['games-active'] = '';
+        $this->section['user-active'] = '';
+        $this->section['admin-active'] = '';
+        $this->section['about-active'] = '';
+        $this->section['contact-active'] = '';
+
+        $className = get_class($this) . '-active';
+        $this->section[$className] = 'active';
+        
+        $this->menu = replace($this->section, $this->menu, true);
+
+//        $this->addTemplatesToData();
     }
 
     private function addTemplatesToData() {

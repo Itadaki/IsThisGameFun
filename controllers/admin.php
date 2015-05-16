@@ -62,6 +62,8 @@ class admin extends Controller {
             $userHtml .= replace($user, $template);
         }
         $data['list'] = $userHtml;
+        //Adding sidebar menu
+        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
         $template = "templates/admin/users/users.html";
         $this->body = replace($data, $template);
@@ -111,6 +113,8 @@ class admin extends Controller {
                 $gameHtml .= replace($repl, $template);
             }
             $data['list'] = $gameHtml;
+            //Adding sidebar menu
+            $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
             $template = "templates/admin/games/games.html";
             $this->body = replace($data, $template);
@@ -135,6 +139,8 @@ class admin extends Controller {
             $platformsHtml .= replace($repl, $template);
         }
         $data['list'] = $platformsHtml;
+//Adding sidebar menu
+        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
         $template = "templates/admin/platforms/platforms.html";
         $this->body = replace($data, $template);
@@ -158,6 +164,8 @@ class admin extends Controller {
             $sagasHtml .= replace($repl, $template);
         }
         $data['list'] = $sagasHtml;
+//Adding sidebar menu
+        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
         $template = "templates/admin/sagas/sagas.html";
         $this->body = replace($data, $template);
