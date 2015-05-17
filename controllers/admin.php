@@ -58,7 +58,6 @@ class admin extends Controller {
         $template = "templates/admin/users/user-list.html";
         $userHtml = '';
         foreach ($users as $user) {
-            $user['server_root'] = '/isthisgamefun/';
             $userHtml .= replace($user, $template);
         }
         $data['list'] = $userHtml;
@@ -94,7 +93,6 @@ class admin extends Controller {
             foreach ($games as $game) {
                 $repl['id'] = $game->id;
                 $repl['name'] = $game->name;
-                $repl['server_root'] = '/isthisgamefun/';
 
                 $repl['platforms'] = '';
                 foreach ($game->platforms as $platform) {
@@ -135,7 +133,6 @@ class admin extends Controller {
             $repl['id'] = $platform->id;
             $repl['name'] = $platform->name;
             $repl['short_name'] = $platform->short_name;
-            $repl['server_root'] = '/isthisgamefun/';
             $platformsHtml .= replace($repl, $template);
         }
         $data['list'] = $platformsHtml;
@@ -160,7 +157,6 @@ class admin extends Controller {
             $repl = $saga->getDataArray();
             //No quiero lios con el objeto VB
             unset($repl['vote_balance']);
-            $repl['server_root'] = '/isthisgamefun/';
             $sagasHtml .= replace($repl, $template);
         }
         $data['list'] = $sagasHtml;

@@ -25,7 +25,7 @@ $(document).ready(function() {
         var vote_value = $(this).hasClass('btn-left');
         var data_send = JSON.stringify({ game_id: id , vote: vote_value})
         
-            $.post('/isthisgamefun/api/vote', {json:data_send} , function(data, textStatus){
+            $.post('{server_root}api/vote', {json:data_send} , function(data, textStatus){
                 data = $.parseJSON(data)
                 console.log(data);
                 console.log(textStatus);

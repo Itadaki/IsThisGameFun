@@ -61,8 +61,11 @@ class Controller {
     }
 
     public function build() {
-        $this->addTemplatesToData();
-        return $this->top . $this->menu . $this->body . $this->bottom;
+        global $config;
+        $html = $this->top . $this->menu . $this->body . $this->bottom;
+        $data['server_root'] = $config['server_root'];
+        $html = replace($data, $html, true);
+        return $html;
     }
 
     protected function generatePaginator($totalRows, $itemsPerPage, $pageNumber) {
