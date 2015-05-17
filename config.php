@@ -59,3 +59,8 @@ $config['t_full_game_platform'] = $config['db_name'] . '.' . $config['t_game_pla
 $config['server_root'] = '/IsThisGameFun/';
 
 $config['allow_cookies'] = 'cookie_compliance';
+
+//Turn it false in release mode
+error_reporting(E_ALL);
+//Alternative mode
+//ini_set( "display_errors", 0); 

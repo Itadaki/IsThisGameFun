@@ -1,21 +1,52 @@
 <tr>
     <td>{user_id}</td>
-    <td>{user_level}</td>
     <td><a href="{server_root}user/profile/{user_nick}">{user_nick}</a></td>
     <td>{user_email}</td>
+    <td>{user_level}</td>
+
+
     <td>{create_time}</td>
     <td>{update_time}</td>
     <td class=" btn-group">
         <div class="btn-group" role="group" aria-label="...">
-            <a data-toggle="modal" class="btn btn-info btn-group" href="{server_root}admin/games/edit/102" data-target="#myModal">
+            <a data-toggle="modal" class="btn btn-info btn-group" href="{server_root}admin/users/edit/{user_nick}" data-target="#userModal-{user_id}">
                 <span class="glyphicon glyphicon-info-sign"></span>
             </a>
-            <a data-toggle="modal" class="btn btn-warning btn-group" href="{server_root}admin/games/edit/100" data-target="#myModal">
+            <a data-toggle="modal" class="btn btn-warning btn-group" href="{server_root}admin/users/edit/{user_nick}" data-target="#user-edit-modal-{user_id}">
                 <span class="glyphicon glyphicon-edit"></span>
             </a>
-            <a data-toggle="modal" class="btn btn-danger btn-group" href="#" data-target="#myModal">
+            <a data-toggle="modal" class="btn btn-danger btn-group" href="#" data-target="#user-delete-modal-{user_id}">
                 <span class="glyphicon glyphicon-remove-sign"></span>
             </a>
         </div>
     </td>
 </tr>
+<!-- MODAL EDIT -->
+<div class="modal fade" id="user-edit-modal-{user_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->  
+
+<!-- MODAL DELETE -->
+<div class="modal fade" id="user-delete-modal-{user_id}" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete user</h4>
+            </div>			<!-- /modal-header -->
+            <div class="modal-body">
+                <h4>Are you sure you want to delete the user '<i>{user_nick}</i>'?</h4>
+            </div>			<!-- /modal-body -->
+            <div class="modal-footer">
+                <form class="" id="user-{user_id}" name="delete-user" action="{server_root}admin/users/delete" method="POST">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="hidden" name="id" value="{user_id}" />
+                    <input type="submit" value="Delete" name="action" class="btn btn-primary" form="user-{user_id}"/>
+                </form>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->  

@@ -1,6 +1,6 @@
 <?php global $config; ?>
 
-<nav class="menu bg-gray2">
+<nav class="menu bg-gray2 sticky">
     <ul class="nav nav-pills " role="tablist">
         <li class="{main-active}"><a href="{server_root}main"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="dropdown {games-active}">

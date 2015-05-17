@@ -365,3 +365,12 @@ function getSagaVoteBalance($saga_id) {
     }
     return $balance;
 }
+
+function getEnumUserLevel(){
+    global $config, $db;
+    $resultados = $db->query("SHOW COLUMNS FROM {$config['t_users']} WHERE Field = 'user_level'")->fetchAll()[0];
+    $type = $resultados['Type'];
+    preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
+    $enum = explode("','", $matches[1]);
+    return $enum;
+}

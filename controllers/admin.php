@@ -54,20 +54,35 @@ class admin extends Controller {
      * 
      */
     public function users($args = array()) {
-        $users = getUsers();
-        $template = "templates/admin/users/user-list.html";
-        $userHtml = '';
-        foreach ($users as $user) {
-            $userHtml .= replace($user, $template);
-        }
-        $data['list'] = $userHtml;
-        //Adding sidebar menu
-        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
+        if (isset($args[0])) {
+            //Empty the templates to prevent using them in this partial views
+            $this->top = '';
+            $this->menu = '';
+            $this->body = '';
+            if ($args[0] == 'edit' && isset($args[1]) && is_string($args[1])) {
+                $this->body = $this->generateUserForm($args[1]);
+            } else if ($args[0] == 'save' && isset($_POST['action'])) {
+                $this->saveUser();
+                header('Location: ../users');
+            } else if ($args[0] == 'delete' && isset($_POST['action'])) {
+                $this->deleteUser();
+                header('Location: ../users');
+            }
+        } else {
+            $users = getUsers();
+            $template = "templates/admin/users/user-list.html";
+            $userHtml = '';
+            foreach ($users as $user) {
+                $userHtml .= replace($user, $template);
+            }
+            $data['list'] = $userHtml;
+            //Adding sidebar menu
+            $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
-        $template = "templates/admin/users/users.html";
-        $this->body = replace($data, $template);
+            $template = "templates/admin/users/users.html";
+            $this->body = replace($data, $template);
+        }
         return $this->build();
-        ;
     }
 
     /**
@@ -182,6 +197,7 @@ class admin extends Controller {
         $action = $is_edit ? 'Modify' : 'Create';
         //Set the templates
         $base_template = "templates/admin/games/new-edit-game.html";
+        $cover_template = "templates/admin/games/new-edit-game-cover.html";
         $saga_dropdown_template = "templates/admin/games/new-edit-game-saga-dropdown.html";
         $saga_option_template = "templates/admin/games/new-edit-game-saga-option.html";
         $platform_checkbox_template = "templates/admin/games/new-edit-game-checkbox.html";
@@ -193,12 +209,12 @@ class admin extends Controller {
             $data['id'] = $game->id;
             $data['name'] = $game->name;
             $data['description'] = $game->description;
-            $data['cover'] = $game->cover;
+//            $data['cover'] = $game->cover;
         } else {
             $data['id'] = '';
             $data['name'] = '';
             $data['description'] = '';
-            $data['cover'] = '';
+//            $data['cover'] = '';
         }
         $data['action'] = $action;
 
@@ -248,6 +264,12 @@ class admin extends Controller {
 
         $data['platforms'] = $platform_checkboxes_html;
 
+
+        //Show the image or not
+        $data['cover'] = '';
+        if ($is_edit) {
+            $data['cover'] = replace(array("cover" => $game->cover), $cover_template);
+        }
         $html = replace($data, $base_template);
 
         return $html;
@@ -268,6 +290,67 @@ class admin extends Controller {
             $id = $_POST['id'];
             updateGame($id, $name, $description, $platforms, $saga, $cover);
         }
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+    private function generateUserForm($nick) {
+        //Set the templates
+        $base_template = "templates/admin/users/edit-user.html";
+        $level_dropdown_template = "templates/admin/users/edit-user-dropdown.html";
+        $level_option_template = "templates/admin/users/edit-user-option.html";
+        $levels = getEnumUserLevel();
+
+        $user = getUser($nick, true);
+
+        $user_level_option_html = '';
+
+        foreach ($levels as $level) {
+            //Set selected
+            if ($user['user_level'] == $level) {
+                $temp_data['selected'] = 'selected';
+            } else {
+                $temp_data['selected'] = '';
+            }
+            $temp_data['name'] = $level;
+            $user_level_option_html .= replace($temp_data, $level_option_template);
+        }
+
+        //Insert the options into the select
+        //And save on data array for posterior replacement
+        $level_data['options'] = $user_level_option_html;
+        $user['levels'] = replace($level_data, $level_dropdown_template);
+        $user['action'] = 'Edit';
+        $html = replace($user, $base_template);
+
+        return $html;
+    }
+
+    private function saveUser() {
+        global $db, $config;
+
+        $insert = [
+            "user_nick" => $_POST['nick'],
+            "user_email" => $_POST['email'],
+            "user_level" => $_POST['level']
+        ];
+        //Update user games table
+        $db->update($config['t_users'], $insert, ["user_id" => $_POST['id']]);
+        $debug_error = $db->error();
+    }
+    
+    private function deleteUser() {
+        global $db, $config;
+
+        $delete = [
+            "user_id" => $_POST['id']
+        ];
+        //Update user games table
+        $db->delete($config['t_users'], $delete);
+        $debug_error = $db->error();
     }
 
 }

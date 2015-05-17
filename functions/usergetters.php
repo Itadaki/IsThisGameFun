@@ -17,14 +17,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function getUser($nick) {
+function getUser($match, $by_nick = false) {
     global $db, $config;
 
-    $colummns = ['user_id', 'user_nick', 'user_avatar'];
-    $where = ['user_nick' => $nick];
+    if ($by_nick) {
+        $colummns = '*';
+        $where = ['user_nick' => $match];
+    } else {
+        $colummns = ['user_id', 'user_nick', 'user_avatar'];
+        $where = ['user_id' => $match];
+    }
+
+
     $user = $db->get($config['t_users'], $colummns, $where);
     $error = $db->error();
-    if ($user) {
+    if ($user && !$by_nick) {
         $user['games_voted'] = getGamesVoted($user['user_id']);
     }
     return $user;
