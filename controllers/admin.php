@@ -77,16 +77,19 @@ class admin extends Controller {
      */
     public function games($args = array()) {
         if (isset($args[0])) {
+            //Empty the templates to prevent using them in this partial views
+            $this->top = '';
+            $this->menu = '';
+            $this->body = '';
             if ($args[0] == 'add') {
-                return $this->body = $this->generateGameForm();
+                $this->body = $this->generateGameForm();
             } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
-                return $this->generateGameForm($args[1]);
+                $this->body = $this->generateGameForm($args[1]);
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
                 $this->saveGame();
                 header('Location: ../games');
             }
         } else {
-
             $games = getGamesAlphabetically(10000);
             $template = "templates/admin/games/game-list.html";
             $gameHtml = '';
