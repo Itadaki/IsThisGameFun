@@ -39,14 +39,14 @@ class api extends Controller {
             //MANEJAR ERRORES
             
             //EJEMPLO OK
-//            $respuesta['error']=false;
-//            $respuesta['message']="Game $game_id voted with $vote from {$_SESSION['user_nick']}!";
-//            return json_encode($respuesta);
+            $respuesta['error']=false;
+            $respuesta['message']="Game $game_id voted with $vote from {$_SESSION['user_nick']}!";
+            return json_encode($respuesta);
             
             //EJEMPLO ERROR
-            $respuesta['error']=True;
-            $respuesta['message']="Error voting game $game_id voted with $vote from {$_SESSION['user_nick']}!";
-            return json_encode($respuesta);
+//            $respuesta['error']=True;
+//            $respuesta['message']="Error voting game $game_id voted with $vote from {$_SESSION['user_nick']}!";
+//            return json_encode($respuesta);
         } else {
             header('HTTP/1.0 403 Forbidden');
         }

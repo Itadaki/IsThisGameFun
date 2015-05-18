@@ -15,27 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function() {
-    
-    $('.btn-vote').click(function(){
-          
-        var parent = $(this).parent();
+$(document).ready(function () {
+    $('.btn-vote').click(function () {
+        var button = $(this);
+        var parent = button.parent();
         var id_name = parent.attr('id');
         var id = id_name.split('-')[1];
-        var vote_value = $(this).hasClass('btn-left');
-        var data_send = JSON.stringify({ game_id: id , vote: vote_value})
-        
-            $.post('{server_root}api/vote', {json:data_send} , function(data, textStatus){
-                data = $.parseJSON(data)
-                console.log(data);
-                console.log(textStatus);
-                var error = data.error;
-                var msg = data.message;
-                console.log(error);
-                console.log(msg);
-            });
-        
-    });
+        var vote_value = button.hasClass('btn-left');
+        var data_send = JSON.stringify({game_id: id, vote: vote_value});
 
+        $.post('api/vote', {json: data_send}, function (data, textStatus) {
+            data = $.parseJSON(data);
+            var error = data.error;
+            var msg_type;
+            var msg = data.message;
+            if (error) {
+                msg_type = "danger";
+            } else {
+                msg_type = "success";
+                button.attr('disabled',true);
+                button.siblings('button').attr('disabled',false);
+            }
+            $('.msg').append('<div class="alert alert-' + msg_type + '">' + msg + '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>');
+        });
+    });
 })
 
