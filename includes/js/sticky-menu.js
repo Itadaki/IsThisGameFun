@@ -23,23 +23,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(function(){ // document ready
- 
-  var stickyTop = $('.sticky').offset().top; // returns number 
- 
-  $(window).scroll(function(){ // scroll event  
- 
-    var windowTop = $(window).scrollTop(); // returns number
- 
-    if (stickyTop < windowTop) {
-      $('.sticky').css({ position: 'fixed', top: 0, zIndex: 999, width: '1140px' });
-//      $('.sticky').addClass('col-md-12');
-    }
-    else {
-      $('.sticky').css({ position: 'static', top: 0, zIndex: 0, width: 'auto' });
-//      $('.sticky').removeClass('col-md-12');
-    }
- 
-  });
- 
+$(function () { // document ready
+
+    var stickyTop = $('.sticky').offset().top; // returns number 
+
+    $(window).scroll(function () { // scroll event  
+
+        var windowTop = $(window).scrollTop(); // returns number
+
+        if (stickyTop < windowTop) {
+            $('.sticky').css({position: 'fixed', top: 0, zIndex: 999, paddingLeft: '0', paddingRight: '30px'});
+            $('.sticky').addClass('container');
+            $('.placeholder').css({display: 'inline'});
+            $('.navbar-brand').addClass('opened');
+            $('.navbar-brand').removeClass('closed');
+        }
+        else {
+            $('.sticky').css({position: 'static', top: 0, zIndex: 0, paddingLeft: 'auto', paddingRight: '0'});
+            $('.sticky').removeClass('container');
+            $('.placeholder').css({display: 'none'});
+            $('.navbar-brand').addClass('closed');
+            $('.navbar-brand').removeClass('opened');
+        }
+
+    });
+
 });
