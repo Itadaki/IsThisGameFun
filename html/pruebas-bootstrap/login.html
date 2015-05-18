@@ -25,6 +25,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            function getCookie(c_name) {
+                var c_value = document.cookie;
+                var c_start = c_value.indexOf(" " + c_name + "=");
+                if (c_start == -1) {
+                    c_start = c_value.indexOf(c_name + "=");
+                }
+                if (c_start == -1) {
+                    c_value = null;
+                } else {
+                    c_start = c_value.indexOf("=", c_start) + 1;
+                    var c_end = c_value.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = c_value.length;
+                    }
+                    c_value = unescape(c_value.substring(c_start, c_end));
+                }
+                return c_value;
+            }
+
+            function setCookie(c_name, value, exdays) {
+                var exdate = new Date();
+                exdate.setDate(exdate.getDate() + exdays);
+                var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+                document.cookie = c_name + "=" + c_value;
+            }
+
+            if (getCookie('tiendaaviso') != "1") {
+                document.getElementById("barraaceptacion").style.display = "block";
+            }
+            function PonerCookie() {
+                setCookie('tiendaaviso', '1', 365);
+                document.getElementById("barraaceptacion").style.display = "none";
+            }
+        </script>
     </head>
     <body>
         <div id="wrapper" class="container bg-gray3">
@@ -53,7 +88,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </ul>
             </nav>
             <div class="container row voffset3">
-
                 <div class="container">
                     <div class="form-signin">
                         <div class="col-md-6">
@@ -72,32 +106,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             </form>
                         </div>
 
-                        <div class="col-md-6">
-                            <form id="formulario" action="" method="post" novalidate>
-                                <fieldset>
+                        <div class="col-md-6 container">
+                            <form role="form" id="formulario" action="" method="post" novalidate>
+                                <div class="form-group">
                                     <label for="nombre">Nombre usuario *</label> 
                                     <input type="text" id="nombreUsuario" name="nombreUsuario" onchange="validar()">
-                                    <br><br><label for="nombre">Contraseña  *</label> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Contraseña  *</label> 
                                     <input type="password" id="contraseña" name="contraseña">
-                                    <br><br><label for="nombre">Repite contraseña  *</label> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Repite contraseña  *</label> 
                                     <input type="password" id="contraseña2" name="contraseña2">
-                                    <br><br><label for="nombre">Nombre  *</label> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre  *</label> 
                                     <input type="text" id="nombre" name="nombre">
-                                    <br><br><label for="apellidos">Apellidos  *</label> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidos">Apellidos  *</label> 
                                     <input type="text" id="apellidos" name="apellidos">
-                                    <br><br><label for="telefono">Teléfono  *</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono  *</label>
                                     <input type="tel" id="telefono" name="telefono">
-                                    <br><br><label for="email">Email  *</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email  *</label>
                                     <input type="email" id="email" name="email">
-                                    <br><br><label for="email2">Confirmar Email  *</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email2">Confirmar Email  *</label>
                                     <input type="email" id="email2" name="email2">
-                                </fieldset>
+                                </div>
                                 <input class="enviar" type="submit" value="Enviar">
                             </form>
                         </div>
-
                     </div> 
-                    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
                     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
                 </div>
 
@@ -106,6 +152,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             </footer>
 
+        </div>
+        <div id="barraaceptacion" class="alert alert-dismissable " style="display: block;">
+            <div class="inner">
+                Solicitamos su permiso para obtener datos estadísticos de su navegación en esta web, en cumplimiento del Real 
+                Decreto-ley 13/2012. Si continúa navegando consideramos que acepta el uso de cookies.
+                <a href="javascript:void(0);" class="btn btn-toolbar" onclick="PonerCookie();"><b>OK</b></a> | 
+                <a href="http://politicadecookies.com" target="_blank" class="info">Más información</a>
+            </div>
         </div>
     </body>
 </html>
