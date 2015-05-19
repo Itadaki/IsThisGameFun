@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function () {
-    $('.btn-vote').click(function () {
+$(document).ready(function() {
+    $('.btn-vote').click(function() {
         var button = $(this);
         var parent = button.parent();
         var id_name = parent.attr('id');
@@ -24,19 +24,34 @@ $(document).ready(function () {
         var vote_value = button.hasClass('btn-left');
         var data_send = JSON.stringify({game_id: id, vote: vote_value});
 
-        $.post('api/vote', {json: data_send}, function (data, textStatus) {
+        $.post('api/vote', {json: data_send}, function(data, textStatus) {
             data = $.parseJSON(data);
             var error = data.error;
             var msg_type;
             var msg = data.message;
+            
             if (error) {
                 msg_type = "danger";
             } else {
-                msg_type = "success";
-                button.attr('disabled',true);
-                button.siblings('button').attr('disabled',false);
+                msg_type = "info";
+                button.attr('disabled', true);
+                button.siblings('button').attr('disabled', false);
             }
-            $('.msg').append('<div class="alert alert-' + msg_type + '">' + msg + '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>');
+                $('#' + id_name).append('<div class="load-vote"></div>');
+                $('.load-vote').css({position: 'absolute'});
+                $('.load-vote').css({top: '10px'});
+                $('.load-vote').css({height: '100%'});
+                $('.load-vote').css({width: '262.5px'});
+                $('.load-vote').css({opacity: '0.5'});
+                $('.load-vote').css({background: 'black'});
+                $('#' + id_name).append('<div class="alert alert-'+msg_type+'" >'+msg+'</div>');
+                $('.alert').css({position: 'absolute'});
+                $('.alert').css({top: '50%'});
+                $('.alert').css({opacity: '1'});
+                $('.alert').css({width: '262.5px'});
+                
+                $('.load-vote').delay(1000).fadeOut();
+                $('.alert').delay(1000).fadeOut();
         });
     });
 })

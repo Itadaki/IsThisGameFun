@@ -1,34 +1,12 @@
 <?php global $config; ?>
 <div class="sticky">
     <nav class="menu bg-gray2">
-        <div class="container-fluid">
+        <div class="container-fluid itgf-nav">
             <div class="navbar-header">
 
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
                     <span class="glyphicon glyphicon-menu-hamburger"></span>                      
                 </button>
-                <style>
-                    .navbar-brand{
-                        overflow: hidden;
-                        transition: width .2s; 
-                        background-color: #333;
-                        line-height: 40px;
-                        text-align: center;
-                        border:0;
-                    }
-                    .navbar-brand span{
-                        border:0;
-                    }
-                    .navbar-brand div {
-                        padding: 0 5px;
-                    }
-                    .opened{
-                        width: 70px; 
-                    }
-                    .closed{
-                        width: 0; 
-                    }
-                </style>
                 <a class="navbar-brand closed" href="{server_root}">
                     <div><span class="text-center cl-blue">ITG<span class="cl-red">F?</span></span></div>
                 </a>
