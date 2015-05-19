@@ -20,9 +20,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** background body **/
 body{
-    background-image: url('ava7patterns_pattern_1741.png');
+    background-image: url('img/background.png');
 }
-
+.jumbotron{
+    padding: 15px 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: inherit;
+}
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        padding: 48px 0;
+    }
+    .container .jumbotron,
+    .container-fluid .jumbotron {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    .jumbotron h1,
+    .jumbotron .h1 {
+        font-size: 67.5px;
+    }
+}
 /** distintos tamaños para las imagenes **/
 .img-lg{
     height: 450px;
@@ -35,7 +54,6 @@ body{
     margin-bottom: 15px;
 }
 .img-main{
-    /*left: -75px;*/
     position: relative;
     top: -100px;
     width: 100%;
@@ -109,3 +127,38 @@ body{
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.container-fluid.itgf-nav{
+    padding-left: 0;
+    padding-right: 0;
+}
+.navbar-brand{
+    overflow: hidden;
+    transition: width .2s; 
+    background-color: #333;
+    line-height: 40px;
+    text-align: center;
+    border:0;
+}
+.navbar-brand span{
+    border:0;
+}
+.navbar-brand div {
+    padding: 0 5px;
+}
+.opened{
+    width: 70px; 
+}
+.closed{
+    width: 0;
+}
+.itgf-nav .navbar-brand{
+    padding: 0;
+}
+.nav>li>a:hover,.nav>li>a:focus{
+    text-decoration: none;
+    background-color: #333;
+}
+.game-small h4{
+    margin-bottom: 0;
+}
