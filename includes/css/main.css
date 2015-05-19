@@ -162,3 +162,26 @@ body{
 .game-small h4{
     margin-bottom: 0;
 }
+
+
+
+/*DIEGO*/
+.card{
+    position: relative;
+}
+.card .saga{
+    position: absolute;
+    top: 21;
+    width: 100%;
+    /*background: red;*/
+    overflow: hidden;
+    height: 0;
+    transition: height .5s
+}
+.card .saga.opened{
+    height: auto;
+    transition: height .5s
+}
+.card .saga.closed{
+    height: auto;
+}

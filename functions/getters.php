@@ -374,3 +374,16 @@ function getEnumUserLevel(){
     $enum = explode("','", $matches[1]);
     return $enum;
 }
+
+function getVoteActivity($user_id){
+    global $db, $config;
+    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
+    $where = ['id' => $saga_id];
+    $resultados = $db->select($config['v_saga_vote_balance'], $columns, $where);
+    $balance = new VoteBalance();
+    $error = $db->error();
+    if ($error[0] == '00000' && !empty($resultados)) {
+        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
+    }
+    return $balance;
+}

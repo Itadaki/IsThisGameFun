@@ -39,10 +39,10 @@
                         }
                         ?>
                         <li class="dropdown {user-active}">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="{server_root}games">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span class='glyphicon glyphicon-user'></span>  <?php echo $_SESSION['user_nick'] ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href='<?php "{server_root}user/profile/" . $_SESSION['user_nick'] ?>'><span class='glyphicon glyphicon-user'></span> Profile</a></li>
+                                <li><a href='<?php echo "{server_root}user/profile/" . $_SESSION['user_nick'] ?>'><span class='glyphicon glyphicon-user'></span> Profile</a></li>
                                 <li><a href="{server_root}login/logout"><span class='glyphicon glyphicon-log-out'></span>Log out</a></li>                        
                             </ul>
                         </li>

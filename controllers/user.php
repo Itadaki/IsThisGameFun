@@ -25,22 +25,49 @@
 class user extends Controller {
 
     public function profile($args = array()) {
-        $user = getUser($args[0]);
-        //getUser returns false if user doesnt exists
-        if ($user) {
-            $data['user_id'] = $user['user_id'];
-            $data['user_nick'] = $user['user_nick'];
-            $data['user_avatar'] = $user['user_avatar'];
-            $data['games_voted'] = replaceGame($user['games_voted']);
+        if (isset($args[0])) {
+            $user = getUser($args[0], true);
+            //getUser returns false if user doesnt exists
+            if ($user) {
+                global $db, $config;
+                $user_vote_history_template = "templates/user/vote-history.html";
+                $user_profile_template = "";
 
-            $template = "templates/user/user-profile.html";
-            $this->body = replace($data, $template);
+                $data['user_id'] = $user['user_id'];
+                $data['user_nick'] = $user['user_nick'];
+                $data['user_avatar'] = $user['user_avatar'];
+                $join = [
+                    "[>]users" => ["user" => "user_id"],
+                    "[>]games" => ["game" => "id"]
+                ];
+                $columns = ['name', 'vote', 'vote_date'];
+                $where = ["user_id" => $user['user_id'], "ORDER" => "vote_date DESC",];
+                $votes = $db->select($config['t_user_votes'], $join, $columns, $where);
 
-            return $this->build();
-        } else {
-            //Return to root
-            header("Location: ../../");
+                $history_html = '';
+                foreach ($votes as $vote) {
+                    $temp['game'] = $vote['name'];
+                    $temp['date'] = xTimeAgo(strtotime($vote['vote_date']), time(), 'd');
+                    $temp['vote'] = $vote['vote'] ? 'SI' : 'NO';
+                    $history_html .= replace($temp, $user_vote_history_template);
+                }
+
+                $data['history'] = $history_html;
+
+                $data['own_profile'] = 'NO';
+                if ($user['user_id'] == $_SESSION['user_id']) {
+                    $data['own_profile'] = 'YES';
+                }
+
+
+                $template = "templates/user/user-profile.html";
+                $this->body = replace($data, $template);
+
+                return $this->build();
+            }
         }
+        //Return to root
+        header("Location: ../../");
     }
 
 }

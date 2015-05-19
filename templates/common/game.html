@@ -1,6 +1,16 @@
 <div class="game-small col-md-3 col-sm-4 col-xs-6 text-center" id="game-{id}">
-    <a href="#"><h4 class="bg-gray1" style="min-height: 50px;"><span>{name}</span></h4></a>
-    <img class="img-md img-responsive" style="margin:0px auto 15px auto;" src="{server_root}covers/{cover}" alt="Game-Cover" />
-    {platforms}
-    {vote_balance}
+    <div class="card"> 
+        <div class="game">
+            <a href="#"><h4 class="bg-gray1" style="min-height: 50px;"><span>{name}</span></h4></a>
+            <div style="position: relative; height: 368px; overflow:hidden">
+                <div class="bg-gray2 saga-name" >{saga_caret}</div>
+                <img class="img-responsive" style="margin:0px auto 15px auto;position: absolute" src="{server_root}covers/{cover}" alt="Game-Cover" />
+                <div class="saga bg-gray3"> 
+                    {saga}
+                </div>
+            </div>
+            {platforms}
+            {vote_balance}
+        </div>
+    </div>
 </div>

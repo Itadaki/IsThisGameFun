@@ -86,8 +86,10 @@ function replaceGame($gameArray, $is_main = false) {
             );
             $template = "templates/common/saga.html";
             $sagaHtml = replace($sagaData, $template);
+            $saga_caret = 'Saga <span class="caret">';
         } else {
             $sagaHtml = '';
+            $saga_caret = '';
         }
 
         /* @var $saga  */
@@ -106,7 +108,8 @@ function replaceGame($gameArray, $is_main = false) {
             "saga" => $sagaHtml,
             "vote_balance" => $gameVoteBalance,
             "my_vote" => $game->my_vote,
-            "user_vote" => $game->user_vote
+            "user_vote" => $game->user_vote,
+            "saga_caret" => $saga_caret
         );
         if ($is_main) {
             $template = "templates/main/game.html";
