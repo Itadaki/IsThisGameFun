@@ -25,6 +25,10 @@
 class games extends Controller {
 
     public function index($args = array()) {
+        return $this->top();
+    }
+
+    public function top($args = array()) {
         $most = getBestGames();
         $mostHtml = replaceGame($most);
 
@@ -36,12 +40,8 @@ class games extends Controller {
         return $this->build();
     }
 
-    public function top($args = array()) {
-        return $this->index();
-    }
-
-    public function latest($args = array()) {
-        $best = getBestGames();
+    public function newest($args = array()) {
+        $best = getLatestGames();
         $bestHtml = replaceGame($best);
 
         $data['games'] = $bestHtml;
@@ -53,7 +53,7 @@ class games extends Controller {
     }
 
     public function all($args = array()) {
-        $all = getAllGames();
+        $all = getAllGames(10000);
         $allHtml = replaceGame($all);
 
         $data['games'] = $allHtml;

@@ -25,15 +25,22 @@
 class sagas extends Controller {
 
     public function index($args = array()) {
-////        $most = getBestGames();
-////        $mostHtml = replaceGame($most);
-//
-//        $data['sagas'] = $mostHtml;
-//
-//        $template = "templates/games.html";
-//        $this->body = replace($data, $template);
-//
-//        return $this->build();
+        $sagas = getSaga();
+        $template = "templates/admin/sagas/saga-list.html";
+        $sagasHtml = '';
+        foreach ($sagas as $saga) {
+            $repl = $saga->getDataArray();
+            //No quiero lios con el objeto VB
+            unset($repl['vote_balance']);
+            $sagasHtml .= replace($repl, $template);
+        }
+        $data['list'] = $sagasHtml;
+        //Adding sidebar menu
+        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
+
+        $template = "templates/admin/sagas/sagas.html";
+        $this->body = replace($data, $template);
+        return $this->build();
     }
 
     public function details($args = array()) {
@@ -42,10 +49,10 @@ class sagas extends Controller {
             if ($saga != null) {
                 $subData = $saga->getDataArray();
                 $subData['vote_balance'] = replace((array) $subData['vote_balance'], "templates/common/vote-balance.html");
-                
-                
+
+
                 $sagaHtml = replace($subData, 'templates/admin/sagas/saga-details.html');
-                
+
                 $data['sagas'] = $sagaHtml;
                 $template = "templates/sagas/index.html";
                 $this->body = replace($data, $template);
@@ -58,4 +65,5 @@ class sagas extends Controller {
             header('Location: main');
         }
     }
+
 }

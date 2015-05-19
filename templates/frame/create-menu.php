@@ -41,9 +41,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{server_root}games">
                             GAMES <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{server_root}games">TOP VOTED</a></li>
-                            <li><a href="{server_root}#">NEW</a></li>
-                            <li><a href="{server_root}all">ALL</a></li>        
+                            <li><a href="{server_root}games/top">TOP VOTED</a></li>
+                            <li><a href="{server_root}games/newest">NEW</a></li>
+                            <li><a href="{server_root}games/all">ALL</a></li>        
                         </ul>
                     </li>
 

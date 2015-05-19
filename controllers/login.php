@@ -88,7 +88,7 @@ class login extends Controller {
                 if (isset($_POST['keep_logged'])) {
                     session_cache_expire(1440);
                 }
-                header("Location: main");
+                header("Location: user/profile/".$_SESSION['user_nick']);
             } else {
                 return $this->displayLoginForm(true);
             }
