@@ -29,27 +29,43 @@ class api extends Controller {
     }
 
     public function vote() {
-        if ($this->is_ajax() && $this->is_logged()) {
+        if ($this->is_ajax() && $this->isPost() && $this->is_logged()) {
             $json = json_decode($_POST['json']);
             $game_id = $json->game_id;
             $vote = $json->vote;
             $user_id = $_SESSION['user_id'];
-            //INSERTAR VOTO
-            
-            //MANEJAR ERRORES
-            
-            //EJEMPLO OK
-            $respuesta['error']=false;
-            $respuesta['message']="Game $game_id voted with $vote from {$_SESSION['user_nick']}!";
-            return json_encode($respuesta);
-            
-            //EJEMPLO ERROR
-//            $respuesta['error']=True;
-//            $respuesta['message']="Error voting game $game_id voted with $vote from {$_SESSION['user_nick']}!";
-//            return json_encode($respuesta);
+
+            //INSERT VOTE
+            $error = setVote($user_id, $game_id, $vote);
+
+            //VOTE WAS SUCCESFUL
+            if (!$error) {
+                $error = false;
+                $message = "Game $game_id voted {$vote} from {$_SESSION['user_nick']}!";
+                return $this->encodeResponse($error,$message);
+            } else {
+                //THERE IS AN ERROR
+                $error = true;
+                $message = "Error while voting!";
+                return $this->encodeResponse($error,$message);
+            }
+        } else if ($this->is_ajax()) {
+            //USER IS NOT LOGGED IN
+            $error = true;
+            $message = "User not logged in!";
+            return $this->encodeResponse($error,$message);
         } else {
             header('HTTP/1.0 403 Forbidden');
         }
+    }
+
+    private function encodeResponse($error, $message, $additionalData = array()) {
+        $response['error'] = $error;
+        $response['message'] = $message;
+        foreach ($additionalData as $index => $value) {
+            $response[$index] = $value;
+        }
+        return json_encode($response);
     }
 
     private function is_logged() {
@@ -59,5 +75,22 @@ class api extends Controller {
     private function is_ajax() {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }
+    private function isPost(){
+        return $_SERVER['REQUEST_METHOD'] == 'POST';
+    }
+    private function isGet(){
+        return $_SERVER['REQUEST_METHOD'] == 'GET';
+    }
+
+    public function checkUserNick($args = array()) {
+        var_dump($this->is_ajax());
+        if ($this->is_ajax() && $this->isGet() && isset($args[0])) {
+            $nickExists = nickExists($args[0]);
+            return $this->encodeResponse(false, '', array('exists'=>$nickExists));
+        }
+        return $this->encodeResponse(true, 'No nick especified!');
+    }
 
 }
+
+

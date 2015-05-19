@@ -387,3 +387,42 @@ function getVoteActivity($user_id){
     }
     return $balance;
 }
+
+
+
+function nickExists($user_nick) {
+    global $config, $db;
+    $data['user_nick'] = $user_nick;
+
+    $where = ['user_nick' => $user_nick];
+    return $db->has($config['t_users'], $where);
+}
+
+
+function xTimeAgo($oldTime, $newTime, $timeType) {
+    $timeCalc = $newTime - $oldTime;
+    if ($timeType == "x") {
+        if ($timeCalc = 60) {
+            $timeType = "m";
+        }
+        if ($timeCalc = (60 * 60)) {
+            $timeType = "h";
+        }
+        if ($timeCalc = (60 * 60 * 24)) {
+            $timeType = "d";
+        }
+    }
+    if ($timeType == "s") {
+        $timeCalc .= " seconds ago";
+    }
+    if ($timeType == "m") {
+        $timeCalc = round($timeCalc / 60) . " minutes ago";
+    }
+    if ($timeType == "h") {
+        $timeCalc = round($timeCalc / 60 / 60) . " hours ago";
+    }
+    if ($timeType == "d") {
+        $timeCalc = round($timeCalc / 60 / 60 / 24) . " days ago";
+    }
+    return $timeCalc;
+}

@@ -105,3 +105,35 @@ function proccessCover($name) {
 
     return $file_name;
 }
+
+
+
+/**
+ * Set or update user vote
+ * @global type $config
+ * @global type $db
+ * @param type $user_id
+ * @param type $game_id
+ * @param type $vote
+ * @return boolean
+ */
+function setVote($user_id, $game_id, $vote) {
+    global $config, $db;
+    $data['user'] = $user_id;
+    $data['game'] = $game_id;
+    $data['vote'] = $vote;
+
+
+    $where = ['AND' => ['user' => $user_id, 'game' => $game_id]];
+    $has_voted = $db->has($config['t_user_votes'], $where);
+    if ($has_voted == true) {
+        $db->debug()->update($config['t_user_votes'], $data, $where);
+    } else {
+        $db->debug()->insert($config['t_user_votes'], $data);
+    }
+
+    if ($db->error()[0] !== 0) {
+        return false;
+    }
+    return true;
+}
