@@ -83,7 +83,7 @@ class api extends Controller {
     }
 
     public function checkUserNick($args = array()) {
-        var_dump($this->is_ajax());
+        sleep(2);
         if ($this->is_ajax() && $this->isGet() && isset($args[0])) {
             $nickExists = nickExists($args[0]);
             return $this->encodeResponse(false, '', array('exists'=>$nickExists));

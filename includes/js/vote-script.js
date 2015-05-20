@@ -38,21 +38,13 @@ $(document).ready(function() {
                 button.siblings('button').attr('disabled', false);
             }
                 $('#' + id_name).append('<div class="load-vote"></div>');
-                $('.load-vote').css({position: 'absolute'});
-                $('.load-vote').css({top: '10px'});
-                $('.load-vote').css({height: '100%'});
-                $('.load-vote').css({width: '262.5px'});
-                $('.load-vote').css({opacity: '0.5'});
-                $('.load-vote').css({background: 'black'});
+                $('.load-vote').css({position: 'absolute',top: '10px',height: '100%',width: '262.5px',opacity: '0.5', background: 'black'});
                 $('#' + id_name).append('<div class="alert alert-'+msg_type+'" >'+msg+'</div>');
-                $('.alert').css({position: 'absolute'});
-                $('.alert').css({top: '50%'});
-                $('.alert').css({opacity: '1'});
-                $('.alert').css({width: '262.5px'});
+                $('.alert').css({position: 'absolute',top: '50%',opacity: '1',width: '262.5px'});
                 
                 $('.load-vote').delay(1000).fadeOut();
                 $('.alert').delay(1000).fadeOut();
         });
     });
-})
+});
 
