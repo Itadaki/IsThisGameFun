@@ -29,7 +29,7 @@ class api extends Controller {
     }
 
     public function vote() {
-        if ($this->is_ajax() && $this->isPost() && $this->is_logged()) {
+        if ($this->isAjax() && $this->isPost() && $this->isLogged()) {
             $json = json_decode($_POST['json']);
             $game_id = $json->game_id;
             $vote = $json->vote;
@@ -49,7 +49,7 @@ class api extends Controller {
                 $message = "Error while voting!";
                 return $this->encodeResponse($error,$message);
             }
-        } else if ($this->is_ajax()) {
+        } else if ($this->isAjax()) {
             //USER IS NOT LOGGED IN
             $error = true;
             $message = "User not logged in!";
@@ -68,23 +68,11 @@ class api extends Controller {
         return json_encode($response);
     }
 
-    private function is_logged() {
-        return isset($_SESSION['user_nick']);
-    }
-
-    private function is_ajax() {
-        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-    }
-    private function isPost(){
-        return $_SERVER['REQUEST_METHOD'] == 'POST';
-    }
-    private function isGet(){
-        return $_SERVER['REQUEST_METHOD'] == 'GET';
-    }
+    
 
     public function checkUserNick($args = array()) {
         sleep(2);
-        if ($this->is_ajax() && $this->isGet() && isset($args[0])) {
+        if ($this->isAjax() && $this->isGet() && isset($args[0])) {
             $nickExists = nickExists($args[0]);
             return $this->encodeResponse(false, '', array('exists'=>$nickExists));
         }

@@ -25,7 +25,6 @@
                         </ul>
                     </li>
 
-                    <li class='{about-active}'><a href='{server_root}#'>SAGAS</a></li>
                     <li class='{about-active}'><a href='{server_root}#'>ABOUT</a></li>
                     <li class='{contact-active}'><a href="{server_root}#">CONTACT</a></li>   
                 </ul>

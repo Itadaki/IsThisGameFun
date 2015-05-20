@@ -1,7 +1,9 @@
 <div class="game-small col-md-3 col-sm-4 col-xs-6 text-center">
     <div class="card"> 
         <div class="game" id="game-{id}">
-            <a href="#"><h4 class="bg-gray1" style="min-height: 50px;"><span>{name}</span></h4></a>
+            <a href="{server_root}games/details/{id}"><div class="bg-gray1" style="height: 50px; position: relative">
+                    <h4 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; margin: 0"><span>{name}</span></h4></div>
+            </a>
             <div style="position: relative; height: 368px; overflow:hidden">
                 <div class="bg-gray2 saga-name" >{saga_caret}</div>
                 <img class="img-responsive" style="margin:0px auto 15px auto;position: absolute" src="{server_root}covers/{cover}" alt="Game-Cover" />
@@ -11,6 +13,7 @@
             </div>
             {platforms}
             {vote_balance}
+            <div class="hidden user-vote">{my_vote}</div>
         </div>
     </div>
 </div>

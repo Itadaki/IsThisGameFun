@@ -73,5 +73,19 @@ class Controller {
         $position = (($pageNumber - 1) * $itemsPerPage);
         //LIMIT $position, $item_per_page
     }
+    
+    protected function isLogged() {
+        return isset($_SESSION['user_nick']);
+    }
+
+    protected function isAjax() {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+    }
+    protected function isPost(){
+        return $_SERVER['REQUEST_METHOD'] == 'POST';
+    }
+    protected function isGet(){
+        return $_SERVER['REQUEST_METHOD'] == 'GET';
+    }
 
 }

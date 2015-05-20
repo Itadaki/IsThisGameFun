@@ -68,7 +68,7 @@ $(document).ready(function () {
             var field = $(this);
             var nick = $(this).val();
             addLoadingIcon(field);
-            $.get('api/checkusernick/' + nick, function (data) {
+            $.get(server_root+'api/checkusernick/' + nick, function (data) {
                 $('.loading').remove();
                 data = $.parseJSON(data);
                 var error = data.error;

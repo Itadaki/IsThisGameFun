@@ -24,7 +24,7 @@ $(document).ready(function () {
         var vote_value = button.hasClass('btn-left');
         var data_send = JSON.stringify({game_id: id, vote: vote_value});
 
-        $.post('../api/vote', {json: data_send}, function (data) {
+        $.post(server_root+'api/vote', {json: data_send}, function (data) {
             console.log(data);
             data = $.parseJSON(data);
             var error = data.error;
