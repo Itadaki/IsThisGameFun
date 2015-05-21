@@ -185,3 +185,9 @@ body{
 .card .saga.closed{
     height: auto;
 }
+
+/*JAVI*/
+.loading-icon{
+    height: 15px;
+    width:15px;
+}

@@ -27,8 +27,8 @@ class api extends Controller {
     public function index() {
         header('HTTP/1.0 403 Forbidden');
     }
-
     public function vote() {
+        sleep(2);
         if ($this->isAjax() && $this->isPost() && $this->isLogged()) {
             $json = json_decode($_POST['json']);
             $game_id = $json->game_id;
@@ -74,7 +74,7 @@ class api extends Controller {
         sleep(2);
         if ($this->isAjax() && $this->isGet() && isset($args[0])) {
             $nickExists = nickExists($args[0]);
-            return $this->encodeResponse(false, '', array('exists'=>$nickExists));
+            return $this->encodeResponse(false, 'The nick is available', array('exists'=>$nickExists));
         }
         return $this->encodeResponse(true, 'No nick especified!');
     }

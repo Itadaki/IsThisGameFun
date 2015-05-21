@@ -23,29 +23,37 @@ $(document).ready(function () {
         var id = id_name.split('-')[1];
         var vote_value = button.hasClass('btn-left');
         var data_send = JSON.stringify({game_id: id, vote: vote_value});
-
-        $.post(server_root+'api/vote', {json: data_send}, function (data) {
+        loadPanel(id_name);
+        loadIcon(id_name);
+        $.post(server_root + 'api/vote', {json: data_send}, function (data) {
             console.log(data);
             data = $.parseJSON(data);
             var error = data.error;
-            var msg_type;
+            var state;
             var msg = data.message;
-
             if (error) {
-                msg_type = "danger";
+                state = "danger";
             } else {
-                msg_type = "info";
+                state = "info";
                 button.attr('disabled', true);
                 button.siblings('button').attr('disabled', false);
             }
-            $('#' + id_name).append('<div class="load-vote"></div>');
-            $('.load-vote').css({position: 'absolute', top: '10px', height: '100%', width: '262.5px', opacity: '0.5', background: 'black'});
-            $('#' + id_name).append('<div class="alert alert-' + msg_type + '" >' + msg + '</div>');
-            $('.alert').css({position: 'absolute', top: '50%', opacity: '1', width: '262.5px'});
-
+            loadMessage(id_name,state,msg);
             $('.load-vote').delay(1000).fadeOut();
             $('.alert').delay(1000).fadeOut();
         });
     });
 });
-
+function loadPanel(field) {
+    $('#' + field).append('<div class="load-vote"></div>');
+    $('.load-vote').css({position: 'absolute', top: '10px', height: '100%', width: '100%', opacity: '0.5', background: 'black'});
+}
+function loadIcon(field) {
+    $('#' + field).append('<img src="' + server_root + '/img/loading.gif" id=loading-icon>');
+    $('#loading-icon').css({position: 'absolute', top: '50%', opacity: '1', left: '40%', height: '50px'});
+}
+function loadMessage(field,state,msg) {
+    $('#loading-icon').remove();
+    $('#' + field).append('<div class="alert alert-' + state + '" >' + msg + '</div>');
+    $('.alert').css({position: 'absolute', top: '50%', opacity: '1', width: '100%'});
+}
