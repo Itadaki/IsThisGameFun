@@ -26,10 +26,10 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
         $insert['cover'] = $cover;
     }
     //Insert into games table
-    $db->update($config['t_games'], $insert, ["id" => $game_id]);
+    $game_id = $db->insert($config['t_games'], $insert);
 
     //Define platforms
-    redefinePlatforms($game_id, $platform_ids, true);
+    redefinePlatformsRelationships($game_id, $platform_ids, true);
 
     //Define saga
     redefineSagasRelationships($game_id, $saga_id, true);
@@ -38,13 +38,13 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
 function updateGame($game_id, $name, $description, $platform_ids, $saga_id = null, $cover = null) {
     global $db, $config;
 
-    $insert['name'] = $name;
-    $insert['description'] = $description;
+    $update['name'] = $name;
+    $update['description'] = $description;
     if ($cover != null) {
-        $insert['cover'] = $cover;
+        $update['cover'] = $cover;
     }
     //Update into games table
-    $db->update($config['t_games'], $insert, ["id" => $game_id]);
+    $db->update($config['t_games'], $update, ["id" => $game_id]);
     $debug_error = $db->error();
 
     //Redefine platforms
@@ -136,4 +136,51 @@ function setVote($user_id, $game_id, $vote) {
         return false;
     }
     return true;
+}
+
+
+function insertPlatform($name, $shortName) {
+    global $db, $config;
+
+    $insert['name'] = $name;
+    $insert['short_name'] = $shortName;
+
+    //Insert into games table
+    $db->insert($config['t_platforms'], $insert);
+
+}
+
+function updatePlatform($id, $name, $shortName) {
+    global $db, $config;
+
+    $update['name'] = $name;
+    $update['short_name'] = $shortName;
+
+    //Update into platforms table
+    $db->update($config['t_platforms'], $update, ["id" => $id]);
+    $debug_error = $db->error();
+
+}
+
+function insertSaga($name, $description) {
+    global $db, $config;
+
+    $insert['name'] = $name;
+    $insert['description'] = $description;
+
+    //Insert into games table
+    $db->insert($config['t_sagas'], $insert);
+
+}
+
+function updateSaga($id, $name, $description) {
+    global $db, $config;
+
+    $update['name'] = $name;
+    $update['description'] = $shortName;
+
+    //Update into platforms table
+    $db->update($config['t_sagas'], $update, ["id" => $id]);
+    $debug_error = $db->error();
+
 }

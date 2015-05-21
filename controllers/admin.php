@@ -144,21 +144,39 @@ class admin extends Controller {
      * 
      */
     public function platforms($args = array()) {
-        $platforms = getPlatforms();
-        $template = "templates/admin/platforms/platform-list.html";
-        $platformsHtml = '';
-        foreach ($platforms as $platform) {
-            $repl['id'] = $platform->id;
-            $repl['name'] = $platform->name;
-            $repl['short_name'] = $platform->short_name;
-            $platformsHtml .= replace($repl, $template);
-        }
-        $data['list'] = $platformsHtml;
+        if (isset($args[0])) {
+            //Empty the templates to prevent using them in this partial views
+            $this->top = '';
+            $this->menu = '';
+            $this->body = '';
+            if ($args[0] == 'add') {
+                $this->body = $this->generatePlatformForm();
+            } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+                $this->body = $this->generatePlatformForm($args[1]);
+            } else if ($args[0] == 'save' && isset($_POST['action'])) {
+                $this->savePlatform();
+                header('Location: ../platforms');
+            } else if ($args[0] == 'delete' && isset($_POST['action'])) {
+                $this->deletePlatform();
+                header('Location: ../platforms');
+            }
+        } else {
+            $platforms = getPlatforms();
+            $template = "templates/admin/platforms/platform-list.html";
+            $platformsHtml = '';
+            foreach ($platforms as $platform) {
+                $repl['id'] = $platform->id;
+                $repl['name'] = $platform->name;
+                $repl['short_name'] = $platform->short_name;
+                $platformsHtml .= replace($repl, $template);
+            }
+            $data['list'] = $platformsHtml;
 //Adding sidebar menu
-        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
+            $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
-        $template = "templates/admin/platforms/platforms.html";
-        $this->body = replace($data, $template);
+            $template = "templates/admin/platforms/platforms.html";
+            $this->body = replace($data, $template);
+        }
         return $this->build();
     }
 
@@ -168,21 +186,39 @@ class admin extends Controller {
      * 
      */
     public function sagas($args = array()) {
-        $sagas = getSaga();
-        $template = "templates/admin/sagas/saga-list.html";
-        $sagasHtml = '';
-        foreach ($sagas as $saga) {
-            $repl = $saga->getDataArray();
-            //No quiero lios con el objeto VB
-            unset($repl['vote_balance']);
-            $sagasHtml .= replace($repl, $template);
-        }
-        $data['list'] = $sagasHtml;
+        if (isset($args[0])) {
+            //Empty the templates to prevent using them in this partial views
+            $this->top = '';
+            $this->menu = '';
+            $this->body = '';
+            if ($args[0] == 'add') {
+                $this->body = $this->generateSagaForm();
+            } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+                $this->body = $this->generateSagaForm($args[1]);
+            } else if ($args[0] == 'save' && isset($_POST['action'])) {
+                $this->saveSaga();
+                header('Location: ../sagas');
+            } else if ($args[0] == 'delete' && isset($_POST['action'])) {
+                $this->deleteSaga();
+                header('Location: ../sagas');
+            }
+        } else {
+            $sagas = getSaga();
+            $template = "templates/admin/sagas/saga-list.html";
+            $sagasHtml = '';
+            foreach ($sagas as $saga) {
+                $repl = $saga->getDataArray();
+                //No quiero lios con el objeto VB
+                unset($repl['vote_balance']);
+                $sagasHtml .= replace($repl, $template);
+            }
+            $data['list'] = $sagasHtml;
 //Adding sidebar menu
-        $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
+            $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
-        $template = "templates/admin/sagas/sagas.html";
-        $this->body = replace($data, $template);
+            $template = "templates/admin/sagas/sagas.html";
+            $this->body = replace($data, $template);
+        }
         return $this->build();
     }
 
@@ -194,7 +230,7 @@ class admin extends Controller {
     private function generateGameForm($id = null) {
         //Check if is new game or edit
         $is_edit = $id != null;
-        $action = $is_edit ? 'Modify' : 'Create';
+        $action = $is_edit ? 'Edit' : 'Create';
         //Set the templates
         $base_template = "templates/admin/games/new-edit-game.html";
         $cover_template = "templates/admin/games/new-edit-game-cover.html";
@@ -286,7 +322,7 @@ class admin extends Controller {
 
         if ($action == "Create") {
             insertGame($name, $description, $platforms, $saga, $cover);
-        } else if ($action == "Modify") {
+        } else if ($action == "Edit") {
             $id = $_POST['id'];
             updateGame($id, $name, $description, $platforms, $saga, $cover);
         }
@@ -341,7 +377,7 @@ class admin extends Controller {
         $db->update($config['t_users'], $insert, ["user_id" => $_POST['id']]);
         $debug_error = $db->error();
     }
-    
+
     private function deleteUser() {
         global $db, $config;
 
@@ -350,6 +386,116 @@ class admin extends Controller {
         ];
         //Update user games table
         $db->delete($config['t_users'], $delete);
+        $debug_error = $db->error();
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+    private function generatePlatformForm($id = null) {
+        //Check if is new platform or edit
+        $is_edit = $id != null;
+        $action = $is_edit ? 'Edit' : 'Create';
+        //Set the templates
+        $base_template = "templates/admin/platforms/new-edit-platform.html";
+
+        if ($is_edit) {
+            $platform = getPlatformById($id);
+            $data['id'] = $platform['id'];
+            $data['name'] = $platform['name'];
+            $data['shortname'] = $platform['short_name'];
+        } else {
+            $data['id'] = '';
+            $data['name'] = '';
+            $data['shortname'] = '';
+        }
+
+        $data['action'] = $action;
+        $html = replace($data, $base_template);
+
+        return $html;
+    }
+
+    private function savePlatform() {
+        global $db, $config;
+        $action = $_POST['action'];
+
+        $name = $_POST['name'];
+        $shortName = $_POST['shortname'];
+
+        if ($action == "Create") {
+            insertPlatform($name, $shortName);
+        } else if ($action == "Edit") {
+            $id = $_POST['id'];
+            updatePlatform($id, $name, $shortName);
+        }
+    }
+
+    private function deletePlatform() {
+        global $db, $config;
+
+        $delete = [
+            "id" => $_POST['id']
+        ];
+
+        $db->delete($config['t_platforms'], $delete);
+        $debug_error = $db->error();
+    }
+
+    /**
+     * 
+     * 
+     * 
+     */
+    private function generateSagaForm($id = null) {
+        //Check if is new platform or edit
+        $is_edit = $id != null;
+        $action = $is_edit ? 'Edit' : 'Create';
+        //Set the templates
+        $base_template = "templates/admin/sagas/new-edit-saga.html";
+
+        if ($is_edit) {
+            $saga = getSagaById($id);
+            $data['id'] = $saga['id'];
+            $data['name'] = $saga['name'];
+            $data['description'] = $saga['description'];
+        } else {
+            $data['id'] = '';
+            $data['name'] = '';
+            $data['description'] = '';
+        }
+
+        $data['action'] = $action;
+        $html = replace($data, $base_template);
+
+        return $html;
+    }
+
+    private function saveSaga() {
+        global $db, $config;
+        $action = $_POST['action'];
+
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+
+        if ($action == "Create") {
+            insertSaga($name, $description);
+        } else if ($action == "Edit") {
+            $id = $_POST['id'];
+            updateSaga($id, $name, $description);
+        }
+    }
+
+    private function deleteSaga() {
+        global $db, $config;
+
+        $delete = [
+            "id" => $_POST['id']
+        ];
+
+        $db->delete($config['t_platforms'], $delete);
         $debug_error = $db->error();
     }
 

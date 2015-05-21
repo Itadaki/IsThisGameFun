@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">{action} saga</h4>
+</div>			<!-- /modal-header -->
+<div class="modal-body">
+    <form class="form-horizontal" id="new-edit-saga-{id}" name="new-edit-saga" action="{server_root}admin/sagas/save" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{id}" />
+        <fieldset>
+            <!-- Form Name -->
+            <legend></legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="name">Name</label>
+                <div class="col-sm-10 controls">
+                    <input id="name" name="name" type="text" placeholder="Name" class="form-control" value="{name}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="textarea">Description</label>
+                <div class="col-sm-10 controls">                     
+                    <textarea id="textarea" name="description" class="form-control" placeholder="A little description for the game">{description}</textarea>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>			<!-- /modal-body -->
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <input type="submit" value="{action}" name="action" class="btn btn-primary" form="new-edit-saga-{id}"/>
+</div>

@@ -30,7 +30,7 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            username: {
+            user: {
                 message: 'The username is not valid',
                 validators: {
                     notEmpty: {
@@ -123,6 +123,6 @@ $(document).ready(function() {
         $('#defaultForm').data('bootstrapValidator').resetForm(true);
     });
     $('small').css({font:'15px',color:'white'});
-    $('label').css({font:'15px',color:'white'});
+//    $('label').css({font:'15px',color:'white'});
     $('i').css({font:'15px',color:'#777777'});
 });

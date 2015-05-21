@@ -27,7 +27,7 @@ class signin extends Controller {
     public function index($args = array()) {
         global $config;
         //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY)
-        if (isset($_POST['signin']) && $_COOKIE[$config['allow_cookies']]) {
+        if (isset($_POST['signup']) && $_COOKIE[$config['allow_cookies']]) {
             //Validate the data and 'return' if something's wrong
             return $this->validateSignIn();
         } else {
@@ -46,10 +46,10 @@ class signin extends Controller {
         $data['error'] = '';
         if ($camposErroneos || $camposPendientes) {
             if ($camposErroneos) {
-                $data['error'] .= '<p class="error_error">Hay campos no validos.</p>';
+                $data['error'] .= '<p class="bg-danger"><span class="glyphicon glyphicon-warning-sign"></span> Hay campos no validos.</p>';
             }
             if ($camposPendientes) {
-                $data['error'] .= '<p class="error_pendiente">Falta algun campo.</p>';
+                $data['error'] .= '<p class="bg-warning"><span class="glyphicon glyphicon-exclamation-sign"> Falta algun campo.</p>';
             }
         }
         $data['user'] = setValue('user');

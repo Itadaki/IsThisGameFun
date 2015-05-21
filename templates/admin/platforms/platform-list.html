@@ -4,12 +4,41 @@
     <td>{name}</td>                            
     <td>
         <div class="btn-group" role="group" aria-label="...">
-            <a data-toggle="modal" class="btn btn-warning btn-group" href="{server_root}admin/games/edit/100" data-target="#myModal">
+            <a data-toggle="modal" class="btn btn-info btn-group" href="{server_root}admin/platforms/edit/{id}" data-target="#platformModal-{id}">
                 <span class="glyphicon glyphicon-edit"></span>
             </a>
-            <a data-toggle="modal" class="btn btn-danger btn-group" href="#" data-target="#myModal">
+            <a data-toggle="modal" class="btn btn-danger btn-group" href="#" data-target="#platform-delete-modal-{id}">
                 <span class="glyphicon glyphicon-remove-sign"></span>
             </a>
         </div>
     </td>
 </tr>
+<!-- Modal -->
+<div class="modal fade" id="platformModal-{id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->  
+
+<!-- MODAL DELETE -->
+<div class="modal fade" id="platform-delete-modal-{id}" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete platform</h4>
+            </div>			<!-- /modal-header -->
+            <div class="modal-body">
+                <h4>Are you sure you want to delete the platform '<i>{name}</i>'?</h4>
+            </div>			<!-- /modal-body -->
+            <div class="modal-footer">
+                <form class="" id="platform-{id}" name="delete-user" action="{server_root}admin/platforms/delete" method="POST">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="hidden" name="id" value="{id}" />
+                    <input type="submit" value="Delete" name="action" class="btn btn-primary" form="platform-{id}"/>
+                </form>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->  

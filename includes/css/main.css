@@ -185,6 +185,9 @@ body{
 .card .saga.closed{
     height: auto;
 }
+.admin-table td{
+    vertical-align: middle !important;
+}
 
 /*JAVI*/
 .loading-icon{
