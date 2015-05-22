@@ -89,24 +89,22 @@ function redefineSagasRelationships($game_id, $saga_id, $is_new = false) {
     $debug_error = $db->error();
 }
 
-function proccessCover($name) {
+function proccessUploadedImage($name, $form_field_name = "cover", $path_to_save = 'covers/') {
     $file_name = null;
     $acceped_types = ["image/jpeg", "image/png", "image/gif"];
-    if (isset($_FILES['cover']) && $_FILES['cover']["error"] == UPLOAD_ERR_OK && in_array($_FILES['cover']["type"], $acceped_types)) {
+    if (isset($_FILES[$form_field_name]) && $_FILES[$form_field_name]["error"] == UPLOAD_ERR_OK && in_array($_FILES[$form_field_name]["type"], $acceped_types)) {
 
         $allowed_chars = "/[^\w]+/";
         $replace_char = "-";
         $name = preg_replace($allowed_chars, $replace_char, $name);
-        $file_name = $name . '.' . pathinfo($_FILES['cover']["name"], PATHINFO_EXTENSION);
-        $path = 'covers/' . $file_name;
+        $file_name = $name . '.' . pathinfo($_FILES[$form_field_name]["name"], PATHINFO_EXTENSION);
+        $path = $path_to_save . $file_name;
 
-        move_uploaded_file($_FILES['cover']["tmp_name"], $path);
+        move_uploaded_file($_FILES[$form_field_name]["tmp_name"], $path);
     }
 
     return $file_name;
 }
-
-
 
 /**
  * Set or update user vote
@@ -138,7 +136,6 @@ function setVote($user_id, $game_id, $vote) {
     return true;
 }
 
-
 function insertPlatform($name, $shortName) {
     global $db, $config;
 
@@ -147,7 +144,6 @@ function insertPlatform($name, $shortName) {
 
     //Insert into games table
     $db->insert($config['t_platforms'], $insert);
-
 }
 
 function updatePlatform($id, $name, $shortName) {
@@ -159,28 +155,31 @@ function updatePlatform($id, $name, $shortName) {
     //Update into platforms table
     $db->update($config['t_platforms'], $update, ["id" => $id]);
     $debug_error = $db->error();
-
 }
 
-function insertSaga($name, $description) {
+function insertSaga($name, $description, $logo=null) {
     global $db, $config;
 
     $insert['name'] = $name;
     $insert['description'] = $description;
+    if ($logo != null){
+        $insert['logo'] = $logo;
+    }
 
     //Insert into games table
     $db->insert($config['t_sagas'], $insert);
-
 }
 
-function updateSaga($id, $name, $description) {
+function updateSaga($id, $name, $description, $logo=null) {
     global $db, $config;
 
     $update['name'] = $name;
-    $update['description'] = $shortName;
+    $update['description'] = $description;
+    if ($logo != null){
+        $update['logo'] = $logo;
+    }
 
     //Update into platforms table
     $db->update($config['t_sagas'], $update, ["id" => $id]);
     $debug_error = $db->error();
-
 }

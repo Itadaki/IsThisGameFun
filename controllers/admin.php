@@ -318,7 +318,7 @@ class admin extends Controller {
         $platforms = $_POST['platforms']; //array
         $saga = $_POST['saga']; //id
 
-        $cover = proccessCover($name); //name or null
+        $cover = proccessUploadedImage($name); //name or null
 
         if ($action == "Create") {
             insertGame($name, $description, $platforms, $saga, $cover);
@@ -455,16 +455,24 @@ class admin extends Controller {
         $action = $is_edit ? 'Edit' : 'Create';
         //Set the templates
         $base_template = "templates/admin/sagas/new-edit-saga.html";
+        $logo_template = "templates/admin/sagas/new-edit-saga-logo.html";
 
         if ($is_edit) {
             $saga = getSagaById($id);
-            $data['id'] = $saga['id'];
-            $data['name'] = $saga['name'];
-            $data['description'] = $saga['description'];
+            $data = $saga->getDataArray();
+//            unset($data['vote_balance']);
+//            $data['id'] = $saga['id'];
+//            $data['name'] = $saga['name'];
+//            $data['description'] = $saga['description'];
+            //Show the image or not
+            if ($is_edit) {
+                $data['logo'] = replace(array("logo" => $data['logo']), $logo_template);
+            }
         } else {
             $data['id'] = '';
             $data['name'] = '';
             $data['description'] = '';
+            $data['logo'] = '';
         }
 
         $data['action'] = $action;
@@ -479,12 +487,14 @@ class admin extends Controller {
 
         $name = $_POST['name'];
         $description = $_POST['description'];
+        
+        $logo = proccessUploadedImage($name, 'logo', 'logos/'); //name or null
 
         if ($action == "Create") {
-            insertSaga($name, $description);
+            insertSaga($name, $description,$logo);
         } else if ($action == "Edit") {
             $id = $_POST['id'];
-            updateSaga($id, $name, $description);
+            updateSaga($id, $name, $description,$logo);
         }
     }
 
@@ -495,7 +505,7 @@ class admin extends Controller {
             "id" => $_POST['id']
         ];
 
-        $db->delete($config['t_platforms'], $delete);
+        $db->delete($config['t_sagas'], $delete);
         $debug_error = $db->error();
     }
 
