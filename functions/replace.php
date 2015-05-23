@@ -194,9 +194,9 @@ function replaceSaga($gameArray) {
 
 function validateField($campo, $camposPendientes, $camposErroneos) {
     if (in_array($campo, $camposPendientes)) {
-        return ' class="error_pendiente"';
+        return 'has-warning has-feedback';
     } elseif (in_array($campo, $camposErroneos)) {
-        return ' class="error_error"';
+        return 'has-error has-feedback';
     }
     return '';
 }

@@ -366,7 +366,7 @@ function getSagaVoteBalance($saga_id) {
     return $balance;
 }
 
-function getEnumUserLevel(){
+function getEnumUserLevel() {
     global $config, $db;
     $resultados = $db->query("SHOW COLUMNS FROM {$config['t_users']} WHERE Field = 'user_level'")->fetchAll()[0];
     $type = $resultados['Type'];
@@ -375,7 +375,7 @@ function getEnumUserLevel(){
     return $enum;
 }
 
-function getVoteActivity($user_id){
+function getVoteActivity($user_id) {
     global $db, $config;
     $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
     $where = ['id' => $saga_id];
@@ -388,7 +388,13 @@ function getVoteActivity($user_id){
     return $balance;
 }
 
-
+function getPlatformById($id) {
+    global $db, $config;
+    $columns = ['id', 'name', 'short_name'];
+    $where = ["id" => $id];
+    $resultados = $db->get($config['t_platforms'], $columns, $where);
+    return $resultados;
+}
 
 function nickExists($user_nick) {
     global $config, $db;
@@ -397,7 +403,6 @@ function nickExists($user_nick) {
     $where = ['user_nick' => $user_nick];
     return $db->has($config['t_users'], $where);
 }
-
 
 function xTimeAgo($oldTime, $newTime, $timeType) {
     $timeCalc = $newTime - $oldTime;

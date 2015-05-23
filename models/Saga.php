@@ -35,7 +35,7 @@ class Saga extends Model {
         $this->name = $name;
         $this->description = $description;
         $this->logo = $logo;
-        $this->vote_balance = $vote_balance;
+//        $this->vote_balance = $vote_balance;
     }
 
 }

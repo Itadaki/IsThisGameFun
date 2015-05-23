@@ -24,7 +24,7 @@
  */
 class user extends Controller {
 
-    public function profile($args = array()) {
+    public function profile($args = array(), $error = array()) {
         if (isset($args[0])) {
             $user = getUser($args[0], true);
             //getUser returns false if user doesnt exists
@@ -40,23 +40,31 @@ class user extends Controller {
                     "[>]users" => ["user" => "user_id"],
                     "[>]games" => ["game" => "id"]
                 ];
-                $columns = ['name', 'vote', 'vote_date'];
+                $columns = ['name', 'game', 'vote', 'vote_date'];
                 $where = ["user_id" => $user['user_id'], "ORDER" => "vote_date DESC",];
                 $votes = $db->select($config['t_user_votes'], $join, $columns, $where);
 
                 $history_html = '';
                 foreach ($votes as $vote) {
                     $temp['game'] = $vote['name'];
+                    $temp['id'] = $vote['game'];
                     $temp['date'] = xTimeAgo(strtotime($vote['vote_date']), time(), 'd');
-                    $temp['vote'] = $vote['vote'] ? 'SI' : 'NO';
+                    $temp['vote'] = $vote['vote'] ? '<span class="glyphicon glyphicon-thumbs-up text-info"></span>' : '<span class="glyphicon glyphicon-thumbs-down text-danger"></span>';
                     $history_html .= replace($temp, $user_vote_history_template);
                 }
 
                 $data['history'] = $history_html;
 
-                $data['own_profile'] = 'NO';
+                $data['edit_display'] = 'hidden';
                 if ($user['user_id'] == $_SESSION['user_id']) {
-                    $data['own_profile'] = 'YES';
+                    $data['edit_display'] = '';
+                }
+
+                if ($error) {
+
+                    $data['error'] = replace($error, "templates/common/message.html");
+                } else {
+                    $data['error'] = '';
                 }
 
 
@@ -68,6 +76,44 @@ class user extends Controller {
         }
         //Return to root
         header("Location: ../../");
+    }
+
+    public function edit() {
+        global $config;
+        $returnURL = $config['server_root'];
+        if ($this->isPost() && $this->isLogged() && isset($_POST['action']) && isset($_FILES['avatar'])) {
+            $id = $_SESSION['user_id'];
+            $name = $_SESSION['user_nick'];
+            $returnURL .= 'user/profile/' . $name;
+            
+            //Check file dimensions
+            $size = getimagesize($_FILES['avatar']['tmp_name']);
+            $width = $size[0];
+            $height = $size[1];
+            //IF ERROR, display profile with error
+            if ($width > 200 || $height > 200) {
+                $error = [
+                    "level" => "danger",
+                    "title" => "Error",
+                    "msg" => "Exceeded file size (max filse size 200x200)"
+                ];
+                return $this->profile(array($_SESSION['user_nick']), $error);
+            }
+            //If size is ok, update
+            $form_field_name = 'avatar';
+            $path_to_save = 'avatars/';
+            $avatar = proccessUploadedImage($name, $form_field_name, $path_to_save);
+
+            //Edit user
+            updateUser($id, $avatar);
+            $error = [
+                    "level" => "success",
+                    "title" => "Done",
+                    "msg" => "Avatar updated!"
+                ];
+            return $this->profile(array($_SESSION['user_nick']), $error);
+        }
+        header("Location: " . $returnURL);
     }
 
 }

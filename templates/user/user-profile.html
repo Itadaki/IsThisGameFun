@@ -1,6 +1,62 @@
-User: {user_nick}<br>
+<!--User: {user_nick}<br>
 Avatar: {user_avatar}<br>
 Its your profile: {own_profile}
 <div style="border: 1px solid">
     {history}
+</div>-->
+
+<div class="container row voffset3">
+    {error}
+    <div class="col-md-3">
+        <h3 class="text-center">{user_nick}</h3>
+        <div class="text-center">
+            <img class="img-responsive" style="margin: 0 auto" src="{server_root}avatars/{user_avatar}" alt="userpic">
+        </div>
+        <div class="voffset2">
+            <ul class="list-group {edit_display}">
+                <li class="list-group-item">
+                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#edit-modal">
+                        Edit <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                </li>
+                <!--                <li class="list-group-item"><span>Gender(icon)</span></li>
+                                <li class="list-group-item"><span>Platforms</span></li>
+                                <li class="list-group-item"><span>Votes</span></li>-->
+            </ul>   
+        </div>
+    </div>
+    <div class="col-md-9" >
+        <h4 class="bg-gray2 text-center">ACTIVITY</h4>
+        <div class="" style="overflow: auto; max-height: 430px">
+            {history}
+        </div>
+    </div>
 </div>
+
+<!-- MODAL EDIT -->
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Change your avatar</h4>
+            </div>			<!-- /modal-header -->
+            <div class="modal-body">
+                <form class="form-horizontal" id="edit-user" name="edit-user" action="{server_root}user/edit" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="filebutton">Cover</label>
+                        <div class="col-sm-10 controls">
+                            <img class="img-responsive" src="{server_root}avatars/{user_avatar}" alt="userpic">
+                            <input type="file" id="avatar" name="avatar" accept="image/jpeg, image/png, image/gif" class="form-control input-file" required/>
+                            <p class="help-block">JPEG, JPG, PNG and GIF only.<br>MAX dimentions 200x200px</p>
+                        </div>
+                    </div>
+                </form>
+            </div>			<!-- /modal-body -->
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Edit" name="action" class="btn btn-primary" form="edit-user"/>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->  

@@ -68,12 +68,32 @@ class games extends Controller {
         if (count($args) > 0 && is_numeric($args[0])) {
             $game = getGame($args[0]);
             if ($game != null) {
-                $subData[] = $game;
-                $gameHtml = replaceGame($subData);
-                
-                $data['games'] = $gameHtml;
-                $template = "templates/games/index.html";
-                $this->body = replace($data, $template);
+                $details_template = "templates/games/details.html";
+                $platform_template = "templates/games/platform.html";
+
+                $data = $game->getDataArray();
+                $data = array_merge($data, $data['vote_balance']->getDataArray());
+                if ($data['saga'] != null) {
+                    $data['saga_id'] = $data['saga']->id;
+                    $data['saga_name'] = $data['saga']->name;
+                } else {
+                    $data['saga_id'] = '';
+                    $data['saga_name'] = '';
+                }
+
+                $data['platforms_list'] = '';
+                foreach ($data['platforms'] as $platform) {
+                    $p = $platform->getDataArray();
+                    $data['platforms_list'].=replace($p, $platform_template);
+                }
+                unset($data['vote_balance']);
+                unset($data['saga']);
+                unset($data['platforms']);
+//                dd($data);
+//                $gameHtml = replaceGame([$game]);
+//                $data['games'] = $gameHtml;
+//                $template = "templates/games/index.html";
+                $this->body = replace($data, $details_template);
 
                 return $this->build();
             } else {

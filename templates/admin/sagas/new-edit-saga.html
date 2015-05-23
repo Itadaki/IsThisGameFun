@@ -1,9 +1,9 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">{action} game</h4>
+    <h4 class="modal-title">{action} saga</h4>
 </div>			<!-- /modal-header -->
 <div class="modal-body">
-    <form class="form-horizontal" id="new-game-{id}" name="new-game" action="{server_root}admin/games/save" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" id="new-edit-saga-{id}" name="new-edit-saga" action="{server_root}admin/sagas/save" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{id}" />
         <fieldset>
             <!-- Form Name -->
@@ -15,44 +15,27 @@
                     <input id="name" name="name" type="text" placeholder="Name" class="form-control" value="{name}" required>
                 </div>
             </div>
-            <!-- File Button --> 
-
+            
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="filebutton">Cover</label>
+                <label class="col-sm-2 control-label" for="filebutton">Logo</label>
                 <div class="col-sm-10 controls">
-                    {cover}
-                    <input type="file" id="cover" name="cover" accept="image/jpeg, image/png, image/gif" class="form-control input-file"/>
+                    {logo}
+                    <input type="file" id="cover" name="logo" accept="image/jpeg, image/png, image/gif" class="form-control input-file"/>
                     <p class="help-block">JPEG, JPG, PNG and GIF only.</p>
                 </div>
             </div>
-            <!-- Select Basic -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="selectbasic">Saga</label>
-                <div class="col-sm-10 controls">
-                    {sagas}
-                </div>
-            </div>
-            <!-- Multiple Checkboxes (inline) -->
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="checkboxes">Inline Checkboxes</label>
-                <div class="col-sm-10 controls">
-                    {platforms} 
-                </div>
-            </div>
-            <!-- Textarea -->
+
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="textarea">Description</label>
                 <div class="col-sm-10 controls">                     
                     <textarea id="textarea" name="description" class="form-control" placeholder="A little description for the game">{description}</textarea>
                 </div>
             </div>
-
         </fieldset>
     </form>
 
 </div>			<!-- /modal-body -->
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <input type="submit" value="{action}" name="action" class="btn btn-primary" form="new-game-{id}"/>
+    <input type="submit" value="{action}" name="action" class="btn btn-primary" form="new-edit-saga-{id}"/>
 </div>
-<script src="{server_root}includes/js/admin-new-edit-game-checkbox.js"></script>
