@@ -47,7 +47,7 @@ class Controller {
 
         $className = get_class($this) . '-active';
         $this->section[$className] = 'active';
-        
+
         $this->menu = replace($this->section, $this->menu, true);
 
 //        $this->addTemplatesToData();
@@ -73,7 +73,7 @@ class Controller {
         $position = (($pageNumber - 1) * $itemsPerPage);
         //LIMIT $position, $item_per_page
     }
-    
+
     protected function isLogged() {
         return isset($_SESSION['user_nick']);
     }
@@ -81,11 +81,19 @@ class Controller {
     protected function isAjax() {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }
-    protected function isPost(){
+
+    protected function isPost() {
         return $_SERVER['REQUEST_METHOD'] == 'POST';
     }
-    protected function isGet(){
+
+    protected function isGet() {
         return $_SERVER['REQUEST_METHOD'] == 'GET';
+    }
+
+    protected function emptyTemplates() {
+        $this->top = '';
+        $this->menu = '';
+        $this->body = '';
     }
 
 }
