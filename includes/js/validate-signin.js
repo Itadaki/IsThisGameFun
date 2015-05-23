@@ -21,7 +21,7 @@ $(document).ready(function() {
     };
     $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
 
-    $('#defaultForm').bootstrapValidator({
+    $('#form-signin').bootstrapValidator({
 //        live: 'disabled',
         message: 'This value is not valid',
         feedbackIcons: {

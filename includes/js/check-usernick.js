@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 $(document).ready(function () {
-    $('#nick').focusout(function () {
+    $('#nick').blur(function () {
         var field = $(this);
         removeIcons(field);
         var user_nick = $(this).val();
