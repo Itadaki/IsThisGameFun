@@ -53,20 +53,17 @@ class admin extends Controller {
      * 
      * 
      */
-    public function users($args = array()) {
+    public function users($args = array(), $messages = array()) {
         if (isset($args[0])) {
-            //Empty the templates to prevent using them in this partial views
-            $this->top = '';
-            $this->menu = '';
-            $this->body = '';
             if ($args[0] == 'edit' && isset($args[1]) && is_string($args[1])) {
+                $this->emptyTemplates();
                 $this->body = $this->generateUserForm($args[1]);
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
-                $this->saveUser();
-                header('Location: ../users');
+                return $this->saveUser();
+//                header('Location: ../users');
             } else if ($args[0] == 'delete' && isset($_POST['action'])) {
-                $this->deleteUser();
-                header('Location: ../users');
+                return $this->deleteUser();
+//                header('Location: ../users');
             }
         } else {
             $users = getUsers();
@@ -79,6 +76,14 @@ class admin extends Controller {
             //Adding sidebar menu
             $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
+            //DISPLAY MESSAGES
+            $data['messages'] = '';
+            if ($messages) {
+                foreach ($messages as $message) {
+                    $data['messages'].=$message;
+                }
+            }
+
             $template = "templates/admin/users/users.html";
             $this->body = replace($data, $template);
         }
@@ -90,22 +95,20 @@ class admin extends Controller {
      * 
      * 
      */
-    public function games($args = array()) {
+    public function games($args = array(), $messages = array()) {
         if (isset($args[0])) {
-            //Empty the templates to prevent using them in this partial views
-            $this->top = '';
-            $this->menu = '';
-            $this->body = '';
             if ($args[0] == 'add') {
+                $this->emptyTemplates();
                 $this->body = $this->generateGameForm();
             } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+                $this->emptyTemplates();
                 $this->body = $this->generateGameForm($args[1]);
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
-                $this->saveGame();
-                header('Location: ../games');
+                return $this->saveGame();
+//                header('Location: ../games');
             } else if ($args[0] == 'delete' && isset($_POST['action'])) {
-                $this->deleteGame();
-                header('Location: ../games');
+                return $this->deleteGame();
+//                header('Location: ../games');
             }
         } else {
             $games = getGamesAlphabetically(10000);
@@ -135,6 +138,14 @@ class admin extends Controller {
             //Adding sidebar menu
             $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
+            //DISPLAY MESSAGES
+            $data['messages'] = '';
+            if ($messages) {
+                foreach ($messages as $message) {
+                    $data['messages'].=$message;
+                }
+            }
+
             $template = "templates/admin/games/games.html";
             $this->body = replace($data, $template);
         }
@@ -146,22 +157,20 @@ class admin extends Controller {
      * 
      * 
      */
-    public function platforms($args = array()) {
+    public function platforms($args = array(), $messages = array()) {
         if (isset($args[0])) {
-            //Empty the templates to prevent using them in this partial views
-            $this->top = '';
-            $this->menu = '';
-            $this->body = '';
             if ($args[0] == 'add') {
+                $this->emptyTemplates();
                 $this->body = $this->generatePlatformForm();
             } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+                $this->emptyTemplates();
                 $this->body = $this->generatePlatformForm($args[1]);
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
-                $this->savePlatform();
-                header('Location: ../platforms');
+                return $this->savePlatform();
+//                header('Location: ../platforms');
             } else if ($args[0] == 'delete' && isset($_POST['action'])) {
-                $this->deletePlatform();
-                header('Location: ../platforms');
+                return $this->deletePlatform();
+//                header('Location: ../platforms');
             }
         } else {
             $platforms = getPlatforms();
@@ -177,6 +186,14 @@ class admin extends Controller {
 //Adding sidebar menu
             $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
 
+            //DISPLAY MESSAGES
+            $data['messages'] = '';
+            if ($messages) {
+                foreach ($messages as $message) {
+                    $data['messages'].=$message;
+                }
+            }
+
             $template = "templates/admin/platforms/platforms.html";
             $this->body = replace($data, $template);
         }
@@ -188,22 +205,20 @@ class admin extends Controller {
      * 
      * 
      */
-    public function sagas($args = array()) {
+    public function sagas($args = array(), $messages = array()) {
         if (isset($args[0])) {
-            //Empty the templates to prevent using them in this partial views
-            $this->top = '';
-            $this->menu = '';
-            $this->body = '';
             if ($args[0] == 'add') {
+                $this->emptyTemplates();
                 $this->body = $this->generateSagaForm();
             } else if ($args[0] == 'edit' && isset($args[1]) && is_numeric($args[1])) {
+                $this->emptyTemplates();
                 $this->body = $this->generateSagaForm($args[1]);
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
                 $this->saveSaga();
-                header('Location: ../sagas');
+//                header('Location: ../sagas');
             } else if ($args[0] == 'delete' && isset($_POST['action'])) {
                 $this->deleteSaga();
-                header('Location: ../sagas');
+//                header('Location: ../sagas');
             }
         } else {
             $sagas = getSaga();
@@ -218,6 +233,14 @@ class admin extends Controller {
             $data['list'] = $sagasHtml;
 //Adding sidebar menu
             $data['sidebar'] = file_get_contents("templates/admin/sidebar-menu.html");
+
+            //DISPLAY MESSAGES
+            $data['messages'] = '';
+            if ($messages) {
+                foreach ($messages as $message) {
+                    $data['messages'].=$message;
+                }
+            }
 
             $template = "templates/admin/sagas/sagas.html";
             $this->body = replace($data, $template);
@@ -324,13 +347,19 @@ class admin extends Controller {
         $cover = proccessUploadedImage($name); //name or null
 
         if ($action == "Create") {
-            insertGame($name, $description, $platforms, $saga, $cover);
+            $error = insertGame($name, $description, $platforms, $saga, $cover);
         } else if ($action == "Edit") {
             $id = $_POST['id'];
-            updateGame($id, $name, $description, $platforms, $saga, $cover);
+            $error = updateGame($id, $name, $description, $platforms, $saga, $cover);
         }
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->games([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on '$action game $name'."))->getMessage();
+        return $this->games(array(), $messages);
     }
-    
+
     private function deleteGame() {
         global $db, $config;
 
@@ -339,7 +368,13 @@ class admin extends Controller {
         ];
         //Delete game
         $db->delete($config['t_games'], $delete);
-        $debug_error = $db->error();
+        $error = handleError();
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->games([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on 'Delete game {$_POST['id']}'."))->getMessage();
+        return $this->games(array(), $messages);
     }
 
     /**
@@ -389,7 +424,13 @@ class admin extends Controller {
         ];
         //Update user games table
         $db->update($config['t_users'], $insert, ["user_id" => $_POST['id']]);
-        $debug_error = $db->error();
+        $error = handleError();
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->users([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on 'Edit user {$_POST['nick']}'."))->getMessage();
+        return $this->users(array(), $messages);
     }
 
     private function deleteUser() {
@@ -400,7 +441,13 @@ class admin extends Controller {
         ];
         //Update user games table
         $db->delete($config['t_users'], $delete);
-        $debug_error = $db->error();
+        $error = handleError();
+        if ($error) {
+            $messages = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->users([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on 'Delete user {$_POST['id']}'."))->getMessage();
+        return $this->users(array(), $messages);
     }
 
     /**
@@ -440,11 +487,18 @@ class admin extends Controller {
         $shortName = $_POST['shortname'];
 
         if ($action == "Create") {
-            insertPlatform($name, $shortName);
+            $error = insertPlatform($name, $shortName);
         } else if ($action == "Edit") {
             $id = $_POST['id'];
-            updatePlatform($id, $name, $shortName);
+            $error = updatePlatform($id, $name, $shortName);
         }
+
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->platforms([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on '$action platform $name'."))->getMessage();
+        return $this->platforms(array(), $messages);
     }
 
     private function deletePlatform() {
@@ -455,7 +509,13 @@ class admin extends Controller {
         ];
 
         $db->delete($config['t_platforms'], $delete);
-        $debug_error = $db->error();
+        $error = handleError();
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->platforms([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on 'Delete platform {$_POST['id']}'."))->getMessage();
+        return $this->platforms(array(), $messages);
     }
 
     /**
@@ -501,15 +561,21 @@ class admin extends Controller {
 
         $name = $_POST['name'];
         $description = $_POST['description'];
-        
+
         $logo = proccessUploadedImage($name, 'logo', 'logos/'); //name or null
 
         if ($action == "Create") {
-            insertSaga($name, $description,$logo);
+            $error = insertSaga($name, $description, $logo);
         } else if ($action == "Edit") {
             $id = $_POST['id'];
-            updateSaga($id, $name, $description,$logo);
+            $error = updateSaga($id, $name, $description, $logo);
         }
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->sagas([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on '$action saga $name'."))->getMessage();
+        return $this->sagas(array(), $messages);
     }
 
     private function deleteSaga() {
@@ -520,7 +586,13 @@ class admin extends Controller {
         ];
 
         $db->delete($config['t_sagas'], $delete);
-        $debug_error = $db->error();
+        $error = handleError();
+        if ($error) {
+            $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            return $this->sagas([], $messages);
+        }
+        $messages[] = (new Message('success', 'Success', " on 'delete saga {$_POST['id']}'."))->getMessage();
+        return $this->sagas(array(), $messages);
     }
 
 }

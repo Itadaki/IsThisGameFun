@@ -24,7 +24,7 @@
  */
 class user extends Controller {
 
-    public function profile($args = array(), $error = array()) {
+    public function profile($args = array(), $messages = array()) {
         if (isset($args[0])) {
             $user = getUser($args[0], true);
             //getUser returns false if user doesnt exists
@@ -60,11 +60,12 @@ class user extends Controller {
                     $data['edit_display'] = '';
                 }
 
-                if ($error) {
-
-                    $data['error'] = replace($error, "templates/common/message.html");
-                } else {
-                    $data['error'] = '';
+                //DISPLAY MESSAGES
+                $data['messages'] = '';
+                if ($messages) {
+                    foreach ($messages as $message) {
+                        $data['messages'].=$message;
+                    }
                 }
 
 
@@ -85,19 +86,15 @@ class user extends Controller {
             $id = $_SESSION['user_id'];
             $name = $_SESSION['user_nick'];
             $returnURL .= 'user/profile/' . $name;
-            
+
             //Check file dimensions
             $size = getimagesize($_FILES['avatar']['tmp_name']);
             $width = $size[0];
             $height = $size[1];
             //IF ERROR, display profile with error
             if ($width > 200 || $height > 200) {
-                $error = [
-                    "level" => "danger",
-                    "title" => "Error",
-                    "msg" => "Exceeded file size (max filse size 200x200)"
-                ];
-                return $this->profile(array($_SESSION['user_nick']), $error);
+                $message = array((new Message('danger', 'Error', 'Exceeded file size (max filse size 200x200)'))->getMessage());
+                return $this->profile(array($_SESSION['user_nick']), $message);
             }
             //If size is ok, update
             $form_field_name = 'avatar';
@@ -107,10 +104,10 @@ class user extends Controller {
             //Edit user
             updateUser($id, $avatar);
             $error = [
-                    "level" => "success",
-                    "title" => "Done",
-                    "msg" => "Avatar updated!"
-                ];
+                "level" => "success",
+                "title" => "Done",
+                "msg" => "Avatar updated!"
+            ];
             return $this->profile(array($_SESSION['user_nick']), $error);
         }
         header("Location: " . $returnURL);
