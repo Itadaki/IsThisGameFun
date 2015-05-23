@@ -183,3 +183,13 @@ function updateSaga($id, $name, $description, $logo=null) {
     $db->update($config['t_sagas'], $update, ["id" => $id]);
     $debug_error = $db->error();
 }
+
+function updateUser($id, $avatar) {
+    global $db, $config;
+
+    $update['user_avatar'] = $avatar;
+
+    //Update into users table
+    $db->update($config['t_users'], $update, ["user_id" => $id]);
+    $debug_error = $db->error();
+}

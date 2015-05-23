@@ -103,6 +103,9 @@ class admin extends Controller {
             } else if ($args[0] == 'save' && isset($_POST['action'])) {
                 $this->saveGame();
                 header('Location: ../games');
+            } else if ($args[0] == 'delete' && isset($_POST['action'])) {
+                $this->deleteGame();
+                header('Location: ../games');
             }
         } else {
             $games = getGamesAlphabetically(10000);
@@ -326,6 +329,17 @@ class admin extends Controller {
             $id = $_POST['id'];
             updateGame($id, $name, $description, $platforms, $saga, $cover);
         }
+    }
+    
+    private function deleteGame() {
+        global $db, $config;
+
+        $delete = [
+            "id" => $_POST['id']
+        ];
+        //Delete game
+        $db->delete($config['t_games'], $delete);
+        $debug_error = $db->error();
     }
 
     /**
