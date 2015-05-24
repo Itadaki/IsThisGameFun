@@ -26,8 +26,8 @@ class login extends Controller {
 
     public function index($args = array()) {
         global $config;
-        //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY)
-        if (isset($_POST['login']) && $_COOKIE[$config['allow_cookies']]) {
+        //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY --> SEEMS TO BE UNNECESSARY FOR LOGIN COOKIES)
+        if (isset($_POST['login']) /**&& isset($_COOKIE[$config['allow_cookies']])**/) {
             //Validate the data and 'return' if something's wrong
             return $this->validateLogIn();
         } else {
@@ -87,6 +87,7 @@ class login extends Controller {
                 $_SESSION['user_level'] = $user[0]['user_level'];
                 if (isset($_POST['keep_logged'])) {
                     session_cache_expire(1440);
+                    session_set_cookie_params(86400);
                 }
                 header("Location: user/profile/".$_SESSION['user_nick']);
             } else {

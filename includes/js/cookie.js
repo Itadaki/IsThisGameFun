@@ -20,10 +20,10 @@ $(document).ready(function () {
     console.log(cookie_compliance);
     if (!cookie_compliance) {
         $('body').append('<div class="alert alert-info alert-cookie">\n\
-                <a href="#" class="close" data-dismiss="alert">&times;</a>\n\
+                <div class="container"><a href="#" class="close" data-dismiss="alert">&times;</a>\n\
                 <strong id="title-cookie">¡Esta web utiliza cookies!</strong>Bla bla bla\n\
                 <button type="button" class="btn btn-info btn-coockie" name="accept_cookie" value="LogIn">Accept</button>\n\
-                </div>');
+                </div></div>');
         $('.alert-cookie').css({position: 'absolute', top: '0px', width: '100%'});
         $('.btn-coockie').click(function () {
            Cookies.set("cookie_compliance",'true', {expire:700, path:'/'});
