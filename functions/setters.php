@@ -17,6 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function handleError(){
+    global $db;
+    //Handle error
+    $error = $db->error();
+    if ($error[0] != 0000) {
+        return "An $error[1] error ocurred!";
+    }
+    return false;
+}
+
 function insertGame($name, $description, $platform_ids, $saga_id = null, $cover = null) {
     global $db, $config;
 
@@ -27,12 +37,20 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
     }
     //Insert into games table
     $game_id = $db->insert($config['t_games'], $insert);
+    $error = $db->error();
+    if ($error[0]) {
+        return "An $error[1] error ocurred!";
+    }
 
     //Define platforms
     redefinePlatformsRelationships($game_id, $platform_ids, true);
 
+
     //Define saga
     redefineSagasRelationships($game_id, $saga_id, true);
+    
+    //Handle error
+    return handleError();
 }
 
 function updateGame($game_id, $name, $description, $platform_ids, $saga_id = null, $cover = null) {
@@ -52,6 +70,9 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
 
     //Redefine saga
     redefineSagasRelationships($game_id, $saga_id);
+    
+    //Handle error
+    return handleError();
 }
 
 function redefinePlatformsRelationships($game_id, $platform_ids, $is_new = false) {
@@ -144,6 +165,9 @@ function insertPlatform($name, $shortName) {
 
     //Insert into games table
     $db->insert($config['t_platforms'], $insert);
+    
+    //Handle error
+    return handleError();
 }
 
 function updatePlatform($id, $name, $shortName) {
@@ -154,34 +178,41 @@ function updatePlatform($id, $name, $shortName) {
 
     //Update into platforms table
     $db->update($config['t_platforms'], $update, ["id" => $id]);
-    $debug_error = $db->error();
+    
+    //Handle error
+    return handleError();
 }
 
-function insertSaga($name, $description, $logo=null) {
+function insertSaga($name, $description, $logo = null) {
     global $db, $config;
 
     $insert['name'] = $name;
     $insert['description'] = $description;
-    if ($logo != null){
+    if ($logo != null) {
         $insert['logo'] = $logo;
     }
 
     //Insert into games table
     $db->insert($config['t_sagas'], $insert);
+    
+    //Handle error
+    return handleError();
 }
 
-function updateSaga($id, $name, $description, $logo=null) {
+function updateSaga($id, $name, $description, $logo = null) {
     global $db, $config;
 
     $update['name'] = $name;
     $update['description'] = $description;
-    if ($logo != null){
+    if ($logo != null) {
         $update['logo'] = $logo;
     }
 
     //Update into platforms table
     $db->update($config['t_sagas'], $update, ["id" => $id]);
-    $debug_error = $db->error();
+    
+    //Handle error
+    return handleError();
 }
 
 function updateUser($id, $avatar) {
@@ -191,5 +222,7 @@ function updateUser($id, $avatar) {
 
     //Update into users table
     $db->update($config['t_users'], $update, ["user_id" => $id]);
-    $debug_error = $db->error();
+    
+    //Handle error
+    return handleError();
 }

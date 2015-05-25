@@ -46,10 +46,10 @@ class signin extends Controller {
         $data['error'] = '';
         if ($camposErroneos || $camposPendientes) {
             if ($camposErroneos) {
-                $data['error'] .= '<p class="bg-danger"><span class="glyphicon glyphicon-warning-sign"></span> Hay campos no validos.</p>';
+                $data['error'] .= (new Message('warning', 'Warning', "Hay campos no validos."))->getMessage();
             }
             if ($camposPendientes) {
-                $data['error'] .= '<p class="bg-warning"><span class="glyphicon glyphicon-exclamation-sign"> Falta algun campo.</p>';
+                $data['error'] .=(new Message('danger', 'Error', "Falta algun campo."))->getMessage();
             }
         }
         $data['user'] = setValue('user');
