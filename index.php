@@ -50,7 +50,9 @@ if (isset($_GET['args']) && !empty($_GET['args'])) {
 //Controll the cookies and session
 //setcookie($config['allow_cookies'], true, time()+60*60*24*30);
 if (isset($_COOKIE[$config['allow_cookies']])) {
-    session_cache_expire(0);
+    //Session will expire in 1440 min
+    //Default 180m
+    session_cache_expire(1440);
     session_start();
 //    echo '<h6>Session is running</h6>';
     if (isset($_SESSION['user_id'])) {

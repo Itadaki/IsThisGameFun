@@ -54,9 +54,9 @@ class user extends Controller {
                 }
 
                 $data['history'] = $history_html;
-
+                
                 $data['edit_display'] = 'hidden';
-                if ($user['user_id'] == $_SESSION['user_id']) {
+                if (isset($_SESSION['user_id']) && $user['user_id'] == $_SESSION['user_id']) {
                     $data['edit_display'] = '';
                 }
 
