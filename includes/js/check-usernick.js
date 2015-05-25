@@ -47,7 +47,7 @@ function addNickResultIcon(field, state, msg) {
 }
 function addLoadingIcon(field) {
     field.after('<img src="' + server_root + '/img/loading.gif" class="loading-icon">');
-     $('.loading-icon').css({position: 'absolute', top: '10px', left:'80%'});
+     $('.loading-icon').css({position: 'absolute', top: '10px', left:'90%'});
 }
 function removeIcons(field) {
     field.siblings('i').attr("style","display:none");
