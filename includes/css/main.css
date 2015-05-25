@@ -19,6 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Author     : Sergio Serrano Mejias
 */
 /** background body **/
+td,th{
+    font-size: 14px;
+}
 body{
     background-image: url('img/background.png');
 }
@@ -162,16 +165,91 @@ body{
 .game-small h4{
     margin-bottom: 0;
 }
+a {
+    color: #01A7C2;
+    text-decoration: none;
+}
+a:hover,
+a:focus {
+    color: #01A7C2;
+    text-decoration: underline;
+}
+.no-under{
+    text-decoration: none !important;
+}
 
+.dropdown-menu {
+    background-color: #333;
+}
 
-
+.dropdown-menu .divider {
+    background-color: #333;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #ebebeb;
+    background-color: #333;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+    background-color: #535353;
+    border-color: #df691a;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    background-color: #535353;
+}
+.table .table {
+    background-color: #535353;
+}
+.thumbnail {
+    background-color: #535353;
+}
+.btn-default {
+    background-color: #333;
+    border-color: #777;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+    color: #ffffff;
+    background-color: #535353;
+    border-color: rgba(0, 0, 0, 0);
+}
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+    background-color: #535353;
+    border-color: transparent;
+}
 /*DIEGO*/
 .card{
     position: relative;
 }
 .card .saga{
     position: absolute;
-    top: 21;
+    top: 21px;
     width: 100%;
     /*background: red;*/
     overflow: hidden;
@@ -188,6 +266,8 @@ body{
 .admin-table td{
     vertical-align: middle !important;
 }
+
+
 
 /*JAVI*/
 .loading-icon{
