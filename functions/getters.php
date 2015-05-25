@@ -142,11 +142,16 @@ function getLatestGames($limit = 20, $offset = 0) {
 
 function getBestGames($limit = 20, $offset = 0) {
     global $db, $config;
-    $join = ["[><]{$config['v_game_positive_percentage']}" => ['id' => 'game_id']];
-    $columns = ['id', 'name', 'description', 'cover', 'positive_percentage'];
-    $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => $limit];
-    $table = $config['t_games'];
-    $info = getGames($table, $columns, $where, $join);
+//    $join = ["[><]{$config['v_game_positive_percentage']}" => ['id' => 'game_id']];
+//    $columns = ['id', 'name', 'description', 'cover', 'positive_percentage'];
+//    $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => $limit];
+//    $table = $config['t_games'];
+
+    $resultados = $db->query("call getGamesOrderByPositive()")->fetchAll();
+    if ($resultados) {
+        $info = fetchGames($resultados);
+    }
+//    $info = getGames($table, $columns, $where, $join);
     return $info;
 }
 
@@ -253,9 +258,10 @@ function fetchGames($games) {
  */
 function getVoteBalance($game_id) {
     global $db, $config;
-    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
-    $where = ['id' => $game_id];
-    $resultados = $db->select($config['v_game_vote_balance'], $columns, $where);
+//    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
+//    $where = ['id' => $game_id];
+//    $resultados = $db->select($config['v_game_vote_balance'], $columns, $where);
+    $resultados = $db->query("call getGameVoteBalance($game_id)")->fetchAll();
     $balance = new VoteBalance();
     $error = $db->error();
     if ($error[0] == '00000' && !empty($resultados)) {
@@ -319,7 +325,7 @@ function getSagaById($saga_id) {
     $resultados = $db->get($config['t_sagas'], $columns, $where);
     $error = $db->error();
     if ($error[0] == '00000' && !empty($resultados) && $saga_id) {
-        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo'], getSagaVoteBalance($resultados['id']));
+        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/*, getSagaVoteBalance($resultados['id'])*/);
         return $saga;
     } else {
         return null;
@@ -340,12 +346,12 @@ function getSaga($game_id = null) {
 //    var_dump($resultados);
 //    echo (empty($resultados)?"VACIO":"LLENO")."<br>";
     if ($error[0] == '00000' && !empty($resultados) && $game_id != null) {
-        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo'], getSagaVoteBalance($resultados['id']));
+        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/*, getSagaVoteBalance($resultados['id'])*/);
         return $saga;
     } else if (!empty($resultados) && $game_id == null) {
         $sagas = [];
         foreach ($resultados as $saga) {
-            $sagas[] = new Saga($saga['id'], $saga['name'], $saga['description'], $saga['logo'], getSagaVoteBalance($saga['id']));
+            $sagas[] = new Saga($saga['id'], $saga['name'], $saga['description'], $saga['logo']/*, getSagaVoteBalance($saga['id'])*/);
         }
         return $sagas;
     } else {
@@ -353,18 +359,18 @@ function getSaga($game_id = null) {
     }
 }
 
-function getSagaVoteBalance($saga_id) {
-    global $db, $config;
-    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
-    $where = ['id' => $saga_id];
-    $resultados = $db->select($config['v_saga_vote_balance'], $columns, $where);
-    $balance = new VoteBalance();
-    $error = $db->error();
-    if ($error[0] == '00000' && !empty($resultados)) {
-        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
-    }
-    return $balance;
-}
+//function getSagaVoteBalance($saga_id) {
+//    global $db, $config;
+//    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
+//    $where = ['id' => $saga_id];
+//    $resultados = $db->select($config['v_saga_vote_balance'], $columns, $where);
+//    $balance = new VoteBalance();
+//    $error = $db->error();
+//    if ($error[0] == '00000' && !empty($resultados)) {
+//        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
+//    }
+//    return $balance;
+//}
 
 function getEnumUserLevel() {
     global $config, $db;
@@ -375,18 +381,18 @@ function getEnumUserLevel() {
     return $enum;
 }
 
-function getVoteActivity($user_id) {
-    global $db, $config;
-    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
-    $where = ['id' => $saga_id];
-    $resultados = $db->select($config['v_saga_vote_balance'], $columns, $where);
-    $balance = new VoteBalance();
-    $error = $db->error();
-    if ($error[0] == '00000' && !empty($resultados)) {
-        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
-    }
-    return $balance;
-}
+//function getVoteActivity($user_id) {
+//    global $db, $config;
+//    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
+//    $where = ['id' => $saga_id];
+//    $resultados = $db->select($config['v_saga_vote_balance'], $columns, $where);
+//    $balance = new VoteBalance();
+//    $error = $db->error();
+//    if ($error[0] == '00000' && !empty($resultados)) {
+//        $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
+//    }
+//    return $balance;
+//}
 
 function getPlatformById($id) {
     global $db, $config;

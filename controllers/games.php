@@ -89,6 +89,8 @@ class games extends Controller {
                 unset($data['vote_balance']);
                 unset($data['saga']);
                 unset($data['platforms']);
+                //Change the breaklines \n and so to <br>
+                $data['description'] = nl2br($data['description']);
 //                dd($data);
 //                $gameHtml = replaceGame([$game]);
 //                $data['games'] = $gameHtml;

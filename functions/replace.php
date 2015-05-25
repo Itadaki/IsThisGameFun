@@ -80,7 +80,7 @@ function replaceGame($gameArray, $is_main = false) {
             $sagaData = array(
                 "id" => $saga->id,
                 "name" => $saga->name,
-                "description" => $saga->description,
+                "description" => nl2br($saga->description), //Change \n to <br>
                 "logo" => $saga->logo,
                 "vote_balance" => $sagaVoteBalance
             );
