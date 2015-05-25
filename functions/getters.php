@@ -140,14 +140,14 @@ function getLatestGames($limit = 20, $offset = 0) {
     return $info;
 }
 
-function getBestGames($limit = 20, $offset = 0) {
+function getBestGames($limit = 20, $offset = 1) {
     global $db, $config;
 //    $join = ["[><]{$config['v_game_positive_percentage']}" => ['id' => 'game_id']];
 //    $columns = ['id', 'name', 'description', 'cover', 'positive_percentage'];
 //    $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => $limit];
 //    $table = $config['t_games'];
 
-    $resultados = $db->query("call getGamesOrderByPositive()")->fetchAll();
+    $resultados = $db->query("call getGamesOrderByPositive($offset, $limit)")->fetchAll();
     if ($resultados) {
         $info = fetchGames($resultados);
     }
@@ -325,7 +325,7 @@ function getSagaById($saga_id) {
     $resultados = $db->get($config['t_sagas'], $columns, $where);
     $error = $db->error();
     if ($error[0] == '00000' && !empty($resultados) && $saga_id) {
-        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/*, getSagaVoteBalance($resultados['id'])*/);
+        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/* , getSagaVoteBalance($resultados['id']) */);
         return $saga;
     } else {
         return null;
@@ -346,12 +346,12 @@ function getSaga($game_id = null) {
 //    var_dump($resultados);
 //    echo (empty($resultados)?"VACIO":"LLENO")."<br>";
     if ($error[0] == '00000' && !empty($resultados) && $game_id != null) {
-        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/*, getSagaVoteBalance($resultados['id'])*/);
+        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/* , getSagaVoteBalance($resultados['id']) */);
         return $saga;
     } else if (!empty($resultados) && $game_id == null) {
         $sagas = [];
         foreach ($resultados as $saga) {
-            $sagas[] = new Saga($saga['id'], $saga['name'], $saga['description'], $saga['logo']/*, getSagaVoteBalance($saga['id'])*/);
+            $sagas[] = new Saga($saga['id'], $saga['name'], $saga['description'], $saga['logo']/* , getSagaVoteBalance($saga['id']) */);
         }
         return $sagas;
     } else {

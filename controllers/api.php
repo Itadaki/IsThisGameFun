@@ -27,6 +27,7 @@ class api extends Controller {
     public function index() {
         header('HTTP/1.0 403 Forbidden');
     }
+
     public function vote() {
         sleep(2);
         if ($this->isAjax() && $this->isPost() && $this->isLogged()) {
@@ -42,21 +43,60 @@ class api extends Controller {
             if (!$error) {
                 $error = false;
                 $message = "Game $game_id voted {$vote} from {$_SESSION['user_nick']}!";
-                return $this->encodeResponse($error,$message);
+                return $this->encodeResponse($error, $message);
             } else {
                 //THERE IS AN ERROR
                 $error = true;
                 $message = "Error while voting!";
-                return $this->encodeResponse($error,$message);
+                return $this->encodeResponse($error, $message);
             }
         } else if ($this->isAjax()) {
             //USER IS NOT LOGGED IN
             $error = true;
             $message = "User not logged in!";
-            return $this->encodeResponse($error,$message);
+            return $this->encodeResponse($error, $message);
         } else {
             header('HTTP/1.0 403 Forbidden');
         }
+    }
+
+    public function getMoreGames($args = array()) {
+        // api/getMoreGames/type/offset/limit
+        //1 - Best games
+        //2 - New games
+        //3 - All Games
+        if ($this->isAjax() && $this->isGet()) {
+            $offset = 0;
+            $limit = 20;
+            $type = 1;
+            if (isset($args[0])) {
+                $type = $args[0];
+            }
+            if (isset($args[1])) {
+                $offset = $args[1];
+            }
+            if (isset($args[2])) {
+                $limit = $args[2];
+            }
+            switch ($type) {
+                case 1:
+                    $games = getBestGames($limit, $offset);
+                    break;
+                case 2:
+                    $games = getLatestGames($limit, $offset);
+                    break;
+                case 3:
+                    $games = getAllGames($limit, $offset);
+                    break;
+
+                default:
+                    die;
+            }
+            header('Content-Type: application/json');
+            return(json_encode($games));
+        }
+        return $this->encodeResponse(true, "Not AJAX or not GET");
+        die;
     }
 
     private function encodeResponse($error, $message, $additionalData = array()) {
@@ -65,20 +105,17 @@ class api extends Controller {
         foreach ($additionalData as $index => $value) {
             $response[$index] = $value;
         }
+        header('Content-Type: application/json');
         return json_encode($response);
     }
-
-    
 
     public function checkUserNick($args = array()) {
         sleep(2);
         if ($this->isAjax() && $this->isGet() && isset($args[0])) {
             $nickExists = nickExists($args[0]);
-            return $this->encodeResponse(false, 'The nick is available', array('exists'=>$nickExists));
+            return $this->encodeResponse(false, 'The nick is available', array('exists' => $nickExists));
         }
         return $this->encodeResponse(true, 'No nick especified!');
     }
 
 }
-
-
