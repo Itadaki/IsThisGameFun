@@ -302,27 +302,27 @@ fieldset[disabled] .btn-add.active {
 
 
 
-//CAMBIOS DE COLOR EN EL MODAL
+/*CAMBIOS DE COLOR EN EL MODAL*/
 .modal-content {
-  background-color: #777777;
+    background-color: #777777;
 }
 .modal-backdrop {
-  background-color: #000000;
+    background-color: #000000;
 }
 .modal-header {
-  border-bottom: 0;
+    border-bottom: 0;
 }
 .modal-footer {
-  border-top: 0;
+    border-top: 0;
 }
-.modal-header, .modal-footer{
+.modal-header, .modal-footer {
     background-color: #535353;
     border: 0
 }
 
 
 
-//CAMBIOS DE COLOR EN LOS BOTONES DEFAULT
+/*CAMBIOS DE COLOR EN LOS BOTONES DEFAULT*/
 .btn-default {
     /*    background-color: #333;
         border-color: #777;*/
