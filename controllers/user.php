@@ -44,7 +44,7 @@ class user extends Controller {
                 $columns = ['name', 'game', 'vote', 'vote_date'];
                 $where = ["user_id" => $user['user_id'], "ORDER" => "vote_date DESC",];
                 $votes = $db->select($config['t_user_votes'], $join, $columns, $where);
-
+                handleDbError();
                 $history_html = '';
                 foreach ($votes as $vote) {
                     $temp['game'] = $vote['name'];

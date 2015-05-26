@@ -81,7 +81,7 @@ class login extends Controller {
             $colummns = ['user_id', 'user_nick', 'user_level'];
             $where = ["AND" => ['user_name' => $_POST['user'], 'user_pass' => $_POST['password']]];
             $user = $db->select($config['t_users'], $colummns, $where);
-            $error = $db->error();
+            handleDbError();
             if (count($user) != 0) {
                 $_SESSION['user_id'] = $user[0]["user_id"];
                 $_SESSION['user_nick'] = $user[0]['user_nick'];

@@ -19,16 +19,17 @@ $(document).ready(function () {
     $('.btn-vote').click(function () {
         var button = $(this);
         var disabled = button.siblings('button').attr('disabled');
-        var parent = button.parent();
+        var parent = button.parents('.game');
         var user_vote = button.siblings(".user-vote").html();
         var id_name = parent.attr('id');
         var id = id_name.split('-')[1];
-        var vote_value = button.hasClass('btn-left');
+        var vote_value = button.hasClass('pull-left');
         var data_send = JSON.stringify({game_id: id, vote: vote_value});
         loadPanel(id_name);
         loadIcon(id_name);
         $.post(server_root + 'api/vote', {json: data_send}, function (data) {
-            data = $.parseJSON(data);
+//            data = $.parseJSON(data);
+console.log(data);
             var error = data.error;
             var state;
             var msg = data.message;
@@ -43,7 +44,7 @@ $(document).ready(function () {
                         state = "danger";
                         msg = 'The play had been voted negative for you'
                     } else {
-                        state = "info";
+                        state = "success";
                         button.attr('disabled', true);
                         button.siblings('button').attr('disabled', false);
                         loadProgressBar(button, vote_value, disabled, user_vote);
@@ -76,7 +77,9 @@ function loadMessage(field, state, msg) {
 }
 function loadProgressBar(field, vote_value, disabled, user_vote) {
     var positives = field.siblings('.positive-votes').html();
+    console.log((positives));
     var total = field.siblings('.total-votes').html();
+    console.log((total));
     parseInt(positives);
     parseInt(total);
 

@@ -18,10 +18,10 @@
  */
 
 /**
- * Replace the data array on the {tags} on the template
- * @param type $data
- * @param type $template
- * @return type
+ * Replace the {tags} on the template with the values of the data array where the tags matches the indexes
+ * @param array $data An associative array
+ * @param string $template Path to the template that contains the {tags}
+ * @return string The template with the {tags} replaced
  */
 function replace($data, $template, $providing_plain_text = false) {
     $file = $template;
@@ -46,50 +46,40 @@ function replace($data, $template, $providing_plain_text = false) {
 
 /**
  * 
- * @global type $config
- * @param type $gameArray
- * @return type
+ * @param Game[] $gameArray Array fo Game object
+ * @param boolean $is_main Set if the games are goin to be displayed on the main page.<br>The template changes if so.
+ * @return string The template with the {tags} replaced
  */
 function replaceGame($gameArray, $is_main = false) {
-    global $config;
     $html = '';
     foreach ($gameArray as $game) {
         /* @var $game Game */
 
         //Get the html string for the platforms data
         $platforms = $game->platforms;
-        $allPlatforms = '';
+        $platformsHtml = '';
         foreach ($platforms as $platform) {
             /* @var $platform Platform */
-            $platformData = array(
-                "id" => $platform->id,
-                "name" => $platform->name,
-                "short_name" => $platform->short_name,
-                "icon" => $platform->icon
-            );
+            $platformData = $platform->getDataArray();
             $template = "templates/common/platform.html";
-            $allPlatforms .= replace($platformData, $template);
+            $platformsHtml .= replace($platformData, $template);
         }
 
         //Get the html string for the saga
         if ($game->saga != null) {
             /* @var $saga Saga */
-            $saga = $game->saga;
+//            $saga = $game->saga;
 //            $sagaVoteBalanceData = $saga->vote_balance;
-            $sagaVoteBalance = replace((array) $saga->vote_balance, "templates/common/vote-balance.html");
-            $sagaData = array(
-                "id" => $saga->id,
-                "name" => $saga->name,
-                "description" => nl2br($saga->description), //Change \n to <br>
-                "logo" => $saga->logo,
-                "vote_balance" => $sagaVoteBalance
-            );
+//            $sagaVoteBalance = replace((array) $saga->vote_balance, "templates/common/vote-balance.html");
+            $sagaData = $game->saga->getDataArray();
+            $sagaData["description"] = nl2br($sagaData["description"]); //Change \n to <br>
+
             $template = "templates/common/saga.html";
             $sagaHtml = replace($sagaData, $template);
-            $saga_caret = 'Saga <span class="caret">';
+            $sagaCaretHtml = 'Saga <span class="caret">';
         } else {
             $sagaHtml = '';
-            $saga_caret = '';
+            $sagaCaretHtml = '';
         }
 
         /* @var $saga  */
@@ -99,30 +89,34 @@ function replaceGame($gameArray, $is_main = false) {
                 $game->vote_balance->positive_vote_class = "";
                 $game->vote_balance->negative_vote_class = "";
             } else {
-                $game->vote_balance->positive_vote_class = ($game->my_vote==1) ? "chosen" : "bg-gray2";
-                $game->vote_balance->negative_vote_class = ($game->my_vote==0) ? "chosen" : "bg-gray2";
+                $game->vote_balance->positive_vote_class = ($game->my_vote == 1) ? "chosen" : "bg-gray2";
+                $game->vote_balance->negative_vote_class = ($game->my_vote == 0) ? "chosen" : "bg-gray2";
             }
 
-            $gameVoteBalance = replace((array) $game->vote_balance, "templates/common/vote-balance.html");
+            $gameVoteBalanceHtml = replace((array) $game->vote_balance, "templates/common/vote-balance.html");
         } else {
-            $gameVoteBalance = '';
+            $gameVoteBalanceHtml = '';
         }
 
 //        $positive_vote = $game->my_vote ? "choosed" : "";
 //        $negative_vote = $game->my_vote ? "" : "choosed";
-
-        $gameData = array(
-            "id" => $game->id,
-            "name" => $game->name,
-            "description" => $game->description,
-            "cover" => $game->cover,
-            "platforms" => $allPlatforms,
-            "saga" => $sagaHtml,
-            "vote_balance" => $gameVoteBalance,
-            "my_vote" => $game->my_vote,
-            "user_vote" => $game->user_vote,
-            "saga_caret" => $saga_caret
-        );
+        $gameData = $game->getFullDataArray();
+        $gameData['platforms'] =$platformsHtml;
+        $gameData['saga'] =$sagaHtml;
+        $gameData['vote_balance'] =$gameVoteBalanceHtml;
+        $gameData['saga_caret'] =$sagaCaretHtml;
+//        $gameData = array(
+//            "id" => $game->id,
+//            "name" => $game->name,
+//            "description" => $game->description,
+//            "cover" => $game->cover,
+//            "platforms" => $allPlatforms,
+//            "saga" => $sagaHtml,
+//            "vote_balance" => $gameVoteBalance,
+//            "my_vote" => $game->my_vote,
+//            "user_vote" => $game->user_vote,
+//            "saga_caret" => $saga_caret
+//        );
         if ($is_main) {
             $template = "templates/main/game.html";
         } else {
@@ -132,96 +126,4 @@ function replaceGame($gameArray, $is_main = false) {
         $html .= replace($gameData, $template);
     }
     return $html;
-}
-
-/**
- * 
- * @global type $config
- * @param type $gameArray
- * @return type
- */
-function replaceSaga($gameArray) {
-    global $config;
-    $html = '';
-    foreach ($gameArray as $game) {
-        /* @var $game Game */
-
-        //Get the html string for the platforms data
-        $platforms = $game->platforms;
-        $allPlatforms = '';
-        foreach ($platforms as $platform) {
-            /* @var $platform Platform */
-            $platformData = array(
-                "id" => $platform->id,
-                "name" => $platform->name,
-                "short_name" => $platform->short_name,
-                "icon" => $platform->icon
-            );
-            $template = "templates/platform.html";
-            $allPlatforms .= replace($platformData, $template);
-        }
-
-        //Get the html string for the saga
-        if ($game->saga != null) {
-            /* @var $saga Saga */
-            $saga = $game->saga;
-//            $sagaVoteBalanceData = $saga->vote_balance;
-            $sagaVoteBalance = replace((array) $saga->vote_balance, "templates/vote-balance.html");
-            $sagaData = array(
-                "id" => $saga->id,
-                "name" => $saga->name,
-                "description" => $saga->description,
-                "logo" => $saga->logo,
-                "vote_balance" => $sagaVoteBalance
-            );
-            $template = "templates/saga.html";
-            $sagaHtml = replace($sagaData, $template);
-        } else {
-            $sagaHtml = '';
-        }
-
-        /* @var $saga  */
-//        $gameVoteBalanceData = $game->vote_balance;
-        if ($game->vote_balance != null) {
-            $gameVoteBalance = replace((array) $game->vote_balance, "templates/vote-balance.html");
-        } else {
-            $gameVoteBalance = '';
-        }
-        $gameData = array(
-            "id" => $game->id,
-            "name" => $game->name,
-            "description" => $game->description,
-            "cover" => $game->cover,
-            "platforms" => $allPlatforms,
-            "saga" => $sagaHtml,
-            "vote_balance" => $gameVoteBalance,
-            "my_vote" => $game->my_vote,
-            "user_vote" => $game->user_vote
-        );
-        $template = "templates/game.html";
-        $html .= replace($gameData, $template);
-    }
-    return $html;
-}
-
-function validateField($campo, $camposPendientes, $camposErroneos) {
-    if (in_array($campo, $camposPendientes)) {
-        return 'has-warning has-feedback';
-    } elseif (in_array($campo, $camposErroneos)) {
-        return 'has-error has-feedback';
-    }
-    return '';
-}
-
-function setValue($nombreCampo) {
-    if (isset($_POST[$nombreCampo])) {
-        return $_POST[$nombreCampo];
-    }
-}
-
-function isAdmin() {
-    if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 'admin') {
-        return true;
-    }
-    return false;
 }

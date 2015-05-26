@@ -23,7 +23,41 @@
  * @author Diego Rodríguez Suárez-Bustillo
  */
 class Model {
-    public function getDataArray(){
+
+    /**
+     * Transform the current object parameters into associative array<br>
+     * Object data of the parameter <b>WILL NOT</b> be transformed
+     * @return array
+     */
+    public function getDataArray() {
         return get_object_vars($this);
     }
+
+    /**
+     * Transform the current object parameters into associative array<br>
+     * Object data of the parameter <b>WILL</b> be transformed
+     * @return array
+     */
+    public function getFullDataArray() {
+        return $this->object_to_array($this);
+    }
+
+    /**
+     * Transforms recursively an object into an associative array
+     * @param object $obj
+     * @return array
+     */
+    private function object_to_array($obj) {
+        if (is_object($obj))
+            $obj = (array) $obj;
+        if (is_array($obj)) {
+            $new = array();
+            foreach ($obj as $key => $val) {
+                $new[$key] = $this->object_to_array($val);
+            }
+        } else
+            $new = $obj;
+        return $new;
+    }
+
 }

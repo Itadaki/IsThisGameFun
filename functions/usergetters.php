@@ -43,40 +43,12 @@ function getUsers($withGames = false) {
     $colummns = '*';
     $where = [];
     $users = $db->select($config['t_users'], $colummns);
-    $error = $db->error();
+    
     if ($withGames) {
         foreach ($users as &$user) {
             $user['games_voted'] = getGamesVoted($user['user_id']);
         }
     }
-//    if ($user) {
-//        $user['games_voted'] = getGamesVoted($user['user_id']);
-//    }
+
     return $users;
 }
-
-//function getUserold($user, $input_type = 'id') {
-//    global $conexion, $config;
-//    if ($input_type == 'id') {
-//        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where user_id=$user;";
-//    }
-//    if ($input_type == 'name') {
-//        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where lower(user_name)=lower($user);";
-//    }
-//    if ($input_type == 'nick') {
-//        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where lower(user_nick) like lower('%$user%');";
-//    }
-//    if ($input_type == 'search') {
-//        $query = "select user_id, user_nick, user_avatar from {$config['t_users']} where lower(user_nick) like lower('%$user%') or lower(user_name) like lower('%$user%');";
-//    }
-//    $resultado = mysqli_query($conexion, $query);
-//    $errorNo = mysqli_errno($conexion);
-//    if ($errorNo != 0) {
-//        return array("error" => "$errorNo: " . mysqli_error($conexion));
-//    }
-//    $users = array();
-//    while ($user = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-//        $users[] = $user;
-//    }
-//    return $users;
-//}

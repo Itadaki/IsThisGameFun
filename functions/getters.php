@@ -234,23 +234,18 @@ function getGamesByPlatform($platform, $limit = 20, $offset = 0) {
 function getGames($table, $columns = '*', $where = NULL, $join = NULL) {
     global $db;
     $resultados = null;
-    $error = $db->error();
+    handleDbError();
     $info = [];
-    if ($error[0] == '00000') {
-        if (isset($join)) {
-            $resultados = $db->select($table, $join, $columns, $where);
-        } else {
-            $resultados = $db->select($table, $columns, $where);
-        }
-        $error = $db->error();
-        if ($resultados) {
-            $info = fetchGames($resultados);
-        }
-        return $info;
+    if (isset($join)) {
+        $resultados = $db->select($table, $join, $columns, $where);
     } else {
-        var_dump($error);
-        return null;
+        $resultados = $db->select($table, $columns, $where);
     }
+    handleDbError();
+    if ($resultados) {
+        $info = fetchGames($resultados);
+    }
+    return $info;
 }
 
 /**
@@ -293,9 +288,10 @@ function getVoteBalance($game_id) {
 //    $where = ['id' => $game_id];
 //    $resultados = $db->select($config['v_game_vote_balance'], $columns, $where);
     $resultados = $db->query("call getGameVoteBalance($game_id)")->fetchAll();
+    handleDbError();
     $balance = new VoteBalance();
-    $error = $db->error();
-    if ($error[0] == '00000' && !empty($resultados)) {
+
+    if ($resultados) {
         $balance = new VoteBalance($resultados[0]['votos_positivos'], $resultados[0]['votos_negativos']);
     }
     return $balance;
@@ -312,13 +308,9 @@ function getVote($game_id, $user_id) {
     $colummns = ['vote'];
     $where = ["AND" => ["game" => $game_id, "user" => $user_id]];
     $resultado = $db->select($config['t_user_votes'], $colummns, $where);
-    $error = $db->error();
-    if ($error[0] == '00000') {
-        if (!empty($resultado)) {
-            return (int) $resultado[0]['vote'];
-        } else {
-            return null;
-        }
+    handleDbError();
+    if (!empty($resultado)) {
+        return (int) $resultado[0]['vote'];
     }
 }
 
@@ -338,7 +330,9 @@ function getPlatforms($game_id = null) {
     } else {
         $resultados = $db->select($config['t_platforms'], $columns);
     }
-//    $resultados = $db->select($config['t_game_platform'], $join, $columns, $where);
+
+    handleDbError();
+
     $platforms = [];
     foreach ($resultados as $resultado) {
         $platforms[] = new Platform($resultado['id'], $resultado['name'], $resultado['short_name'], $resultado['icon']);
@@ -357,7 +351,7 @@ function getSagaById($saga_id) {
     $columns = ['id', 'name', 'description', 'logo'];
     $where = ["id" => $saga_id];
     $resultados = $db->get($config['t_sagas'], $columns, $where);
-    $error = $db->error();
+    handleDbError();
     if ($error[0] == '00000' && !empty($resultados) && $saga_id) {
         $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/* , getSagaVoteBalance($resultados['id']) */);
         return $saga;
@@ -381,21 +375,22 @@ function getSaga($game_id = null) {
     } else {
         $resultados = $db->select($config['t_sagas'], $columns);
     }
-    $error = $db->error();
+    handleDbError();
 //    var_dump($resultados);
 //    echo (empty($resultados)?"VACIO":"LLENO")."<br>";
-    if ($error[0] == '00000' && !empty($resultados) && $game_id != null) {
-        $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/* , getSagaVoteBalance($resultados['id']) */);
-        return $saga;
-    } else if (!empty($resultados) && $game_id == null) {
-        $sagas = [];
-        foreach ($resultados as $saga) {
-            $sagas[] = new Saga($saga['id'], $saga['name'], $saga['description'], $saga['logo']/* , getSagaVoteBalance($saga['id']) */);
+    if ($resultados) {
+        if ($game_id != null) {
+            $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/* , getSagaVoteBalance($resultados['id']) */);
+            return $saga;
+        } else if ($game_id == null) {
+            $sagas = [];
+            foreach ($resultados as $saga) {
+                $sagas[] = new Saga($saga['id'], $saga['name'], $saga['description'], $saga['logo']/* , getSagaVoteBalance($saga['id']) */);
+            }
+            return $sagas;
         }
-        return $sagas;
-    } else {
-        return null;
     }
+    return null;
 }
 
 //function getSagaVoteBalance($saga_id) {
@@ -411,7 +406,6 @@ function getSaga($game_id = null) {
 //    return $balance;
 //}
 
-
 /**
  * Returns the different user levels based on the ENUM condition of db
  * @return array
@@ -419,6 +413,7 @@ function getSaga($game_id = null) {
 function getEnumUserLevel() {
     global $config, $db;
     $resultados = $db->query("SHOW COLUMNS FROM {$config['t_users']} WHERE Field = 'user_level'")->fetchAll()[0];
+    handleDbError();
     $type = $resultados['Type'];
     preg_match("/^enum\(\'(.*)\'\)$/", $type, $matches);
     $enum = explode("','", $matches[1]);
@@ -448,6 +443,7 @@ function getPlatformById($platform_id) {
     $columns = '*';
     $where = ["id" => $platform_id];
     $resultados = $db->get($config['t_platforms'], $columns, $where);
+    handleDbError();
     $platform = new Platform($resultados['id'], $resultados['name'], $resultados['short_name'], $resultados['icon']);
     return $platform;
 }
@@ -460,9 +456,11 @@ function getPlatformById($platform_id) {
 function nickExists($user_nick) {
     global $config, $db;
     $data['user_nick'] = $user_nick;
-
     $where = ['user_nick' => $user_nick];
-    return $db->has($config['t_users'], $where);
+    $exist = $db->has($config['t_users'], $where);
+    ;
+    handleDbError();
+    return $exist;
 }
 
 /**

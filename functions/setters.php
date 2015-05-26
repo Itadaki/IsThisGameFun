@@ -19,21 +19,6 @@
 
 
 /**
- * Handles the error on DB object<br>
- * Returns an string with the error or false
- * @return string|false
- */
-function handleError(){
-    global $db;
-    //Handle error
-    $error = $db->error();
-    if ($error[0] != 0000) {
-        return "An $error[1] error ocurred!";
-    }
-    return false;
-}
-
-/**
  * Insert a new game into games table on db
  * @param string $name Name of the game
  * @param string $description Description of the game. Breaklines \n allowed
@@ -63,7 +48,7 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
 
     //Define saga
     redefineSagasRelationships($game_id, $saga_id, true);
-    
+
     //Handle error
     return handleError();
 }
@@ -87,7 +72,7 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
     }
     //Update into games table
     $db->update($config['t_games'], $update, ["id" => $game_id]);
-    if (handleError()){
+    if (handleError()) {
         return handleError();
     }
 
@@ -96,7 +81,7 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
 
     //Redefine saga
     redefineSagasRelationships($game_id, $saga_id);
-    
+
     //Handle error
     return handleError();
 }
@@ -177,7 +162,7 @@ function proccessUploadedImage($name, $form_field_name = "cover", $path_to_save 
  * @param int $user_id ID of the user
  * @param int $game_id ID of the game
  * @param boolean $vote The value of the vote
- * @return string|boolean Result of the operation (true) or error message
+ * @return string|boolean If no error occurred (false) or error message
  */
 function setVote($user_id, $game_id, $vote) {
     global $config, $db;
@@ -194,10 +179,7 @@ function setVote($user_id, $game_id, $vote) {
         $db->insert($config['t_user_votes'], $data);
     }
 
-    if (handleError()){
-        return handleError();
-    }
-    return false;
+    return handleError();
 }
 
 /**
@@ -214,7 +196,7 @@ function insertPlatform($name, $shortName) {
 
     //Insert into games table
     $db->insert($config['t_platforms'], $insert);
-    
+
     //Handle error
     return handleError();
 }
@@ -234,11 +216,18 @@ function updatePlatform($id, $name, $shortName) {
 
     //Update into platforms table
     $db->update($config['t_platforms'], $update, ["id" => $id]);
-    
+
     //Handle error
     return handleError();
 }
 
+/**
+ * Insert a new saga on the db
+ * @param string $name The name of the saga
+ * @param string $description The description of the saga
+ * @param string $logo Filename of the logo in /logos/ folder
+ * @return string|boolean If no error occurred (false) or error message
+ */
 function insertSaga($name, $description, $logo = null) {
     global $db, $config;
 
@@ -250,11 +239,18 @@ function insertSaga($name, $description, $logo = null) {
 
     //Insert into games table
     $db->insert($config['t_sagas'], $insert);
-    
+
     //Handle error
     return handleError();
 }
 
+/**
+ * Update a saga on the db
+ * @param string $name The name of the saga
+ * @param string $description The description of the saga
+ * @param string $logo Filename of the logo in /logos/ folder
+ * @return string|boolean If no error occurred (false) or error message
+ */
 function updateSaga($id, $name, $description, $logo = null) {
     global $db, $config;
 
@@ -266,11 +262,17 @@ function updateSaga($id, $name, $description, $logo = null) {
 
     //Update into platforms table
     $db->update($config['t_sagas'], $update, ["id" => $id]);
-    
+
     //Handle error
     return handleError();
 }
 
+/**
+ * Insert a user on the db
+ * @param int $id The id of the user
+ * @param string $avatar Filename of the avatar in /avatars/ folder
+ * @return string|boolean If no error occurred (false) or error message
+ */
 function updateUser($id, $avatar) {
     global $db, $config;
 
@@ -278,7 +280,7 @@ function updateUser($id, $avatar) {
 
     //Update into users table
     $db->update($config['t_users'], $update, ["user_id" => $id]);
-    
+
     //Handle error
     return handleError();
 }

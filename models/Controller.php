@@ -78,6 +78,13 @@ class Controller {
         return isset($_SESSION['user_nick']);
     }
 
+    protected function isAdmin() {
+        if (isset($_SESSION['user_level']) && $_SESSION['user_level'] == 'admin') {
+            return true;
+        }
+        return false;
+    }
+
     protected function isAjax() {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }

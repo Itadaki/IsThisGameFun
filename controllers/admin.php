@@ -30,7 +30,7 @@ class admin extends Controller {
     public function __construct() {
         global $config;
         parent::__construct();
-        if (!isAdmin()) {
+        if (!$this->isAdmin()) {
             header("Location: {$config['server_root']}main");
             die;
         }
@@ -467,14 +467,14 @@ class admin extends Controller {
         if ($is_edit) {
             $platform = getPlatformById($id);
             $data = $platform->getDataArray();
-            dd($data);
-            $data['id'] = $platform['id'];
-            $data['name'] = $platform['name'];
-            $data['shortname'] = $platform['short_name'];
+//            dd($data);
+//            $data['id'] = $platform['id'];
+//            $data['name'] = $platform['name'];
+//            $data['shortname'] = $platform['short_name'];
         } else {
             $data['id'] = '';
             $data['name'] = '';
-            $data['shortname'] = '';
+            $data['short_name'] = '';
         }
 
         $data['action'] = $action;
