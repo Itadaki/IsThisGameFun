@@ -48,7 +48,7 @@ if (isset($_GET['args']) && !empty($_GET['args'])) {
 
 
 //Controll the cookies and session
-//setcookie($config['allow_cookies'], true, time()+60*60*24*30);
+setcookie($config['allow_cookies'], true, time()+60*60*24*30);
 if (isset($_COOKIE[$config['allow_cookies']])) {
     //Session will expire in 1440 min
     //Default 180m

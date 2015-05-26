@@ -18,7 +18,9 @@
 $(document).ready(function () {
     $('.btn-vote').click(function () {
         var button = $(this);
+        var disabled = button.siblings('button').attr('disabled');
         var parent = button.parent();
+        var user_vote = button.siblings(".user-vote").html();
         var id_name = parent.attr('id');
         var id = id_name.split('-')[1];
         var vote_value = button.hasClass('btn-left');
@@ -26,7 +28,6 @@ $(document).ready(function () {
         loadPanel(id_name);
         loadIcon(id_name);
         $.post(server_root + 'api/vote', {json: data_send}, function (data) {
-            console.log(data);
             data = $.parseJSON(data);
             var error = data.error;
             var state;
@@ -34,11 +35,27 @@ $(document).ready(function () {
             if (error) {
                 state = "danger";
             } else {
-                state = "info";
-                button.attr('disabled', true);
-                button.siblings('button').attr('disabled', false);
+                if (user_vote === '1' && vote_value === true) {
+                    state = "danger";
+                    msg = 'The play had been voted postive for you'
+                } else {
+                    if (user_vote === '0' && vote_value === false) {
+                        state = "danger";
+                        msg = 'The play had been voted negative for you'
+                    } else {
+                        state = "info";
+                        button.attr('disabled', true);
+                        button.siblings('button').attr('disabled', false);
+                        loadProgressBar(button, vote_value, disabled, user_vote);
+                        if (user_vote === '') {
+                            button.siblings(".user-vote").html((vote_value)?'1':'0');
+                        } else {
+                           (user_vote === '0')? button.siblings(".user-vote").html('1'):button.siblings(".user-vote").html('0');
+                        }
+                    }
+                }
             }
-            loadMessage(id_name,state,msg);
+            loadMessage(id_name, state, msg);
             $('.load-vote').delay(1000).fadeOut();
             $('.alert').delay(1000).fadeOut();
         });
@@ -52,8 +69,30 @@ function loadIcon(field) {
     $('#' + field).append('<img src="' + server_root + '/img/loading.gif" id=loading-icon>');
     $('#loading-icon').css({position: 'absolute', top: '50%', opacity: '1', left: '40%', height: '50px'});
 }
-function loadMessage(field,state,msg) {
+function loadMessage(field, state, msg) {
     $('#loading-icon').remove();
     $('#' + field).append('<div class="alert alert-' + state + '" >' + msg + '</div>');
     $('.alert').css({position: 'absolute', top: '50%', opacity: '1', width: '100%'});
+}
+function loadProgressBar(field, vote_value, disabled, user_vote) {
+    var positives = field.siblings('.positive-votes').html();
+    var total = field.siblings('.total-votes').html();
+    parseInt(positives);
+    parseInt(total);
+
+    if (!(user_vote === '')) {
+        (vote_value) ? positives++ : positives--;
+    } else {
+        (vote_value) ? positives++ : "";
+        total++;
+    }
+    var positive_percentage = (positives / total) * 100;
+    positive_percentage = parseInt(positive_percentage);
+    field.siblings('.positive-votes').text(positives);
+    field.siblings('.total-votes').text(total);
+    field.siblings('#total-votes').children('.total').remove();
+    field.siblings('#total-votes').append('<span class="total"> ' + total + ' votes</span>');
+    field.siblings('.progress').children('.progress-bar-info').css({width: positive_percentage + '%'});
+    field.siblings('.progress').children('.progress-bar-info').children('.positive-percentaje').remove();
+    field.siblings('.progress').children('.progress-bar-info').append('<span class="positive-percentaje">' + positive_percentage + '%</span>');
 }
