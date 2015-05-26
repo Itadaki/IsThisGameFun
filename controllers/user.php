@@ -25,6 +25,7 @@
 class user extends Controller {
 
     public function profile($args = array(), $messages = array()) {
+        global $config;
         if (isset($args[0])) {
             $user = getUser($args[0], true);
             //getUser returns false if user doesnt exists
@@ -76,7 +77,7 @@ class user extends Controller {
             }
         }
         //Return to root
-        header("Location: ../../");
+        header("Location: {$config['server_root']}");
     }
 
     public function edit() {

@@ -17,6 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+/**
+ * Handles the error on DB object<br>
+ * Returns an string with the error or false
+ * @return string|false
+ */
 function handleError(){
     global $db;
     //Handle error
@@ -27,6 +33,15 @@ function handleError(){
     return false;
 }
 
+/**
+ * Insert a new game into games table on db
+ * @param string $name Name of the game
+ * @param string $description Description of the game. Breaklines \n allowed
+ * @param array $platform_ids An array with the platform IDs
+ * @param int $saga_id ID of the saga if there is any
+ * @param string $cover Filename of the cover in /covers/ folder
+ * @return string|false The result of the insert
+ */
 function insertGame($name, $description, $platform_ids, $saga_id = null, $cover = null) {
     global $db, $config;
 
@@ -53,6 +68,15 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
     return handleError();
 }
 
+/**
+ * Update a game from games table on db
+ * @param string $name Name of the game
+ * @param string $description Description of the game. Breaklines \n allowed
+ * @param array $platform_ids An array with the platform IDs
+ * @param int $saga_id ID of the saga if there is any
+ * @param string $cover Filename of the cover in /covers/ folder
+ * @return string|false The result of the update
+ */
 function updateGame($game_id, $name, $description, $platform_ids, $saga_id = null, $cover = null) {
     global $db, $config;
 
@@ -63,7 +87,9 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
     }
     //Update into games table
     $db->update($config['t_games'], $update, ["id" => $game_id]);
-    $debug_error = $db->error();
+    if (handleError()){
+        return handleError();
+    }
 
     //Redefine platforms
     redefinePlatformsRelationships($game_id, $platform_ids);
@@ -75,6 +101,12 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
     return handleError();
 }
 
+/**
+ * Insert a game-platform relationship on db
+ * @param type $game_id ID of the game
+ * @param type $platform_ids An array with the platform IDs
+ * @param type $is_new If true, delete the former relationship
+ */
 function redefinePlatformsRelationships($game_id, $platform_ids, $is_new = false) {
     global $db, $config;
     //Delete all former game-platform relationships
@@ -94,6 +126,12 @@ function redefinePlatformsRelationships($game_id, $platform_ids, $is_new = false
     $debug_error = $db->error();
 }
 
+/**
+ * Insert a game-saga relationship on db
+ * @param type $game_id ID of the game
+ * @param type $saga_id The saga ID
+ * @param type $is_new If true, delete the former relationship
+ */
 function redefineSagasRelationships($game_id, $saga_id, $is_new = false) {
     global $db, $config;
     if ($is_new) {
@@ -110,6 +148,13 @@ function redefineSagasRelationships($game_id, $saga_id, $is_new = false) {
     $debug_error = $db->error();
 }
 
+/**
+ * Proccess an uploaded image.
+ * @param type $name Name to parse as filename
+ * @param type $form_field_name The name of the field in the form that POSTed the image.<br> F.E. "cover" in <input type="file" name="cover">
+ * @param type $path_to_save Path target to save the image
+ * @return string The file name
+ */
 function proccessUploadedImage($name, $form_field_name = "cover", $path_to_save = 'covers/') {
     $file_name = null;
     $acceped_types = ["image/jpeg", "image/png", "image/gif"];
@@ -129,12 +174,10 @@ function proccessUploadedImage($name, $form_field_name = "cover", $path_to_save 
 
 /**
  * Set or update user vote
- * @global type $config
- * @global type $db
- * @param type $user_id
- * @param type $game_id
- * @param type $vote
- * @return boolean
+ * @param int $user_id ID of the user
+ * @param int $game_id ID of the game
+ * @param boolean $vote The value of the vote
+ * @return string|boolean Result of the operation (true) or error message
  */
 function setVote($user_id, $game_id, $vote) {
     global $config, $db;
@@ -151,12 +194,18 @@ function setVote($user_id, $game_id, $vote) {
         $db->insert($config['t_user_votes'], $data);
     }
 
-    if ($db->error()[0] !== 0) {
-        return false;
+    if (handleError()){
+        return handleError();
     }
-    return true;
+    return false;
 }
 
+/**
+ * Insert a new platform on the db
+ * @param string $name The name of the platform
+ * @param string $shortName The short name of the platform
+ * @return string|boolean If no error occurred (false) or error message
+ */
 function insertPlatform($name, $shortName) {
     global $db, $config;
 
@@ -170,6 +219,13 @@ function insertPlatform($name, $shortName) {
     return handleError();
 }
 
+/**
+ * Update a platform on the db
+ * @param int $id The ID of the platform
+ * @param string $name The name of the platform
+ * @param string $shortName The short name of the platform
+ * @return string|boolean If no error occurred (false) or error message
+ */
 function updatePlatform($id, $name, $shortName) {
     global $db, $config;
 

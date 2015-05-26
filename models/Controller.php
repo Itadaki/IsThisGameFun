@@ -94,6 +94,7 @@ class Controller {
         $this->top = '';
         $this->menu = '';
         $this->body = '';
+        $this->bottom = '';
     }
 
 }

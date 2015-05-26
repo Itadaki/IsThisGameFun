@@ -44,6 +44,7 @@ class sagas extends Controller {
     }
 
     public function details($args = array()) {
+        global $config;
         if (count($args) > 0 && is_numeric($args[0])) {
             $saga = getSagaById($args[0]);
             if ($saga != null) {
@@ -59,10 +60,10 @@ class sagas extends Controller {
 
                 return $this->build();
             } else {
-                header('Location: ../../main');
+                header("Location: {$config['server_root']}main");
             }
         } else {
-            header('Location: main');
+            header("Location: {$config['server_root']}main");
         }
     }
 

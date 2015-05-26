@@ -27,7 +27,7 @@ class signin extends Controller {
     public function index($args = array()) {
         global $config;
         //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY)
-        if (isset($_POST['signup']) && $_COOKIE[$config['allow_cookies']]) {
+        if (isset($_POST['signup']) /*&& $_COOKIE[$config['allow_cookies']]*/) {
             //Validate the data and 'return' if something's wrong
             return $this->validateSignIn();
         } else {
@@ -72,6 +72,7 @@ class signin extends Controller {
      * @return type
      */
     private function validateSignIn() {
+        global $config;
         $camposObligatorios = array("user", "password", "nick", "email");
         $camposPendientes = array();
         $camposErroneos = array();
@@ -115,7 +116,7 @@ class signin extends Controller {
             if ($error[1]) {
                 return $this->displaySignInForm(true);
             } else {
-                header("Location: login");
+                header("Location: {$config['server_root']}login");
             }
         }
     }

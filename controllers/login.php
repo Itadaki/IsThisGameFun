@@ -55,6 +55,7 @@ class login extends Controller {
     }
 
     private function validateLogIn() {
+        global $config;
         $camposObligatorios = array("user", "password");
         $camposPendientes = array();
         $camposErroneos = array();
@@ -89,7 +90,7 @@ class login extends Controller {
                     session_cache_expire(1440);
                     session_set_cookie_params(86400);
                 }
-                header("Location: user/profile/".$_SESSION['user_nick']);
+                header("Location: {$config['server_root']}user/profile/".$_SESSION['user_nick']);
             } else {
                 return $this->displayLoginForm(true);
             }
@@ -97,11 +98,12 @@ class login extends Controller {
     }
 
     public function logOut() {
+        global $config;
         if (isset($_SESSION['user_id'])) {
             session_unset();
         }
         //THIS IS NOT WORKING. IT SETS LOCATION TO /LOGIN/MAIN
-        header("Location: ../main");
+        header("Location: {$config['server_root']}main");
     }
 
 }

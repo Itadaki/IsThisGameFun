@@ -45,6 +45,7 @@ function getLimit($limit = array(20)) {
 
 /**
  * Devuelve juegos cuyo nombre encaja con el regexp
+ * @deprecated since version 2
  * @param type $regexp
  * @param type $offset
  * @return array
@@ -57,9 +58,9 @@ function getGamesAlphabetical($regexp, $limit = 20, $offset = 0) {
 }
 
 /**
- * Devuelve juegos cuyo nombre encaja con el regexp
- * @param type $regexp
- * @param type $offset
+ * Return games ordered by name
+ * @param int $limit How many games to return
+ * @param int $offset Starting from which position
  * @return array
  */
 function getGamesAlphabetically($limit = 20, $offset = 0) {
@@ -72,10 +73,10 @@ function getGamesAlphabetically($limit = 20, $offset = 0) {
 }
 
 /**
- * Devuelve un array con los datos de juegos votados
- * [(id, name, cover, vote), ..., (id, name, cover, vote)]
- * @global conection $conexion
- * @param type $user_id
+ * Returns an array with the games voted by user
+ * @param type $user_id ID from the user
+ * @param int $limit How many games to return
+ * @param int $offset Starting from which position
  * @return array
  */
 function getGamesVoted($user_id, $limit = 20, $offset = 0) {
@@ -92,6 +93,11 @@ function getGamesVoted($user_id, $limit = 20, $offset = 0) {
     return $info;
 }
 
+/**
+ * Returns a game specified by id
+ * @param type $game_id Game ID
+ * @return Game
+ */
 function getGame($game_id) {
     global $db, $config;
     $colummns = ['id', 'name', 'description', 'cover'];
@@ -115,6 +121,12 @@ function getGame($game_id) {
     }
 }
 
+/**
+ * Return games ordered by id
+ * @param int $limit How many games to return
+ * @param int $offset Starting from which position
+ * @return array
+ */
 function getAllGames($limit = 20, $offset = 0) {
     global $db, $config;
     $columns = ['id', 'name', 'description', 'cover'];
@@ -125,10 +137,9 @@ function getAllGames($limit = 20, $offset = 0) {
 }
 
 /**
- * Devuelve los ultimos 20 juegos añadidos a la BD en forma de array:<br>
- * [(id, name, cover), ..., (id, name, cover)]
- * @global conection $conexion
- * @param type $offset
+ * Return games ordered by ID desc. (new->older)
+ * @param int $limit How many games to return
+ * @param int $offset Starting from which position
  * @return type
  */
 function getLatestGames($limit = 20, $offset = 0) {
@@ -140,8 +151,14 @@ function getLatestGames($limit = 20, $offset = 0) {
     return $info;
 }
 
+/**
+ * Return games ordered by Positive Percentage
+ * @param int $limit How many games to return
+ * @param int $offset Starting from which position
+ * @return type
+ */
 function getBestGames($limit = 20, $offset = 1) {
-    global $db, $config;
+    global $db;
 //    $join = ["[><]{$config['v_game_positive_percentage']}" => ['id' => 'game_id']];
 //    $columns = ['id', 'name', 'description', 'cover', 'positive_percentage'];
 //    $where = ["ORDER" => 'positive_percentage DESC', 'LIMIT' => $limit];
@@ -155,6 +172,13 @@ function getBestGames($limit = 20, $offset = 1) {
     return $info;
 }
 
+/**
+ * Return games ordered number of votes
+ * @deprecated since version 1
+ * @param int $limit How many games to return
+ * @param int $offset Starting from which position
+ * @return type
+ */
 function getMostVotedGames($limit = 20, $offset = 0) {
     global $db, $config;
     $resultados = $db->query("SELECT id, name, description, cover, count(*) as votes from {$config['t_games']}, {$config['t_user_votes']} where id=user group by id order by count(*) desc limit $limit")->fetchAll();
@@ -176,9 +200,8 @@ function getMostVotedGames($limit = 20, $offset = 0) {
 }
 
 /**
- * Devuelve juegos ordenados por plataforma:<br>
- * Una plataforma: 'N64'.<br>
- * Varias plataformas: 'N64';
+ * Devuelve juegos ordenados por plataforma
+ * @deprecated since version 1
  * @param type $platform
  * @param type $offset
  * @return array|NULL
@@ -201,10 +224,11 @@ function getGamesByPlatform($platform, $limit = 20, $offset = 0) {
 }
 
 /**
- * Para atacar la base de datos de juegos<br>
- * Devuelve el array [(id, name, cover), ..., (id, name, cover)]
- * @global conection $conexion
- * @param type $query
+ * Executes the query against db
+ * @param type $table The table name
+ * @param type $columns Array with column names | '*'
+ * @param type $where Array with conditions
+ * @param type $join Array with join data
  * @return array
  */
 function getGames($table, $columns = '*', $where = NULL, $join = NULL) {
@@ -229,6 +253,15 @@ function getGames($table, $columns = '*', $where = NULL, $join = NULL) {
     }
 }
 
+/**
+ * Fecths each game from bd query into array<br>
+ * Generates a Game object array
+ * @param type $table The table name
+ * @param type $columns Array with column names | '*'
+ * @param type $where Array with conditions
+ * @param type $join Array with join data
+ * @return Game[]
+ */
 function fetchGames($games) {
     global $config;
     $data = [];
@@ -249,15 +282,13 @@ function fetchGames($games) {
 }
 
 /**
- * Devuelve un array con el total de votos y votos positivos de un juego.<br>
- * Si el id no existe devuelve array de 0's
- * indices: total, positivo
+ * Returns a VoteBalance object based on game Id
  * @global conection $conexion
  * @param int $game_id
  * @return array
  */
 function getVoteBalance($game_id) {
-    global $db, $config;
+    global $db;
 //    $columns = ['votos_positivos', 'votos_negativos', 'votos_totales'];
 //    $where = ['id' => $game_id];
 //    $resultados = $db->select($config['v_game_vote_balance'], $columns, $where);
@@ -271,11 +302,10 @@ function getVoteBalance($game_id) {
 }
 
 /**
- * Devulve el voto del usuario a un juego, o NULL si no ha votado
- * @global conection $conexion
- * @param type $game_id
- * @param type $user_id
- * @return type
+ * Returns the user vote for a game
+ * @param type $game_id Id of the game
+ * @param type $user_id Id of the user
+ * @return int|null
  */
 function getVote($game_id, $user_id) {
     global $db, $config;
@@ -293,11 +323,10 @@ function getVote($game_id, $user_id) {
 }
 
 /**
- * Devuelve un array con todas las plataformas de un juego y sus datos.
- * Sin id, devuelve todas las plataformas
- * @global conection $conexion
- * @param type $game_id
- * @return array
+ * Returns an array of Platform objects of a game<br>
+ * If no Id is especified returns all platforms from db
+ * @param int $game_id The Id of the game
+ * @return Platform[]
  */
 function getPlatforms($game_id = null) {
     global $db, $config;
@@ -318,6 +347,11 @@ function getPlatforms($game_id = null) {
     return $platforms;
 }
 
+/**
+ * Returns a Saga object based on ID
+ * @param int $saga_id The Id of the Saga
+ * @return Saga
+ */
 function getSagaById($saga_id) {
     global $db, $config;
     $columns = ['id', 'name', 'description', 'logo'];
@@ -332,6 +366,11 @@ function getSagaById($saga_id) {
     }
 }
 
+/**
+ * Returns an array of Saga objects of a game
+ * @param int $game_id The Id of the Game
+ * @return Saga[]
+ */
 function getSaga($game_id = null) {
     global $db, $config;
     $join = ["[><]{$config['t_sagas']}" => ['saga' => 'id']];
@@ -372,6 +411,11 @@ function getSaga($game_id = null) {
 //    return $balance;
 //}
 
+
+/**
+ * Returns the different user levels based on the ENUM condition of db
+ * @return array
+ */
 function getEnumUserLevel() {
     global $config, $db;
     $resultados = $db->query("SHOW COLUMNS FROM {$config['t_users']} WHERE Field = 'user_level'")->fetchAll()[0];
@@ -394,14 +438,25 @@ function getEnumUserLevel() {
 //    return $balance;
 //}
 
-function getPlatformById($id) {
+/**
+ * Returns a Platform object based on Id
+ * @param int $platform_id The Id of the Platform
+ * @return array
+ */
+function getPlatformById($platform_id) {
     global $db, $config;
-    $columns = ['id', 'name', 'short_name'];
-    $where = ["id" => $id];
+    $columns = '*';
+    $where = ["id" => $platform_id];
     $resultados = $db->get($config['t_platforms'], $columns, $where);
-    return $resultados;
+    $platform = new Platform($resultados['id'], $resultados['name'], $resultados['short_name'], $resultados['icon']);
+    return $platform;
 }
 
+/**
+ * Returns a nick is used or not
+ * @param string $user_nick The nick to be checked
+ * @return boolean
+ */
 function nickExists($user_nick) {
     global $config, $db;
     $data['user_nick'] = $user_nick;
@@ -410,6 +465,17 @@ function nickExists($user_nick) {
     return $db->has($config['t_users'], $where);
 }
 
+/**
+ * Returns a formatted string containing the difference between two dates<br>
+ * Types of time:<br>
+ * "m": Returns the difference in months
+ * "d": Returns the difference in days
+ * "h": Returns the difference in hours
+ * @param string $oldTime Past time
+ * @param int $newTime Future time
+ * @param string $timeType
+ * @return string
+ */
 function xTimeAgo($oldTime, $newTime, $timeType) {
     $timeCalc = $newTime - $oldTime;
     if ($timeType == "x") {

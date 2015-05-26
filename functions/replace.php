@@ -95,10 +95,22 @@ function replaceGame($gameArray, $is_main = false) {
         /* @var $saga  */
 //        $gameVoteBalanceData = $game->vote_balance;
         if ($game->vote_balance != null) {
+            if ($game->my_vote === null) {
+                $game->vote_balance->positive_vote_class = "";
+                $game->vote_balance->negative_vote_class = "";
+            } else {
+                $game->vote_balance->positive_vote_class = ($game->my_vote==1) ? "chosen" : "bg-gray2";
+                $game->vote_balance->negative_vote_class = ($game->my_vote==0) ? "chosen" : "bg-gray2";
+            }
+
             $gameVoteBalance = replace((array) $game->vote_balance, "templates/common/vote-balance.html");
         } else {
             $gameVoteBalance = '';
         }
+
+//        $positive_vote = $game->my_vote ? "choosed" : "";
+//        $negative_vote = $game->my_vote ? "" : "choosed";
+
         $gameData = array(
             "id" => $game->id,
             "name" => $game->name,

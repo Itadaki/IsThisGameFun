@@ -28,9 +28,11 @@ class admin extends Controller {
      * Using the constructor to prevent no-admins to get this menu
      */
     public function __construct() {
+        global $config;
         parent::__construct();
         if (!isAdmin()) {
-            header('Location: ./main');
+            header("Location: {$config['server_root']}main");
+            die;
         }
     }
 
@@ -464,6 +466,8 @@ class admin extends Controller {
 
         if ($is_edit) {
             $platform = getPlatformById($id);
+            $data = $platform->getDataArray();
+            dd($data);
             $data['id'] = $platform['id'];
             $data['name'] = $platform['name'];
             $data['shortname'] = $platform['short_name'];

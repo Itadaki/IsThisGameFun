@@ -65,6 +65,7 @@ class games extends Controller {
     }
 
     public function details($args = array()) {
+        global $config;
         if (count($args) > 0 && is_numeric($args[0])) {
             $game = getGame($args[0]);
             if ($game != null) {
@@ -91,6 +92,15 @@ class games extends Controller {
                 unset($data['platforms']);
                 //Change the breaklines \n and so to <br>
                 $data['description'] = nl2br($data['description']);
+
+                if ($game->my_vote === null) {
+                    $data['positive_vote_class'] = "";
+                    $data['negative_vote_class'] = "";
+                } else {
+                    $data['positive_vote_class'] = ($game->my_vote == 1) ? "chosen" : "bg-gray2";
+                    $data['negative_vote_class'] = ($game->my_vote == 0) ? "chosen" : "bg-gray2";
+                }
+
 //                dd($data);
 //                $gameHtml = replaceGame([$game]);
 //                $data['games'] = $gameHtml;
@@ -99,10 +109,10 @@ class games extends Controller {
 
                 return $this->build();
             } else {
-                header('Location: ../../main');
+                header("Location: {$config['server_root']}main");
             }
         } else {
-            header('Location: main');
+            header("Location: {$config['server_root']}main");
         }
     }
 

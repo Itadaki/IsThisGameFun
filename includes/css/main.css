@@ -115,7 +115,8 @@ body{
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: #ebebeb;
     background-color: #01A7C2;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -171,7 +172,7 @@ a {
 }
 a:hover,
 a:focus {
-    color: #01A7C2;
+    color: #d9534f;
     text-decoration: underline;
 }
 .no-under{
@@ -194,7 +195,8 @@ a:focus {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-    background-color: #535353;
+    /*background-color: #535353;*/
+    background-color: #333333;
     border-color: #df691a;
 }
 .nav-tabs > li.active > a,
@@ -208,19 +210,137 @@ a:focus {
 .thumbnail {
     background-color: #535353;
 }
-.btn-default {
-    background-color: #333;
-    border-color: #777;
+.btn-add {
+    /*    background-color: #333;
+        border-color: #777;*/
+    color: #ebebeb;
+    background-color: #535353;
 }
+.btn-add:hover,
+.btn-add:focus,
+.btn-add.focus,
+.btn-add:active,
+.btn-add.active,
+.open > .dropdown-toggle.btn-add {
+    /*color: #ffffff;*/
+    color:#ebebeb;
+    /*background-color: #535353;*/
+    background-color: #5cb85c;
+    /*border-color: rgba(0, 0, 0, 0);*/
+}
+.btn-add.disabled,
+.btn-add[disabled],
+fieldset[disabled] .btn-add,
+.btn-add.disabled:hover,
+.btn-add[disabled]:hover,
+fieldset[disabled] .btn-add:hover,
+.btn-add.disabled:focus,
+.btn-add[disabled]:focus,
+fieldset[disabled] .btn-add:focus,
+.btn-add.disabled.focus,
+.btn-add[disabled].focus,
+fieldset[disabled] .btn-add.focus,
+.btn-add.disabled:active,
+.btn-add[disabled]:active,
+fieldset[disabled] .btn-add:active,
+.btn-add.disabled.active,
+.btn-add[disabled].active,
+fieldset[disabled] .btn-add.active {
+    background-color: #535353;
+    border-color: transparent;
+}
+/*DIEGO*/
+.game a :hover{
+    text-decoration: underline !important;
+}
+.card{
+    position: relative;
+}
+.card .saga{
+    position: absolute;
+    /*    top: 21px;*/
+    width: 100%;
+    /*background: red;*/
+    overflow: hidden;
+    height: 0;
+    transition: height .5s
+}
+.card .saga.opened{
+    height: auto;
+    transition: height .5s
+}
+.card .saga.closed{
+    height: auto;
+}
+.admin-table td{
+    vertical-align: middle !important;
+}
+
+.label-platform{
+    background-color: #535353;
+}
+.table-striped > tbody > tr:nth-of-type(odd) .label-platform{
+    background-color: #333333;
+}
+.table-striped > tbody > tr .label-platform{
+    background-color: #535353;
+}
+
+.chosen{
+    background-color: #5cb85c;
+}
+
+
+
+/*JAVI*/
+.loading-icon{
+    height: 15px;
+    width:15px;
+}
+
+
+
+
+
+//CAMBIOS DE COLOR EN EL MODAL
+.modal-content {
+  background-color: #777777;
+}
+.modal-backdrop {
+  background-color: #000000;
+}
+.modal-header {
+  border-bottom: 0;
+}
+.modal-footer {
+  border-top: 0;
+}
+.modal-header, .modal-footer{
+    background-color: #535353;
+    border: 0
+}
+
+
+
+//CAMBIOS DE COLOR EN LOS BOTONES DEFAULT
+.btn-default {
+    /*    background-color: #333;
+        border-color: #777;*/
+    color: #ebebeb;
+    background-color: #777777;
+}
+
 .btn-default:hover,
 .btn-default:focus,
 .btn-default.focus,
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-    color: #ffffff;
+    /*color: #ffffff;*/
+    color:#ebebeb;
+    /*background-color: #535353;*/
     background-color: #535353;
-    border-color: rgba(0, 0, 0, 0);
+    /*border-color: rgba(0, 0, 0, 0);*/
 }
 .btn-default.disabled,
 .btn-default[disabled],
@@ -242,35 +362,4 @@ fieldset[disabled] .btn-default:active,
 fieldset[disabled] .btn-default.active {
     background-color: #535353;
     border-color: transparent;
-}
-/*DIEGO*/
-.card{
-    position: relative;
-}
-.card .saga{
-    position: absolute;
-/*    top: 21px;*/
-    width: 100%;
-    /*background: red;*/
-    overflow: hidden;
-    height: 0;
-    transition: height .5s
-}
-.card .saga.opened{
-    height: auto;
-    transition: height .5s
-}
-.card .saga.closed{
-    height: auto;
-}
-.admin-table td{
-    vertical-align: middle !important;
-}
-
-
-
-/*JAVI*/
-.loading-icon{
-    height: 15px;
-    width:15px;
 }
