@@ -352,7 +352,7 @@ function getSagaById($saga_id) {
     $where = ["id" => $saga_id];
     $resultados = $db->get($config['t_sagas'], $columns, $where);
     handleDbError();
-    if ($error[0] == '00000' && !empty($resultados) && $saga_id) {
+    if (!empty($resultados) && $saga_id) {
         $saga = new Saga($resultados['id'], $resultados['name'], $resultados['description'], $resultados['logo']/* , getSagaVoteBalance($resultados['id']) */);
         return $saga;
     } else {

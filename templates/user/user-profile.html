@@ -4,20 +4,51 @@ Its your profile: {own_profile}
 <div style="border: 1px solid">
     {history}
 </div>-->
-
+<style>
+    .profile-vote-list-item{
+        border: 0;
+        background-color: #535353;
+    }
+    .profile-vote-list-item.thumbs-up{
+        box-shadow: #31b0d5 5px 0px 0px inset;
+    }
+    .profile-vote-list-item.thumbs-down{
+        box-shadow: #d9534f 5px 0px 0px inset;
+    }
+    .profile-vote-list-item.thumbs-up span.vote{
+        color: #5bc0de;
+    }
+    .profile-vote-list-item.thumbs-down span.vote{
+        color: #d9534f;
+    }
+    .profile-avatar{
+        position: relative;
+        display: inline-block
+    }
+    .edit-profile-avatar{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+</style>
 <div class="container row voffset3">
     {messages}
     <div class="col-md-3">
         <h3 class="text-center">{user_nick}</h3>
         <div class="text-center">
-            <img class="img-responsive" style="margin: 0 auto" src="{server_root}avatars/{user_avatar}" alt="userpic">
-        </div>
-        <div class="voffset2">
-            <ul class="list-group {edit_display}">
-                <li class="list-group-item">
-                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#edit-modal">
+            <div class="profile-avatar">
+                <img class="img-responsive" style="margin: 0 auto" src="{server_root}avatars/{user_avatar}" alt="userpic">
+                <div class="edit-profile-avatar {edit_display}">
+                    <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit-modal">
                         Edit <span class="glyphicon glyphicon-edit"></span>
                     </a>
+                </div>
+            </div>
+        </div>
+        <div class="voffset2">
+            <ul class="list-group text-center">
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-tag"></span> Joined {ago}
                 </li>
                 <!--                <li class="list-group-item"><span>Gender(icon)</span></li>
                                 <li class="list-group-item"><span>Platforms</span></li>
@@ -54,8 +85,8 @@ Its your profile: {own_profile}
                 </form>
             </div>			<!-- /modal-body -->
             <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <input type="submit" value="Edit" name="action" class="btn btn-primary" form="edit-user"/>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <input type="submit" value="Edit" name="action" class="btn btn-primary" form="edit-user"/>
             </div>
         </div> <!-- /.modal-content -->
     </div> <!-- /.modal-dialog -->

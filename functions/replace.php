@@ -93,7 +93,7 @@ function replaceGame($gameArray, $is_main = false) {
                 $game->vote_balance->negative_vote_class = ($game->my_vote == 0) ? "chosen" : "bg-gray2";
             }
 
-            $gameVoteBalanceHtml = replace((array) $game->vote_balance, "templates/common/vote-balance.html");
+            $gameVoteBalanceHtml = replace($game->vote_balance->getDataArray(), "templates/common/vote-balance.html");
         } else {
             $gameVoteBalanceHtml = '';
         }

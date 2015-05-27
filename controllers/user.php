@@ -28,15 +28,17 @@ class user extends Controller {
         global $config;
         if (isset($args[0])) {
             $user = getUser($args[0], true);
+            
             //getUser returns false if user doesnt exists
             if ($user) {
                 global $db, $config;
                 $user_vote_history_template = "templates/user/vote-history.html";
                 $user_profile_template = "";
-
-                $data['user_id'] = $user['user_id'];
-                $data['user_nick'] = $user['user_nick'];
-                $data['user_avatar'] = $user['user_avatar'];
+                
+                $data = $user;
+//                $data['user_id'] = $user['user_id'];
+//                $data['user_nick'] = $user['user_nick'];
+//                $data['user_avatar'] = $user['user_avatar'];
                 $join = [
                     "[>]users" => ["user" => "user_id"],
                     "[>]games" => ["game" => "id"]
@@ -50,11 +52,11 @@ class user extends Controller {
                     $temp['game'] = $vote['name'];
                     $temp['id'] = $vote['game'];
                     $temp['date'] = xTimeAgo(strtotime($vote['vote_date']), time(), 'd');
-                    $temp['vote'] = $vote['vote'] ? '<span class="glyphicon glyphicon-thumbs-up text-info"></span>' : '<span class="glyphicon glyphicon-thumbs-down text-danger"></span>';
+                    $temp['vote'] = $vote['vote'] ? 'thumbs-up' : 'thumbs-down';
                     $history_html .= replace($temp, $user_vote_history_template);
                 }
 
-                $data['history'] = $history_html;
+                $data['history'] = ($history_html=='')?'No Votes found.' : $history_html;
                 
                 $data['edit_display'] = 'hidden';
                 if (isset($_SESSION['user_id']) && $user['user_id'] == $_SESSION['user_id']) {
@@ -69,7 +71,8 @@ class user extends Controller {
                     }
                 }
 
-
+                $data['ago'] = xTimeAgo(strtotime($data['create_time']), time(), "d");
+                
                 $template = "templates/user/user-profile.html";
                 $this->body = replace($data, $template);
 
@@ -94,7 +97,7 @@ class user extends Controller {
             $height = $size[1];
             //IF ERROR, display profile with error
             if ($width > 200 || $height > 200) {
-                $message = array((new Message('danger', 'Error', 'Exceeded file size (max filse size 200x200)'))->getMessage());
+                $message = array((new Message('danger', 'Error', 'Exceeded file dimentions (max filse dimentions: 200x200px)'))->getMessage());
                 return $this->profile(array($_SESSION['user_nick']), $message);
             }
             //If size is ok, update
