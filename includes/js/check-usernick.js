@@ -25,7 +25,7 @@ $(document).ready(function () {
         console.log(data_send);
         addLoadingIcon(field);
         $.get(ruta, function (data) {
-            data = $.parseJSON(data);
+//            data = $.parseJSON(data);
             console.log(data);
             var error = data.error;
             var message = data.message;
@@ -47,7 +47,7 @@ function addNickResultIcon(field, state, msg) {
 }
 function addLoadingIcon(field) {
     field.after('<img src="' + server_root + '/img/loading.gif" class="loading-icon">');
-     $('.loading-icon').css({position: 'absolute', top: '10px', left:'90%'});
+     $('.loading-icon').css({position: 'absolute', top: '10px', left:'80%'});
 }
 function removeIcons(field) {
     field.siblings('i').attr("style","display:none");

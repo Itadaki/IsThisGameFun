@@ -20,11 +20,12 @@ $(document).ready(function () {
         var button = $(this);
         var disabled = button.siblings('button').attr('disabled');
         var parent = button.parents('.game');
-        var user_vote = button.siblings(".user-vote").html();
+        var user_vote = parent.children(".user-vote").html();
         var id_name = parent.attr('id');
         var id = id_name.split('-')[1];
         var vote_value = button.hasClass('pull-left');
         var data_send = JSON.stringify({game_id: id, vote: vote_value});
+        console.log(user_vote);
         loadPanel(id_name);
         loadIcon(id_name);
         $.post(server_root + 'api/vote', {json: data_send}, function (data) {
@@ -38,17 +39,17 @@ console.log(data);
             } else {
                 if (user_vote === '1' && vote_value === true) {
                     state = "danger";
-                    msg = 'The play had been voted postive for you'
+                    msg = 'The game has already been voted postive by you'
                 } else {
                     if (user_vote === '0' && vote_value === false) {
                         state = "danger";
-                        msg = 'The play had been voted negative for you'
+                        msg = 'The game has already been voted negative for you'
                     } else {
                         state = "success";
                         button.attr('disabled', true);
                         button.siblings('button').attr('disabled', false);
                         loadProgressBar(button, vote_value, disabled, user_vote);
-                        if (user_vote === '') {
+                        if (user_vote === '' || user_vote=== 'null') {
                             button.siblings(".user-vote").html((vote_value)?'1':'0');
                         } else {
                            (user_vote === '0')? button.siblings(".user-vote").html('1'):button.siblings(".user-vote").html('0');
@@ -64,7 +65,7 @@ console.log(data);
 });
 function loadPanel(field) {
     $('#' + field).append('<div class="load-vote"></div>');
-    $('.load-vote').css({position: 'absolute', top: '10px', height: '100%', width: '100%', opacity: '0.5', background: 'black'});
+    $('.load-vote').css({position: 'absolute', top: '20px', height: '100%', width: '100%', opacity: '0.5', background: 'black'});
 }
 function loadIcon(field) {
     $('#' + field).append('<img src="' + server_root + '/img/loading.gif" id=loading-icon>');
