@@ -15,9 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function () {
+$(document).ready(vote());
+function vote () {
     $('.btn-vote').click(function () {
         var button = $(this);
+        console.log('OK');
         var disabled = button.siblings('button').attr('disabled');
         var parent = button.parents('.game');
         var user_vote = parent.children(".user-vote").html();
@@ -62,7 +64,7 @@ console.log(data);
             $('.alert').delay(1000).fadeOut();
         });
     });
-});
+}
 function loadPanel(field) {
     $('#' + field).append('<div class="load-vote"></div>');
     $('.load-vote').css({position: 'absolute', top: '20px', height: '100%', width: '100%', opacity: '0.5', background: 'black'});

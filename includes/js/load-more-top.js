@@ -36,8 +36,9 @@ $(document).ready(function () {
         $.get(ruta, function (data) {
 //            var error = data.error;
 //            var message = data.message;
-            var parent = $('#game-container')
+            var parent = $('#game-container');
             addGames(parent, data);
+            vote();
         });
     });
 });
