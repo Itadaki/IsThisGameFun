@@ -55,9 +55,9 @@ function handleDbError(){
  */
 function validateField($field, $pendingFields, $wrongFields) {
     if (in_array($field, $pendingFields)) {
-        return 'has-warning has-feedback';
+        return 'bg-warning text-danger has-warning has-feedback';
     } elseif (in_array($field, $wrongFields)) {
-        return 'has-error has-feedback';
+        return 'bg-error has-error has-feedback';
     }
     return '';
 }

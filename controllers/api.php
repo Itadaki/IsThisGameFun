@@ -45,7 +45,7 @@ class api extends Controller {
                 $message = "Game $game_id voted {$vote} from {$_SESSION['user_nick']}!";
                 return $this->encodeResponse($error, $message);
             } else {
-                //THERE IS AN ERROR
+            //THERE IS AN ERROR
                 $error = true;
                 $message = "Error while voting!";
                 return $this->encodeResponse($error, $message);
@@ -57,6 +57,7 @@ class api extends Controller {
             return $this->encodeResponse($error, $message);
         } else {
             header('HTTP/1.0 403 Forbidden');
+            die;
         }
     }
 
@@ -65,7 +66,7 @@ class api extends Controller {
         //1 - Best games
         //2 - New games
         //3 - All Games
-        if ($this->isAjax() && $this->isGet()) {
+        if ($this->isAjax() || $this->isGet()) {
             $offset = 0;
             $limit = 20;
             $type = 1;
@@ -92,11 +93,14 @@ class api extends Controller {
                 default:
                     die;
             }
-            header('Content-Type: application/json');
-            return(json_encode($games));
+            if (count($games)== $limit){
+                $quota= true;
+            } else {
+                $quota= false;
+            }
+            return $this->encodeResponse(false, "Request OK", ["full-quota"=>$quota, "games"=>$games]);
         }
         return $this->encodeResponse(true, "Not AJAX or not GET");
-        die;
     }
 
     private function encodeResponse($error, $message, $additionalData = array()) {
@@ -111,11 +115,17 @@ class api extends Controller {
 
     public function checkUserNick($args = array()) {
         sleep(2);
-        if ($this->isAjax() && $this->isGet() && isset($args[0])) {
+        if ($this->isAjax() || $this->isGet() && isset($args[0])) {
             $nickExists = nickExists($args[0]);
-            return $this->encodeResponse(false, 'The nick is available', array('exists' => $nickExists));
+            $message = "This nick is " . ($nickExists?"not ":"") . "available";
+            return $this->encodeResponse(false, $message, array('exists' => $nickExists));
+        }else if ($this->isAjax()) {
+            //USER IS NOT LOGGED IN
+            $error = true;
+            $message = "No nick especified!";
+            return $this->encodeResponse($error, $message);
         }
-        return $this->encodeResponse(true, 'No nick especified!');
+        return $this->encodeResponse(true, 'Not AJAX or not GET!');
     }
 
 }

@@ -15,32 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 $(document).ready(function() {
-$('#form-login').bootstrapValidator({
-//        live: 'disabled',
-        message: '',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            user: {
-                message: '',
-                validators: {
-                    notEmpty: {
-                        message: ''
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: ''
-                    }
-                }
-            }
-        }
-    });
+//$('#form-login').bootstrapValidator({
+////        live: 'disabled',
+//        message: '',
+//        feedbackIcons: {
+//            valid: 'glyphicon glyphicon-ok',
+//            invalid: 'glyphicon glyphicon-remove',
+//            validating: 'glyphicon glyphicon-refresh'
+//        },
+//        fields: {
+//            user: {
+//                message: '',
+//                validators: {
+//                    notEmpty: {
+//                        message: ''
+//                    }
+//                }
+//            },
+//            password: {
+//                validators: {
+//                    notEmpty: {
+//                        message: ''
+//                    }
+//                }
+//            }
+//        }
+//    });
 
     // Validate the form manually
     $('#validateBtn').click(function() {

@@ -27,7 +27,7 @@ class signin extends Controller {
     public function index($args = array()) {
         global $config;
         //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY)
-        if (isset($_POST['signup']) /*&& $_COOKIE[$config['allow_cookies']]*/) {
+        if (isset($_POST['signup']) /* && $_COOKIE[$config['allow_cookies']] */) {
             //Validate the data and 'return' if something's wrong
             return $this->validateSignIn();
         } else {
@@ -42,14 +42,19 @@ class signin extends Controller {
      * @param type $camposPendientes
      * @return type
      */
-    private function displaySignInForm($camposErroneos = array(), $camposPendientes = array()) {
-        $data['error'] = '';
+    private function displaySignInForm($camposErroneos = array(), $camposPendientes = array(), $messages = array()) {
+        $data['messages'] = '';
+        if ($messages) {
+            foreach ($messages as $message) {
+                $data['messages'].=$message;
+            }
+        }
         if ($camposErroneos || $camposPendientes) {
             if ($camposErroneos) {
-                $data['error'] .= (new Message('warning', 'Warning', "Hay campos no validos."))->getMessage();
+                $data['messages'] .= (new Message('warning', 'Warning', "There are some invalid fields."))->getMessage();
             }
             if ($camposPendientes) {
-                $data['error'] .=(new Message('danger', 'Error', "Falta algun campo."))->getMessage();
+                $data['messages'] .=(new Message('danger', 'Error', "Some fields are missing."))->getMessage();
             }
         }
         $data['user'] = setValue('user');
@@ -59,6 +64,8 @@ class signin extends Controller {
         $data['email'] = setValue('email');
         $data['validateEmail'] = validateField('email', $camposPendientes, $camposErroneos);
         $data['validatePassword'] = validateField('password', $camposPendientes, $camposErroneos);
+
+        
 
         $template = "templates/signin/signin.html";
         $this->body = replace($data, $template);
@@ -100,9 +107,18 @@ class signin extends Controller {
         if ($camposPendientes || $camposErroneos) {
             return $this->displaySignInForm($camposErroneos, $camposPendientes);
         } else {
-            //Ver si el usuario existe en la BD
+            //Check if user already exists in DB
+            if ($this->checkUserNameExists($_POST['user'])) {
+                $messages[] = (new Message('danger', 'Error', " Username already in use!"))->getMessage();
+                return $this->displaySignInForm(['user'], [], $messages);
+            }
+            if ($this->checkUserNickExists($_POST['nick'])) {
+                $messages[] = (new Message('danger', 'Error', " Nick already in use!"))->getMessage();
+                return $this->displaySignInForm(['nick'], [], $messages);
+            }
+            
             /* @var $db Medoo */
-            global $db, $config;
+            global $db;
             $data = [
                 "user_name" => $_POST['user'],
                 "user_pass" => $_POST['password'],
@@ -110,15 +126,37 @@ class signin extends Controller {
                 "user_email" => $_POST['email']
             ];
             $result = $db->insert($config['t_users'], $data);
-            $error = $db->error();
-            //If pos 1 in error array is 'true' (not null or 0)
+//            $error = $db->error();
+            handleDbError();
+            //If pos 1 in $error array is 'true' (not null or 0)
             //That means user created
-            if ($error[1]) {
-                return $this->displaySignInForm(true);
-            } else {
-                header("Location: {$config['server_root']}login");
-            }
+//            if ($error[1]) {
+//                return $this->displaySignInForm(true);
+//            } else {
+            $messages[] = (new Message('success', 'Success', " New User created! Now you can log in."))->getMessage();
+            return (new login())->displayLogInForm([],[],$messages);
+//            }
         }
+    }
+
+    private function checkUserNameExists($user_name) {
+        global $db, $config;
+        $where = [
+                "user_name" => $user_name
+        ];
+        $exist = $db->has($config['t_users'], $where);
+        handleDbError();
+        return $exist;
+    }
+
+    private function checkUserNickExists($user_nick) {
+        global $db, $config;
+        $where = [
+            "user_nick" => $user_nick
+        ];
+        $exist = $db->has($config['t_users'], $where);
+        handleDbError();
+        return $exist;
     }
 
 }

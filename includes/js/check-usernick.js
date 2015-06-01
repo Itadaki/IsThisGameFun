@@ -21,7 +21,7 @@ $(document).ready(function () {
         var user_nick = $(this).val();
         var ruta;
         var data_send = JSON.stringify({user_nick: user_nick});
-        (user_nick==="")?ruta = server_root + 'api/checkUserNick/':ruta = server_root + 'api/checkUserNick/' + data_send.getJSON;
+        (user_nick === "") ? ruta = server_root + 'api/checkUserNick/' : ruta = server_root + 'api/checkUserNick/' + user_nick;
         console.log(data_send);
         addLoadingIcon(field);
         $.get(ruta, function (data) {
@@ -39,18 +39,18 @@ $(document).ready(function () {
 });
 function addNickResultIcon(field, state, msg) {
     $('.loading-icon').remove();
-    field.siblings('i').attr("class",'form-control-feedback glyphicon glyphicon-'+state);
-    field.siblings('i').attr("style","display:block");
-    field.siblings('i').css({color:"#777777"});
-    field.parent().append('<small class="help-block msg">'+msg+'</small>'); 
-    field.siblings('small').css({color:'white'});
+    field.siblings('i').attr("class", 'form-control-feedback glyphicon glyphicon-' + state);
+    field.siblings('i').attr("style", "display:block");
+    field.siblings('i').css({color: "#777777"});
+    field.parent().append('<small class="help-block msg">' + msg + '</small>');
+    field.siblings('small').css({color: 'white'});
 }
 function addLoadingIcon(field) {
     field.after('<img src="' + server_root + '/img/loading.gif" class="loading-icon">');
-     $('.loading-icon').css({position: 'absolute', top: '10px', left:'80%'});
+    $('.loading-icon').css({position: 'absolute', top: '10px', left: '80%'});
 }
 function removeIcons(field) {
-    field.siblings('i').attr("style","display:none");
+    field.siblings('i').attr("style", "display:none");
     $('.loading-icon').remove();
     $('.msg').remove();
 }

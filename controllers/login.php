@@ -36,14 +36,20 @@ class login extends Controller {
         }
     }
 
-    private function displayLogInForm($camposErroneos = array(), $camposPendientes = array()) {
-        $data['error'] = '';
+    private function displayLogInForm($camposErroneos = array(), $camposPendientes = array(), $messages = array()) {
+        $data['messages'] = '';
+        if ($messages) {
+            foreach ($messages as $message) {
+                $data['messages'].=$message;
+            }
+        }
+        
         if ($camposErroneos || $camposPendientes) {
             if ($camposErroneos) {
-                $data['error'] .= '<p class="error_error">Usuario o contraseña no validos.</p>';
+                $data['messages'] .= (new Message('warning', 'Warning', "Usuario o contraseña no validos."))->getMessage();
             }
             if ($camposPendientes) {
-                $data['error'] .= '<p class="error_pendiente">Falta un campo.</p>';
+                $data['messages'] .= (new Message('danger', 'Error', "Falta un campo."))->getMessage();
             }
         }
         $data['user'] = setValue('user');
@@ -75,7 +81,7 @@ class login extends Controller {
         if ($camposPendientes or $camposErroneos) {
             return $this->displayLoginForm($camposErroneos, $camposPendientes);
         } else {
-            //Ver si el usuario existe en la BD
+            //Check user exists in DB
             /* @var $db Medoo */
             global $db, $config;
             $colummns = ['user_id', 'user_nick', 'user_level'];
@@ -102,7 +108,6 @@ class login extends Controller {
         if (isset($_SESSION['user_id'])) {
             session_unset();
         }
-        //THIS IS NOT WORKING. IT SETS LOCATION TO /LOGIN/MAIN
         header("Location: {$config['server_root']}main");
     }
 

@@ -37,9 +37,9 @@ $(document).ready(function() {
                         message: 'The username is required and cannot be empty'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 4,
                         max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
+                        message: 'The username must be more than 4 and less than 30 characters long'
                     },
                     regexp: {
                         regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -95,21 +95,31 @@ $(document).ready(function() {
                 message: ' ',
                 validators: {
                     notEmpty: {
-                        message: ''
+                        message: 'The nick is required and cannot be empty'
                     },
-                }
-            },
-            captcha: {
-                validators: {
-                    callback: {
-                        message: 'Wrong answer',
-                        callback: function(value, validator) {
-                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-                            return value == sum;
-                        }
+                    stringLength: {
+                        min: 4,
+                        max: 30,
+                        message: 'The nick must be more than 4 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: 'The nick can only consist of alphabetical, number, dot and underscore'
                     }
                 }
             }
+//            ,
+//            captcha: {
+//                validators: {
+//                    callback: {
+//                        message: 'Wrong answer',
+//                        callback: function(value, validator) {
+//                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+//                            return value == sum;
+//                        }
+//                    }
+//                }
+//            }
         }
     });
 

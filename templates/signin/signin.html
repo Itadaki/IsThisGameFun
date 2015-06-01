@@ -1,44 +1,54 @@
-<div class="row">
+<div class="container row voffset3">
     <div class="col-md-6 col-lg-offset-3">
-        <p>{error}</p>
+        {messages}
         <form id="form-signin" method="post" class="form-horizontal" action="">
             <div class="form-group {validateUser}">
                 <label class="col-lg-3 control-label">Username*</label>
-                <div class="col-lg-5">
+                <div class="col-lg-9">
                     <input type="text" class="form-control" id="user" name="user" value="{user}" />
+                    <!--<p class="help-block">The name you will log in with.</p>-->
                 </div>
             </div>
 
             <div class="form-group {validateEmail}">
                 <label class="col-lg-3 control-label">Email address*</label>
-                <div class="col-lg-5">
+                <div class="col-lg-9">
                     <input type="text" class="form-control" name="email" value="{email}" />
+                    <!--<p class="help-block">Your email for information purposes.</p>-->
                 </div>
             </div>
 
             <div class="form-group {validatePassword}">
                 <label class="col-lg-3 control-label">Password*</label>
-                <div class="col-lg-5">
+                <div class="col-lg-9">
                     <input type="password" class="form-control" name="password" />
+                    <!--<p class="help-block">The password for the log in.</p>-->
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">Retype password*</label>
-                <div class="col-lg-5">
+                <div class="col-lg-9">
                     <input type="password" class="form-control" name="confirmPassword" />
+                    <!--<p class="help-block">Repeat the password.</p>-->
                 </div>
             </div>
             <div class="form-group {validateNick}">
                 <label class="col-lg-3 control-label">Nick*</label>
-                <div class="col-lg-5">
+                <div class="col-lg-9">
                     <input id="nick" type="text" class="form-control" name="nick" value="{nick}" />
+                    <!--<p class="help-block">The public name that will be shown to everyone.</p>-->
                 </div>
             </div>
+            <!--            <div class="form-group">
+                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" name="captcha" />
+                            </div>
+                        </div>-->
             <div class="form-group">
-                <label class="col-lg-3 control-label" id="captchaOperation"></label>
-                <div class="col-lg-4">
-                    <input type="text" class="form-control" name="captcha" />
+                <div class="col-lg-12 text-center">
+                    <p>Fields marked with * are mandatory.</p>
                 </div>
             </div>
             <div class="form-group">

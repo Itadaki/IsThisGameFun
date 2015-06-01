@@ -46,8 +46,6 @@ class main extends Controller {
         $this->body = $body;
         //Build the pieces of the web and return to client
         return $this->build();
-
-//        return $html;
     }
 
 }
