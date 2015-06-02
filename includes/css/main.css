@@ -167,8 +167,11 @@ body{
     margin-bottom: 0;
 }
 a {
-    color: #01A7C2;
+    color: #ebebeb;
     text-decoration: none;
+}
+footer>a{
+    color:#01A7C2;
 }
 a:hover,
 a:focus {
@@ -249,8 +252,22 @@ fieldset[disabled] .btn-add.active {
     background-color: #535353;
     border-color: transparent;
 }
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+  background-color: #ebebeb;
+}
+.saga-name:hover{
+    text-decoration: underline;
+}
+.btn-primary {
+  background-color: #01A7C2;
+}
 /*DIEGO*/
-.game a :hover{
+.game a:hover,.game-small span:hover{
     text-decoration: underline !important;
 }
 .card{
