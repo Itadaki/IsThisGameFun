@@ -15,16 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function (){
+$(document).ready(function () {
     label = 0;
     vote();
 });
-function vote () {
-    $('.btn-vote'+label).click(function () {
+function vote() {
+    $('.btn-vote' + label).click(function () {
         $('.btn-vote').attr('disabled', true);
         var button = $(this);
         console.log('OK');
-        var disabled = button.siblings('button').attr('disabled');
         var parent = button.parents('.game');
         var user_vote = parent.children(".user-vote").html();
         var id_name = parent.attr('id');
@@ -53,13 +52,13 @@ function vote () {
                     } else {
                         state = "success";
                         $('.btn-vote').attr('disabled', false);
-                        button.attr('disabled', true);
-                        button.siblings('button').attr('disabled', false);
-                        loadProgressBar(button, vote_value, disabled, user_vote);
-                        if (user_vote === '' || user_vote=== 'null') {
-                            parent.children(".user-vote").html((vote_value)?'1':'0');
+                        button.addClass('disabled');
+                        button.siblings('button').removeClass('disabled');
+                        loadProgressBar(button, vote_value, user_vote);
+                        if (user_vote === '' || user_vote === 'null') {
+                            parent.children(".user-vote").html((vote_value) ? '1' : '0');
                         } else {
-                           (user_vote === '0')? parent.children(".user-vote").html('1'):parent.children(".user-vote").html('0');
+                            (user_vote === '0') ? parent.children(".user-vote").html('1') : parent.children(".user-vote").html('0');
                         }
                     }
                 }
@@ -83,7 +82,7 @@ function loadMessage(field, state, msg) {
     $('#' + field).append('<div class="alert alert-' + state + '" >' + msg + '</div>');
     $('.alert').css({position: 'absolute', top: '50%', opacity: '1', width: '100%'});
 }
-function loadProgressBar(field, vote_value, disabled, user_vote) {
+function loadProgressBar(field, vote_value, user_vote) {
     var positives = field.siblings('.positive-votes').html();
     console.log((positives));
     var total = field.siblings('.total-votes').html();
@@ -91,11 +90,11 @@ function loadProgressBar(field, vote_value, disabled, user_vote) {
     parseInt(positives);
     parseInt(total);
 
-    if (!(user_vote === '')) {
-        (vote_value) ? positives++ : positives--;
-    } else {
+    if (user_vote === '' || user_vote === 'null') {
         (vote_value) ? positives++ : "";
         total++;
+    } else {
+        (vote_value) ? positives++ : positives--;
     }
     var positive_percentage = (positives / total) * 100;
     positive_percentage = parseInt(positive_percentage);

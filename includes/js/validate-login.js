@@ -14,38 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-$(document).ready(function() {
-<<<<<<< HEAD
-$('#form-login').bootstrapValidator({
-//        live: 'disabled',
-        message: '',
-        fields: {
-            user: {
-                message: '',
-                validators: {
-                    notEmpty: {
-                        message: ''
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: ''
-                    }
-                }
-            }
-        }
-    });
-=======
+//$(document).ready(function() {
 //$('#form-login').bootstrapValidator({
 ////        live: 'disabled',
 //        message: '',
-//        feedbackIcons: {
-//            valid: 'glyphicon glyphicon-ok',
-//            invalid: 'glyphicon glyphicon-remove',
-//            validating: 'glyphicon glyphicon-refresh'
-//        },
 //        fields: {
 //            user: {
 //                message: '',
@@ -64,19 +36,43 @@ $('#form-login').bootstrapValidator({
 //            }
 //        }
 //    });
->>>>>>> 964eb36ba37ff5eb1128c0c995e090f0c4434bdb
-
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#defaultForm').bootstrapValidator('validate');
-    });
-
-    $('#resetBtn').click(function() {
-        $('.msg').remove();
-        $('#defaultForm').data('bootstrapValidator').resetForm(true);
-    });
-    $('small').css({font:'15px',color:'white'});
-    $('label').css({font:'15px',color:'white'});
-    $('i').css({font:'15px',color:'#777777'});
-});
+////$('#form-login').bootstrapValidator({
+//////        live: 'disabled',
+////        message: '',
+////        feedbackIcons: {
+////            valid: 'glyphicon glyphicon-ok',
+////            invalid: 'glyphicon glyphicon-remove',
+////            validating: 'glyphicon glyphicon-refresh'
+////        },
+////        fields: {
+////            user: {
+////                message: '',
+////                validators: {
+////                    notEmpty: {
+////                        message: ''
+////                    }
+////                }
+////            },
+////            password: {
+////                validators: {
+////                    notEmpty: {
+////                        message: ''
+////                    }
+////                }
+////            }
+////        }
+////    });
+//    // Validate the form manually
+//    $('#validateBtn').click(function() {
+//        $('#defaultForm').bootstrapValidator('validate');
+//    });
+//
+//    $('#resetBtn').click(function() {
+//        $('.msg').remove();
+//        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+//    });
+//    $('small').css({font:'15px',color:'white'});
+//    $('label').css({font:'15px',color:'white'});
+//    $('i').css({font:'15px',color:'#777777'});
+//});
 
