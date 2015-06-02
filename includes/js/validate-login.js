@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 $(document).ready(function() {
+<<<<<<< HEAD
 $('#form-login').bootstrapValidator({
 //        live: 'disabled',
         message: '',
@@ -36,6 +37,34 @@ $('#form-login').bootstrapValidator({
             }
         }
     });
+=======
+//$('#form-login').bootstrapValidator({
+////        live: 'disabled',
+//        message: '',
+//        feedbackIcons: {
+//            valid: 'glyphicon glyphicon-ok',
+//            invalid: 'glyphicon glyphicon-remove',
+//            validating: 'glyphicon glyphicon-refresh'
+//        },
+//        fields: {
+//            user: {
+//                message: '',
+//                validators: {
+//                    notEmpty: {
+//                        message: ''
+//                    }
+//                }
+//            },
+//            password: {
+//                validators: {
+//                    notEmpty: {
+//                        message: ''
+//                    }
+//                }
+//            }
+//        }
+//    });
+>>>>>>> 964eb36ba37ff5eb1128c0c995e090f0c4434bdb
 
     // Validate the form manually
     $('#validateBtn').click(function() {

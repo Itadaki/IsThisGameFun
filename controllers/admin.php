@@ -31,7 +31,8 @@ class admin extends Controller {
         global $config;
         parent::__construct();
         if (!$this->isAdmin()) {
-            header("Location: {$config['server_root']}main");
+//            header("Location: {$config['server_root']}main");
+            header('HTTP/1.0 403 Forbidden');
             die;
         }
     }
@@ -69,10 +70,10 @@ class admin extends Controller {
             }
         } else {
             $users = getUsers();
-            $template = "templates/admin/users/user-list.html";
+            $userListTemplate = "templates/admin/users/user-list.html";
             $userHtml = '';
             foreach ($users as $user) {
-                $userHtml .= replace($user, $template);
+                $userHtml .= replace($user, $userListTemplate);
             }
             $data['list'] = $userHtml;
             //Adding sidebar menu
@@ -86,8 +87,8 @@ class admin extends Controller {
                 }
             }
 
-            $template = "templates/admin/users/users.html";
-            $this->body = replace($data, $template);
+            $usersTemplate = "templates/admin/users/users.html";
+            $this->body = replace($data, $usersTemplate);
         }
         return $this->build();
     }
@@ -122,9 +123,10 @@ class admin extends Controller {
 
                 $repl['platforms'] = '';
                 foreach ($game->platforms as $platform) {
-                    $plat['id'] = $platform->id;
-                    $plat['name'] = $platform->name;
-                    $plat['short_name'] = $platform->short_name;
+                    $plat = $platform->getDataArray();
+//                    $plat['id'] = $platform->id;
+//                    $plat['name'] = $platform->name;
+//                    $plat['short_name'] = $platform->short_name;
                     $repl['platforms'].= replace($plat, "templates/common/platform.html");
                 }
 
@@ -179,9 +181,10 @@ class admin extends Controller {
             $template = "templates/admin/platforms/platform-list.html";
             $platformsHtml = '';
             foreach ($platforms as $platform) {
-                $repl['id'] = $platform->id;
-                $repl['name'] = $platform->name;
-                $repl['short_name'] = $platform->short_name;
+                $repl = $platform->getDataArray();
+//                $repl['id'] = $platform->id;
+//                $repl['name'] = $platform->name;
+//                $repl['short_name'] = $platform->short_name;
                 $platformsHtml .= replace($repl, $template);
             }
             $data['list'] = $platformsHtml;
@@ -228,7 +231,7 @@ class admin extends Controller {
             $sagasHtml = '';
             foreach ($sagas as $saga) {
                 $repl = $saga->getDataArray();
-                //No quiero lios con el objeto VB
+                //I don't want a mess with VB, so unset
                 unset($repl['vote_balance']);
                 $sagasHtml .= replace($repl, $template);
             }
@@ -288,8 +291,9 @@ class admin extends Controller {
         $saga_option_html = '<option>--Select a Saga--</option>';
         $check_saga = $is_edit && $game->saga != null;
         foreach ($all_sagas as $saga) {
-            $temp_data['id'] = $saga->id;
-            $temp_data['name'] = $saga->name;
+            $temp_data = $saga->getDataArray();
+//            $temp_data['id'] = $saga->id;
+//            $temp_data['name'] = $saga->name;
             $temp_data['selected'] = '';
             //Set selected for edit
             if ($check_saga && $game->saga->id == $temp_data['id']) {
@@ -315,9 +319,10 @@ class admin extends Controller {
         $all_platforms = getPlatforms();
         $platform_checkboxes_html = '';
         foreach ($all_platforms as $platform) {
-            $temp_data['id'] = $platform->id;
-            $temp_data['name'] = $platform->name;
-            $temp_data['short_name'] = $platform->short_name;
+            $temp_data = $platform->getDataArray();
+//            $temp_data['id'] = $platform->id;
+//            $temp_data['name'] = $platform->name;
+//            $temp_data['short_name'] = $platform->short_name;
             $temp_data['checked'] = '';
             //Set checked for edit
             if ($is_edit && in_array($temp_data['id'], $platforms_of_the_game)) {

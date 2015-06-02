@@ -53,7 +53,7 @@ function getLimit($limit = array(20)) {
 function getGamesAlphabetical($regexp, $limit = 20, $offset = 0) {
     global $config;
     $limit = getLimit($limit, $offset);
-    $query = "select id, name, description, cover from {$config['t_games']} where name regexp '$regexp' order by name limit $limit;";
+    $query = "select id, name, description, cover from {$config['t_games']} where name regexp '$regexp' order by name limit $offset, $limit;";
     return getGames($query);
 }
 
@@ -66,7 +66,7 @@ function getGamesAlphabetical($regexp, $limit = 20, $offset = 0) {
 function getGamesAlphabetically($limit = 20, $offset = 0) {
     global $db, $config;
     $columns = ['id', 'name', 'description', 'cover'];
-    $where = ['ORDER' => 'name ASC', 'LIMIT' => $limit];
+    $where = ['ORDER' => 'name ASC', "LIMIT" => [$offset, $limit]];
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where);
     return $info;
@@ -87,7 +87,7 @@ function getGamesVoted($user_id, $limit = 20, $offset = 0) {
         "[><]{$config['t_games']}" => ['game' => 'id']
     ];
     $columns = ['id', 'name', 'description', 'cover', 'vote(user_vote)'];
-    $where = ['user_id' => $user_id, 'ORDER' => 'id', 'LIMIT' => $limit];
+    $where = ['user_id' => $user_id, 'ORDER' => 'id', "LIMIT" => [$offset, $limit]];
     $table = $config['t_user_votes'];
     $info = getGames($table, $columns, $where, $join);
     return $info;
@@ -130,7 +130,7 @@ function getGame($game_id) {
 function getAllGames($limit = 20, $offset = 0) {
     global $db, $config;
     $columns = ['id', 'name', 'description', 'cover'];
-    $where = ['ORDER' => 'id ASC', 'LIMIT' => $limit];
+    $where = ['ORDER' => 'id ASC', "LIMIT" => [$offset, $limit]];
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where);
     return $info;
@@ -145,7 +145,7 @@ function getAllGames($limit = 20, $offset = 0) {
 function getLatestGames($limit = 20, $offset = 0) {
     global $db, $config;
     $columns = ['id', 'name', 'description', 'cover'];
-    $where = ['ORDER' => 'id DESC', 'LIMIT' => $limit];
+    $where = ['ORDER' => 'id DESC', "LIMIT" => [$offset, $limit]];
     $table = $config['t_games'];
     $info = getGames($table, $columns, $where);
     return $info;
@@ -165,6 +165,7 @@ function getBestGames($limit = 20, $offset = 1) {
 //    $table = $config['t_games'];
 
     $resultados = $db->query("call getGamesOrderByPositive($offset, $limit)")->fetchAll();
+    $info=array();
     if ($resultados) {
         $info = fetchGames($resultados);
     }
@@ -181,7 +182,7 @@ function getBestGames($limit = 20, $offset = 1) {
  */
 function getMostVotedGames($limit = 20, $offset = 0) {
     global $db, $config;
-    $resultados = $db->query("SELECT id, name, description, cover, count(*) as votes from {$config['t_games']}, {$config['t_user_votes']} where id=user group by id order by count(*) desc limit $limit")->fetchAll();
+    $resultados = $db->query("SELECT id, name, description, cover, count(*) as votes from {$config['t_games']}, {$config['t_user_votes']} where id=user group by id order by count(*) desc limit $offset, $limit")->fetchAll();
     $error = $db->error();
     $info = [];
     if ($error[0] == '00000') {
@@ -208,7 +209,7 @@ function getMostVotedGames($limit = 20, $offset = 0) {
  */
 function getGamesByPlatform($platform, $limit = 20, $offset = 0) {
     global $config;
-    $limit = getLimit($limit, $offset);
+//    $limit = getLimit($limit, $offset);
     $platform = strtoupper($platform);
     $platforms = getPlatforms();
     $available_platforms = array();
@@ -216,7 +217,7 @@ function getGamesByPlatform($platform, $limit = 20, $offset = 0) {
         $available_platforms[] = $p['short_name'];
     }
     if (in_array($platform, $available_platforms)) {
-        $query = "select a.id, a.name, a.cover from {$config['t_games']} a, {$config['t_game_platform']} b, {$config['t_platforms']} c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $limit";
+        $query = "select a.id, a.name, a.cover from {$config['t_games']} a, {$config['t_game_platform']} b, {$config['t_platforms']} c  where a.id=b.game and b.platform = c.id and c.short_name = '$platform' limit $offset, $limit";
         return getGames($query);
     } else {
         return NULL;
@@ -458,7 +459,6 @@ function nickExists($user_nick) {
     $data['user_nick'] = $user_nick;
     $where = ['user_nick' => $user_nick];
     $exist = $db->has($config['t_users'], $where);
-    ;
     handleDbError();
     return $exist;
 }

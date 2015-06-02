@@ -19,6 +19,7 @@ $(document).ready(function () {
     var offset = 0;
     var type;
     $('.load-more').click(function () {
+        label++;
         var url = $(location).attr('href');
         url = url.split('/');
         if (url[5] === 'top') {
@@ -34,8 +35,6 @@ $(document).ready(function () {
         console.log(offset);
         var ruta = server_root + 'api/getMoreGames/' + type + '/' + offset;
         $.get(ruta, function (data) {
-//            var error = data.error;
-//            var message = data.message;
             var parent = $('#game-container');
             addGames(parent, data);
             vote();
@@ -43,9 +42,7 @@ $(document).ready(function () {
     });
 });
 function addGames(parent, data) {
-
     $.each(data, function (i, item) {
-        console.log(item);
         parent.append('<div class="game-small col-md-3 col-sm-4 col-xs-6 text-center">\n\
             ' + addCard(item) + addImg(item) + addPlatforms(item) + addVote(item));
     });
@@ -83,7 +80,6 @@ function addPlatforms(item) {
 function addVote(item) {
     var div_votes = "";
     var votes = new Array();
-    console.log(item);
     $.each(item.vote_balance, function (i, value) {
         votes[i] = value;
     });
@@ -95,9 +91,9 @@ function addVote(item) {
                     </div>\n\
                     <div class="hidden positive-votes">' + votes.positive_percentage + '</div>\n\
                     <div class="hidden total-votes">' + votes.total_votes + '</div>\n\
-                        <button type="button" class="btn btn-vote btn-info pull-left positive-vote {positive_vote_class}"><span class="glyphicon glyphicon-thumbs-up"></span></button>\n\
+                        <button type="button" class="btn btn-vote btn-vote'+label+' btn-info pull-left positive-vote {positive_vote_class}"><span class="glyphicon glyphicon-thumbs-up"></span></button>\n\
                         <span id="total-votes"><span class="total">' + votes.total_votes + '</span> votes</span>\n\
-                        <button type="button" class="btn btn-vote btn-danger pull-right negative-vote {negative_vote_class}"><span class="glyphicon glyphicon-thumbs-down"></span></button>\n\
+                        <button type="button" class="btn btn-vote btn-vote'+label+' btn-danger pull-right negative-vote {negative_vote_class}"><span class="glyphicon glyphicon-thumbs-down"></span></button>\n\
                     </div>\n\
                     <div class="hidden user-vote">' + (item.user_vote) + '</div>\n\
                     </div></div></div>'

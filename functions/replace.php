@@ -89,8 +89,8 @@ function replaceGame($gameArray, $is_main = false) {
                 $game->vote_balance->positive_vote_class = "";
                 $game->vote_balance->negative_vote_class = "";
             } else {
-                $game->vote_balance->positive_vote_class = ($game->my_vote == 1) ? "chosen" : "bg-gray2";
-                $game->vote_balance->negative_vote_class = ($game->my_vote == 0) ? "chosen" : "bg-gray2";
+                $game->vote_balance->positive_vote_class = ($game->my_vote == 1) ? "disabled" : "";
+                $game->vote_balance->negative_vote_class = ($game->my_vote == 0) ? "disabled" : "";
             }
 
             $gameVoteBalanceHtml = replace($game->vote_balance->getDataArray(), "templates/common/vote-balance.html");

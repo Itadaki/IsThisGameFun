@@ -15,9 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(vote());
+$(document).ready(function (){
+    label = 0;
+    vote();
+});
 function vote () {
-    $('.btn-vote').click(function () {
+    $('.btn-vote'+label).click(function () {
+        $('.btn-vote').attr('disabled', true);
         var button = $(this);
         console.log('OK');
         var disabled = button.siblings('button').attr('disabled');
@@ -31,8 +35,6 @@ function vote () {
         loadPanel(id_name);
         loadIcon(id_name);
         $.post(server_root + 'api/vote', {json: data_send}, function (data) {
-//            data = $.parseJSON(data);
-console.log(data);
             var error = data.error;
             var state;
             var msg = data.message;
@@ -41,20 +43,23 @@ console.log(data);
             } else {
                 if (user_vote === '1' && vote_value === true) {
                     state = "danger";
-                    msg = 'The game has already been voted postive by you'
+                    msg = 'The game has already been voted postive by you';
+                    $('.btn-vote').attr('disabled', false);
                 } else {
                     if (user_vote === '0' && vote_value === false) {
                         state = "danger";
-                        msg = 'The game has already been voted negative for you'
+                        msg = 'The game has already been voted negative for you';
+                        $('.btn-vote').attr('disabled', false);
                     } else {
                         state = "success";
+                        $('.btn-vote').attr('disabled', false);
                         button.attr('disabled', true);
                         button.siblings('button').attr('disabled', false);
                         loadProgressBar(button, vote_value, disabled, user_vote);
                         if (user_vote === '' || user_vote=== 'null') {
-                            button.siblings(".user-vote").html((vote_value)?'1':'0');
+                            parent.children(".user-vote").html((vote_value)?'1':'0');
                         } else {
-                           (user_vote === '0')? button.siblings(".user-vote").html('1'):button.siblings(".user-vote").html('0');
+                           (user_vote === '0')? parent.children(".user-vote").html('1'):parent.children(".user-vote").html('0');
                         }
                     }
                 }
@@ -67,7 +72,7 @@ console.log(data);
 }
 function loadPanel(field) {
     $('#' + field).append('<div class="load-vote"></div>');
-    $('.load-vote').css({position: 'absolute', top: '20px', height: '100%', width: '100%', opacity: '0.5', background: 'black'});
+    $('.load-vote').css({position: 'absolute', top: '0px', height: '104%', width: '100%', opacity: '0.5', background: 'black'});
 }
 function loadIcon(field) {
     $('#' + field).append('<img src="' + server_root + '/img/loading.gif" id=loading-icon>');
