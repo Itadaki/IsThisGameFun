@@ -267,7 +267,7 @@ fieldset[disabled] .btn-add.active {
   background-color: #01A7C2;
 }
 /*DIEGO*/
-.game a :hover{
+.game a:hover,.game-small span:hover{
     text-decoration: underline !important;
 }
 .card{
