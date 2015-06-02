@@ -127,7 +127,7 @@ function addVote(item, disabled_right, disabled_left) {
                     <div class="hidden positive-votes">' + votes.positive_votes + '</div>\n\
                     <div class="hidden total-votes">' + votes.total_votes + '</div>\n\
                         <button type="button" class="btn btn-vote btn-vote' + label + ' btn-info pull-left positive-vote '+disabled_left+'"><span class="glyphicon glyphicon-thumbs-up"></span></button>\n\
-                        <span id="total-votes"><span class="total">' + votes.total_votes + '</span> votes</span>\n\
+                        <span id="total-votes"><span class="total">' + votes.total_votes + ' votes</span></span>\n\
                         <button type="button" class="btn btn-vote btn-vote' + label + ' btn-danger pull-right negative-vote '+disabled_right+'"><span class="glyphicon glyphicon-thumbs-down"></span></button>\n\
                     </div>\n\
                     <div class="hidden user-vote">' + (item.my_vote) + '</div>\n\

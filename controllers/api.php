@@ -98,7 +98,7 @@ class api extends Controller {
             } else {
                 $quota= false;
             }
-            return $this->encodeResponse(false, "Request OK", ["full-quota"=>$quota, "games"=>$games]);
+            return $this->encodeResponse(false, "Request OK", ["full_quota"=>$quota, "games"=>$games]);
         }
         return $this->encodeResponse(true, "Not AJAX or not GET");
     }
