@@ -33,6 +33,7 @@ class games extends Controller {
         $mostHtml = replaceGame($most);
 
         $data['games'] = $mostHtml;
+        $data['title'] = "Top Voted Games";
 
         $template = "templates/games/index.html";
         $this->body = replace($data, $template);
@@ -45,6 +46,7 @@ class games extends Controller {
         $bestHtml = replaceGame($best);
 
         $data['games'] = $bestHtml;
+        $data['title'] = "New Games";
 
         $template = "templates/games/index.html";
         $this->body = replace($data, $template);
@@ -57,6 +59,7 @@ class games extends Controller {
         $allHtml = replaceGame($all);
 
         $data['games'] = $allHtml;
+        $data['title'] = "List of Games";
 
         $template = "templates/games/index.html";
         $this->body = replace($data, $template);

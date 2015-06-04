@@ -36,7 +36,7 @@ class login extends Controller {
         }
     }
 
-    private function displayLogInForm($camposErroneos = array(), $camposPendientes = array(), $messages = array()) {
+    public function displayLogInForm($camposErroneos = array(), $camposPendientes = array(), $messages = array()) {
         $data['messages'] = '';
         if ($messages) {
             foreach ($messages as $message) {
