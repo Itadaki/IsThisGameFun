@@ -100,8 +100,8 @@ class games extends Controller {
                     $data['positive_vote_class'] = "";
                     $data['negative_vote_class'] = "";
                 } else {
-                    $data['positive_vote_class'] = ($game->my_vote == 1) ? "chosen" : "bg-gray2";
-                    $data['negative_vote_class'] = ($game->my_vote == 0) ? "chosen" : "bg-gray2";
+                    $data['positive_vote_class'] = ($game->my_vote == 1) ? "disabled" : "";
+                    $data['negative_vote_class'] = ($game->my_vote == 0) ? "disabled" : "";
                 }
 
 //                dd($data);

@@ -39,13 +39,14 @@ function vote() {
             var msg = data.message;
             if (error) {
                 state = "danger";
+                $('.btn-vote').attr('disabled', false);
             } else {
-                if (user_vote === '1' && vote_value === true) {
+                if (user_vote === '1' && vote_value) {
                     state = "danger";
                     msg = 'The game has already been voted postive by you';
                     $('.btn-vote').attr('disabled', false);
                 } else {
-                    if (user_vote === '0' && vote_value === false) {
+                    if (user_vote === '0' && !vote_value) {
                         state = "danger";
                         msg = 'The game has already been voted negative for you';
                         $('.btn-vote').attr('disabled', false);
@@ -74,7 +75,7 @@ function loadPanel(field) {
     $('.load-vote').css({position: 'absolute', top: '0px', height: '104%', width: '100%', opacity: '0.5', background: 'black'});
 }
 function loadIcon(field) {
-    $('#' + field).append('<img src="' + server_root + '/img/loading.gif" id=loading-icon>');
+    $('#' + field).append('<img src="' + server_root + 'img/loading.gif" id=loading-icon>');
     $('#loading-icon').css({position: 'absolute', top: '50%', opacity: '1', left: '40%', height: '50px'});
 }
 function loadMessage(field, state, msg) {
@@ -84,9 +85,7 @@ function loadMessage(field, state, msg) {
 }
 function loadProgressBar(field, vote_value, user_vote) {
     var positives = field.siblings('.positive-votes').html();
-    console.log((positives));
     var total = field.siblings('.total-votes').html();
-    console.log((total));
     parseInt(positives);
     parseInt(total);
 

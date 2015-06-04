@@ -4,7 +4,10 @@
     </div>
     <h2 class="text-left">{name}</h2>
     <div class="span12">
-        <div class="col-md-3">
+        <div class="col-md-3 game-{id}">
+            <div class="hidden positive-votes">{positive_votes}</div>
+            <div class="hidden total-votes">{total_votes}</div>
+            <div class="hidden user-vote">{my_vote}</div>
             <label><strong>PLATFORMS</strong></label>
             <div>
                 {platforms_list}
@@ -14,17 +17,17 @@
                 <div class="progress-bar-info" role="progressbar" aria-valuenow="{positive_percentage}" aria-valuemin="0" aria-valuemax="100" style="width:{positive_percentage}%">{positive_percentage}%</div>
             </div>
             <label><strong>VOTES</strong></label>
-            <div>{total_votes}</div>
+            <div class="total-votes">{total_votes}</div>
             <label><strong>RANKING</strong></label>
             <div>top 100</div>
             <!--<label><strong>VOTE</strong></label>-->
             <div class="text-center voffset3">
                 <div class="hidden positive-votes">{positive_votes}</div>
                 <!--<button type="button" class="btn btn-vote btn-info btn-left">SI</button>-->
-                <button type="button" class="btn btn-vote btn-info pull-left {positive_vote_class}"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                <button type="button" class="btn btn-info pull-left profile-btn {positive_vote_class}"><span class="glyphicon glyphicon-thumbs-up"></span></button>
                 <!--<span class=""><span class="total-votes">{total_votes}</span> votes</span>-->
                 <!--<button type="button" class="btn btn-vote btn-danger btn-right">NO</button>--><label><strong>VOTE</strong></label>
-                <button type="button" class="btn btn-vote btn-danger pull-right {negative_vote_class}"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+                <button type="button" class="btn btn-danger pull-right profile-btn {negative_vote_class}"><span class="glyphicon glyphicon-thumbs-down"></span></button>
             </div>
         </div>
         <div class="col-md-4">

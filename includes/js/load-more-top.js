@@ -22,13 +22,14 @@ $(document).ready(function () {
         label++;
         var url = $(location).attr('href');
         url = url.split('/');
-        if (url[5] === 'top') {
+        var last_pos = url.length-1;
+        if (url[last_pos] === 'top') {
             type = 1;
         }
-        if (url[5] === 'newest') {
+        if (url[last_pos] === 'newest') {
             type = 2;
         }
-        if (url[5] === 'all') {
+        if (url[last_pos] === 'all') {
             type = 3;
         }
         offset = offset + 20;
@@ -39,8 +40,11 @@ $(document).ready(function () {
             var parent = $('#game-container');
             addGames(parent, data);
             vote();
+            extendSaga();
+            closeSaga();
             if(data.full_quota === false){
                 $('.load-more').addClass('disabled');
+                $('.load-more').text('No games left');
             }
         });
     });
@@ -58,7 +62,6 @@ function addGames(parent, data) {
         parent.append('<div class="game-small col-md-3 col-sm-4 col-xs-6 text-center">\n\
             ' + addCard(item) + addImg(item) + addPlatforms(item) + addVote(item, disabled_right, disabled_left));
     });
-
 }
 function addCard(item) {
     var div_card = '<div class="card">\n\
@@ -84,7 +87,6 @@ function addSaga(item) {
                         </div>';
     }
     return div_saga;
-
 }
 function addImg(item) {
     var saga ='';
@@ -103,11 +105,7 @@ function addImg(item) {
 function addPlatforms(item) {
     var span_platforms = "";
     $.each(item.platforms, function (i, value) {
-        if (Object.keys(item.platforms).length > 1) {
-            span_platforms += '<span class="label label-platform" title="' + value.name + '">' + value.short_name + '</span>\n';
-        } else {
-            span_platforms = '<span class="label label-platform" title="' + value.name + '">' + value.short_name + '</span>\n';
-        }
+            span_platforms += '<span class="label label-platform" title="' + value.name + '">' + value.short_name + '</span>\n';  
     });
     return span_platforms;
 }

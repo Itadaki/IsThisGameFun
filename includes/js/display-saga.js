@@ -23,10 +23,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 //When expand panel
-$('.saga-name').click(function () {
-    $(this).siblings('.saga').animate({height: '100%'}, 500);
+$(document).ready(function () {
+    extendSaga();
+    closeSaga();
 });
+function extendSaga () {
+    $('.saga-name').click( function (){
+        $(this).siblings('.saga').animate({height: '100%'}, 500);
+    });    
+}
 //When colapse panel
-$('.close-saga').click(function () {
+function closeSaga () {
+    $('.close-saga').click(function (){
     $(this).parent().animate({height: '0px'}, 500);
 });
+}
