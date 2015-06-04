@@ -112,12 +112,14 @@
                                 <div class="dropdown-menu" style="width: 200px;padding: 15px; padding-bottom: 0px;">
                                     <form id="form-login" method="post" action="{server_root}login" accept-charset="UTF-8">
                                         <div class="form-group">
+                                            <label for="user">Username</label>
                                             <div class="">
                                                 <input type="text" class="form-control" placeholder="Username" id="user" name="user" value="" />
                                                 <!--<p class="help-block">The name you will log in with.</p>-->
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="password">Password</label>
                                             <div class="">
                                                 <input class="form-control" type="password" placeholder="Password" id="password" name="password" />
                                                 <!--<p class="help-block">The name you will log in with.</p>-->
