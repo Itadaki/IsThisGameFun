@@ -17,43 +17,47 @@
 $(document).ready(function () {
     $('#nick').blur(function () {
         var field = $(this);
-        removeIcons(field);
-        var user_nick = $(this).val();
-        var ruta;
-        var data_send = JSON.stringify({user_nick: user_nick});
-        (user_nick === "") ? ruta = server_root + 'api/checkUserNick/' : ruta = server_root + 'api/checkUserNick/' + user_nick;
-        console.log(data_send);
-        addLoadingIcon(field);
-        $.get(ruta, function (data) {
+        var isValid = validateNick(field);
+        if (isValid) {
+            var user_nick = $(this).val();
+            var ruta;
+            var data_send = JSON.stringify({user_nick: user_nick});
+            (user_nick === "") ? ruta = server_root + 'api/checkUserNick/' : ruta = server_root + 'api/checkUserNick/' + user_nick;
+            console.log(data_send);
+            addLoadingIcon(field);
+            $.get(ruta, function (data) {
 //            data = $.parseJSON(data);
-            console.log(data);
-            var error = data.error;
-            var message = data.message;
-            var exists = data.exists;
-            var state;
-            (error) ? state = "remove" : ((exists) ? state = "remove" : state = "ok");
-            addNickResultIcon(field, state, message);
+                console.log(data);
+                var error = data.error;
+                var message = data.message;
+                var exists = data.exists;
+                var state;
+                (error) ? state = "remove" : ((exists) ? state = "remove" : state = "ok");
+                addNickResultIcon(field, state, message);
+            }
+            );
+            field.siblings('.help-block').removeClass('error');
+        } else {
+            field.siblings('.glyphicon').removeClass('glyphicon-ok');
+            field.siblings('.glyphicon').addClass('glyphicon-remove');
+            field.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
+            field.siblings('.help-block').addClass('error');
         }
-        );
+        nickIsValid = isValid;
     });
 });
 function addNickResultIcon(field, state, msg) {
     $('.loading-icon').remove();
-    field.siblings('i').attr("class", 'form-control-feedback glyphicon glyphicon-' + state);
-    field.siblings('i').attr("style", "display:block");
-    field.siblings('i').css({color: "#777777"});
-    field.parent().append('<small class="help-block msg">' + msg + '</small>');
-    field.siblings('small').css({color: 'white'});
+    field.siblings('.glyphicon').removeClass('glyphicon-ok');
+    field.siblings('.glyphicon').removeClass('glyphicon-remove');
+    field.siblings('.glyphicon').addClass('glyphicon-'+state);
+    field.siblings('.help-block').text(msg);
 }
 function addLoadingIcon(field) {
-    field.after('<img src="' + server_root + '/img/loading.gif" class="loading-icon">');
-    $('.loading-icon').css({position: 'absolute', top: '10px', left: '80%'});
+    field.after('<img src="' + server_root + 'img/loading.gif" class="loading-icon">');
+    $('.loading-icon').css({position: 'absolute', top: '10px', left: '100%'});
 }
-function removeIcons(field) {
-    field.siblings('i').attr("style", "display:none");
-    $('.loading-icon').remove();
-    $('.msg').remove();
-}
+
 //    var checkingState = false;
 //    var lastNickChecked = '';
 //    $('#nick').blur(function () {

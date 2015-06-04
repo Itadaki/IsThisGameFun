@@ -14,125 +14,146 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-$(document).ready(function() {
-// CAPCHA
-    function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+var userIsValid = false;
+var emailIsValid = false;
+var passIsValid = false;
+var pass2IsValid = false;
+var nickIsValid = false;
 
-    $('#form-signin').bootstrapValidator({
-//        live: 'disabled',
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            user: {
-                message: 'The username is not valid',
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 4,
-                        max: 30,
-                        message: 'The username must be more than 4 and less than 30 characters long'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'The username can only consist of alphabetical, number, dot and underscore'
-                    },
-                    different: {
-                        field: 'password,confirmPassword',
-                        message: 'The username and password cannot be the same as each other'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'The email address is required and cannot be empty'
-                    },
-                    emailAddress: {
-                        message: 'The input is not a valid email address'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'The password is required and cannot be empty'
-                    },
-                    identical: {
-                        field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
-                }
-            },
-            confirmPassword: {
-                validators: {
-                    notEmpty: {
-                        message: 'The confirm password is required and cannot be empty'
-                    },
-                    identical: {
-                        field: 'password',
-                        message: 'The password and its confirm are not the same'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
-                }
-            },
-            nick: {
-                message: ' ',
-                validators: {
-                    notEmpty: {
-                        message: 'The nick is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 4,
-                        max: 30,
-                        message: 'The nick must be more than 4 and less than 30 characters long'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'The nick can only consist of alphabetical, number, dot and underscore'
-                    }
-                }
-            }
-//            ,
-//            captcha: {
-//                validators: {
-//                    callback: {
-//                        message: 'Wrong answer',
-//                        callback: function(value, validator) {
-//                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-//                            return value == sum;
-//                        }
-//                    }
-//                }
-//            }
+$(document).ready(function () {
+
+
+    $('#user').blur(function () {
+        var user = $(this);
+        var isValid = validateUserName(user);
+        //poner colorines, iconos y mensajes
+        if (isValid) {
+            //poner tick
+            console.log('valid');
+            user.siblings('.glyphicon').removeClass('glyphicon-remove');
+            user.siblings('.glyphicon').addClass('glyphicon-ok');
+            user.siblings('.help-block').text("The name you will log in with.")
+            user.siblings('.help-block').removeClass('error');
+        } else {
+            console.log('no valid');
+            //poner x
+            user.siblings('.glyphicon').removeClass('glyphicon-ok');
+            user.siblings('.glyphicon').addClass('glyphicon-remove');
+            user.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
+            user.siblings('.help-block').addClass('error');
+            //sacar msg
         }
+        userIsValid = isValid;
+        console.log(userIsValid);
+    });
+    $('#email').blur(function () {
+        var email = $(this);
+        var isValid = validateEmail(email);
+        //poner colorines, iconos y mensajes
+        if (isValid) {
+            //poner tick
+            console.log('valid');
+            email.siblings('.glyphicon').removeClass('glyphicon-remove');
+            email.siblings('.glyphicon').addClass('glyphicon-ok');
+            email.siblings('.help-block').text("Your email for information purposes.")
+            email.siblings('.help-block').removeClass('error');
+        } else {
+            console.log('no valid');
+            //poner x
+            email.siblings('.glyphicon').removeClass('glyphicon-ok');
+            email.siblings('.glyphicon').addClass('glyphicon-remove');
+            email.siblings('.help-block').text("That's not a valid email!");
+            email.siblings('.help-block').addClass('error');
+            //sacar msg
+        }
+        emailIsValid = isValid;
+        console.log(emailIsValid);
     });
 
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#defaultForm').bootstrapValidator('validate');
+    $('#password').blur(function () {
+        var password = $(this);
+        var isValid = validatePass(password);
+        //poner colorines, iconos y mensajes
+        if (isValid) {
+            //poner tick
+            console.log('valid');
+            password.siblings('.glyphicon').removeClass('glyphicon-remove');
+            password.siblings('.glyphicon').addClass('glyphicon-ok');
+            password.siblings('.help-block').text("The password for the log in.")
+            password.siblings('.help-block').removeClass('error');
+        } else {
+            console.log('no valid');
+            //poner x
+            password.siblings('.glyphicon').removeClass('glyphicon-ok');
+            password.siblings('.glyphicon').addClass('glyphicon-remove');
+            password.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.");
+            password.siblings('.help-block').addClass('error');
+            //sacar msg
+        }
+        passIsValid = isValid;
+        console.log(passIsValid);
     });
 
-    $('#resetBtn').click(function() {
-        $('.msg').remove();
-        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    $('#confirmPassword').blur(function () {
+        var password = $(this);
+        var isValid = validatePass($('#password')) && password.val() === $('#password').val();
+        //poner colorines, iconos y mensajes
+        if (isValid) {
+            //poner tick
+            console.log('valid');
+            password.siblings('.glyphicon').removeClass('glyphicon-remove');
+            password.siblings('.glyphicon').addClass('glyphicon-ok');
+            password.siblings('.help-block').text("Repeat the password.")
+            password.siblings('.help-block').removeClass('error');
+        } else {
+            console.log('no valid');
+            //poner x
+            password.siblings('.glyphicon').removeClass('glyphicon-ok');
+            password.siblings('.glyphicon').addClass('glyphicon-remove');
+            password.siblings('.help-block').text("The password doesn't match!.");
+            password.siblings('.help-block').addClass('error');
+            //sacar msg
+        }
+        pass2IsValid = isValid;
+        console.log(pass2IsValid);
     });
-    $('small').css({font:'15px',color:'white'});
-//    $('label').css({font:'15px',color:'white'});
-    $('i').css({font:'15px',color:'#777777'});
+
+
+//    $('.input').blur(enableSubmit());
+    //VALIDAR EL NICK ESTA EN CHECK-NICK.JS
+    $('input').change(enableSubmit())
+    $('#form-signin').submit(function () {
+
+        return userIsValid && emailIsValid && passIsValid && pass2IsValid && nickIsValid;
+    });
 });
+
+function enableSubmit() {
+    console.log('check for submit')
+    if (userIsValid && emailIsValid && passIsValid && pass2IsValid && nickIsValid) {
+        $('#btn-submit').removeClass('disabled');
+        console.log('enabled')
+    } else {
+        $('#btn-submit').addClass('disabled');
+        console.log('disabled')
+    }
+}
+//Funciones de evaluacion
+function validateUserName(user) {
+    var regexp = /^[a-zA-ZÑñ0-9_-]{3,45}$/;
+    return regexp.test(user.val());
+}
+
+function validateEmail(email) {
+    var regexp = /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/;
+    return regexp.test(email.val());
+}
+
+function validatePass(pass) {
+    var regexp = /^[a-zA-ZÑñ0-9_-]{3,45}$/;
+    return regexp.test(pass.val());
+}
+function validateNick(nick) {
+    var regexp = /^[a-zA-ZÑñ0-9_-]{3,45}$/;
+    return regexp.test(nick.val());
+}

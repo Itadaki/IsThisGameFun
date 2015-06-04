@@ -29,6 +29,8 @@ function vote() {
         var id_name = parent.attr('id');
         var id = id_name.split('-')[1];
         var vote_value = button.hasClass('pull-left');
+        var msg_vote;
+        (vote_value)?msg_vote = 'up':msg_vote = 'down';
         var data_send = JSON.stringify({game_id: id, vote: vote_value});
         console.log(user_vote);
         loadPanel(id_name);
@@ -52,6 +54,7 @@ function vote() {
                         $('.btn-vote').attr('disabled', false);
                     } else {
                         state = "success";
+                        msg = 'Success in vote &nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-'+msg_vote+'"></span> ';
                         $('.btn-vote').attr('disabled', false);
                         button.addClass('disabled');
                         button.siblings('button').removeClass('disabled');

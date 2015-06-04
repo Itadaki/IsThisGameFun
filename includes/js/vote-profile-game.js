@@ -18,10 +18,12 @@ $(document).ready(voteProfileGame());
 function voteProfileGame() {
     $('.profile-btn').click(function () {
         var button = $(this);
+        var msg_vote;
         var parent = button.parent().parent();
         var game = parent.attr('class').split(" ")[1];
         var game_id = game.split('-')[1];
         var vote_value = button.hasClass('pull-left');
+        (vote_value)?msg_vote = 'up':msg_vote = 'down';
         var user_vote = $('.user-vote').html();
         var data_send = JSON.stringify({game_id: game_id, vote: vote_value});
         loadPanelProfile(parent);
@@ -43,6 +45,7 @@ function voteProfileGame() {
                         msg = 'The game has already been voted negative for you';
                     } else {
                         state = "success";
+                        msg = 'Success in vote &nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-'+msg_vote+'"></span> ';
                         button.addClass('disabled');
                         button.siblings('button').removeClass('disabled');
                         loadProgressBarProfile(vote_value, user_vote);
@@ -60,7 +63,7 @@ function loadPanelProfile(parent) {
     $('.load-vote').css({position: 'absolute', top: '0px', height: '100%', width: '90%', opacity: '0.5', background: 'black'});
 }
 function loadIconProfile(parent) {
-    $(parent).append('<img src="' + server_root + '/img/loading.gif" id=loading-icon>');
+    $(parent).append('<img src="' + server_root + 'img/loading.gif" id=loading-icon>');
     $('#loading-icon').css({position: 'absolute', top: '50%', opacity: '1', left: '40%', height: '50px'});
 }
 function loadMessageProfile(parent, state, msg) {
