@@ -49,8 +49,8 @@
                     } else {
                         ?>
                         <ul class="nav navbar-nav nav-pills navbar-right">
-                            <!--<li><a href="{server_root}signin"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-                            <li class="dropdown">
+                            <li><a href="{server_root}signin"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+<!--                            <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Sign In <strong class="caret"></strong></a>
                                 <div class="dropdown-menu" style="width: 400px;padding: 15px; padding-bottom: 0px;">
                                     <form id="form-signin" method="post" class="form-horizontal" action="{server_root}signin">
@@ -58,7 +58,7 @@
                                             <label class="col-lg-4 control-label">Username*</label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" id="user" name="user" value="" />
-                                                <!--<p class="help-block">The name you will log in with.</p>-->
+                                                <p class="help-block">The name you will log in with.</p>
                                             </div>
                                         </div>
 
@@ -66,7 +66,7 @@
                                             <label class="col-lg-4 control-label">Email address*</label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" name="email" value="" />
-                                                <!--<p class="help-block">Your email for information purposes.</p>-->
+                                                <p class="help-block">Your email for information purposes.</p>
                                             </div>
                                         </div>
 
@@ -74,7 +74,7 @@
                                             <label class="col-lg-4 control-label">Password*</label>
                                             <div class="col-lg-8">
                                                 <input type="password" class="form-control" name="password" />
-                                                <!--<p class="help-block">The password for the log in.</p>-->
+                                                <p class="help-block">The password for the log in.</p>
                                             </div>
                                         </div>
 
@@ -82,14 +82,14 @@
                                             <label class="col-lg-4 control-label">Retype password*</label>
                                             <div class="col-lg-8">
                                                 <input type="password" class="form-control" name="confirmPassword" />
-                                                <!--<p class="help-block">Repeat the password.</p>-->
+                                                <p class="help-block">Repeat the password.</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-4 control-label">Nick*</label>
                                             <div class="col-lg-8">
                                                 <input id="nick" type="text" class="form-control" name="nick" value="" />
-                                                <!--<p class="help-block">The public name that will be shown to everyone.</p>-->
+                                                <p class="help-block">The public name that will be shown to everyone.</p>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -105,7 +105,7 @@
 
                                     </form>
                                 </div>
-                            </li>
+                            </li>-->
                             <!--<li><a href="{server_root}login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Log In <strong class="caret"></strong></a>
@@ -114,14 +114,14 @@
                                         <div class="form-group">
                                             <label for="user">Username</label>
                                             <div class="">
-                                                <input type="text" class="form-control" placeholder="Username" id="user" name="user" value="" />
+                                                <input type="text" class="form-control" placeholder="Username" id="login-username" name="user" value="" />
                                                 <!--<p class="help-block">The name you will log in with.</p>-->
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <div class="">
-                                                <input class="form-control" type="password" placeholder="Password" id="password" name="password" />
+                                                <input class="form-control" type="password" placeholder="Password" id="login-password" name="password" />
                                                 <!--<p class="help-block">The name you will log in with.</p>-->
                                             </div>
                                         </div>

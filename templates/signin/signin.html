@@ -1,43 +1,48 @@
 <div class="container row voffset3">
     <div class="col-md-6 col-lg-offset-3">
         {messages}
-        <form id="form-signin" method="post" class="form-horizontal" action="{server_root}signin">
+        <form id="form-signin" method="post" class="form-horizontal has-feedback" action="{server_root}signin">
             <div class="form-group {validateUser}">
                 <label class="col-lg-3 control-label">Username*</label>
-                <div class="col-lg-9">
+                <div class="field-group col-lg-9">
                     <input type="text" class="form-control" id="user" name="user" value="{user}" />
-                    <!--<p class="help-block">The name you will log in with.</p>-->
+                    <span class="glyphicon form-control-feedback form-control-feedback-error" aria-hidden="true"></span>
+                    <p class="help-block">The name you will log in with.</p>
                 </div>
             </div>
 
             <div class="form-group {validateEmail}">
                 <label class="col-lg-3 control-label">Email address*</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" name="email" value="{email}" />
-                    <!--<p class="help-block">Your email for information purposes.</p>-->
+                    <input type="text" class="form-control" id ="email" name="email" value="{email}" />
+                    <span class="glyphicon form-control-feedback form-control-feedback-error" aria-hidden="true"></span>
+                    <p class="help-block">Your email for information purposes.</p>
                 </div>
             </div>
 
             <div class="form-group {validatePassword}">
                 <label class="col-lg-3 control-label">Password*</label>
                 <div class="col-lg-9">
-                    <input type="password" class="form-control" name="password" />
-                    <!--<p class="help-block">The password for the log in.</p>-->
+                    <input type="password" class="form-control" name="password" id="password" />
+                    <span class="glyphicon form-control-feedback form-control-feedback-error" aria-hidden="true"></span>
+                    <p class="help-block">The password for the log in.</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">Retype password*</label>
                 <div class="col-lg-9">
-                    <input type="password" class="form-control" name="confirmPassword" />
-                    <!--<p class="help-block">Repeat the password.</p>-->
+                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" />
+                    <span class="glyphicon form-control-feedback form-control-feedback-error" aria-hidden="true"></span>
+                    <p class="help-block">Repeat the password.</p>
                 </div>
             </div>
             <div class="form-group {validateNick}">
                 <label class="col-lg-3 control-label">Nick*</label>
                 <div class="col-lg-9">
                     <input id="nick" type="text" class="form-control" name="nick" value="{nick}" />
-                    <!--<p class="help-block">The public name that will be shown to everyone.</p>-->
+                    <span class="glyphicon form-control-feedback form-control-feedback-error" aria-hidden="true"></span>
+                    <p class="help-block">The public name that will be shown to everyone.</p>
                 </div>
             </div>
             <!--            <div class="form-group">
@@ -54,9 +59,26 @@
             <div class="form-group">
                 <div class="col-lg-9 col-lg-offset-3">
                     <button type="button" class="btn btn-info" id="resetBtn">Reset form</button>
-                    <button type="submit" class="btn btn-info" name="signup" value="Sign up">Sign up</button>
+                    <button type="submit" class="btn btn-info disabled" id="btn-submit" name="signup" value="Sign up">Sign up</button>
                 </div>
             </div>
 
         </form>
     </div></div>
+<style>
+    .form-control-feedback{
+        right:15px;
+    }
+    .form-control-feedback-error.glyphicon-remove{
+        color: #d9534f;
+    }
+    .form-control-feedback-error.glyphicon-ok{
+        color: #01A7C2;
+    }
+    .help-block.error{
+        font-size: 14px;
+        background-color: #d9534f;
+        font-weight: bold;
+        padding: 5px;
+    }
+</style>
