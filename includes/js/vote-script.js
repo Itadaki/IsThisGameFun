@@ -21,7 +21,6 @@ $(document).ready(function () {
 });
 function vote() {
     $('.btn-vote' + label).click(function () {
-        $('.btn-vote').attr('disabled', true);
         var button = $(this);
         console.log('OK');
         var parent = button.parents('.game');
@@ -46,16 +45,14 @@ function vote() {
                 if (user_vote === '1' && vote_value) {
                     state = "danger";
                     msg = 'The game has already been voted postive by you';
-                    $('.btn-vote').attr('disabled', false);
                 } else {
                     if (user_vote === '0' && !vote_value) {
                         state = "danger";
                         msg = 'The game has already been voted negative for you';
-                        $('.btn-vote').attr('disabled', false);
+
                     } else {
                         state = "success";
                         msg = 'Success in vote &nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-'+msg_vote+'"></span> ';
-                        $('.btn-vote').attr('disabled', false);
                         button.addClass('disabled');
                         button.siblings('button').removeClass('disabled');
                         loadProgressBar(button, vote_value, user_vote);
@@ -68,8 +65,8 @@ function vote() {
                 }
             }
             loadMessage(id_name, state, msg);
-            $('.load-vote').delay(1000).fadeOut();
-            $('.alert').delay(1000).fadeOut();
+            $('#' + id_name).children('.load-vote').delay(1000).fadeOut();
+            $('#' + id_name).children('.alert').delay(1000).fadeOut();
         });
     });
 }
@@ -78,11 +75,11 @@ function loadPanel(field) {
     $('.load-vote').css({position: 'absolute', top: '0px', height: '104%', width: '100%', opacity: '0.5', background: 'black'});
 }
 function loadIcon(field) {
-    $('#' + field).append('<img src="' + server_root + 'img/loading.gif" id=loading-icon>');
-    $('#loading-icon').css({position: 'absolute', top: '50%', opacity: '1', left: '40%', height: '50px'});
+    $('#' + field).append('<img src="' + server_root + 'img/loading.gif" class=loading-icon-vote>');
+    $('.loading-icon-vote').css({position: 'absolute', top: '50%', opacity: '1', left: '40%', height: '50px'});
 }
 function loadMessage(field, state, msg) {
-    $('#loading-icon').remove();
+    $('#' + field).children('.loading-icon-vote').remove();
     $('#' + field).append('<div class="alert alert-' + state + '" >' + msg + '</div>');
     $('.alert').css({position: 'absolute', top: '50%', opacity: '1', width: '100%'});
 }
