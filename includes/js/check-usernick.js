@@ -19,6 +19,7 @@ $(document).ready(function () {
         var field = $(this);
         var isValid = validateNick(field);
         if (isValid) {
+            nickIsValid = isValid;
             var user_nick = $(this).val();
             var ruta;
             var data_send = JSON.stringify({user_nick: user_nick});
@@ -31,6 +32,7 @@ $(document).ready(function () {
                 var error = data.error;
                 var message = data.message;
                 var exists = data.exists;
+                nickIsValid = !exists;
                 var state;
                 (error) ? state = "remove" : ((exists) ? state = "remove" : state = "ok");
                 addNickResultIcon(field, state, message);
@@ -42,8 +44,9 @@ $(document).ready(function () {
             field.siblings('.glyphicon').addClass('glyphicon-remove');
             field.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
             field.siblings('.help-block').addClass('error');
+            nickIsValid = isValid;
         }
-        nickIsValid = isValid;
+        enableSubmit();
     });
 });
 function addNickResultIcon(field, state, msg) {

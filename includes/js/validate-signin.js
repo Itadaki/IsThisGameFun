@@ -45,6 +45,7 @@ $(document).ready(function () {
         }
         userIsValid = isValid;
         console.log(userIsValid);
+        enableSubmit();
     });
     $('#email').blur(function () {
         var email = $(this);
@@ -68,6 +69,7 @@ $(document).ready(function () {
         }
         emailIsValid = isValid;
         console.log(emailIsValid);
+        enableSubmit();
     });
 
     $('#password').blur(function () {
@@ -92,6 +94,7 @@ $(document).ready(function () {
         }
         passIsValid = isValid;
         console.log(passIsValid);
+        enableSubmit();
     });
 
     $('#confirmPassword').blur(function () {
@@ -116,12 +119,12 @@ $(document).ready(function () {
         }
         pass2IsValid = isValid;
         console.log(pass2IsValid);
+        enableSubmit();
     });
 
 
 //    $('.input').blur(enableSubmit());
     //VALIDAR EL NICK ESTA EN CHECK-NICK.JS
-    $('input').change(enableSubmit())
     $('#form-signin').submit(function () {
 
         return userIsValid && emailIsValid && passIsValid && pass2IsValid && nickIsValid;
