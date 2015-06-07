@@ -38,7 +38,7 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
     //Insert into games table
     $game_id = $db->insert($config['t_games'], $insert);
     $error = $db->error();
-    if ($error[0]) {
+    if ($error[0] != "0000" || $error[1] != null) {
         return "An $error[1] error ocurred!";
     }
 
