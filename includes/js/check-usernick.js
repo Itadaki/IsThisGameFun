@@ -19,7 +19,7 @@ $(document).ready(function () {
         var field = $(this);
         var isValid = validateNick(field);
         if (isValid) {
-            nickIsValid = isValid;
+            nickIsValid = false;
             var user_nick = $(this).val();
             var ruta;
             var data_send = JSON.stringify({user_nick: user_nick});
@@ -36,6 +36,7 @@ $(document).ready(function () {
                 var state;
                 (error) ? state = "remove" : ((exists) ? state = "remove" : state = "ok");
                 addNickResultIcon(field, state, message);
+                enableSubmit();
             }
             );
             field.siblings('.help-block').removeClass('error');
@@ -44,7 +45,7 @@ $(document).ready(function () {
             field.siblings('.glyphicon').addClass('glyphicon-remove');
             field.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
             field.siblings('.help-block').addClass('error');
-            nickIsValid = isValid;
+            nickIsValid = false;
         }
         enableSubmit();
     });
@@ -55,6 +56,9 @@ function addNickResultIcon(field, state, msg) {
     field.siblings('.glyphicon').removeClass('glyphicon-remove');
     field.siblings('.glyphicon').addClass('glyphicon-'+state);
     field.siblings('.help-block').text(msg);
+    if (state === "remove"){
+        field.siblings('.help-block').addClass('error');
+    }
 }
 function addLoadingIcon(field) {
     field.after('<img src="' + server_root + 'img/loading.gif" class="loading-icon">');
