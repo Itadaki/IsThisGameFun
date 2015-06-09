@@ -67,27 +67,27 @@ body{
 }
 /** COLORES FUN **/
 .bg-azul{
-    background-color: #01A7C2;
+    background-color: #01A7C2 !important;
 }
 .cl-blue{
     color: #01A7C2 !important;
 }
 
 .bg-rojo{
-    background-color: #cf303d;
+    background-color: #cf303d !important;
 }
 .cl-red{
-    color: #d9534f;
+    color: #d9534f !important;
 }
 .bg-gray1{
-    color: #ebebeb;
-    background-color: #333;
+    color: #ebebeb !important;
+    background-color: #333 !important;
 }
 .bg-gray2{
-    background-color: #535353;
+    background-color: #535353 !important;
 }
 .bg-gray3{
-    background-color: #777777;
+    background-color: #777777 !important;
 }
 /** GAMES **/
 .game-small{
@@ -175,7 +175,7 @@ footer>a{
 }
 a:hover,
 a:focus {
-    color: #d9534f;
+    color: #ebebeb;
     text-decoration: underline;
 }
 .no-under{
@@ -258,7 +258,8 @@ fieldset[disabled] .btn-add.active {
 .btn-primary:active,
 .btn-primary.active,
 .open>.dropdown-toggle.btn-primary {
-  background-color: #ebebeb;
+  background-color: #31b0d5;
+  color: #ebebeb;
 }
 .saga-name:hover{
     text-decoration: underline;
@@ -356,7 +357,7 @@ fieldset[disabled] .btn-add.active {
     /*color: #ffffff;*/
     color:#ebebeb;
     /*background-color: #535353;*/
-    background-color: #535353;
+    background-color: #333;
     /*border-color: rgba(0, 0, 0, 0);*/
 }
 .btn-default.disabled,
@@ -379,4 +380,16 @@ fieldset[disabled] .btn-default:active,
 fieldset[disabled] .btn-default.active {
     background-color: #535353;
     border-color: transparent;
+}
+span.brand:before{
+    content:'ITG';
+    color: #01A7C2;
+}
+span.brand:after{
+    content:'F?';
+    color: #d9534f;
+}
+.has-error label{
+    color: #ebebeb;
+    background-color: #d9534f;
 }
