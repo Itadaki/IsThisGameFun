@@ -393,3 +393,12 @@ span.brand:after{
     color: #ebebeb;
     background-color: #d9534f;
 }
+.breadcrumb{
+    background-color: transparent;
+}
+.breadcrumb>.active{
+    font-weight: bold;
+}
+.dropdown-menu>li>a:hover{
+    background-color: #535353;
+}
