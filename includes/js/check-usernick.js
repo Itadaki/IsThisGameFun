@@ -61,8 +61,10 @@ function addNickResultIcon(field, state, msg) {
     }
 }
 function addLoadingIcon(field) {
+    field.siblings('.glyphicon').removeClass('glyphicon-ok');
+    field.siblings('.glyphicon').removeClass('glyphicon-remove');
     field.after('<img src="' + server_root + 'img/loading.gif" class="loading-icon">');
-    $('.loading-icon').css({position: 'absolute', top: '10px', left: '100%'});
+    $('.loading-icon').css({position: 'absolute', top: '10px', left: '98%'});
 }
 
 //    var checkingState = false;
