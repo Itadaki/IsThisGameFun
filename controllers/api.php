@@ -25,7 +25,8 @@
 class api extends Controller {
 
     public function index() {
-        header('HTTP/1.0 403 Forbidden');
+//        header('HTTP/1.0 403 Forbidden');
+        (new Forbidden())->send();
     }
 
     public function vote() {
@@ -56,8 +57,9 @@ class api extends Controller {
             $message = "User not logged in!";
             return $this->encodeResponse($error, $message);
         } else {
-            header('HTTP/1.0 403 Forbidden');
-            die;
+            (new Forbidden())->send();
+//            header('HTTP/1.0 403 Forbidden');
+//            die;
         }
     }
 

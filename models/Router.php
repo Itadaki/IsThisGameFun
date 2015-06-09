@@ -44,10 +44,10 @@ class Router {
                 //Invoke the method
                 return $c->{$this->action}($this->args);
             } else {
-                return null;
+            (new NotFound())->send();
             }
         } else {
-            return null;
+            (new NotFound())->send();
         }
     }
 
