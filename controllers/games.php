@@ -35,7 +35,7 @@ class games extends Controller {
         $data['games'] = $mostHtml;
         $data['title'] = "Top Voted Games";
 
-        $template = "templates/games/index.html";
+        $template = "templates/games/common.html";
         $this->body = replace($data, $template);
 
         return $this->build();
@@ -48,7 +48,7 @@ class games extends Controller {
         $data['games'] = $bestHtml;
         $data['title'] = "New Games";
 
-        $template = "templates/games/index.html";
+        $template = "templates/games/common.html";
         $this->body = replace($data, $template);
 
         return $this->build();
@@ -61,7 +61,7 @@ class games extends Controller {
         $data['games'] = $allHtml;
         $data['title'] = "List of Games";
 
-        $template = "templates/games/index.html";
+        $template = "templates/games/all.html";
         $this->body = replace($data, $template);
 
         return $this->build();

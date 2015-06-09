@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 /**
  * Insert a new game into games table on db
  * @param string $name Name of the game
@@ -38,13 +37,13 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
     //Insert into games table
     $game_id = $db->insert($config['t_games'], $insert);
     $error = $db->error();
-    if ($error[0] != "0000" || $error[1] != null) {
-        return "An $error[1] error ocurred!";
+    if (handleError()) {
+        return handleError();
     }
 
     //Define platforms
     redefinePlatformsRelationships($game_id, $platform_ids, true);
-
+    return handleError();
 
     //Define saga
     redefineSagasRelationships($game_id, $saga_id, true);
@@ -78,7 +77,9 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
 
     //Redefine platforms
     redefinePlatformsRelationships($game_id, $platform_ids);
-
+    if (handleError()) {
+        return handleError();
+    }
     //Redefine saga
     redefineSagasRelationships($game_id, $saga_id);
 
@@ -102,13 +103,15 @@ function redefinePlatformsRelationships($game_id, $platform_ids, $is_new = false
         $debug_error = $db->error();
     }
 
-    //Generate data array for the insert
-    $insert_platform = [];
-    foreach ($platform_ids as $platform) {
-        $insert_platform[] = ['game' => $game_id, 'platform' => $platform];
+    if (!empty($platform_ids)) {
+        //Generate data array for the insert
+        $insert_platform = [];
+        foreach ($platform_ids as $platform) {
+            $insert_platform[] = ['game' => $game_id, 'platform' => $platform];
+        }
+        $db->insert($config['t_game_platform'], $insert_platform);
+        $debug_error = $db->error();
     }
-    $db->insert($config['t_game_platform'], $insert_platform);
-    $debug_error = $db->error();
 }
 
 /**
@@ -127,10 +130,11 @@ function redefineSagasRelationships($game_id, $saga_id, $is_new = false) {
         $debug_error = $db->error();
     }
     //Insert the game-saga relationship
-    if ($saga_id != null) {
+    if ($saga_id != null && !empty($saga_id)) {
         $db->insert($config['t_game_saga'], ["game" => $game_id, "saga" => $saga_id]);
     }
     $debug_error = $db->error();
+    handleDbError();
 }
 
 /**

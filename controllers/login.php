@@ -85,10 +85,14 @@ class login extends Controller {
             /* @var $db Medoo */
             global $db, $config;
             $colummns = ['user_id', 'user_nick', 'user_level'];
-            $where = ["AND" => ['user_name' => $_POST['user'], 'user_pass' => $_POST['password']]];
+            $where = ["AND" => ['user_name' => $_POST['user'], 'user_pass' => crypt($_POST['password'],$config['salt'])]];
             $user = $db->select($config['t_users'], $colummns, $where);
             handleDbError();
             if (count($user) != 0) {
+                if ($user[0]["user_level"] == "banned"){
+                    $messages[] = (new Message('danger', 'Error', "Your account is banned."))->getMessage();
+                    return $this->displayLoginForm(false, false, $messages);
+                }
                 $_SESSION['user_id'] = $user[0]["user_id"];
                 $_SESSION['user_nick'] = $user[0]['user_nick'];
                 $_SESSION['user_level'] = $user[0]['user_level'];

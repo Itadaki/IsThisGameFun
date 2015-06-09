@@ -107,12 +107,8 @@ class user extends Controller {
 
             //Edit user
             updateUser($id, $avatar);
-            $error = [
-                "level" => "success",
-                "title" => "Done",
-                "msg" => "Avatar updated!"
-            ];
-            return $this->profile(array($_SESSION['user_nick']), $error);
+            $message = array((new Message('success', 'Done', 'Avatar updated!'))->getMessage());
+            return $this->profile(array($_SESSION['user_nick']), $message);
         }
         header("Location: " . $returnURL);
     }

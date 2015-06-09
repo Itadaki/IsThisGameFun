@@ -121,7 +121,7 @@ class signin extends Controller {
             global $db;
             $data = [
                 "user_name" => $_POST['user'],
-                "user_pass" => $_POST['password'],
+                "user_pass" => crypt($_POST['password'],$config['salt']),
                 "user_nick" => $_POST['nick'],
                 "user_email" => $_POST['email']
             ];

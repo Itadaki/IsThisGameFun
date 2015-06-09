@@ -27,8 +27,10 @@ function handleError() {
     global $db;
     //Handle error
     $error = $db->error();
-    if ($error[0] != 0000) {
-        return "An $error[1] error ocurred!";
+    $db->query("select now()")->fetchAll();
+    $derror = $db->error();
+    if ($error[0] != 0000 || $error[1] != null) {
+        return "An $error[1] error ocurred: $error[2]";
     }
     return false;
 }
@@ -41,7 +43,7 @@ function handleDbError(){
     global $db;
     //Handle error
     $error = $db->error();
-    if ($error[0] != 0000) {
+    if ($error[0] != 0000 || $error[1] != null) {
         (new Error($error[1],"An error ocurred! - $error[2]"))->displayError();
     }
 }
@@ -82,4 +84,13 @@ function isAdmin() {
         return true;
     }
     return false;
+}
+
+/**
+ * Delete all uncommon characters
+ * @param string $string
+ * @return string The sanitized string
+ */
+function cleanString($string) {
+    return preg_replace('/[^A-Za-z0-9 _@.-]/', '', $string); // Removes special chars.
 }

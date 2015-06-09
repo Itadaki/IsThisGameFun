@@ -32,8 +32,9 @@ class admin extends Controller {
         parent::__construct();
         if (!$this->isAdmin()) {
 //            header("Location: {$config['server_root']}main");
-            header('HTTP/1.0 403 Forbidden');
-            die;
+//            header('HTTP/1.0 403 Forbidden');
+//            die;
+            (new Forbidden())->send();
         }
     }
 
@@ -288,7 +289,7 @@ class admin extends Controller {
         //Data for the saga
         $all_sagas = getSaga();
         //Generate all HTML for each option
-        $saga_option_html = '<option>--Select a Saga--</option>';
+        $saga_option_html = '';
         $check_saga = $is_edit && $game->saga != null;
         foreach ($all_sagas as $saga) {
             $temp_data = $saga->getDataArray();
@@ -346,9 +347,13 @@ class admin extends Controller {
 
     private function saveGame() {
         $action = $_POST['action'];
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $platforms = $_POST['platforms']; //array
+        $name = cleanString($_POST['name']);
+        $description = cleanString($_POST['description']);
+        if (isset($_POST['platforms'])) {
+            $platforms = $_POST['platforms']; //array
+        } else {
+            $platforms = [];
+        }
         $saga = $_POST['saga']; //id
 
         $cover = proccessUploadedImage($name); //name or null
@@ -361,6 +366,7 @@ class admin extends Controller {
         }
         if ($error) {
             $messages[] = (new Message('danger', 'Error', $error))->getMessage();
+            unset($_POST['action']);
             return $this->games([], $messages);
         }
         $messages[] = (new Message('success', 'Success', " on '$action game $name'."))->getMessage();
@@ -425,8 +431,8 @@ class admin extends Controller {
         global $db, $config;
 
         $insert = [
-            "user_nick" => $_POST['nick'],
-            "user_email" => $_POST['email'],
+            "user_nick" => cleanString($_POST['nick']),
+            "user_email" => cleanString($_POST['email']),
             "user_level" => $_POST['level']
         ];
         //Update user games table
@@ -436,7 +442,7 @@ class admin extends Controller {
             $messages[] = (new Message('danger', 'Error', $error))->getMessage();
             return $this->users([], $messages);
         }
-        $messages[] = (new Message('success', 'Success', " on 'Edit user {$_POST['nick']}'."))->getMessage();
+        $messages[] = (new Message('success', 'Success', " on 'Edit user ".cleanString($_POST['nick'])."'."))->getMessage();
         return $this->users(array(), $messages);
     }
 
@@ -492,8 +498,8 @@ class admin extends Controller {
         global $db, $config;
         $action = $_POST['action'];
 
-        $name = $_POST['name'];
-        $shortName = $_POST['shortname'];
+        $name = cleanString($_POST['name']);
+        $shortName = cleanString($_POST['shortname']);
 
         if ($action == "Create") {
             $error = insertPlatform($name, $shortName);
@@ -568,8 +574,8 @@ class admin extends Controller {
         global $db, $config;
         $action = $_POST['action'];
 
-        $name = $_POST['name'];
-        $description = $_POST['description'];
+        $name = cleanString($_POST['name']);
+        $description = cleanString($_POST['description']);
 
         $logo = proccessUploadedImage($name, 'logo', 'logos/'); //name or null
 
