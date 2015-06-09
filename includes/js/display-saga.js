@@ -23,18 +23,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 //When expand panel
-$(document).ready(function () {
+$(document).ready(function() {
     extendSaga();
     closeSaga();
 });
-function extendSaga () {
-    $('.saga-name').click( function (){
-        $(this).siblings('.saga').animate({height: '100%'}, 500);
-    });    
-}
-//When colapse panel
-function closeSaga () {
-    $('.close-saga').click(function (){
-    $(this).parent().animate({height: '0px'}, 500);
-});
+open = true;
+function extendSaga() {
+    $('.saga-name').click(function() {
+        if (open) {
+            $(this).siblings('.saga').animate({height: '100%'}, 500);
+            $(this).find('.caret').parent().addClass('dropup');
+            open = false;
+        } else {
+            $(this).siblings('.saga').animate({height: '0px'}, 500);
+            $(this).find('.caret').parent().removeClass('dropup');
+            open = true;
+        }
+    });
 }

@@ -74,7 +74,7 @@ $(document).ready(function () {
 
     $('#password').blur(function () {
         var password = $(this);
-        var isValid = validatePass(password);
+        var isValid = validatePass(password) && isTheSamePass(password);
         //poner colorines, iconos y mensajes
         if (isValid) {
             //poner tick
@@ -88,7 +88,7 @@ $(document).ready(function () {
             //poner x
             password.siblings('.glyphicon').removeClass('glyphicon-ok');
             password.siblings('.glyphicon').addClass('glyphicon-remove');
-            password.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.");
+            (validatePass(password))?password.siblings('.help-block').text("The password doesn't match!."):password.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.");
             password.siblings('.help-block').addClass('error');
             //sacar msg
         }
@@ -104,6 +104,10 @@ $(document).ready(function () {
         if (isValid) {
             //poner tick
             console.log('valid');
+            $('#password').siblings('.glyphicon').removeClass('glyphicon-remove');
+            $('#password').siblings('.glyphicon').addClass('glyphicon-ok');
+            $('#password').siblings('.help-block').text("The password for the log in.")
+            $('#password').siblings('.help-block').removeClass('error');
             password.siblings('.glyphicon').removeClass('glyphicon-remove');
             password.siblings('.glyphicon').addClass('glyphicon-ok');
             password.siblings('.help-block').text("Repeat the password.")
@@ -159,4 +163,15 @@ function validatePass(pass) {
 function validateNick(nick) {
     var regexp = /^[a-zA-ZÑñ0-9_-]{3,45}$/;
     return regexp.test(nick.val());
+}
+function isTheSamePass(pass){
+    var confirm = true;
+    if ($('#confirmPassword').val()!== ''){
+        if (pass.val() === $('#confirmPassword').val()){
+            confirm = true;
+        } else {
+            confirm = false;
+        }
+    }
+    return confirm;
 }

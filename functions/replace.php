@@ -76,7 +76,7 @@ function replaceGame($gameArray, $is_main = false) {
 
             $template = "templates/common/saga.html";
             $sagaHtml = replace($sagaData, $template);
-            $sagaCaretHtml = 'Saga <span class="caret">';
+            $sagaCaretHtml = 'Saga <span><span class="caret"></span>';
         } else {
             $sagaHtml = '';
             $sagaCaretHtml = '';
