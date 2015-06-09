@@ -25,19 +25,19 @@
 //When expand panel
 $(document).ready(function() {
     extendSaga();
-    closeSaga();
 });
-open = true;
 function extendSaga() {
+    
     $('.saga-name').click(function() {
-        if (open) {
+        var open = $(this).find('.caret').parent().hasClass('dropup');
+        if (!open) {
             $(this).siblings('.saga').animate({height: '100%'}, 500);
             $(this).find('.caret').parent().addClass('dropup');
-            open = false;
+            open = $(this).find('.caret').parent().hasClass('dropup');
         } else {
             $(this).siblings('.saga').animate({height: '0px'}, 500);
             $(this).find('.caret').parent().removeClass('dropup');
-            open = true;
+            open = $(this).find('.caret').parent().hasClass('dropup');
         }
     });
 }
