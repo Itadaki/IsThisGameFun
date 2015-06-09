@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2015 a las 21:56:06
+-- Tiempo de generación: 09-06-2015 a las 18:27:11
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -76,11 +76,11 @@ CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   `description` longtext NOT NULL,
-  `cover` varchar(150) NOT NULL DEFAULT 'default.png',
+  `cover` varchar(154) NOT NULL DEFAULT 'default.png',
   `release_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=112 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=128 ;
 
 --
 -- Volcado de datos para la tabla `games`
@@ -195,7 +195,8 @@ INSERT IGNORE INTO `games` (`id`, `name`, `description`, `cover`, `release_date`
 (106, 'Killzone 3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu nunc mauris. Pellentesque faucibus pretium magna, ultricies fermentum mauris ullamcorper nec. Etiam id eleifend dui. Suspendisse viverra lacinia massa. Nullam vestibulum quam mauris, ut scelerisque est scelerisque eget. Nulla sagittis, orci in feugiat varius, nisi tellus fermentum nisl, sed laoreet leo tellus vel erat. Proin elementum eget metus sit amet accumsan. Maecenas laoreet hendrerit pellentesque. Suspendisse potenti.\r\n\r\nVivamus consequat venenatis lorem, in tristique velit tempor in. Donec volutpat auctor viverra. Maecenas at iaculis tortor, eu sodales sapien. Phasellus at nunc quis lorem condimentum vulputate quis ut metus. Mauris sed imperdiet nisi, a vulputate tellus. Donec justo nunc, lacinia molestie mauris id, porttitor viverra ligula. Vestibulum eu dolor dui. Ut et blandit nulla, eget pharetra mauris. Donec in nisi eget quam accumsan rutrum. Morbi efficitur, enim vel convallis aliquet, felis sapien finibus arcu, et eleifend erat dui ut dui. Nunc eget justo porta, pulvinar lacus ac, feugiat nisi. Curabitur dui libero, mattis ut mattis id, malesuada et magna. Donec ultrices ornare ante, vitae luctus arcu egestas ut.', 'Killzone-3.png', NULL),
 (107, 'Paper Mario', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu nunc mauris. Pellentesque faucibus pretium magna, ultricies fermentum mauris ullamcorper nec. Etiam id eleifend dui. Suspendisse viverra lacinia massa. Nullam vestibulum quam mauris, ut scelerisque est scelerisque eget. Nulla sagittis, orci in feugiat varius, nisi tellus fermentum nisl, sed laoreet leo tellus vel erat. Proin elementum eget metus sit amet accumsan. Maecenas laoreet hendrerit pellentesque. Suspendisse potenti.\r\n\r\nVivamus consequat venenatis lorem, in tristique velit tempor in. Donec volutpat auctor viverra. Maecenas at iaculis tortor, eu sodales sapien. Phasellus at nunc quis lorem condimentum vulputate quis ut metus. Mauris sed imperdiet nisi, a vulputate tellus. Donec justo nunc, lacinia molestie mauris id, porttitor viverra ligula. Vestibulum eu dolor dui. Ut et blandit nulla, eget pharetra mauris. Donec in nisi eget quam accumsan rutrum. Morbi efficitur, enim vel convallis aliquet, felis sapien finibus arcu, et eleifend erat dui ut dui. Nunc eget justo porta, pulvinar lacus ac, feugiat nisi. Curabitur dui libero, mattis ut mattis id, malesuada et magna. Donec ultrices ornare ante, vitae luctus arcu egestas ut.', 'Paper-Mario.png', NULL),
 (108, 'Shantae: Risky''s Revenge', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu nunc mauris. Pellentesque faucibus pretium magna, ultricies fermentum mauris ullamcorper nec. Etiam id eleifend dui. Suspendisse viverra lacinia massa. Nullam vestibulum quam mauris, ut scelerisque est scelerisque eget. Nulla sagittis, orci in feugiat varius, nisi tellus fermentum nisl, sed laoreet leo tellus vel erat. Proin elementum eget metus sit amet accumsan. Maecenas laoreet hendrerit pellentesque. Suspendisse potenti.\r\n\r\nVivamus consequat venenatis lorem, in tristique velit tempor in. Donec volutpat auctor viverra. Maecenas at iaculis tortor, eu sodales sapien. Phasellus at nunc quis lorem condimentum vulputate quis ut metus. Mauris sed imperdiet nisi, a vulputate tellus. Donec justo nunc, lacinia molestie mauris id, porttitor viverra ligula. Vestibulum eu dolor dui. Ut et blandit nulla, eget pharetra mauris. Donec in nisi eget quam accumsan rutrum. Morbi efficitur, enim vel convallis aliquet, felis sapien finibus arcu, et eleifend erat dui ut dui. Nunc eget justo porta, pulvinar lacus ac, feugiat nisi. Curabitur dui libero, mattis ut mattis id, malesuada et magna. Donec ultrices ornare ante, vitae luctus arcu egestas ut.', 'Shantae-Risky-s-Revenge.png', NULL),
-(109, 'Shantae and the Pirate''s Curse', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu nunc mauris. Pellentesque faucibus pretium magna, ultricies fermentum mauris ullamcorper nec. Etiam id eleifend dui. Suspendisse viverra lacinia massa. Nullam vestibulum quam mauris, ut scelerisque est scelerisque eget. Nulla sagittis, orci in feugiat varius, nisi tellus fermentum nisl, sed laoreet leo tellus vel erat. Proin elementum eget metus sit amet accumsan. Maecenas laoreet hendrerit pellentesque. Suspendisse potenti.\r\n\r\nVivamus consequat venenatis lorem, in tristique velit tempor in. Donec volutpat auctor viverra. Maecenas at iaculis tortor, eu sodales sapien. Phasellus at nunc quis lorem condimentum vulputate quis ut metus. Mauris sed imperdiet nisi, a vulputate tellus. Donec justo nunc, lacinia molestie mauris id, porttitor viverra ligula. Vestibulum eu dolor dui. Ut et blandit nulla, eget pharetra mauris. Donec in nisi eget quam accumsan rutrum. Morbi efficitur, enim vel convallis aliquet, felis sapien finibus arcu, et eleifend erat dui ut dui. Nunc eget justo porta, pulvinar lacus ac, feugiat nisi. Curabitur dui libero, mattis ut mattis id, malesuada et magna. Donec ultrices ornare ante, vitae luctus arcu egestas ut.', 'Shantae-and-the-Pirate-s-Curse.png', NULL);
+(109, 'Shantae and the Pirate''s Curse', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu nunc mauris. Pellentesque faucibus pretium magna, ultricies fermentum mauris ullamcorper nec. Etiam id eleifend dui. Suspendisse viverra lacinia massa. Nullam vestibulum quam mauris, ut scelerisque est scelerisque eget. Nulla sagittis, orci in feugiat varius, nisi tellus fermentum nisl, sed laoreet leo tellus vel erat. Proin elementum eget metus sit amet accumsan. Maecenas laoreet hendrerit pellentesque. Suspendisse potenti.\r\n\r\nVivamus consequat venenatis lorem, in tristique velit tempor in. Donec volutpat auctor viverra. Maecenas at iaculis tortor, eu sodales sapien. Phasellus at nunc quis lorem condimentum vulputate quis ut metus. Mauris sed imperdiet nisi, a vulputate tellus. Donec justo nunc, lacinia molestie mauris id, porttitor viverra ligula. Vestibulum eu dolor dui. Ut et blandit nulla, eget pharetra mauris. Donec in nisi eget quam accumsan rutrum. Morbi efficitur, enim vel convallis aliquet, felis sapien finibus arcu, et eleifend erat dui ut dui. Nunc eget justo porta, pulvinar lacus ac, feugiat nisi. Curabitur dui libero, mattis ut mattis id, malesuada et magna. Donec ultrices ornare ante, vitae luctus arcu egestas ut.', 'Shantae-and-the-Pirate-s-Curse.png', NULL),
+(127, 'A Game', '', 'default.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -462,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `platforms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   `short_name` varchar(7) DEFAULT NULL,
-  `icon` varchar(150) NOT NULL DEFAULT 'default.png',
+  `icon` varchar(154) NOT NULL DEFAULT 'default.png',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `short_name_UNIQUE` (`short_name`)
@@ -508,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `sagas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   `description` longtext NOT NULL,
-  `logo` varchar(150) NOT NULL DEFAULT 'default.png',
+  `logo` varchar(154) NOT NULL DEFAULT 'default.png',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
@@ -562,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(45) NOT NULL,
   `user_pass` varchar(45) NOT NULL,
-  `user_level` enum('autodisabled','disabled','normal','special','blogger','admin','god') NOT NULL DEFAULT 'normal',
+  `user_level` enum('banned','normal','admin') NOT NULL DEFAULT 'normal',
   `user_nick` varchar(45) NOT NULL,
   `user_email` varchar(45) NOT NULL,
   `user_avatar` varchar(45) NOT NULL DEFAULT 'default.png',
@@ -571,16 +572,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `nick_UNIQUE` (`user_nick`),
   UNIQUE KEY `user_name_UNIQUE` (`user_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=104 ;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT IGNORE INTO `users` (`user_id`, `user_name`, `user_pass`, `user_level`, `user_nick`, `user_email`, `user_avatar`, `create_time`, `update_time`) VALUES
-(1, 'admin', 'admin', 'admin', 'Admin', 'admin@admin.com', 'Admin.png', '2015-03-27 15:57:08', '2015-05-23 14:41:10'),
-(2, 'user', 'user', 'normal', 'test_user', 'user@isthisgamefun.com', 'default.png', '2015-03-27 15:57:08', '2015-03-30 14:20:57'),
-(3, 'dummy', 'dummy', 'normal', 'dummy', 'dummy@isthisgamefun.com', 'default.png', '2015-03-28 17:43:54', '2015-03-28 17:43:54'),
+(1, 'admin', 'cuZaPRoqLUEms', 'admin', 'Admin', 'admin@admin.com', 'Admin.png', '2015-03-27 15:57:08', '2015-06-09 15:56:44'),
+(2, 'user', 'cuYe3n61osSz2', 'banned', 'test_user', 'user@isthisgamefun.com', 'test_user.png', '2015-03-27 15:57:08', '2015-06-09 15:58:00'),
+(3, 'dummy', 'cu0Y.Dnp7iESs', 'normal', 'dummy', 'dummy@isthisgamefun.com', 'default.png', '2015-03-28 17:43:54', '2015-06-09 15:58:14'),
 (4, 'Whoopi', 'ZGY76VMO1XU', 'normal', 'Stewart', 'lacus.Etiam.bibendum@massa.net', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
 (5, 'Forrest', 'GHW75OOU7OF', 'normal', 'Elmo', 'vulputate@tellus.co.uk', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
 (6, 'Nell', 'YBP93NIJ3IB', 'normal', 'Audrey', 'dolor.quam@nuncsitamet.org', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
@@ -671,9 +672,7 @@ INSERT IGNORE INTO `users` (`user_id`, `user_name`, `user_pass`, `user_level`, `
 (91, 'Gregory', 'GUB73GYO6SK', 'normal', 'Giacomo', 'eu.arcu@dapibusrutrum.ca', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
 (92, 'Justina', 'KDX43EXN8RZ', 'normal', 'Tyrone', 'vulputate@magnaatortor.org', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
 (93, 'Hakeem', 'ZLE17PHM1SZ', 'normal', 'Shannon', 'id.sapien@a.edu', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
-(94, 'Xanthus', 'QTG15ZOI2OD', 'normal', 'Maris', 'nonummy.ipsum@loremDonecelementum.com', 'default.png', '2015-03-29 17:22:42', '2015-03-29 17:22:42'),
-(95, 'pepe', 'pepe', 'normal', 'PEPON', 'pepe@pepe.com', 'default.png', '2015-03-30 12:58:45', '2015-03-30 12:58:45'),
-(96, 'diego', 'diego', 'normal', 'Nekko', 'diego@rodribus.com', 'default.png', '2015-03-30 13:01:20', '2015-03-30 13:01:20');
+(94, 'Xanthus', 'QTG15ZOI2OD', 'normal', 'Maris_', 'nonummy.ipsum@loremDonecelementum.com', 'default.png', '2015-03-29 17:22:42', '2015-06-09 16:09:33');
 
 -- --------------------------------------------------------
 
@@ -699,7 +698,7 @@ INSERT IGNORE INTO `user_votes` (`user`, `game`, `vote`, `vote_date`) VALUES
 (1, 1, 1, '2015-05-05 03:44:08'),
 (1, 2, 1, '2015-05-23 16:56:04'),
 (1, 3, 1, '2015-05-20 18:31:59'),
-(1, 4, 1, '2015-05-23 16:56:09'),
+(1, 4, 0, '2015-06-07 12:59:02'),
 (1, 5, 1, '2015-05-23 16:56:12'),
 (1, 6, 1, '2015-05-23 16:56:15'),
 (1, 7, 1, '2015-05-23 16:56:18'),
@@ -716,9 +715,19 @@ INSERT IGNORE INTO `user_votes` (`user`, `game`, `vote`, `vote_date`) VALUES
 (1, 18, 1, '2015-05-23 16:56:46'),
 (1, 19, 1, '2015-05-21 17:39:17'),
 (1, 20, 1, '2015-05-23 16:56:51'),
+(1, 22, 0, '2015-05-26 18:20:29'),
+(1, 26, 0, '2015-05-26 18:18:23'),
+(1, 39, 1, '2015-06-02 19:17:17'),
+(1, 44, 1, '2015-06-04 12:25:58'),
+(1, 48, 0, '2015-06-04 07:47:04'),
 (1, 53, 1, '2015-05-20 18:32:00'),
+(1, 56, 1, '2015-06-07 13:05:25'),
+(1, 57, 0, '2015-06-02 19:16:54'),
+(1, 65, 1, '2015-05-26 18:21:08'),
 (1, 69, 1, '2015-05-25 19:54:32'),
-(1, 109, 0, '2015-05-22 15:17:24'),
+(1, 70, 0, '2015-06-04 07:46:35'),
+(1, 106, 0, '2015-06-07 13:03:07'),
+(1, 109, 1, '2015-05-25 20:05:56'),
 (2, 1, 0, '2015-04-04 03:48:31'),
 (2, 2, 1, '2015-03-21 09:07:54'),
 (2, 3, 1, '2015-04-14 11:31:46'),
