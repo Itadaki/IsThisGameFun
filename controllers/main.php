@@ -44,6 +44,11 @@ class main extends Controller {
         
         //Add the html to the body
         $this->body = $body;
+        
+        $this->generateBreadcrumbs([
+            "" => ''
+        ]);
+        
         //Build the pieces of the web and return to client
         return $this->build();
     }

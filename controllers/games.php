@@ -38,6 +38,12 @@ class games extends Controller {
         $template = "templates/games/common.html";
         $this->body = replace($data, $template);
 
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Games" => '{server_root}games',
+            "Top" => '{server_root}games/top'
+        ]);
+
         return $this->build();
     }
 
@@ -51,6 +57,12 @@ class games extends Controller {
         $template = "templates/games/common.html";
         $this->body = replace($data, $template);
 
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Games" => '{server_root}games',
+            "New" => '{server_root}games/newest'
+        ]);
+
         return $this->build();
     }
 
@@ -63,6 +75,12 @@ class games extends Controller {
 
         $template = "templates/games/all.html";
         $this->body = replace($data, $template);
+
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Games" => '{server_root}games',
+            "All" => '{server_root}games/all'
+        ]);
 
         return $this->build();
     }
@@ -109,6 +127,13 @@ class games extends Controller {
 //                $data['games'] = $gameHtml;
 //                $template = "templates/games/index.html";
                 $this->body = replace($data, $details_template);
+
+                $this->generateBreadcrumbs([
+                    "Home" => '{server_root}',
+                    "Games" => '{server_root}games',
+                    "Details" => '',
+                    $data['name'] => "{server_root}games/details/{$data['id']}"
+                ]);
 
                 return $this->build();
             } else {

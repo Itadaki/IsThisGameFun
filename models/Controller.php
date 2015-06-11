@@ -30,6 +30,7 @@ class Controller {
     public $bottom;
     public $data = array();
     private $section = array();
+    private $breadcrumbs = array();
 
     public function __construct($top = "templates/frame/top.html", $menu = "templates/frame/menu.html", $bottom = "templates/frame/bottom.html") {
         $this->top = file_get_contents($top);
@@ -45,10 +46,11 @@ class Controller {
         $this->section['about-active'] = '';
         $this->section['contact-active'] = '';
 
+        $this->breadcrumbs = ['breadcrumbs' => ''];
+
         $className = get_class($this) . '-active';
         $this->section[$className] = 'active';
 
-        $this->menu = replace($this->section, $this->menu, true);
 
 //        $this->addTemplatesToData();
     }
@@ -60,8 +62,14 @@ class Controller {
         $this->data['bottom'] = $this->bottom;
     }
 
+    private function buildMenu() {
+        $this->menu = replace($this->section, $this->menu, true);
+        $this->menu = replace($this->breadcrumbs, $this->menu, true);
+    }
+
     public function build() {
         global $config;
+        $this->buildMenu();
         $html = $this->top . $this->menu . $this->body . $this->bottom;
         $data['server_root'] = $config['server_root'];
         $html = replace($data, $html, true);
@@ -102,6 +110,26 @@ class Controller {
         $this->menu = '';
         $this->body = '';
         $this->bottom = '';
+    }
+
+    protected function generateBreadcrumbs($tree = array()) {
+
+        $bc = '<ol class="breadcrumb voffset3 bg-gray2">';
+        $c = 1;
+        foreach ($tree as $name => $link) {
+            if (!empty($link)){
+                $link ="<a href='$link'>$name</a>";
+            } else {
+                $link = $name;
+            }
+            if ($c++ != count($tree)) {
+                $bc .= "<li>$link</li>";
+            } else {
+                $bc .= "<li class='active'>$link</li>";
+            }
+        }
+        $bc .= '</ol>';
+        $this->breadcrumbs = ['breadcrumbs' => $bc];
     }
 
 }

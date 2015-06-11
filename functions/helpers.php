@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 /**
  * Handles the error on DB object <b>in admin sections</b><br>
  * Returns an string with the error or false
@@ -39,12 +38,12 @@ function handleError() {
  * Handles the error on DB object <b>in public sections</b><br>
  * @return string|false
  */
-function handleDbError(){
+function handleDbError() {
     global $db;
     //Handle error
     $error = $db->error();
     if ($error[0] != 0000 || $error[1] != null) {
-        (new Error($error[1],"An error ocurred! - $error[2]"))->displayError();
+        (new Error($error[1], "An error ocurred! - $error[2]"))->displayError();
     }
 }
 

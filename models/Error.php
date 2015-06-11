@@ -22,18 +22,18 @@
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */
-class Error extends Model {
-    
+class Error2 extends Model {
+
     public $errorCode;
     public $message;
-    
-    public function __construct($errorCode, $message="An error occurred") {
+
+    public function __construct($errorCode = 0, $message = "An error occurred") {
         $this->message = $message;
         $this->errorCode = $errorCode;
     }
-    
-    public function displayError(){
-        $errorTemplate = "templates/common/error.html";
+
+    public function displayError() {
+        $errorTemplate = "templates/error/index.html";
         $data = $this->getDataArray($this);
         echo replace($data, $errorTemplate);
         die;

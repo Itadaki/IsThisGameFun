@@ -26,6 +26,10 @@ class signin extends Controller {
 
     public function index($args = array()) {
         global $config;
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Sign In" => '{server_root}signin'
+        ]);
         //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY)
         if (isset($_POST['signup']) /* && $_COOKIE[$config['allow_cookies']] */) {
             //Validate the data and 'return' if something's wrong

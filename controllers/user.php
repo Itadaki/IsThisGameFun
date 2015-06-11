@@ -28,13 +28,13 @@ class user extends Controller {
         global $config;
         if (isset($args[0])) {
             $user = getUser($args[0], true);
-            
+
             //getUser returns false if user doesnt exists
             if ($user) {
                 global $db, $config;
                 $user_vote_history_template = "templates/user/vote-history.html";
                 $user_profile_template = "";
-                
+
                 $data = $user;
 //                $data['user_id'] = $user['user_id'];
 //                $data['user_nick'] = $user['user_nick'];
@@ -56,8 +56,8 @@ class user extends Controller {
                     $history_html .= replace($temp, $user_vote_history_template);
                 }
 
-                $data['history'] = ($history_html=='')?'No Votes found.' : $history_html;
-                
+                $data['history'] = ($history_html == '') ? 'No Votes found.' : $history_html;
+
                 $data['edit_display'] = 'hidden';
                 if (isset($_SESSION['user_id']) && $user['user_id'] == $_SESSION['user_id']) {
                     $data['edit_display'] = '';
@@ -72,9 +72,16 @@ class user extends Controller {
                 }
 
                 $data['ago'] = xTimeAgo(strtotime($data['create_time']), time(), "d");
-                
+
                 $template = "templates/user/user-profile.html";
                 $this->body = replace($data, $template);
+
+                $this->generateBreadcrumbs([
+                    "Home" => '{server_root}',
+                    "User" => '',
+                    "Profile" => '',
+                    $args[0] => "{server_root}user/profile/{$args[0]}"
+                ]);
 
                 return $this->build();
             }

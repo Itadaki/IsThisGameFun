@@ -15,12 +15,16 @@
 class cookies extends Controller {
 
     public function index($args = array()) {
-        $this->body = '';
-        return $this->build();
+        return $this->policy();
     }
     
     public function policy($args = array()) {
         $template = 'templates/cookies/policy.html';
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Cookies" => '{server_root}cookies',
+            "Policy" => '{server_root}admin/policy'
+        ]);
         $this->body = file_get_contents($template);
         return $this->build();
     }

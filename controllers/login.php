@@ -26,6 +26,10 @@ class login extends Controller {
 
     public function index($args = array()) {
         global $config;
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Log In" => '{server_root}login'
+        ]);
         //Check if the form is posted and if user allow cookies for session (REVIEW NEEDED - COOKIE POLICY --> SEEMS TO BE UNNECESSARY FOR LOGIN COOKIES)
         if (isset($_POST['login']) /**&& isset($_COOKIE[$config['allow_cookies']])**/) {
             //Validate the data and 'return' if something's wrong

@@ -49,6 +49,12 @@ class admin extends Controller {
         $template = "templates/generic.html";
         $this->body = replace($data, $template);
 
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "C-Panel" => '{server_root}admin',
+            "Games" => '{server_root}admin/games'
+        ]);
+        
         return $this->build();
     }
 
@@ -91,6 +97,13 @@ class admin extends Controller {
             $usersTemplate = "templates/admin/users/users.html";
             $this->body = replace($data, $usersTemplate);
         }
+        
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "C-Panel" => '{server_root}admin',
+            "Users" => '{server_root}admin/users'
+        ]);
+        
         return $this->build();
     }
 
@@ -154,6 +167,13 @@ class admin extends Controller {
             $template = "templates/admin/games/games.html";
             $this->body = replace($data, $template);
         }
+        
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "C-Panel" => '{server_root}admin',
+            "Games" => '{server_root}admin/games'
+        ]);
+        
         return $this->build();
     }
 
@@ -203,6 +223,13 @@ class admin extends Controller {
             $template = "templates/admin/platforms/platforms.html";
             $this->body = replace($data, $template);
         }
+        
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "C-Panel" => '{server_root}admin',
+            "Platforms" => '{server_root}admin/platforms'
+        ]);
+        
         return $this->build();
     }
 
@@ -251,6 +278,13 @@ class admin extends Controller {
             $template = "templates/admin/sagas/sagas.html";
             $this->body = replace($data, $template);
         }
+        
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "C-Panel" => '{server_root}admin',
+            "Sagas" => '{server_root}admin/sagas'
+        ]);
+        
         return $this->build();
     }
 
