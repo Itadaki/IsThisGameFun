@@ -1,122 +1,972 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Title</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><p>Introducción <br>
+Esquemas y gráficos <br>
+Programación del proyecto <br>
+Justificación de viabilidad. Prevención de riesgos.</p>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="IsThisGameFun? : Game-rating website">
+<p>Introducción <br>
+Descripción del problema <br>
+Interfaz <br>
+Funcionalidad## Heading ## <br>
+Mejoras futuras <br>
+Conclusión <br>
+Referencias</p>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>IsThisGameFun?</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Itadaki/IsThisGameFun">View on GitHub</a>
-
-          <h1 id="project_title">IsThisGameFun?</h1>
-          <h2 id="project_tagline">Game-rating website</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/Itadaki/IsThisGameFun/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/Itadaki/IsThisGameFun/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="testing-github-templates-for-future-use" class="anchor" href="#testing-github-templates-for-future-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing github templates for future use</h1>
-
-<p>I'm using the editor to see how it works</p>
-
-<h2>
-<a id="header2" class="anchor" href="#header2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header2</h2>
-
-<p>Some text</p>
-
-<h3>
-<a id="header3" class="anchor" href="#header3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header3</h3>
-
-<p>Some text
-Text with some <strong>bold</strong> and <em>italic</em> words.
-Here's some code:</p>
-
-<p><code>if (diego){
-     World.conquer();
-} else {
-     World.goToSleep();
-}</code></p>
-
-<p>Some lists</p>
-
+<p><div class="toc">
 <ul>
-<li>Element 1</li>
-<li>Element 2</li>
-<li><p>Element 3</p></li>
+<li><a href="#introducción">Introducción</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#descripción-del-problema">Descripción del problema</a><ul>
+<li><a href="#propiedades-de-un-videojuego">Propiedades de un videojuego</a></li>
+<li><a href="#propiedades-de-una-plataforma">Propiedades de una plataforma</a></li>
+<li><a href="#propiedades-de-una-saga">Propiedades de una saga</a></li>
+<li><a href="#propiedades-de-un-usuario">Propiedades de un usuario</a></li>
+<li><a href="#funcionalidades-disponibles-para-el-usuario">Funcionalidades disponibles para el usuario</a></li>
+<li><a href="#funcionalidades-disponibles-para-el-administrador">Funcionalidades disponibles para el administrador</a></li>
 </ul>
+</li>
+<li><a href="#planificación">Planificación</a><ul>
+<li><a href="#definición-de-funcionalidades">Definición de funcionalidades</a></li>
+<li><a href="#desarrollo">Desarrollo</a></li>
+<li><a href="#diagramas-de-tiempo">Diagramas de tiempo</a></li>
+</ul>
+</li>
+<li><a href="#arquitectura">Arquitectura</a></li>
+<li><a href="#entidades">Entidades</a><ul>
+<li><a href="#relación-de-entidades">Relación de entidades</a></li>
+<li><a href="#definición-de-entidades">Definición de entidades</a></li>
+<li><a href="#diagrama">Diagrama</a></li>
+</ul>
+</li>
+<li><a href="#estructura-de-la-aplicación">Estructura de la aplicación</a><ul>
+<li><a href="#introducción-1">Introducción</a></li>
+<li><a href="#esquema-de-enrutamiento">Esquema de enrutamiento</a></li>
+<li><a href="#seguridad">Seguridad</a></li>
+<li><a href="#configuración">Configuración</a></li>
+<li><a href="#construcción-del-script">Construcción del script</a></li>
+<li><a href="#ejecución">Ejecución</a></li>
+</ul>
+</li>
+<li><a href="#diseño-de-interfaz">Diseño de interfaz</a></li>
+<li><a href="#funcionalidades-en-cliente">Funcionalidades en Cliente</a></li>
+<li><a href="#funcionalidades-descartadas-y-mejoras-a-futuras">Funcionalidades descartadas y mejoras a futuras</a><ul>
+<li><a href="#funcionalidades">Funcionalidades</a></li>
+<li><a href="#mejoras-a-futuro">Mejoras a futuro</a></li>
+</ul>
+</li>
+<li><a href="#conclusión">Conclusión</a></li>
+<li><a href="#glosario-de-términos">Glosario de términos</a></li>
+<li><a href="#bibliografía">Bibliografía</a></li>
+<li><a href="#anexos">Anexos</a><ul>
+<li><a href="#estructura-de-directorios">Estructura de directorios</a></li>
+<li><a href="#guía-de-estilos">Guía de estilos</a></li>
+<li><a href="#herramientas-utilizadas">Herramientas utilizadas</a></li>
+<li><a href="#librerías-utilizadas">Librerías utilizadas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
 
-<ol>
-<li>Element 1</li>
-<li>Element 2</li>
-<li>Element 3</li>
-</ol>
+
+
+<h1 id="introducción">Introducción</h1>
+
+<p>Is This Game Fun? es una plataforma de consulta y participación donde los usuarios pueden conseguir una respuesta clara a una pregunta frecuente cuando pensamos en adquirir o no un producto, en este caso un videojuego: ¿Merece la pena? ¿Es divertido?</p>
+
+<p>Existe un gran abanico de opciones cuando queremos informaciones detalladas y análisis sobre videojuegos, pero ninguna ofrece un respuesta tan clara y simple como un monosílabo: “Si” o “No” son las únicas respuestas posibles que ofrecemos a esta pregunta.</p>
+
+<p>Para ello no solo ofrecemos respuestas, sino la posibilidad de participar de ellas. La opinión personal positiva o negativa de cada usuario determina la respuesta final en forma de voto. La opción más votada se convierte al instante en la respuesta.</p>
+
+<p>En este documento se explica el planteamiento, desarrollo, obstáculos y soluciones propuestas a la hora de desarrollar este proyecto.</p>
 
 <blockquote>
-<p>Some people born to code.</p>
+  <p><strong>Nota</strong> <br>
+  A lo largo del documento se encuentran anotadas como <strong>[descartado]</strong> aquellas decisiones o funcionalidades que acabaron saliendo del proyecto por motivos de plazos y tiempo.</p>
 </blockquote>
+
+
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Is This Game Fun? is a crowd ask-n-share platform where people can get a clear answer to a common question when thinking about purchase or not a product, in this case a videogame: Is this worth it? Is this fun?</p>
+
+<p>There is a full range of choices to cover detailed information reviews about videogames, but neither of this offers a simple and clear answer as a monosyllable: “Yes” or “No” are the only possible answers we offer to this question.</p>
+
+<p>To fulfill this task, we offer the chance to participate in the answer. The positive or negative personal opinion of each user determines the final answer as a vote. The most voted option becomes instantly in the answer.</p>
+
+<p>This document describes the approach, development, and proposed solutions to obstacles when developing this project.</p>
+
+<blockquote>
+  <p><strong>Note</strong> <br>
+  Throughout the document are listed as <strong>[descartado]</strong> those decisions or functionalities that ended up staying out of the project because of deadlines.</p>
+</blockquote>
+
+
+
+<h1 id="descripción-del-problema">Descripción del problema</h1>
+
+<p>Nuestra plataforma de opinión necesita diferentes funcionalidades a menudo básicas. <br>
+Se necesita desarrollar una aplicación donde almacenar cierta información a propósito de un videojuego que más tarde mostraremos al usuario.</p>
+
+<p>Esta información contiene desde el nombre, las plataformas donde se lanzó o la saga o serie a la que pertenece hasta la caratula que lo identifica visualmente, entre otras.</p>
+
+<p>Por otro lado el usuario debe ser capaz de contribuir a esta información con su opinión acerca del videojuego en forma de voto positivo o negativo.</p>
+
+<p>Para emitir votos es necesario registrarse en la aplicación.</p>
+
+<p>El balance total de votos positivos y negativos influirá de cierta manera en que posición se muestra cada juego en una suerte de escala o ranking.</p>
+
+
+
+<h2 id="propiedades-de-un-videojuego">Propiedades de un videojuego</h2>
+
+<p>Cada juego debe tener una información básica necesaria:</p>
+
+<p><strong>Nombre</strong> <br>
+Es el título del videojuego tal como fue lanzado en Europa. <br>
+Debido a la variedad de títulos en el mercado debe permitir caracteres poco frecuentes y tener una longitud máxima bastante larga. Hemos optado por 150 caracteres que a priori deben ser suficientes para cualquier título.</p>
+
+<p><strong>Descripción</strong> <br>
+Una descripción no muy larga del videojuego. A menudo nos nutriremos de la información ofrecida por Wikipedia.</p>
+
+<p><strong>Caratula</strong> <br>
+Un archivo de imagen que represente o identifique cada videojuego con la caratula que ofrecía en su versión europea.</p>
+
+<p><strong>Plataformas disponibles</strong> <br>
+Un videojuego puede estar disponible en una o varias plataformas. (Acerca de las plataformas)</p>
+
+<p><strong>Saga</strong> <br>
+Existen videojuegos que pertenecen a una serie concreta o forman varias entregas de una misma historia. Por ello hay juegos que pueden pertenecer a una saga determinada o a ninguna.</p>
+
+<p><strong>Balance de votos</strong> <br>
+Este es el atributo clave de un juego. <br>
+El balance de votos es el total de votos positivos y negativos que ha recibido por parte de los usuarios. <br>
+Cada voto es emitido por un usuario y cada usuario solo puede votar una vez cada juego. <br>
+Este voto puede actualizarse más tarde entre positivo y negativo indistintamente.</p>
+
+
+
+<h2 id="propiedades-de-una-plataforma">Propiedades de una plataforma</h2>
+
+<p>Cada plataforma debe disponer de la siguiente información básica:</p>
+
+<p><strong>Nombre</strong> <br>
+Es el nombre oficial de la plataforma de juego.</p>
+
+<p><strong>Nombre corto</strong> <br>
+A menudo las plataformas se abrevian en siglas que las identifican a golpe de vista.</p>
+
+<p><strong>Logo</strong> [descartado] <br>
+Logo asociado a la plataforma.</p>
+
+
+
+<h2 id="propiedades-de-una-saga">Propiedades de una saga</h2>
+
+<p>Cada serie de videojuegos debe disponer de las siguientes propiedades:</p>
+
+<p><strong>Nombre</strong> <br>
+Nombre de la serie que la identifica entre las demás.</p>
+
+<p><strong>Descripción</strong> <br>
+Breve descripción de la serie que agrupe de forma general información y resumen de la temática general de la misma.</p>
+
+<p><strong>Logo</strong> <br>
+En general las serie tienen un logo asociado que los identifica gráficamente.</p>
+
+<p><strong>Balance de votos</strong> [descartado] <br>
+Las series pueden ser votadas al igual que los juegos. (ver juegos)</p>
+
+
+
+<h2 id="propiedades-de-un-usuario">Propiedades de un usuario</h2>
+
+<p>Cada usuario dispone de la siguiente información:</p>
+
+<p><strong>Nombre de usuario</strong> <br>
+Es el nombre que utilizan junto a la contraseña al autenticarse en la aplicación.</p>
+
+<p><strong>Contraseña</strong> <br>
+Conjunto de caracteres que utilizan junto al nombre de usuario para autenticarse en la aplicación.</p>
+
+<p><strong>Nivel</strong> <br>
+Corresponde a su categoría en la aplicación. Existen tres niveles: baneado, usuario y administrador.</p>
+
+<ul>
+<li>Los usuarios baneados no pueden autenticarse en la aplicación. </li>
+<li>Los usuarios comunes disponen de las funcionalidades habituales.</li>
+<li>Los usuarios administradores pueden gestionar la aplicación:  acciones CRUD<a href="#fn:crud" id="fnref:crud" title="See footnote" class="footnote">1</a> sobre juegos, plataformas o sagas y gestionar los usuarios.</li>
+</ul>
+
+<p><strong>Nick</strong> <br>
+Es el nombre público del usuario que se mostrara públicamente. Puede ser diferente del nombre de usuario.</p>
+
+<p><strong>Email</strong> <br>
+Dirección de correo del usuario. Se almacena para futuros usos.</p>
+
+<p><strong>Avatar</strong> <br>
+Cada usuario puede disponer de un avatar que mostrara en su perfil. <br>
+Este avatar debe tener unas limitaciones en sus dimensiones de un máximo de 200 pixeles de alto y de ancho.</p>
+
+<p><strong>Fecha de creación y de modificación</strong> <br>
+Se almacenaran las fechas en las que el usuario se registró y cuando se modificó por última vez su perfil con fines estadísticos.</p>
+
+
+
+<h2 id="funcionalidades-disponibles-para-el-usuario">Funcionalidades disponibles para el usuario</h2>
+
+<p>Los usuarios deben ser capaces de:</p>
+
+<ul>
+<li>Votar un juego.</li>
+<li>Cambiar su voto.</li>
+<li>Ver información concreta de un juego.</li>
+<li>Filtrar el orden de aparición de los juegos (nuevos, más votados, mejor votados, por plataformas, por sagas…).</li>
+<li>Ver información concreta sobre una plataforma.</li>
+<li>Ver información concreta sobre una saga.</li>
+<li>Tener un perfil público donde se muestre su Nick, su avatar, la fecha en la que se registró y un histórico de los votos realizados.</li>
+<li>Cambiar su avatar.</li>
+</ul>
+
+
+
+<h2 id="funcionalidades-disponibles-para-el-administrador">Funcionalidades disponibles para el administrador</h2>
+
+<p>Los administradores disponen de todas las funcionalidades de un usuario y además:</p>
+
+<ul>
+<li>Ver, añadir, editar y borrar un juego, una plataforma o una saga.</li>
+<li>Editar cierta información de los usuarios: Nick, email y nivel del <br>
+usuario.</li>
+</ul>
+
+
+
+<h1 id="planificación">Planificación</h1>
+
+<p>La planificación se ha llevado a cabo teniendo en cuenta el total de horas presupuestadas para terminar el proyecto: 30 horas por miembro con un total de 90 horas.</p>
+
+
+
+<h2 id="definición-de-funcionalidades">Definición de funcionalidades</h2>
+
+<p>Durante la primera etapa del proyecto se han definido entre todos los miembros que características y funcionalidades tendrá disponibles la aplicación. <br>
+Como resultado fueron definidas todas las características posibles y establecidas unas características mínimas, de tal forma que añadir las restantes o unas nuevas funcionalidades fuese solo cuestión de más tiempo.</p>
+
+
+
+<h2 id="desarrollo">Desarrollo</h2>
+
+<p>Para desarrollar la aplicación hemos optado por dividir el desarrollo en tres ámbitos a repartir entre cada miembro del grupo:</p>
+
+<p><strong>Desarrollo en servidor</strong> <br>
+Definición del modelo de datos relacional, configurar el servidor web y programar las funcionalidades ejecutadas en servidor.</p>
+
+<p><strong>Desarrollo en cliente</strong> <br>
+Definir y programar todas las funcionalidades disponibles en el ámbito del navegador cliente.</p>
+
+<p><strong>Diseño e interfaz</strong> <br>
+Definir el aspecto visual de la aplicación: ubicación de los elementos, colores, estructura del documento HTML.</p>
+
+
+
+<h2 id="diagramas-de-tiempo">Diagramas de tiempo</h2>
+
+<p>Finalizado el proyecto podemos comparar la gráfica de planificación definida inicialmente y la real.</p>
+
+<p><strong>Definida</strong> <br>
+Realizamos un diagrama de tiempo a modo de ejemplo visual del tiempo presupuestado para cada parte del proyecto.</p>
+
+<p><img src="localhost/pnh.png" alt="Diagrama de tiempo presupuestado" title="Diagrama de tiempo presupuestado"></p>
+
+<p><strong>Real</strong> <br>
+A lo largo del proyecto hemos ido apuntando el tiempo real que hemos necesitado para llevar a cabo el proyecto: Una suma total de 140 horas a repartir entre los tres miembros en una proporción de 3:2:2.</p>
+
+<p><img src="localhost/pnh.png" alt="Diagrama de tiempo final" title="Diagrama de tiempo final"></p>
+
+
+
+<h1 id="arquitectura">Arquitectura</h1>
+
+<p>La arquitectura de la aplicación está orientada al patrón Modelo-Vista-Controlador.</p>
+
+<p>Este patrón separa las piezas que conforman la aplicación por asuntos o ‘concerns’ de tal manera que lo que es asunto de una pieza de la aplicación no sea de la incumbencia de las demás piezas. <br>
+De esta manera se declaran las tres piezas fundamentales:</p>
+
+<p><strong>Modelo</strong> <br>
+Representa la información persistente de la aplicación. Puede ser un archivo de texto, una hoja de cálculo o, más frecuentemente, una base de datos. <br>
+La forma en la que se obtienen los datos es independiente de cómo se procesan (control) y se representan (vista).</p>
+
+<p><strong>Control</strong> <br>
+Se encarga de manipular el modelo para realizar cambios o conseguir datos para mostrarlos a través de la vista. <br>
+Es la parte interactiva de la aplicación donde se decide el curso de acción. <br>
+El controlador no conoce el origen de los datos ni como serán representados.</p>
+
+<p><strong>Vista</strong> <br>
+Representa visualmente la información conseguida por el controlador a través del modelo. No decide la información que representa ni sabe de dónde procede.</p>
+
+<p>Siguiendo esta arquitectura el flujo de acción es el siguiente:</p>
+
+
+
+<div class="sequence-diagram"><svg height="633" version="1.1" width="506.125" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.5px; top: 0.4375px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock55-obj711" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj714" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj720" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj723" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj729" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj732" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="10" y="10" width="112.6875" height="29" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="15" y="15" width="102.6875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="66.34375" y="24.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">SECUENCIA MVC</tspan></text><rect x="35.09375" y="49" width="62.75" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="45.09375" y="59" width="42.75" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="66.46875" y="68.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Router</tspan></text><rect x="35.09375" y="574" width="62.75" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="45.09375" y="584" width="42.75" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="66.46875" y="593.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Router</tspan></text><path fill="none" stroke="#000000" d="M66.46875,88L66.46875,574" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="142.75" y="49" width="83.625" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="152.75" y="59" width="63.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="184.5625" y="68.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Controller</tspan></text><rect x="142.75" y="574" width="83.625" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="152.75" y="584" width="63.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="184.5625" y="593.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Controller</tspan></text><path fill="none" stroke="#000000" d="M184.5625,88L184.5625,574" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="271.84375" y="49" width="58.625" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="281.84375" y="59" width="38.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="301.15625" y="68.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Model</tspan></text><rect x="271.84375" y="574" width="58.625" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="281.84375" y="584" width="38.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="301.15625" y="593.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Model</tspan></text><path fill="none" stroke="#000000" d="M301.15625,88L301.15625,574" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="351.421875" y="49" width="49.625" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="361.421875" y="59" width="29.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="376.234375" y="68.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">View</tspan></text><rect x="351.421875" y="574" width="49.625" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="361.421875" y="584" width="29.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="376.234375" y="593.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">View</tspan></text><path fill="none" stroke="#000000" d="M376.234375,88L376.234375,574" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="16.84375" y="108" width="99.25" height="29" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="21.84375" y="113" width="89.25" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="66.46875" y="122.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Petición HTTP</tspan></text><rect x="96.703125" y="152.5" width="57.625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="125.515625" y="162" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Instancia</tspan></text><path fill="none" stroke="#000000" d="M66.46875,176C66.46875,176,157.08621034026146,176,179.56358819809975,176" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj711)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="194.5625" y="191.5" width="96.59375" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="242.859375" y="201" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Dame los datos</tspan></text><path fill="none" stroke="#000000" d="M184.5625,215C184.5625,215,273.82958984375,215,296.1463623046875,215" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj714)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="241.265625" y="235" width="119.78125" height="29" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="246.265625" y="240" width="109.78125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="301.15625" y="249.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Cogiendo datos...</tspan></text><rect x="194.8125" y="279.5" width="96.09375" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="242.859375" y="289" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Toma los datos</tspan></text><path fill="none" stroke="#000000" d="M301.15625,303C301.15625,303,211.88916015625,303,189.5723876953125,303" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj720)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="231.109375" y="309.5" width="98.578125" height="37" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="280.3984375" y="328" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="-3.5">Genera el HTML</tspan><tspan dy="18" x="280.3984375" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">con estos datos</tspan></text><path fill="none" stroke="#000000" d="M184.5625,360C184.5625,360,341.04892374854535,360,371.23063145395327,360" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj723)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="311.15625" y="380" width="130.15625" height="29" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="316.15625" y="385" width="120.15625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="376.234375" y="394.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Generando HTML...</tspan></text><rect x="235.578125" y="424.5" width="89.640625" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="280.3984375" y="434" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Toma el HTML</tspan></text><path fill="none" stroke="#000000" d="M376.234375,448C376.234375,448,219.74795125145465,448,189.56624354604673,448" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj729)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="76.46875" y="454.5" width="98.09375" height="37" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="125.515625" y="473" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="-3.5">Devuélvele este</tspan><tspan dy="18" x="125.515625" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">HTML al cliente</tspan></text><path fill="none" stroke="#000000" d="M184.5625,505C184.5625,505,93.94503965973854,505,71.46766180190025,505" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj732)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="10" y="525" width="112.9375" height="29" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="15" y="530" width="102.9375" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="66.46875" y="539.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Respuesta HTTP</tspan></text></svg></div>
+
+<p>El cliente realiza una petición al controlador.</p>
+
+<p>El controlador decide cómo debe manipular el modelo para obtener la información que solicita.</p>
+
+<p>El modelo realiza las interacciones necesarias con la información para devolver la información que el controlador solicita.</p>
+
+<p>El controlador envía a la vista la información que debe representar.</p>
+
+<p>La vista devuelve al controlador la información que debe devolver al cliente.</p>
+
+<p>El controlador devuelve la representación al cliente.</p>
+
+
+
+<h1 id="entidades">Entidades</h1>
+
+
+
+<h2 id="relación-de-entidades">Relación de entidades</h2>
+
+<p>Utilizando lo definido anteriormente en el apartado de funcionalidades sacamos las siguientes relaciones en conclusión:</p>
+
+<ul>
+<li>Un usuario puede votar varios juegos.</li>
+<li>Un usuario solo puede emitir un voto por juego.</li>
+<li>Un usuario puede no haber votado algún juego.</li>
+<li>Un juego puede tener 0 o varias plataformas.</li>
+<li>Un juego puede tener 0 o varias sagas. <strong>[Descartado</strong> - Finalmente cada juego solo tendrá una saga, aunque las entidades mantendrán esta relación para futuras implementaciones.<strong>]</strong></li>
+<li>Un usuario puede votar varias sagas o ninguna, y solo puede votar una vez por saga. <strong>[Descartado</strong> - Finalmente el usuario no podrá votar sagas, aunque las entidades mantendrán esta relación para futuras implementaciones.<strong>]</strong></li>
+</ul>
+
+
+
+<h2 id="definición-de-entidades">Definición de entidades</h2>
+
+<p>Para definir como interactuara el modelo con los datos persistentes de la aplicación optamos por una base de datos relacional en MySQL.</p>
+
+<p>En base a las relaciones definidas, podemos dibujar el diagrama de entidad-relacion que nos ayudará a definir la base de datos:</p>
+
+<p><img src="localhost/pnh.png" alt="Diagrama de entidad-relación" title="Diagrama de entidad-relación"> <br>
+[[diagrama con <a href="https://erdplus.com/#/standalone">https://erdplus.com/#/standalone</a> ]]</p>
+
+<p>Utilizando este diagrama es fácil definir la base de datos con las siguientes tablas y atributos:</p>
+
+<p><strong>User</strong></p>
+
+<ul>
+<li><strong>User_id</strong> <em>int(11)</em>: Identificador único de cada usuario.</li>
+<li><strong>User_name</strong> varchar(45): Nombre de usuario que utilizara para autenticarse.</li>
+<li><strong>User_pass</strong> <em>varchar(45)</em>: La contraseña de autenticación.</li>
+<li><strong>User_level</strong> <em>enum(‘banned’, ‘normal’, ‘admin’)</em>: Determina las capacidades del usuario.</li>
+<li><strong>User_nick</strong> <em>varchar(45)</em>: Nombre público del usuario.</li>
+<li><strong>User_email</strong> <em>varchar(45)</em>: Dirección de correo electrónico</li>
+<li><strong>User_avatar</strong> <em>varchar(49)</em>: Nombre del archivo en la carpeta de avatares. La longitud será igual a la del Nick mas 4 para añadir la extensión del archivo.</li>
+<li><strong>Creation_date</strong> <em>timestamp</em>: Fecha de creación del usuario</li>
+<li><strong>Update_time</strong> <em>timestamp</em>: Fecha de modificación del usuario.</li>
+</ul>
+
+<p><strong>Game</strong></p>
+
+<ul>
+<li><strong>Id</strong> int(11): Identificador único de cada juego.</li>
+<li><strong>Name</strong> <em>varchar(150)</em>: Titulo del juego.</li>
+<li><strong>Description</strong> <em>longtext</em>: Descripción informativa del juego.</li>
+<li><strong>Cover</strong> <em>varchar(154)</em>: Nombre del archivo en la carpeta de covers. La longitud será igual a la del título más 4 para añadir la extensión del archivo.</li>
+<li><strong>Release_date</strong> <em>date</em> [descartado]: Fecha de lanzamiento del juego en Europa.</li>
+</ul>
+
+<p><strong>Platform</strong></p>
+
+<ul>
+<li><strong>Id</strong> <em>int(11)</em>: Identificador único de cada plataforma.</li>
+<li><strong>Name</strong> <em>varchar(150)</em>: Nombre de la plataforma.</li>
+<li><strong>Short_name</strong> <em>varchar(7)</em>: Nombre abreviado de la plataforma.</li>
+<li><strong>Icon</strong> <em>varchar(11)</em> [descartado]: Nombre del archivo en la carpeta de icons. La longitud será igual a la del short_name mas 4 para añadir la extensión del archivo.</li>
+</ul>
+
+<p><strong>Saga</strong></p>
+
+<ul>
+<li><strong>Id</strong> <em>int(11)</em>: Identificador único de cada saga.</li>
+<li><strong>Name</strong> <em>varchar(150)</em>: Titulo del juego.</li>
+<li><strong>Description</strong> <em>longtext</em>: Descripción informativa del juego.</li>
+<li><strong>Logo</strong> <em>varchar(154)</em>: Nombre del archivo en la carpeta de logos. La longitud será igual a la del nombre mas 4 para añadir la extensión del archivo.</li>
+</ul>
+
+
+
+<h2 id="diagrama">Diagrama</h2>
+
+<p>Finalmente podemos representar las tablas de la base de datos como un diagrama completo: </p>
+
+<p><img src="localhost/pnh.png" alt="Diagrama de base de datos" title="Diagrama de base de datos"></p>
+
+
+
+<h1 id="estructura-de-la-aplicación">Estructura de la aplicación</h1>
+
+
+
+<h2 id="introducción-1">Introducción</h2>
+
+<p>Debido al limitado tiempo del que disponen los miembros del grupo de desarrollo no ha sido posible utilizar ningún framework complejo para la arquitectura que soportase <a href="#arquitectura">MVC</a> como se esperaba, pero gracias a las experiencias adquiridas durante el desarrollo se ha podido crear una estructura simple pero funcional inspirada en la citada arquitectura para el desarrollo de la aplicación.</p>
+
+
+
+<h2 id="esquema-de-enrutamiento">Esquema de enrutamiento</h2>
+
+<p>Las peticiones a servidor se manejan de la siguiente forma:</p>
+
+<p>El cliente pide un recurso al servidor mediante una ruta que no existe: </p>
+
+<blockquote>
+  <p><a href="http://isthisgamefun.com/games/top/page/2">http://isthisgamefun.com/games/top/page/2</a></p>
+</blockquote>
+
+<p>Mediante un módulo del servidor Apache llamado <em>rewrite module</em> se traduce una petición como la anterior a:</p>
+
+<blockquote>
+  <p><a href="http://isthisgamefun.com/index.php?section=game&amp;action=top&amp;args=page/2">http://isthisgamefun.com/index.php?section=game&amp;action=top&amp;args=page/2</a></p>
+</blockquote>
+
+<p>Utilizando este módulo convertimos una ruta en una petición con cadena de consulta o <em>query string</em> que será interpretado por el código PHP que contiene <em>index.php</em></p>
+
+<p><strong>Fragmento de regla del modulo <em>rewrite</em></strong></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-constant">RewriteRule</span> ^(\w+)/(\w+)/((\w+<span class="hljs-regexp">/?)+)/</span>?<span class="hljs-variable">$ </span>index.php?section=<span class="hljs-variable">$1</span>&amp;action=<span class="hljs-variable">$2</span>&amp;args=<span class="hljs-variable">$3</span> [<span class="hljs-constant">L</span>]</code></pre>
+
+<p>Esta nueva petición hace fácil recuperar la petición en variables accediendo a <strong>$_GET</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$_GET</span>[<span class="hljs-string">"section"</span>] <span class="hljs-comment">//string - P.E. "games"</span>
+<span class="hljs-variable">$_GET</span>[<span class="hljs-string">"action"</span>] <span class="hljs-comment">//string - P.E. "top"</span>
+<span class="hljs-variable">$_GET</span>[<span class="hljs-string">"args"</span>] <span class="hljs-comment">//string - P.E. "page/2"</span></code></pre>
+
+<p>La peculiaridad de <code>$_GET["args"]</code> es que su valor sera troceado en partes e insertado en un array utilizando <code>/</code> como separador.</p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$args</span> = explode(<span class="hljs-string">"/"</span>, <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'args'</span>]) <span class="hljs-comment">//array P.E. ["page", "2"]</span></code></pre>
+
+<p>A continuación <em>index.php</em> hace uso de una clase llamada <em>Router</em>. Esta clase recibe como argumentos los parámetros de la cadena de consulta de la petición (<code>"games"</code>, <code>"top"</code> y <code>["page", "2"]</code>) y los utiliza para instanciar otras clases, usar sus métodos y agregarle argumentos.</p>
+
+<p>Por ejemplo, en la petición anterior se estaría instanciando un objeto de tipo <em>Games</em> y llamando al método <em>top()</em> utilizando como argumento el array <code>["page", "2"]</code>.</p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$router</span> = <span class="hljs-keyword">new</span> Router(<span class="hljs-string">"games"</span>, <span class="hljs-string">"top"</span>, [<span class="hljs-string">"page"</span>, <span class="hljs-string">"2"</span>]);</code></pre>
+
+<p>Estas peticiones, por supuesto, tienen valores por defecto en caso de no especificarse:</p>
+
+<ul>
+<li>El objeto por defecto a instanciar es <em>Main</em> y el método defecto para <br>
+cualquier clase <em>index()</em>. </li>
+<li>En cuanto a los argumentos, están formados <br>
+por la parte restante de la petición como un array.</li>
+</ul>
+
+<p>Por ejemplo, en la petición:</p>
+
+<blockquote>
+  <p><a href="http://isthisgamefun/admin/games/edit/19">http://isthisgamefun/admin/games/edit/19</a></p>
+</blockquote>
+
+<p>Se instancia la clase <em>Admin</em>, llamando al método <em>games()</em> que recibe como argumento un array que contiene <em>‘edit’</em> y <em>‘19’</em>.</p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$args</span> = [<span class="hljs-string">"edit"</span>,<span class="hljs-string">"19"</span>];
+<span class="hljs-variable">$controller</span> = <span class="hljs-keyword">new</span> Admin();
+<span class="hljs-variable">$controller</span>-&gt;games(<span class="hljs-variable">$args</span>);</code></pre>
+
+<p><strong>Secuencia UML</strong></p>
+
+
+
+<div class="flow-chart"><svg height="806.7890625" version="1.1" width="810.7421875" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: 0.5625px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><marker id="raphael-marker-endblock33-obj756" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj757" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj758" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj760" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj762" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj763" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj765" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj767" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj768" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj769" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj770" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="0" y="0" width="109.25" height="39" rx="20" ry="20" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="st" transform="matrix(1,0,0,1,78.3047,48.9648)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="stt" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,78.3047,48.9648)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Peticion HTTP</tspan></text><rect x="0" y="0" width="127.609375" height="57" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op0" transform="matrix(1,0,0,1,69.125,177.9297)"></rect><text x="10" y="28.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op0t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,69.125,177.9297)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="-3.5">Transformar ruta</tspan><tspan dy="18" x="10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">en variables</tspan></text><path fill="#ffffff" stroke="#000000" d="M64.46484375,32.232421875L0,64.46484375L128.9296875,128.9296875L257.859375,64.46484375L128.9296875,0L0,64.46484375" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,4,288.9297)"></path><text x="69.46484375" y="64.46484375" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="condt" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,4,288.9297)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.50390625">¿Existe el controlador?</tspan></text><rect x="0" y="0" width="217.90625" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op1" transform="matrix(1,0,0,1,335.8359,333.8945)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op1t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,335.8359,333.8945)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Instanciar la clase controladora</tspan></text><path fill="#ffffff" stroke="#000000" d="M55.0078125,27.50390625L0,55.0078125L110.015625,110.015625L220.03125,55.0078125L110.015625,0L0,55.0078125" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond2" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,334.7734,436.3516)"></path><text x="60.0078125" y="55.0078125" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,334.7734,436.3516)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">¿Existe el metodo?</tspan><tspan dy="18" x="60.0078125" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></tspan></text><rect x="0" y="0" width="142.015625" height="57" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op2" transform="matrix(1,0,0,1,666.7266,462.8594)"></rect><text x="10" y="28.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,666.7266,462.8594)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="-3.5">Llamada al metodo</tspan><tspan dy="18" x="10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">con argumentos</tspan></text><rect x="0" y="0" width="114.328125" height="57" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="op3" transform="matrix(1,0,0,1,680.5703,609.8242)"></rect><text x="10" y="28.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="op3t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,680.5703,609.8242)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="-3.5">Devolver HTML</tspan><tspan dy="18" x="10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">generado</tspan><tspan dy="18" x="10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></tspan></text><rect x="0" y="0" width="122.9375" height="39" rx="20" ry="20" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="e" transform="matrix(1,0,0,1,676.2656,765.7891)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="et" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,676.2656,765.7891)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Respuesta HTTP</tspan></text><rect x="0" y="0" width="199.671875" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="sub2" transform="matrix(1,0,0,1,344.9531,645.332)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="sub2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,344.9531,645.332)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Establecer metodo a "Index"</tspan></text><rect x="0" y="0" width="220.765625" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="sub1" transform="matrix(1,0,0,1,22.5469,516.8242)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="sub1t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,22.5469,516.8242)"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">Establecer controlador a "Main"</tspan></text><path fill="none" stroke="#000000" d="M132.9296875,87.96484375C132.9296875,87.96484375,132.9296875,159.32611751556396,132.9296875,174.93639615178108" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj756)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M132.9296875,234.9296875C132.9296875,234.9296875,132.9296875,274.58378744125366,132.9296875,285.93012658460066" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj757)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M261.859375,353.39453125C261.859375,353.39453125,319.0045086145401,353.39453125,332.84434566181153,353.39453125" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj758)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="266.859375" y="343.39453125" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.49609375">yes</tspan></text><path fill="none" stroke="#000000" d="M132.9296875,417.859375C132.9296875,417.859375,132.9296875,497.265951215988,132.9296875,513.8219121750832" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj760)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="137.9296875" y="427.859375" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">no</tspan></text><path fill="none" stroke="#000000" d="M444.7890625,372.89453125C444.7890625,372.89453125,444.7890625,420.7764716716483,444.7890625,433.3548329738196" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj762)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M554.8046875,491.359375C554.8046875,491.359375,645.9341914653778,491.359375,663.7329227086157,491.359375" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj763)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="559.8046875" y="481.359375" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">yes</tspan></text><path fill="none" stroke="#000000" d="M444.7890625,546.3671875C444.7890625,546.3671875,444.7890625,625.773763715988,444.7890625,642.3297246750832" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj765)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="449.7890625" y="556.3671875" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">no</tspan></text><path fill="none" stroke="#000000" d="M737.734375,519.859375C737.734375,519.859375,737.734375,591.220648765564,737.734375,606.8309274017811" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj767)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M737.734375,666.82421875C737.734375,666.82421875,737.734375,746.230794965988,737.734375,762.7867559250832" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj768)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M344.953125,664.83203125C344.953125,664.83203125,309.7734375,664.83203125,309.7734375,664.83203125C309.7734375,664.83203125,309.7734375,411.3515625,309.7734375,411.3515625C309.7734375,411.3515625,444.7890625,411.3515625,444.7890625,411.3515625C444.7890625,411.3515625,444.7890625,426.72500705718994,444.7890625,433.36081027425826" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj769)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M243.3125,536.32421875C243.3125,536.32421875,268.3125,536.32421875,268.3125,536.32421875C268.3125,536.32421875,268.3125,357.39453125,268.3125,357.39453125C268.3125,357.39453125,276.3125,353.39453125,268.3125,349.39453125C268.3125,349.39453125,268.3125,263.9296875,268.3125,263.9296875C268.3125,263.9296875,132.9296875,263.9296875,132.9296875,263.9296875C132.9296875,263.9296875,132.9296875,279.30313205718994,132.9296875,285.93893527425826" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj770)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path></svg></div>
+
+
+
+<h2 id="seguridad">Seguridad</h2>
+
+<p>Esta lógica plantea un problema de seguridad: ¿Y si hacen peticiones a clases con métodos sensibles o que no deberían poder utilizarse?</p>
+
+<p>Poniendo por caso la clase <em>Admin</em> al instanciarse se realizan ciertas comprobaciones. </p>
+
+<p>En este caso <em>¿Tiene el usuario que hace la petición permisos de administración?</em>.  <br>
+De no ser así se realiza una redirección mediante cabeceras HTTP a otro recurso y se termina la ejecución.</p>
+
+<p>En cuanto a los métodos, con el simple hecho de cambiar su accesibilidad utilizando <em>private</em> la ejecución se hace inalcanzable para el usuario debido a que al invocarlos se produce una excepción.</p>
+
+
+
+<h2 id="configuración">Configuración</h2>
+
+<p>La aplicación se ejecuta utilizando ciertas variables durante la ejecución. <br>
+Estas variables contienen datos que varían en función de dónde se ejecute la aplicación, el nombre de base de datos…</p>
+
+<p>Estos datos se declaran como parte de un array indexado en el archivo <strong>config.php</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">//Dirección del servidor MySQL</span>
+<span class="hljs-variable">$config</span>[<span class="hljs-string">'db_server'</span>] = <span class="hljs-string">'localhost'</span>;
+...
+<span class="hljs-comment">//Ruta del servidor apache donde se encuentra la aplicación</span>
+<span class="hljs-variable">$config</span>[<span class="hljs-string">'server_root'</span>] = <span class="hljs-string">'/IsThisGameFun/'</span>;</code></pre>
+
+<p>De esta manera superamos el problema de desplegar la aplicación en una máquina local, un servidor en una máquina virtual o el equipo donde se expondrá finalmente.</p>
+
+
+
+<h2 id="construcción-del-script">Construcción del script</h2>
+
+<p>Para que todos los recursos necesarios estén disponibles sin necesidad de incluirlos explícitamente en el script principal, se recorren los directorios clave (ver estructura) y se incluyen dinámicamente sus contenidos.</p>
+
+<p><strong>Ejemplo de inclusión de todas las funciones</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">//Include all the functions</span>
+<span class="hljs-keyword">foreach</span> (glob(<span class="hljs-string">"./functions/*.php"</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$filename</span>)
+{
+    <span class="hljs-keyword">include_once</span> <span class="hljs-variable">$filename</span>;
+}</code></pre>
+
+<p>Así la aplicación incluirá el archivo de configuración, todas las clases “Controladores”, los scripts que contienen funciones de ayuda y las clases “Entidades” que representan los datos del modelo, así como las librerías añadidas y sus dependencias.</p>
+
+
+
+<h2 id="ejecución">Ejecución</h2>
+
+<p>Siguiendo el proceso descrito anteriormente, vamos a seguir la ejecución de principio a fin para una petición a:</p>
+
+<blockquote>
+  <p><a href="http://isthisgamefun.com/main/index">http://isthisgamefun.com/main/index</a></p>
+  
+  <p><strong>Nota</strong> <br>
+  Esta dirección es sinónimo de esta: <br>
+  <a href="http://isthisgamefun.com/">http://isthisgamefun.com/</a></p>
+</blockquote>
+
+<p>Tras despiezar la petición HTTP se instancia el Router.</p>
+
+<p><strong>index.php</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">//Preparacion del script</span>
+...
+
+<span class="hljs-comment">//Ejecucion del controlador a través del Router</span>
+<span class="hljs-variable">$router</span> = <span class="hljs-keyword">new</span> Router(<span class="hljs-variable">$section</span>, <span class="hljs-variable">$action</span>, <span class="hljs-variable">$args</span>);
+
+<span class="hljs-comment">//Devolver el HTML al cliente</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$router</span>-&gt;start();</code></pre>
+
+<p><strong>router.php</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Router</span> {</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$controller</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$action</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$args</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(
+    <span class="hljs-variable">$controller</span> = <span class="hljs-string">"main"</span>, 
+    <span class="hljs-variable">$action</span> = <span class="hljs-string">"index"</span>, 
+    <span class="hljs-variable">$args</span> = array<span class="hljs-params">()</span>)</span> {</span>
+        <span class="hljs-variable">$this</span>-&gt;controller = <span class="hljs-variable">$controller</span>;
+        <span class="hljs-variable">$this</span>-&gt;action = <span class="hljs-variable">$action</span>;
+        <span class="hljs-variable">$this</span>-&gt;args = <span class="hljs-variable">$args</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> {</span>
+        <span class="hljs-comment">//Comprobar que la clase existe</span>
+        <span class="hljs-keyword">if</span> (class_exists(<span class="hljs-variable">$this</span>-&gt;controller)) {
+            <span class="hljs-comment">//Instanciar la clase dinámicamente</span>
+            <span class="hljs-comment">//P.E. $c = new Main();</span>
+            <span class="hljs-variable">$c</span> = <span class="hljs-keyword">new</span> <span class="hljs-variable">$this</span>-&gt;controller();
+            <span class="hljs-comment">//Comprobar que la clase tiene el método</span>
+            <span class="hljs-keyword">if</span> (method_exists(<span class="hljs-variable">$c</span>, <span class="hljs-variable">$this</span>-&gt;action)) {
+                <span class="hljs-comment">//Invocar el método dinámicamente</span>
+                <span class="hljs-comment">//P.E. $c-&gt;index($this-&gt;args);</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-variable">$c</span>-&gt;{<span class="hljs-variable">$this</span>-&gt;action}(<span class="hljs-variable">$this</span>-&gt;args);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">//Gestionar petición erronea</span>
+                ...
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">//Gestionar petición erronea</span>
+            ...
+        }
+    }
+}</code></pre>
+
+<p>A continuación se muestra un fragmento del código que define la página principal del sitio.</p>
+
+<p><strong>main.php</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span> {</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span><span class="hljs-params">(<span class="hljs-variable">$args</span> = array<span class="hljs-params">()</span>)</span> {</span>
+        <span class="hljs-comment">//Petición de datos al modelo</span>
+        ...
+        <span class="hljs-comment">//Utilizar los datos</span>
+        <span class="hljs-comment">//para rellenar una plantilla</span>
+        ...
+        <span class="hljs-comment">//Devolver el HTML</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;build();
+    }</code></pre>
+
+<p>Todas las clases de tipo controlador heredan de la clase <em>Controller</em></p>
+
+<p><strong>controller.php</strong></p>
+
+
+
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Controller</span> {</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$top</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$menu</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$body</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$bottom</span>;
+    ...
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(
+    <span class="hljs-variable">$top</span> = <span class="hljs-string">"templates/frame/top.html"</span>, 
+    <span class="hljs-variable">$menu</span> = getScriptOutput<span class="hljs-params">(<span class="hljs-string">'templates/frame/create-menu.php'</span>)</span>, 
+    <span class="hljs-variable">$bottom</span> = <span class="hljs-string">"templates/frame/bottom.html"</span>)</span> {</span>
+    ...
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">build</span><span class="hljs-params">()</span> {</span>
+        <span class="hljs-comment">//Concatena todas las partes </span>
+        <span class="hljs-comment">//(top . menu . body . bottom)</span>
+        ...
+        <span class="hljs-comment">//Devuelve el HTML contruido</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$html</span>;
+    }</code></pre>
+
+<p>De esta manera la ejecución sigue un camino de ida y vuelta para generar la respuesta HTML que se entrega al cliente.</p>
+
+
+
+<h1 id="diseño-de-interfaz">Diseño de interfaz</h1>
+
+<p>blabla sergio</p>
+
+
+
+<h1 id="funcionalidades-en-cliente">Funcionalidades en Cliente</h1>
+
+<p>blabla oltra</p>
+
+
+
+<h1 id="funcionalidades-descartadas-y-mejoras-a-futuras">Funcionalidades descartadas y mejoras a futuras</h1>
+
+<p>Debido al límite de tiempo y las obligaciones académicas de cada miembro ciertas funcionalidades fueron descartadas durante el desarrollo.</p>
+
+
+
+<h2 id="funcionalidades">Funcionalidades</h2>
+
+<p><strong>Voto a sagas</strong> <br>
+Al comienzo del desarrollo se pensó en extender la acción de votar también a las sagas como forma de tener una forma mas “generalista” de opinar sobre ciertos juegos. <br>
+A pesar de que acabo fuera del desarrollo, la estructura de la base de datos aun contempla su implementación.</p>
+
+<p><strong>Multiples sagas</strong> <br>
+Al principio se definió que cada juego podia pertenecer a mas de una saga. Esta funcionalidad fue descartada por motivos de diseño de la interfaz: con el tiempo limitado no fue posible integrar múltiples sagas de forma adecuada en el diseño. <br>
+A pesar de que acabo fuera del desarrollo, la estructura de la base de datos aun contempla su implementación.</p>
+
+<p><strong>Redimensión de imagenes y creación de thumbnails</strong> <br>
+Debido a la gran cantidad de imágenes que se utilizan en la aplicación se pensó redimensionar y comprimir las imágenes subidas por la administración para mejorar el rendimiento de la aplicación, pero acabo descartada tras unos pocos intentos y debido al poco tiempo de margen para implementarla.</p>
+
+<p><strong>Información de perfil de usuario</strong> <br>
+Al principio se propuso que cada usuario pudiera mostrar alguna información personal concreta, como su genero, su edad o videojuego, genero y saga preferidos… De nuevo el tiempo jugó en contra dejándolo fuera del proyecto.</p>
+
+<p><strong>Amigos</strong> <br>
+Al igual que otras, esta funcionalidad se propuso al principio del proyecto cuando se profundizaba en la parte de interacción del usuario. <br>
+A pesar de que estaba prevista no hubo tiempo de implementarla.</p>
+
+<p><strong>Propuesta de juegos</strong> <br>
+Una de las primeras ideas fue proporcionar a los usuarios una herramienta con la que proponer los siguientes juegos que serían añadidos a la base de datos. <br>
+A pesar de que nos pareció una buena idea no teníamos claro como incluirla en la aplicación sin depender finalmente de un administrador.</p>
+
+
+
+<h2 id="mejoras-a-futuro">Mejoras a futuro</h2>
+
+<p>El siguiente paso para ampliar la aplicación sería implementar todas las funcionalidades que por plazo no pudieron ser incluidas.</p>
+
+<p>Pero una de las características mas interesantes de la aplicación es su escalabilidad y portabilidad: siguiendo la estructura actual es fácil extender las funcionalidades según vayan apareciendo pero, sobretodo, se pueden crear otras aplicaciones con otra temática y funcionalidad similar.</p>
+
+<p>Así por ejemplo con unos pocos ajustes puedes tener una aplicación de voto de libros, películas, series, cómics, o cualquier otro producto de entretenimiento.</p>
+
+
+
+<h1 id="conclusión">Conclusión</h1>
+
+
+
+<h1 id="glosario-de-términos">Glosario de términos</h1>
+
+
+
+<h1 id="bibliografía">Bibliografía</h1>
+
+<p><strong>HTML</strong></p>
+
+<ul>
+<li>Documentación - <a href="http://www.w3.org/html/">http://www.w3.org/html/</a></li>
+<li>Ayudas - <a href="http://www.w3schools.com/html/">http://www.w3schools.com/html/</a></li>
+</ul>
+
+<p><strong>CSS</strong></p>
+
+<ul>
+<li>Documentación - <a href="http://www.w3.org/Style/CSS/">http://www.w3.org/Style/CSS/</a></li>
+<li>Ayudas - <a href="http://www.w3schools.com/css/">http://www.w3schools.com/css/</a></li>
+</ul>
+
+<p><strong>JavaScript</strong></p>
+
+<ul>
+<li>Documentación - <a href="https://developer.mozilla.org/es/docs/Web/JavaScript">https://developer.mozilla.org/es/docs/Web/JavaScript</a></li>
+<li>Ayudas - <a href="http://www.w3schools.com/js/">http://www.w3schools.com/js/</a></li>
+</ul>
+
+<p><strong>jQuery</strong></p>
+
+<ul>
+<li>Documentación - <a href="http://api.jquery.com/">http://api.jquery.com/</a></li>
+<li>Ayudas - <a href="http://www.w3schools.com/jquery/">http://www.w3schools.com/jquery/</a></li>
+</ul>
+
+<p><strong>Bootstrap</strong></p>
+
+<ul>
+<li>Documentación - <a href="http://getbootstrap.com/css/">http://getbootstrap.com/css/</a></li>
+<li>Documentación - <a href="http://getbootstrap.com/components/">http://getbootstrap.com/components/</a></li>
+<li>Documentación - <a href="http://getbootstrap.com/javascript/">http://getbootstrap.com/javascript/</a></li>
+<li>Ayudas - <a href="http://www.w3schools.com/bootstrap/">http://www.w3schools.com/bootstrap/</a></li>
+<li>Utilidades - <a href="http://www.bootply.com/">http://www.bootply.com/</a></li>
+<li>Ejemplos - <a href="http://bootsnipp.com/">http://bootsnipp.com/</a></li>
+</ul>
+
+<p><strong>PHP</strong></p>
+
+<ul>
+<li>Documentación - <a href="https://php.net/manual/es/index.php">https://php.net/manual/es/index.php</a></li>
+</ul>
+
+<p><strong>MySQL</strong></p>
+
+<ul>
+<li>Documentación - <a href="http://dev.mysql.com/doc/">http://dev.mysql.com/doc/</a></li>
+<li>Ayudas - <a href="http://www.w3schools.com/sql/">http://www.w3schools.com/sql/</a></li>
+</ul>
+
+<p><strong>Medoo</strong> - Documentación</p>
+
+<ul>
+<li>Documentación - <a href="http://medoo.in/doc">http://medoo.in/doc</a></li>
+</ul>
+
+<p><strong>Apache</strong> - Documentación</p>
+
+<ul>
+<li>Documentación - <a href="http://httpd.apache.org/docs/">http://httpd.apache.org/docs/</a></li>
+</ul>
+
+<p><strong>GitHub</strong> - Documentación</p>
+
+<ul>
+<li>Documentación - <a href="https://help.github.com/">https://help.github.com/</a></li>
+</ul>
+
+<p><strong>General</strong></p>
+
+<ul>
+<li>Ayudas y ejemplos - <a href="http://stackoverflow.com/">http://stackoverflow.com/</a></li>
+</ul>
+
+<p><strong>Apuntes, trabajos y proyectos realizados durante el curso</strong></p>
+
+
+
+<h1 id="anexos">Anexos</h1>
+
+
+
+<h2 id="estructura-de-directorios">Estructura de directorios</h2>
+
+<p>La aplicación se estructura en directorios de la siguiente forma:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">.
+├── avatars
+│   └── <span class="hljs-keyword">...</span>
+├── controllers
+│   ├── controller1.php
+│   ├── <span class="hljs-keyword">...</span>
+│   └── controllerN.php
+├── covers
+│   └── <span class="hljs-keyword">...</span>
+├── functions
+│   ├── function1.php
+│   ├── <span class="hljs-keyword">...</span>
+│   └── functionN.php
+├── img
+│   └── <span class="hljs-keyword">...</span>
+├── includes
+│   ├── css
+│   │   ├── style1.css
+│   │   ├── <span class="hljs-keyword">...</span>
+│   │   └── styleN.css
+│   ├── fonts
+│   │   ├── font1.otf
+│   │   ├── <span class="hljs-keyword">...</span>
+│   │   └── fontN.otf
+│   └── js
+│       ├── script1.js
+│       └── scriptN.js
+├── logos
+│   └── <span class="hljs-keyword">...</span>
+├── models
+│   ├── model1.php
+│   ├── <span class="hljs-keyword">...</span>
+│   └── model1.php
+├── templates
+│   ├── controller1
+│   │   ├── template1.html
+│   │   ├── <span class="hljs-keyword">...</span>
+│   │   └── templateN.html
+│   ├── <span class="hljs-keyword">...</span>
+│   └── controllerN
+│       ├── template1.html
+│       ├── <span class="hljs-keyword">...</span>
+│       └── templateN.html
+├── vendor
+│   ├── vendorstuff1
+│   │   └── <span class="hljs-keyword">...</span>
+│   └── vendorstuffN
+│       └── <span class="hljs-keyword">...</span>
+├── .htaccess
+├── autoinclude.php
+├── config.php
+└── index.php</code></pre>
+
+
+
+<h2 id="guía-de-estilos">Guía de estilos</h2>
+
+
+
+<h2 id="herramientas-utilizadas">Herramientas utilizadas</h2>
+
+<p><strong>Virtualización</strong> <br>
+Oracle VM VirtualBox</p>
+
+<p><strong>Servidor</strong> <br>
+Ubuntu Server 14.04</p>
+
+<p><strong>Servidor Web</strong> <br>
+Apache 2 con modulo <em>rewrite</em></p>
+
+<p><strong>Gestor de Bases de Datos</strong> <br>
+MySQL</p>
+
+<p><strong>Diseño de Bases de Datos</strong> <br>
+MySQL Workbench</p>
+
+<p><strong>Servidor FTP</strong> <br>
+ProFTPD</p>
+
+<p><strong>Control de versiones</strong> <br>
+GitHub</p>
+
+<p><strong>Gestor de dependencias</strong> <br>
+Composer</p>
+
+<p><strong>Editor de texto</strong> <br>
+StackEdit</p>
+
+<p><strong>Presentaciones</strong> <br>
+Reveal.js en Slides.com</p>
+
+<p><strong>IDE’s</strong> <br>
+NetBeans 8 con XDebug como debugger de PHP</p>
+
+<p><strong>Desarrollo</strong> <br>
+Google Chrome ver. 43 y Mozilla Firefox ver. 38 como navegadores <br>
+FireBug 2.0 como debugger de JavaScript</p>
+
+
+
+<h2 id="librerías-utilizadas">Librerías utilizadas</h2>
+
+<p>En este proyecto hacemos uso de varias herramientas de terceros.</p>
+
+<p><strong>Kint</strong> <br>
+Una herramienta de depuración para PHP. <br>
+Se describe a sí mismo como:</p>
+
+<blockquote>
+  <p><code>var_dump()</code> y <code>debug_backtrace()</code> con esteroides.</p>
+</blockquote>
+
+<p>Referencia: <a href="http://raveren.github.io/kint/">http://raveren.github.io/kint/</a></p>
+
+<p><strong>Medoo</strong> <br>
+Un framework ligero de acceso a base de datos. <br>
+Simplifica la creación de cadenas de consulta y obtención de datos. <br>
+Se describe a sí mismo como:</p>
+
+<blockquote>
+  <p>El framework de interacción con base de datos en PHP más ligero que acelera el desarrollo</p>
+</blockquote>
+
+<p>Referencia: <a href="http://medoo.in/">http://medoo.in/</a></p>
+
+<p><strong>XDebug</strong> <br>
+Una extensión de PHP que aporta herramientas para perfilar y depurar código</p>
+
+<p><strong>Bootstrap</strong> <br>
+Un framework de diseño de sitios y aplicaciones web. <br>
+Referencia: <a href="http://getbootstrap.com/">http://getbootstrap.com/</a></p>
+
+<p><strong>jQuery</strong> <br>
+Una librería de Javascript que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web. <br>
+Referencia: <a href="https://jquery.com/">https://jquery.com/</a></p>
 
 <hr>
 
-<h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<blockquote>
+  <p>Escrito con <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">IsThisGameFun? maintained by <a href="https://github.com/Itadaki">Itadaki</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+<div class="footnotes"><hr><ol><li id="fn:crud"><strong>CRUD</strong>: Acrónimo de Crear, Obtener, Actualizar y Borrar (del original en inglés: Create, Read, Update and Delete). <a href="#fnref:crud" title="Return to article" class="reversefootnote">↩</a></li></ol></div></div></body>
 </html>
