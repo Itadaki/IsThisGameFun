@@ -1,0 +1,404 @@
+/*
+Copyright (C) 2015 Sergio Serrano Mejias
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* 
+    Created on : 31-mar-2015, 2:11:43
+    Author     : Sergio Serrano Mejias
+*/
+/** background body **/
+td,th{
+    font-size: 14px;
+}
+body{
+    background-image: url('../images/background.png');
+}
+.jumbotron{
+    padding: 15px 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: inherit;
+}
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        padding: 48px 0;
+    }
+    .container .jumbotron,
+    .container-fluid .jumbotron {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    .jumbotron h1,
+    .jumbotron .h1 {
+        font-size: 67.5px;
+    }
+}
+/** distintos tamaños para las imagenes **/
+.img-lg{
+    height: 450px;
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+.img-md{
+    height: 260px;
+    max-width: 250px;
+    margin-bottom: 15px;
+}
+.img-main{
+    position: relative;
+    top: -100px;
+    width: 100%;
+    transition: width .2s;
+}
+.img-main:hover{
+    width: 110%;
+}
+/** COLORES FUN **/
+.bg-azul{
+    background-color: #01A7C2 !important;
+}
+.cl-blue{
+    color: #01A7C2 !important;
+}
+
+.bg-rojo{
+    background-color: #cf303d !important;
+}
+.cl-red{
+    color: #d9534f !important;
+}
+.bg-gray1{
+    color: #ebebeb !important;
+    background-color: #333 !important;
+}
+.bg-gray2{
+    background-color: #535353 !important;
+}
+.bg-gray3{
+    background-color: #777777 !important;
+}
+/** GAMES **/
+.game-small{
+    margin-bottom: 20px;
+    text-align: center;
+}
+/** MARGENES TOP **/
+.voffset  { margin-top: 2px; }
+.voffset1 { margin-top: 5px; }
+.voffset2 { margin-top: 10px; }
+.voffset3 { margin-top: 15px; }
+.voffset4 { margin-top: 30px; }
+.voffset5 { margin-top: 40px; }
+.voffset6 { margin-top: 60px; }
+.voffset7 { margin-top: 80px; }
+.voffset8 { margin-top: 100px; }
+.voffset9 { margin-top: 150px; }
+
+.progress-bar-info {
+    background-color: #01A7C2;
+}
+.btn-info{
+    background-color: #01A7C2;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    /* color: #ffffff; */
+    color: #ebebeb;
+    background-color: #01A7C2;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #535353;
+}
+
+.gly-spin {
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.container-fluid.itgf-nav{
+    padding-left: 0;
+    padding-right: 0;
+}
+.navbar-brand{
+    overflow: hidden;
+    transition: width .2s; 
+    background-color: #333;
+    line-height: 40px;
+    text-align: center;
+    border:0;
+}
+.navbar-brand span{
+    border:0;
+}
+.navbar-brand div {
+    padding: 0 5px;
+}
+.opened{
+    width: 70px; 
+}
+.closed{
+    width: 0;
+}
+.itgf-nav .navbar-brand{
+    padding: 0;
+}
+.nav>li>a:hover,.nav>li>a:focus{
+    text-decoration: none;
+    background-color: #333;
+}
+.game-small h4{
+    margin-bottom: 0;
+}
+a {
+    color: #ebebeb;
+    text-decoration: none;
+}
+footer>a{
+    color:#01A7C2;
+}
+a:hover,
+a:focus {
+    color: #ebebeb;
+    text-decoration: underline;
+}
+.no-under{
+    text-decoration: none !important;
+}
+
+.dropdown-menu {
+    background-color: #333;
+}
+
+.dropdown-menu .divider {
+    background-color: #333;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #ebebeb;
+    background-color: #333;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+    /*background-color: #535353;*/
+    background-color: #333333;
+    border-color: #df691a;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    background-color: #535353;
+}
+.table .table {
+    background-color: #535353;
+}
+.thumbnail {
+    background-color: #535353;
+}
+.btn-add {
+    /*    background-color: #333;
+        border-color: #777;*/
+    color: #ebebeb;
+    background-color: #535353;
+}
+.btn-add:hover,
+.btn-add:focus,
+.btn-add.focus,
+.btn-add:active,
+.btn-add.active,
+.open > .dropdown-toggle.btn-add {
+    /*color: #ffffff;*/
+    color:#ebebeb;
+    /*background-color: #535353;*/
+    background-color: #5cb85c;
+    /*border-color: rgba(0, 0, 0, 0);*/
+}
+.btn-add.disabled,
+.btn-add[disabled],
+fieldset[disabled] .btn-add,
+.btn-add.disabled:hover,
+.btn-add[disabled]:hover,
+fieldset[disabled] .btn-add:hover,
+.btn-add.disabled:focus,
+.btn-add[disabled]:focus,
+fieldset[disabled] .btn-add:focus,
+.btn-add.disabled.focus,
+.btn-add[disabled].focus,
+fieldset[disabled] .btn-add.focus,
+.btn-add.disabled:active,
+.btn-add[disabled]:active,
+fieldset[disabled] .btn-add:active,
+.btn-add.disabled.active,
+.btn-add[disabled].active,
+fieldset[disabled] .btn-add.active {
+    background-color: #535353;
+    border-color: transparent;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+  background-color: #31b0d5;
+  color: #ebebeb;
+}
+.saga-name:hover{
+    text-decoration: underline;
+}
+.btn-primary {
+  background-color: #01A7C2;
+}
+/*DIEGO*/
+.game a:hover,.game-small span:hover{
+    text-decoration: underline !important;
+}
+.card{
+    position: relative;
+}
+.card .saga{
+    position: absolute;
+    /*    top: 21px;*/
+    width: 100%;
+    /*background: red;*/
+    overflow: hidden;
+    height: 0;
+    transition: height .5s
+}
+.card .saga.opened{
+    height: auto;
+    transition: height .5s
+}
+.card .saga.closed{
+    height: auto;
+}
+.admin-table td{
+    vertical-align: middle !important;
+}
+
+.label-platform{
+    background-color: #535353;
+}
+.table-striped > tbody > tr:nth-of-type(odd) .label-platform{
+    background-color: #333333;
+}
+.table-striped > tbody > tr .label-platform{
+    background-color: #535353;
+}
+
+.chosen{
+    background-color: #5cb85c;
+}
+
+
+
+/*JAVI*/
+.loading-icon{
+    height: 15px;
+    width:15px;
+}
+
+
+
+
+
+/*CAMBIOS DE COLOR EN EL MODAL*/
+.modal-content {
+    background-color: #777777;
+}
+.modal-backdrop {
+    background-color: #000000;
+}
+.modal-header {
+    border-bottom: 0;
+}
+.modal-footer {
+    border-top: 0;
+}
+.modal-header, .modal-footer {
+    background-color: #535353;
+    border: 0
+}
+
+
+
+/*CAMBIOS DE COLOR EN LOS BOTONES DEFAULT*/
+.btn-default {
+    /*    background-color: #333;
+        border-color: #777;*/
+    color: #ebebeb;
+    background-color: #777777;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+    /*color: #ffffff;*/
+    color:#ebebeb;
+    /*background-color: #535353;*/
+    background-color: #333;
+    /*border-color: rgba(0, 0, 0, 0);*/
+}
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+    background-color: #535353;
+    border-color: transparent;
+}
+span.brand:before{
+    content:'ITG';
+    color: #01A7C2;
+}
+span.brand:after{
+    content:'F?';
+    color: #d9534f;
+}
+.has-error label{
+    color: #ebebeb;
+    background-color: #d9534f;
+}
+.breadcrumb{
+    background-color: transparent;
+}
+.breadcrumb>.active{
+    font-weight: bold;
+}
+.dropdown-menu>li>a:hover{
+    background-color: #535353;
+}

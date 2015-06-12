@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 Diego Rodríguez Suárez-Bustillo
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,26 +17,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//Include config file
-include_once './config.php';
-
-//Include the composer dependencies
-require_once './vendor/autoload.php';
-
-//Include all the functions
-foreach (glob("./functions/*.php") as $filename)
-{
-    include_once $filename;
-}
-
-//Include all the model classes
-foreach (glob("./classes/*.php") as $filename)
-{
-    include_once $filename;
-}
-
-//Include all the controllers
-foreach (glob("./controllers/*.php") as $filename)
-{
-    include_once $filename;
+/**
+ * Description of sitemap
+ *
+ * @author Diego Rodríguez Suárez-Bustillo
+ */
+class sitemap extends Controller {
+    public function index($args = array()) {
+        $template = 'templates/sitemap/index.html';
+        $this->generateBreadcrumbs([
+            "Home" => '{server_root}',
+            "Sitemap" => '{server_root}sitemap'
+        ]);
+        $this->body = file_get_contents($template);
+        return $this->build();
+    }
 }
