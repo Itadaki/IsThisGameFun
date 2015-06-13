@@ -1,7 +1,8 @@
-<div class="container row voffset3">
-    <div class="col-md-6 voffset6">
+<div class="container row">
+    <div class="col-md-6 col-md-offset-1">
+        <h2>Sign In form</h2>
         {messages}
-        <form id="form-signin" method="post" class="form-horizontal has-feedback" action="{server_root}signin">
+        <form id="form-signin" method="post" class="form-horizontal has-feedback voffset5" action="{server_root}signin">
             <div class="form-group {validateUser}">
                 <label class="col-lg-3 control-label">Username*</label>
                 <div class="field-group col-lg-9">
@@ -44,8 +45,8 @@
                     <p class="help-block">Repeat the password.</p>
                 </div>
             </div>
-            
-         
+
+
             <div class="form-group">
                 <div class="col-lg-12 text-center">
                     <p>Fields marked with * are mandatory.</p>
@@ -60,11 +61,15 @@
 
         </form>
     </div>
-    <div class="col-md-6">
-        <h2>Intructions</h2>
-        <p>Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum </p>
-        <p>Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum </p>
-        <p>Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum Lorem Impsum </p>
+    <div class="col-md-4">
+        <h2>Help</h2>
+        <p>
+        <ul>
+            <li>In general: alphabetical, numerical, - and _ characters only.</li>
+            <li>Email address must be in a valid format.</li>
+            <li>Nick must be 3 characters long at least.</li>
+        </ul>  
+        </p>
     </div>
 </div>
 <style>

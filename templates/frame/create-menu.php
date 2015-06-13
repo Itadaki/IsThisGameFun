@@ -25,8 +25,8 @@
                         </ul>
                     </li>
 
-                    <li class='{about-active}'><a href='{server_root}#'>ABOUT</a></li>
-                    <li class='{contact-active}'><a href="{server_root}#">CONTACT</a></li>   
+                    <li class='{about-active}'><a href='{server_root}about'>ABOUT</a></li>
+                    <li class='{contact-active}'><a href="{server_root}contact">CONTACT</a></li>   
                 </ul>
                 <ul class="nav navbar-nav nav-pills navbar-right" style="margin-right:15px">
                     <?php
