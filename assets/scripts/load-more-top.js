@@ -22,7 +22,7 @@ $(document).ready(function () {
         label++;
         var url = $(location).attr('href');
         url = url.split('/');
-        var last_pos = url.length-1;
+        var last_pos = url.length - 1;
         if (url[last_pos] === 'top') {
             type = 1;
         }
@@ -35,14 +35,17 @@ $(document).ready(function () {
         offset = offset + 20;
         console.log(offset);
         var ruta = server_root + 'api/getMoreGames/' + type + '/' + offset;
+//Se realiza la petición al servidor
         $.get(ruta, function (data) {
-            console.log(data);
             var parent = $('#game-container');
+//Añade los juegos
             addGames(parent, data);
+//Añade el metodo vote() para que puedan votar
             vote();
+//Añade el metodo extendSaga() para que desplegarse las sagas
             extendSaga();
-            closeSaga();
-            if(data.full_quota === false){
+//Si ya no hay mas juegos inhabilita boton y cambia texto
+            if (data.full_quota === false) {
                 $('.load-more').addClass('disabled');
                 $('.load-more').text('No games left');
             }
@@ -51,12 +54,12 @@ $(document).ready(function () {
 });
 function addGames(parent, data) {
     $.each(data.games, function (i, item) {
-        var disabled_left='';
-        var disabled_right='';
-        if (item.my_vote === 1){
+        var disabled_left = '';
+        var disabled_right = '';
+        if (item.my_vote === 1) {
             disabled_left = 'disabled';
         }
-        if (item.my_vote === 0){
+        if (item.my_vote === 0) {
             disabled_right = 'disabled';
         }
         parent.append('<div class="game-small col-md-3 col-sm-4 col-xs-6 text-center">\n\
@@ -76,25 +79,25 @@ function addSaga(item) {
     var saga = new Array;
     if (item.saga !== null) {
         $.each(item.saga, function (i, value) {
-            saga[i]=value;
-            
+            saga[i] = value;
+
         });
-        div_saga = '<span class="bg-gray2" style="min-height: 25px; display: block;"><span>'+saga.name+'</span></span>\n\
+        div_saga = '<span class="bg-gray2" style="min-height: 25px; display: block;"><span>' + saga.name + '</span></span>\n\
                         <button class="btn btn-block btn-danger close-saga"><span class="glyphicon glyphicon-eye-close"></span></button>\n\
-                        <img class="img-responsive" style="margin:0px auto 15px auto;max-height: 50px" src="'+server_root+'logos/'+saga.logo+'" alt="Game-Cover" />\n\
+                        <img class="img-responsive" style="margin:0px auto 15px auto;max-height: 50px" src="' + server_root + 'logos/' + saga.logo + '" alt="Game-Cover" />\n\
                         <div style=" overflow:auto; height: 195px">\n\
-                        '+saga.description+'\n\
+                        ' + saga.description + '\n\
                         </div>';
     }
     return div_saga;
 }
 function addImg(item) {
-    var saga ='';
-    if (item.saga !== null){
+    var saga = '';
+    if (item.saga !== null) {
         saga = 'Saga<span class="caret"></span>';
     }
     var div_img = '<div style="position: relative; height: 368px; overflow:hidden">\n\
-                    <div class="bg-gray2 saga-name" style="cursor: pointer" >'+saga+'</div>\n\
+                    <div class="bg-gray2 saga-name" style="cursor: pointer" >' + saga + '</div>\n\
                     <a href="' + server_root + 'games/details/' + item.id + '">\n\
                         <img class="img-responsive" style="margin:0px auto 15px auto;position: absolute;" src="' + server_root + 'covers/' + item.cover + '" alt="' + item.name + '" />\n\
                     </a>\n\
@@ -105,7 +108,7 @@ function addImg(item) {
 function addPlatforms(item) {
     var span_platforms = "";
     $.each(item.platforms, function (i, value) {
-            span_platforms += '<span class="label label-platform" title="' + value.name + '">' + value.short_name + '</span>\n';  
+        span_platforms += '<span class="label label-platform" title="' + value.name + '">' + value.short_name + '</span>\n';
     });
     return span_platforms;
 }
@@ -124,9 +127,9 @@ function addVote(item, disabled_right, disabled_left) {
                     </div>\n\
                     <div class="hidden positive-votes">' + votes.positive_votes + '</div>\n\
                     <div class="hidden total-votes">' + votes.total_votes + '</div>\n\
-                        <button type="button" class="btn btn-vote btn-vote' + label + ' btn-info pull-left positive-vote '+disabled_left+'"><span class="glyphicon glyphicon-thumbs-up"></span></button>\n\
+                        <button type="button" class="btn btn-vote btn-vote' + label + ' btn-info pull-left positive-vote ' + disabled_left + '"><span class="glyphicon glyphicon-thumbs-up"></span></button>\n\
                         <span id="total-votes"><span class="total">' + votes.total_votes + ' votes</span></span>\n\
-                        <button type="button" class="btn btn-vote btn-vote' + label + ' btn-danger pull-right negative-vote '+disabled_right+'"><span class="glyphicon glyphicon-thumbs-down"></span></button>\n\
+                        <button type="button" class="btn btn-vote btn-vote' + label + ' btn-danger pull-right negative-vote ' + disabled_right + '"><span class="glyphicon glyphicon-thumbs-down"></span></button>\n\
                     </div>\n\
                     <div class="hidden user-vote">' + (item.my_vote) + '</div>\n\
                     </div></div></div>';

@@ -27,8 +27,7 @@ $(document).ready(function () {
             console.log(data_send);
             addLoadingIcon(field);
             $.get(ruta, function (data) {
-//            data = $.parseJSON(data);
-                console.log(data);
+              //Se realiza la peticion al servidor.
                 var error = data.error;
                 var message = data.message;
                 var exists = data.exists;

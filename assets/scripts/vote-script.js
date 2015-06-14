@@ -22,7 +22,6 @@ $(document).ready(function () {
 function vote() {
     $('.btn-vote' + label).click(function () {
         var button = $(this);
-        console.log('OK');
         var parent = button.parents('.game');
         var user_vote = parent.children(".user-vote").html();
         var id_name = parent.attr('id');
@@ -34,33 +33,36 @@ function vote() {
         console.log(user_vote);
         loadPanel(id_name);
         loadIcon(id_name);
+        //Se realiza la peticion al servidor.
         $.post(server_root + 'api/vote', {json: data_send}, function (data) {
             var error = data.error;
             var state;
             var msg = data.message;
             if (error) {
+                //si hay error el mensaje sera danger(rojo);
                 state = "danger";
-                $('.btn-vote').attr('disabled', false);
             } else {
                 if (user_vote === '1' && vote_value) {
+                    //Si el usuario voto ya positivo y el voto es positivo da error.
                     state = "danger";
                     msg = 'The game has already been voted postive by you';
                 } else {
                     if (user_vote === '0' && !vote_value) {
+                        //Si el usuario voto ya negativo y el voto es negativo da error.
                         state = "danger";
                         msg = 'The game has already been voted negative for you';
-
                     } else {
+                        //Si todo es correcto.
                         state = "success";
                         msg = 'Success in vote &nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-'+msg_vote+'"></span> ';
+                        //Se deshabilita el boton de su voto
                         button.addClass('disabled');
+                        //Se deshabilita el boton contrario.
                         button.siblings('button').removeClass('disabled');
+                        //Se añade el porcentaje con el nuevo voto.
                         loadProgressBar(button, vote_value, user_vote);
-                        if (user_vote === '' || user_vote === 'null') {
-                            parent.children(".user-vote").html((vote_value) ? '1' : '0');
-                        } else {
-                            (user_vote === '0') ? parent.children(".user-vote").html('1') : parent.children(".user-vote").html('0');
-                        }
+                        parent.children(".user-vote").html((vote_value) ? '1' : '0');
+                        
                     }
                 }
             }

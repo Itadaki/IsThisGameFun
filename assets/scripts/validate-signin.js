@@ -22,53 +22,19 @@ var nickIsValid = false;
 
 $(document).ready(function () {
 
-
     $('#user').blur(function () {
         var user = $(this);
         var isValid = validateUserName(user);
         //poner colorines, iconos y mensajes
-        if (isValid) {
-            //poner tick
-            console.log('valid');
-            user.siblings('.glyphicon').removeClass('glyphicon-remove');
-            user.siblings('.glyphicon').addClass('glyphicon-ok');
-            user.siblings('.help-block').text("The name you will log in with.")
-            user.siblings('.help-block').removeClass('error');
-        } else {
-            console.log('no valid');
-            //poner x
-            user.siblings('.glyphicon').removeClass('glyphicon-ok');
-            user.siblings('.glyphicon').addClass('glyphicon-remove');
-            user.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
-            user.siblings('.help-block').addClass('error');
-            //sacar msg
-        }
-        userIsValid = isValid;
-        console.log(userIsValid);
+        includeIcon(user, isValid);
         enableSubmit();
     });
     $('#email').blur(function () {
         var email = $(this);
         var isValid = validateEmail(email);
         //poner colorines, iconos y mensajes
-        if (isValid) {
-            //poner tick
-            console.log('valid');
-            email.siblings('.glyphicon').removeClass('glyphicon-remove');
-            email.siblings('.glyphicon').addClass('glyphicon-ok');
-            email.siblings('.help-block').text("Your email for information purposes.")
-            email.siblings('.help-block').removeClass('error');
-        } else {
-            console.log('no valid');
-            //poner x
-            email.siblings('.glyphicon').removeClass('glyphicon-ok');
-            email.siblings('.glyphicon').addClass('glyphicon-remove');
-            email.siblings('.help-block').text("That's not a valid email!");
-            email.siblings('.help-block').addClass('error');
-            //sacar msg
-        }
+        includeIcon(email, isValid)
         emailIsValid = isValid;
-        console.log(emailIsValid);
         enableSubmit();
     });
 
@@ -76,24 +42,8 @@ $(document).ready(function () {
         var password = $(this);
         var isValid = validatePass(password) && isTheSamePass(password);
         //poner colorines, iconos y mensajes
-        if (isValid) {
-            //poner tick
-            console.log('valid');
-            password.siblings('.glyphicon').removeClass('glyphicon-remove');
-            password.siblings('.glyphicon').addClass('glyphicon-ok');
-            password.siblings('.help-block').text("The password for the log in.")
-            password.siblings('.help-block').removeClass('error');
-        } else {
-            console.log('no valid');
-            //poner x
-            password.siblings('.glyphicon').removeClass('glyphicon-ok');
-            password.siblings('.glyphicon').addClass('glyphicon-remove');
-            (validatePass(password))?password.siblings('.help-block').text("The password doesn't match!."):password.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.");
-            password.siblings('.help-block').addClass('error');
-            //sacar msg
-        }
+        includeIcon(password, isValid)
         passIsValid = isValid;
-        console.log(passIsValid);
         enableSubmit();
     });
 
@@ -133,16 +83,25 @@ $(document).ready(function () {
 
         return userIsValid && emailIsValid && passIsValid && pass2IsValid && nickIsValid;
     });
+    $('#resetBtn').click(function (){
+        $('.glyphicon').removeClass('glyphicon-remove');
+        $('.glyphicon').removeClass('glyphicon-ok');
+        $('.help-block').removeClass('error');
+        $('#user').siblings('.help-block').text('The name you will log in with.');
+        $('#nick').siblings('.help-block').text('The public name that will be shown to everyone.');
+        $('#email').siblings('.help-block').text('Your email for information purposes.');
+        $('#password').siblings('.help-block').text('The password for the log in.');
+        $('#confirmPassword').siblings('.help-block').text('Repeat the password.');
+    });
+        
+    
 });
 
 function enableSubmit() {
-    console.log('check for submit')
     if (userIsValid && emailIsValid && passIsValid && pass2IsValid && nickIsValid) {
         $('#btn-submit').removeClass('disabled');
-        console.log('enabled')
     } else {
         $('#btn-submit').addClass('disabled');
-        console.log('disabled')
     }
 }
 //Funciones de evaluacion
@@ -174,4 +133,21 @@ function isTheSamePass(pass){
         }
     }
     return confirm;
+}
+function includeIcon(element, isValid){
+    if (isValid) {
+            //poner tick
+            console.log('valid');
+            element.siblings('.glyphicon').removeClass('glyphicon-remove');
+            element.siblings('.glyphicon').addClass('glyphicon-ok');
+            element.siblings('.help-block').removeClass('error');
+        } else {
+            console.log('no valid');
+            //poner x
+            element.siblings('.glyphicon').removeClass('glyphicon-ok');
+            element.siblings('.glyphicon').addClass('glyphicon-remove');
+            element.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
+            element.siblings('.help-block').addClass('error');
+            //sacar msg
+        }
 }
