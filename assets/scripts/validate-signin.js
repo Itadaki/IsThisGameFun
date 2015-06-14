@@ -27,6 +27,7 @@ $(document).ready(function () {
         var isValid = validateUserName(user);
         //poner colorines, iconos y mensajes
         includeIcon(user, isValid);
+        userIsValid = isValid;
         enableSubmit();
     });
     $('#email').blur(function () {
