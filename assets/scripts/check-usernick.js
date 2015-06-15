@@ -18,7 +18,7 @@ $(document).ready(function () {
     $('#nick').blur(function () {
         var field = $(this);
         var isValid = validateNick(field);
-        if (isValid) {
+        if (isValid && field.val()!=='') {
             nickIsValid = false;
             var user_nick = $(this).val();
             var ruta;

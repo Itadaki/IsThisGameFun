@@ -43,7 +43,18 @@ $(document).ready(function () {
         var password = $(this);
         var isValid = validatePass(password) && isTheSamePass(password);
         //poner colorines, iconos y mensajes
-        includeIcon(password, isValid)
+        includeIcon(password, isValid);
+        if (!isTheSamePass(password)) {
+            password.siblings('.help-block').text("The password doesn't match!.");
+        } else {
+            $('#confirmPassword').siblings('.help-block').removeClass('error');
+            $('#confirmPassword').siblings('.help-block').text("Repeat the password.");
+            if ($('#confirmPassword').val() !== '') {
+                $('#confirmPassword').siblings('.glyphicon').removeClass('glyphicon-remove');
+                $('#confirmPassword').siblings('.glyphicon').addClass('glyphicon-ok');
+                pass2IsValid = true;
+            }
+        }
         passIsValid = isValid;
         enableSubmit();
     });
@@ -61,8 +72,9 @@ $(document).ready(function () {
             $('#password').siblings('.help-block').removeClass('error');
             password.siblings('.glyphicon').removeClass('glyphicon-remove');
             password.siblings('.glyphicon').addClass('glyphicon-ok');
-            password.siblings('.help-block').text("Repeat the password.")
+            password.siblings('.help-block').text("Repeat the password.");
             password.siblings('.help-block').removeClass('error');
+            passIsValid = true;
         } else {
             console.log('no valid');
             //poner x
@@ -84,7 +96,7 @@ $(document).ready(function () {
 
         return userIsValid && emailIsValid && passIsValid && pass2IsValid && nickIsValid;
     });
-    $('#resetBtn').click(function (){
+    $('#resetBtn').click(function () {
         $('.glyphicon').removeClass('glyphicon-remove');
         $('.glyphicon').removeClass('glyphicon-ok');
         $('.help-block').removeClass('error');
@@ -93,9 +105,15 @@ $(document).ready(function () {
         $('#email').siblings('.help-block').text('Your email for information purposes.');
         $('#password').siblings('.help-block').text('The password for the log in.');
         $('#confirmPassword').siblings('.help-block').text('Repeat the password.');
+        userIsValid = false;
+        emailIsValid = false;
+        passIsValid = false;
+        pass2IsValid = false;
+        nickIsValid = false;
+        enableSubmit();
     });
-        
-    
+
+
 });
 
 function enableSubmit() {
@@ -124,10 +142,10 @@ function validateNick(nick) {
     var regexp = /^[a-zA-ZÑñ0-9_-]{3,45}$/;
     return regexp.test(nick.val());
 }
-function isTheSamePass(pass){
+function isTheSamePass(pass) {
     var confirm = true;
-    if ($('#confirmPassword').val()!== ''){
-        if (pass.val() === $('#confirmPassword').val()){
+    if ($('#confirmPassword').val() !== '') {
+        if (pass.val() === $('#confirmPassword').val()) {
             confirm = true;
         } else {
             confirm = false;
@@ -135,20 +153,20 @@ function isTheSamePass(pass){
     }
     return confirm;
 }
-function includeIcon(element, isValid){
+function includeIcon(element, isValid) {
     if (isValid) {
-            //poner tick
-            console.log('valid');
-            element.siblings('.glyphicon').removeClass('glyphicon-remove');
-            element.siblings('.glyphicon').addClass('glyphicon-ok');
-            element.siblings('.help-block').removeClass('error');
-        } else {
-            console.log('no valid');
-            //poner x
-            element.siblings('.glyphicon').removeClass('glyphicon-ok');
-            element.siblings('.glyphicon').addClass('glyphicon-remove');
-            element.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
-            element.siblings('.help-block').addClass('error');
-            //sacar msg
-        }
+        //poner tick
+        console.log('valid');
+        element.siblings('.glyphicon').removeClass('glyphicon-remove');
+        element.siblings('.glyphicon').addClass('glyphicon-ok');
+        element.siblings('.help-block').removeClass('error');
+    } else {
+        console.log('no valid');
+        //poner x
+        element.siblings('.glyphicon').removeClass('glyphicon-ok');
+        element.siblings('.glyphicon').addClass('glyphicon-remove');
+        element.siblings('.help-block').text("Alphabetical, numerical, - and _ characters only.")
+        element.siblings('.help-block').addClass('error');
+        //sacar msg
+    }
 }
