@@ -95,10 +95,10 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
 function redefinePlatformsRelationships($game_id, $platform_ids) {
     global $db, $config;
     //Delete all former game-platform relationships
-        $db->delete($config['t_game_platform'], [
-            "game" => $game_id
-        ]);
-        $debug_error = $db->error();
+    $db->delete($config['t_game_platform'], [
+        "game" => $game_id
+    ]);
+    $debug_error = $db->error();
 
     if (!empty($platform_ids)) {
         //Generate data array for the insert
@@ -118,11 +118,11 @@ function redefinePlatformsRelationships($game_id, $platform_ids) {
  */
 function redefineSagasRelationships($game_id, $saga_id) {
     global $db, $config;
-        //Delete all former game-saga relationships
-        $db->delete($config['t_game_saga'], [
-            "game" => $game_id
-        ]);
-        $debug_error = $db->error();
+    //Delete all former game-saga relationships
+    $db->delete($config['t_game_saga'], [
+        "game" => $game_id
+    ]);
+    $debug_error = $db->error();
     //Insert the game-saga relationship
     if ($saga_id != null && !empty($saga_id)) {
         $db->insert($config['t_game_saga'], ["game" => $game_id, "saga" => $saga_id]);
@@ -147,9 +147,15 @@ function proccessUploadedImage($name, $form_field_name = "cover", $path_to_save 
         $replace_char = "-";
         $name = preg_replace($allowed_chars, $replace_char, $name);
         $file_name = $name . '.' . pathinfo($_FILES[$form_field_name]["name"], PATHINFO_EXTENSION);
+        if (PHP_OS == 'Linux') {
+            $path_to_save = $_SERVER['DOCUMENT_ROOT'] . '/' . $path_to_save;
+        }
         $path = $path_to_save . $file_name;
 
-        move_uploaded_file($_FILES[$form_field_name]["tmp_name"], $path);
+        $error = move_uploaded_file($_FILES[$form_field_name]["tmp_name"], $path);
+        if ($error == false) {
+            return $error;
+        }
     }
 
     return $file_name;

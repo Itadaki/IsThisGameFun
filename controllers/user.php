@@ -111,7 +111,10 @@ class user extends Controller {
             $form_field_name = 'avatar';
             $path_to_save = 'avatars/';
             $avatar = proccessUploadedImage($name, $form_field_name, $path_to_save);
-
+            if ($avatar == false && $logo != null){
+                $message = array((new Message('danger', 'Error', "Unexpected Error."))->getMessage());
+                return $this->profile(array($_SESSION['user_nick']), $message);
+            }
             //Edit user
             updateUser($id, $avatar);
             $message = array((new Message('success', 'Done', 'Avatar updated!'))->getMessage());

@@ -390,7 +390,13 @@ class admin extends Controller {
         }
         $saga = $_POST['saga']; //id
 
-        $cover = proccessUploadedImage($name); //name or null
+        $cover = proccessUploadedImage($name); //name or false
+        
+        if ($cover == false && $logo != null) {
+            $messages[] = (new Message('danger', 'Error', "Unexpected error."))->getMessage();
+            unset($_POST['action']);
+            return $this->games([], $messages);
+        }
 
         if ($action == "Create") {
             $error = insertGame($name, $description, $platforms, $saga, $cover);
@@ -611,7 +617,13 @@ class admin extends Controller {
         $name = cleanString($_POST['name']);
         $description = cleanString($_POST['description']);
 
-        $logo = proccessUploadedImage($name, 'logo', 'logos/'); //name or null
+        $logo = proccessUploadedImage($name, 'logo', 'logos/'); //name or false
+        
+        if ($logo == false && $logo != null) {
+            $messages[] = (new Message('danger', 'Error', "Unexpected error."))->getMessage();
+            unset($_POST['action']);
+            return $this->sagas([], $messages);
+        }
 
         if ($action == "Create") {
             $error = insertSaga($name, $description, $logo);

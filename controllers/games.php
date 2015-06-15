@@ -25,7 +25,8 @@
 class games extends Controller {
 
     public function index($args = array()) {
-        return $this->top();
+        global $config;
+        header("Location: ".$config['server_root']."games/top");
     }
 
     public function top($args = array()) {
