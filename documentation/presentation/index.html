@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8">
 
-        <title>reveal.js - The HTML Presentation Framework</title>
+        <title>Is This Game Fun? - Proyecto Final</title>
 
-        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-        <meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="Presentación para la defensa del proyecto 'Is This Game Fun?' de final de ciclo">
+        <meta name="author" content="Diego Rodríguez">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -20,7 +20,34 @@
         <!-- Code syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
 
+        <style>
+            @import url("//fonts.googleapis.com/css?family=Lato:300,400,700");
+            .brand, .brand-lg{
+                font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+                text-transform: none;
+            }
+            .brand:before, .brand-lg:before{
+                color: #01A7C2;
+            }
+            .brand:after, .brand-lg:after{
+                color: #d9534f;
+            }
+            .brand:before{
+                content: 'ITG';
+            }
+            .brand:after{
+                content: 'F?';
+            }
+            .brand-lg:before{
+                content: 'Is This Game';
+            }
+            .brand-lg:after{
+                content: ' Fun?';
+            }
+        </style>
+
         <!-- Printing and PDF exports -->
+        <!-- To export, open with querystring ?print-pdf and 'print' -->
         <script>
             var link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -37,176 +64,343 @@
     <body>
 
         <div class="reveal">
-
+            <div style="position: absolute; z-index: 99999; top:0; font-size: 14px">
+                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/black.css');
+                        return false;">Black </a> -
+                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/white.css');
+                        return false;">White</a> -
+                <!--                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/league.css');
+                                                return false;">League</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/sky.css');
+                                                return false;">Sky</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/beige.css');
+                                                return false;">Beige</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/simple.css');
+                                                return false;">Simple</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/serif.css');
+                                                return false;">Serif</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/blood.css');
+                                                return false;">Blood</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/night.css');
+                                                return false;">Night</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/moon.css');
+                                                return false;">Moon</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/solarized.css');
+                                                return false;">Solarized</a>-->
+            </div>
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
 
-
-
                 <section>
-                    <h1>Is This Game Fun?</h1>
+                    <h1><span class="brand-lg"></span></h1>
                     <h3>Web de ranking de videojuegos</h3>
                     <p>
                         <small>Javier Oltra - Diego Rodríguez - Sergio Serrano</small>
                     </p>
                 </section>
 
+                <section>
+                    <h1>Índicie</h1>
+                    <div style="display: table; text-align: left">
+                        <div style="display: table-row">
+                            <div style="display: table-cell">
+                                1-Introducción
+                                <ul>
+                                    <li><a href="#que-es">¿Qué es?</a></li>
+                                    <li><a href="#objetivo">Objetivo</a></li>
+                                    <li><a href="#recursos">Recursos</a></li>
+                                </ul>
+                            </div>
+                            <div style="display: table-cell; vertical-align: top">
+                                2-Servidor
+                                <ul>
+                                    <li><a href="#bd">Estructura de BD</a></li>
+                                    <li><a href="#arquitectura">Arquitectura</a></li>
+                                    <li><a href="#configuracion">Configuración</a></li>
+                                    <li><a href="#directorios">Directorios</a></li>
+                                    <li><a href="#ejecucion">Ejecución</a></li>
+                                </ul>
+                            </div>
+                            <div style="display: table-cell; vertical-align: top">
+                                3-Interfaces
+                                <ul>
+                                    <li><a href="#">cosa a</a></li>
+                                    <li><a href="#">cosa b</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="display: table-row">
+                            <div style="display: table-cell; vertical-align: top">
+                                4-Cliente
+                                <ul>
+                                    <li><a href="#">cosa a</a></li>
+                                    <li><a href="#">cosa b</a></li>
+                                </ul>
+                            </div>
+                            <div style="display: table-cell; vertical-align: top">
+                                5-Conclusiones
+                                <ul>
+                                    <li><a href="#planificacion">Planificación</a></li>
+                                    <li><a href="#descartes">Descartes y mejoras</a></li>
+                                    <li><a href="#conclusion">Conclusión</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <section>
-                    <section>
-                        <h1>Que es ITFG?</h1>                                
+                    <section id="que-es">
+                        <h1>¿Qué es <span class="brand"></span></h1>                                
                     </section>
-
                     <section>
-                        <h2>ITFG? es...</h2>                                
+                        <h2><span class="brand"></span> es...</h2>                                
                         <p>
                             Web de ranking simple de videojuegos.
                         </p>
                     </section>
-
                     <section>
-                        <h2>Por que</h2>                                
+                        <h2>¿Por qué?</h2>                  
                         <p>
-                            Existen otras webs con analisis detallados y grandes opiniones
+                            Existen otras webs con densos análisis, detallados y con valoraciones complejas.
+                        </p>
+                        <p class="fragment">
+                            Nosotros ofrecemos sencillez.
                         </p>
                     </section>
                 </section>
 
-
                 <section>
-                    <section>
+                    <section id="objetivo">
                         <h1>Objetivo</h1>                                
                     </section>
-
-                    <section>                             
+                    <section>  
+                        <h2>Primero</h2>
                         <p>
                             Responder de manera simple una pregunta simple.
                         </p>
+                        <h4 class="fragment">¿Es divertido?</h4>
+                        <h4 class="fragment">¿Merece la pena?</h4>
                     </section>
-
                     <section>
+                        <h2>Segundo</h2>
                         <p>
-                            Crear un medio de opinion publica lejos de los lobbys del periodismo de videojuegos
+                            Crear un medio de opinion pública lejos de los "lobbys" influyentes del periodismo de videojuegos.
                         </p>
                     </section>
                 </section>
 
-
                 <section>
                     <section>
-                        <h1>Que me ofrece</h1>                                
-                    </section>
-
-                    <section>                             
-                        <p>
-                            Informacion acerca de un videojuego
+                        <h1>¿Qué me ofrece?</h1>  
+                        <p class="fragment">
+                            Información básica acerca de un videojuego
                         </p>
-                    </section>
-
-                    <section>
-                        <p>
-                            Contribuir al comun con tu opinion.
+                        <p class="fragment">
+                        <u>Contribuir con tu opinión.</u>
                         </p>
                     </section>
                 </section>
 
-
                 <section>
                     <section>
-                        <h1>Que puedo hacer</h1>                                
-                    </section>
-
-                    <section>                             
-
+                        <h1>¿Qué puedo hacer?</h1>   
                         <ul>
-                            <li>Navegar sin compromiso</li>
+                            <li class="fragment">Navegar sin compromiso</li>
                             <li class="fragment">Resgistrarme y participar</li>
-                            <li class="fragment">Personalizar mi perfil personal</li>
-                            <li class="fragment">Administracion</li>
+                            <li class="fragment">Personalizar mi perfil</li>
+                            <li class="fragment">Administración</li>
                         </ul>
-
+                    </section>
+                    <section>
+                        <h2>Funcionalidades</h2>  
+                        <h5>Usuarios anónimos</h5>
+                        <ul>
+                            <li>Navegar</li>
+                            <li>Consultar información</li>
+                            <li>Registrarse</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Funcionalidades</h2>  
+                        <h5>Usuarios registrados</h5>
+                        <ul>
+                            <li>Votar</li>
+                            <li>Cambiar avatar</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Funcionalidades</h2>  
+                        <h5>Administradores</h5>
+                        <ul>
+                            <li>Acciones CRUD</li>
+                        </ul>
                     </section>
                 </section>
 
-
-
                 <section>
-                    <section>
+                    <section id="recursos">
                         <h1>Recursos utilizados</h1>                                
                     </section>
-
                     <section>   
                         <h2>Servidor</h2>
-                        <ul>
-                            <li>PHP 5.5</li>
-                            <li>MySQL 5.6</li>
-                            <li>Apache 2.2</li>
-                        </ul>
+                        <div style="display: inline-block">
+                            <h6>Base</h6>
+                            <ul>
+                                <li>PHP 5.5</li>
+                                <li>MySQL 5.6</li>
+                                <li>Apache 2.2</li>
+                            </ul>
+                        </div>
+                        <div style="display: inline-block">
+                            <h6>Frameworks</h6>
+                            <ul>
+                                <li>Medoo</li>
+                                <li>Kint</li>
+                                <li>XDebug</li>
+                            </ul>
+                        </div>
                     </section>
-
                     <section>   
                         <h2>Interfaces</h2>
-                        <ul>
-                            <li>Bootstrap 3</li>
-                        </ul>
+                        <div style="display: inline-block">
+                            <h6>Base</h6>
+                            <ul>
+                                <li>HTML 5</li>
+                                <li>CSS 3</li>
+                            </ul>
+                        </div>
+                        <div style="display: inline-block">
+                            <h6>Frameworks</h6>
+                            <ul>
+                                <li>Bootstrap 3</li>
+                                <li style="list-style: none">&NonBreakingSpace;</li>
+                            </ul>
+                        </div>
                     </section>
-
                     <section>   
-                        <h2>Servidor</h2>
-                        <ul>
-                            <li>jQuery</li>
-                        </ul>
+                        <h2>Cliente</h2>
+                        <div style="display: inline-block">
+                            <h6>Base</h6>
+                            <ul>
+                                <li>Javascript</li>
+                            </ul>
+                        </div>
+                        <div style="display: inline-block">
+                            <h6>Frameworks</h6>
+                            <ul>
+                                <li>jQuery</li>
+                            </ul>
+                        </div>
                     </section>
                 </section>
 
-
-
-
                 <section>
-                    <section>
+                    <section id="bd">
                         <h1>Estructura de la Base de Datos</h1>                                
                     </section>
-
+                    <section>
+                        <h2>Entidades</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center"><!--Entidades--></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Juegos</td>
+                                    <td>Plataformas</td>
+                                </tr>
+                                <tr>
+                                    <td>Sagas</td>
+                                    <td>Usuarios</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
                     <section>   
                         <h2>Diagrama Entidad-Relación</h2>
-                        <img width="300" height="300" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" alt="Down arrow">
+                        <img height="400" data-src="images/er-diagram-solid.png" alt="Diagrama ER">
                     </section>
-
                     <section>   
                         <h2>Esquema de la Base de Datos</h2>
-                        <img width="300" height="300" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" alt="Down arrow">
+                        <img height="600" data-src="images/db-scheme.png" alt="Esquema BD">
                     </section>                    
                 </section>
 
-
                 <section>
-                    <section>
+                    <section id="arquitectura">
                         <h1>Arquitectura</h1>                                
                     </section>
-
                     <section>   
-                        <h2>MVC personal</h2>
-                        <img width="300" height="300" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" alt="Down arrow">
+                        <h2>MVC</h2>
+                        <h4>Modelo - Vista - Controlador</h4>
+                        <img data-src="images/mvc.png" alt="Esquema MVC">
                     </section>
-
                     <section>   
-                        <h2>Diagrama de flujo</h2>
-                        <img width="300" height="300" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" alt="Down arrow">
+                        <!--<h2>Diagrama de flujo</h2>-->
+                        <img data-src="images/mvc-uml.png" alt="UML MVc">
                     </section>                    
                 </section>
-                
                 <section>
-                    <section>   
-                        <h1>Configuracion</h1>
+                    <section id="configuracion">   
+                        <h1>Configuración</h1>
+                        <pre><code data-trim contenteditable>
+$config = array();
+...
+$config['db_server'] = 'localhost';
+...
+$config['t_games'] = 'games';
+...
+$config['server_root'] = '/';
+					</code></pre>
                     </section>                    
                 </section>
 
+                <section>
+                    <section id="directorios">
+                        <h2>Estructura de directorios</h2> 
+                        <pre><code data-trim contenteditable>
+.
+├── ...
+├── classes
+├── controllers
+│   ├── controller1.php
+│   ├── ...
+│   └── controllerN.php
+├── ...
+├── functions
+├── ...
+└── templates
+     └── controller1
+         ├── template1.html
+         └── ...
+...
+                        </code></pre>
+                    </section>
+                </section>
 
                 <section>
+                    <section id="ejecucion">
+                        <h1>Construcción y ejecución del script</h1>                                
+                    </section>
                     <section>
-                        <h1>Estructura de directorios</h1> 
-                        <img width="300" height="300" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" alt="Down arrow">
-                    </section>
+                        <h2>Autoinclude</h2>
+                        <p style="text-align: left;"><small>index.php</small></p>
+                        <pre><code data-trim contenteditable>
+//Include all needed files
+include_once './autoinclude.php';
+                        </code></pre>
+                        <p style="text-align: left;"><small>autoinclude.php</small></p>
+                        <pre><code data-trim contenteditable>
+//Include all the controllers
+foreach (glob("./controllers/*.php") as $filename)
+{
+    include_once $filename;
+}
+                        </code></pre>
+                    </section>      
                 </section>
 
                 <section>
@@ -215,45 +409,89 @@
                         <h3>Como funciona</h3>
                     </section>
                     <section>
-                        <h2>Codigo</h2>
+                        <h2>URL</h2>
+                        <p>Original</p>
+                        <a>http://isthisgamefun.com/games/top/page/2</a>
+                        <p>Resuelta</p>
+                        <a>http://isthisgamefun.com/index.php?section=games&action=top&args=page/2</a>
+                    </section>
+                    <section>
+                        <h2>URL</h2>
+                        <p style="text-align: left;"><small>.htaccess</small></p>
                         <pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
+RewriteRule ^(\w+)/(\w+)/((\w+/?)+)/?$ index.php?section=$1&action=$2&args=$3 [L]
+                        </code></pre>
+                        <p style="text-align: left;"><small>index.php</small></p>
+                        <pre><code data-trim contenteditable>
+$_GET["section"] //string - P.E. "games"
+$_GET["action"] //string - P.E. "top"
+$_GET["args"] //string - P.E. "page/2"
+                        </code></pre>
+                        <pre><code data-trim contenteditable>
+//Set the router
+$router = new Router($section, $action, $args);
+                        </code></pre>
                     </section>
                     <section>   
-                        <h2>Diagrama UML</h2>
-                        <img width="300" height="300" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" alt="Down arrow">
-                    </section>  
+                        <img data-src="images/mvc-uml.png" alt="UML MVC">
+                    </section>   
+                    <section>
+                        <h2>Ejecución</h2>
+                        <pre><code data-trim contenteditable>
+//If the class exist
+if (class_exists($this->controller)) {
+    //Invoke the new class
+    $c = new $this->controller();
+    //If the class has the action method
+    if (method_exists($c, $this->action)) {
+        //Invoke the method
+        return $c->{$this->action}($this->args);
+    } else {
+        //Manage "Method doesn't exists"
+    }
+} else {
+    //Manage "Class doesn't exists"
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <img data-src="images/router-uml.png" alt="UML Enrutación">
+                    </section>
                 </section>
-
 
                 <section>
                     <section>
-                        <h1>Construcción del script</h1>                                
+                        <h1>Seguridad</h1>
+                        <h3>¿Cómo se evita la ejecución de clases y funciones sensibles?</h3>
                     </section>
+                    <section>
+                        <h2>Utilizando el constructor</h2>
+                        <pre><code data-trim contenteditable>
+public function __construct() {
+        global $config;
+        parent::__construct();
+        if (!$this->isAdmin()) {
+            //Manage "not allowed"
+        }
+    }
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Utilizando visibilidad</h2>
+                        <pre><code data-trim contenteditable>
+protected function isAdmin() {...}
 
-                    <section>   
-                        <h2>Autoinclude</h2>
-                    </section>      
+private function build() {...}
+                        </code></pre>
+                        <p>
+                            <small>Generan excepciones controladas</small>
+                        </p>
+                    </section>
                 </section>
 
                 <section>
                     <hr>
                 </section>
-
 
                 <!----------------------SERGIO------------------------>
 
@@ -261,16 +499,12 @@ function linkify( selector ) {
                     <section>
                         <h1>Interfaz</h1>                                
                     </section>
-
                     <section>   
                         <h2></h2>
                     </section>      
                 </section>
 
-
-
                 <!----------------------OLTRA------------------------>
-
 
                 <section>
                     <section>
@@ -291,7 +525,7 @@ function linkify( selector ) {
                     <section>
                         <h1>Como incluir jQuery</h1>                                
                         <pre><code data-trim contenteditable>
-<script src="https://ajax.googleapis.com/.../jquery.min.js"></script>
+<script src="https:// CDN / ... /jquery.min.js"></script>
 </code></pre>
                     </section>
                 </section>
@@ -346,363 +580,431 @@ function linkify( selector ) {
 
 
 
+                <section>
+                    <section id="planificacion">
+                        <h1>Planificación</h1>
+                        <p>
+                            Establecimos una estimación de tiempo de 30 horas por miembro (90h).
+                        </p>
+                        <p class="fragment">
+                            Esa estimación no se cumplió.
+                        </p>
+                    </section>
+                    <section data-transition="Fade">
+                        <h2>Diagrama de Grantt Estimado</h2>
+                        <p>90h</p>
+                        <img data-src="images/grantt-1.png" alt="Diagrama de Grantt inicial">
+                    </section>
+                    <section data-transition="Fade">
+                        <h2>Diagrama de Grantt Final</h2>
+                        <p>110h</p>
+                        <img data-src="images/grantt-2.png" alt="Diagrama de Grantt final">
+                    </section>
+                </section>
+                
+                <section>
+                    <section id="descartes">
+                        <h1>Funcionalidades descartadas</h1>
+                        <ul>
+                            <li>Voto a sagas</li>
+                            <li>Juegos con multiples sagas</li>
+                            <li>Thumbnails con PHP</li>
+                            <li>Perfil usuario con mas datos</li>
+                            <li>Amigos</li>
+                            <li>Proponer juegos</li>
+                        </ul>
+                    </section>
+                </section>
 
+                <section>
+                    <section>
+                        <h1>Mejoras futuras</h1>
+                        <ul>
+                            <li>Implementar las funcionalidades descartadas</li>
+                            <li>Extender la aplicación a otros ámbitos</li>
+                        </ul>
+                    </section>
+                </section>
 
+                <section>
+                    <section id="conclusion">
+                        <h1>Conclusiones</h1>
+                    </section>
+                    <section>
+                        <h2>Hemos aprendido lo importante que son</h2>
+                        <ul>
+                            <li>Metodología</li>
+                            <li class="fragment highlight-green">Organización</li>
+                            <li>Colaboración</li>
+                            <li>Investigación</li>
+                            <li>Dedicación</li>
+                        </ul>
+                    </section>
+                </section>
+                <!--El tiempo estimado para desarrollar la aplicación se calculaba entorno a las 90h en total, pero se han invertido mas de 110h a pesar del tiempo limitado del que disponían los miembros del grupo.
+                
+                Hemos tenido que lidiar con la planificación, la organización, la distribución de tareas y el propio desarrollo.
+                Gracias a este trabajo se han podido superar obstáculos durante el desarrollo que habrían trabado en incluso supuesto el fin del proyecto de no haberse organizado adecuadamente.
+                Esto no habría sido posible sin la cooperación constante con la que el equipo ha desempeñado el trabajo.
+                
+                La tendencia organizativa y modular del desarrollo ha permitido y permitirá introducir funcionalidades con poco esfuerzo para poder llevar la aplicación a un nivel de funcionalidad más avanzado.-->
 
-
-
-
+                <section>
+                    <h1><span class="brand-lg"></span></h1>
+                    <h1>Fin</h1>
+                </section>
 
 
 
                 <!---------------------------------------------->
 
+                <!--
+                                <section>
+                                    <h1>Reveal.js</h1>
+                                    <h3>The HTML Presentation Framework</h3>
+                                    <p>
+                                        <small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+                                    </p>
+                                </section>
+                
+                                <section>
+                                    <h2>Hello There</h2>
+                                    <p>
+                                        reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
+                                    </p>
+                                </section>
+                
+                                 Example of nested vertical slides 
+                                <section>
+                                    <section>
+                                        <h2>Vertical Slides</h2>
+                                        <p>Slides can be nested inside of each other.</p>
+                                        <p>Use the <em>Space</em> key to navigate through all slides.</p>
+                                        <br>
+                                        <a href="#" class="navigate-down">
+                                            <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+                                        </a>
+                                    </section>
+                                    <section>
+                                        <h2>Basement Level 1</h2>
+                                        <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+                                    </section>
+                                    <section>
+                                        <h2>Basement Level 2</h2>
+                                        <p>That's it, time to go back up.</p>
+                                        <br>
+                                        <a href="#/2">
+                                            <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+                                        </a>
+                                    </section>
+                                </section>
+                
+                                <section>
+                                    <h2>Slides</h2>
+                                    <p>
+                                        Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
+                                    </p>
+                                </section>
+                
+                                <section>
+                                    <h2>Point of View</h2>
+                                    <p>
+                                        Press <strong>ESC</strong> to enter the slide overview.
+                                    </p>
+                                    <p>
+                                        Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
+                                    </p>
+                                </section>
+                
+                                <section>
+                                    <h2>Touch Optimized</h2>
+                                    <p>
+                                        Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
+                                    </p>
+                                </section>
+                
+                                <section data-markdown>
+                                    <script type="text/template">
+                                        ## Markdown support
+                
+                                        Write content using inline or external Markdown.
+                                        Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+                
+                                        ```
+                                        <section data-markdown>
+                                        ## Markdown support
+                
+                                        Write content using inline or external Markdown.
+                                        Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+                                        </section>
+                                        ```
+                                    </script>
+                                </section>
+                
+                                <section>
+                                    <section id="fragments">
+                                        <h2>Fragments</h2>
+                                        <p>Hit the next arrow...</p>
+                                        <p class="fragment">... to step through ...</p>
+                                        <p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+                
+                                        <aside class="notes">
+                                            This slide has fragments which are also stepped through in the notes window.
+                                        </aside>
+                                    </section>
+                                    <section>
+                                        <h2>Fragment Styles</h2>
+                                        <p>There's different types of fragments, like:</p>
+                                        <p class="fragment grow">grow</p>
+                                        <p class="fragment shrink">shrink</p>
+                                        <p class="fragment fade-out">fade-out</p>
+                                        <p class="fragment current-visible">current-visible</p>
+                                        <p class="fragment highlight-red">highlight-red</p>
+                                        <p class="fragment highlight-blue">highlight-blue</p>
+                                    </section>
+                                </section>
+                
+                                <section id="transitions">
+                                    <h2>Transition Styles</h2>
+                                    <p>
+                                        You can select from different transitions, like: <br>
+                                        <a href="?transition=none#/transitions">None</a> -
+                                        <a href="?transition=fade#/transitions">Fade</a> -
+                                        <a href="?transition=slide#/transitions">Slide</a> -
+                                        <a href="?transition=convex#/transitions">Convex</a> -
+                                        <a href="?transition=concave#/transitions">Concave</a> -
+                                        <a href="?transition=zoom#/transitions">Zoom</a>
+                                    </p>
+                                </section>
+                
+                                <section id="themes">
+                                    <h2>Themes</h2>
+                                    <p>
+                                        reveal.js comes with a few themes built in: <br>
+                                         Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. 
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/black.css');
+                                return false;">Black (default)</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/white.css');
+                                                return false;">White</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/league.css');
+                                                return false;">League</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/sky.css');
+                                                return false;">Sky</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/beige.css');
+                                                return false;">Beige</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/simple.css');
+                                                return false;">Simple</a> <br>
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/serif.css');
+                                                return false;">Serif</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/blood.css');
+                                                return false;">Blood</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/night.css');
+                                                return false;">Night</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/moon.css');
+                                                return false;">Moon</a> -
+                                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/solarized.css');
+                                                return false;">Solarized</a>
+                                    </p>
+                                </section>
+                
+                                <section>
+                                    <section data-background="#dddddd">
+                                        <h2>Slide Backgrounds</h2>
+                                        <p>
+                                            Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
+                                        </p>
+                                        <a href="#" class="navigate-down">
+                                            <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+                                        </a>
+                                    </section>
+                                    <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+                                        <h2>Image Backgrounds</h2>
+                                        <pre><code>&lt;section data-background="image.png"&gt;</code></pre>
+                                    </section>
+                                    <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
+                                        <h2>Tiled Backgrounds</h2>
+                                        <pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
+                                    </section>
+                                    <section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+                                        <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+                                            <h2>Video Backgrounds</h2>
+                                            <pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
+                                        </div>
+                                    </section>
+                                    <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
+                                        <h2>... and GIFs!</h2>
+                                    </section>
+                                </section>
+                
+                                <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+                                    <h2>Background Transitions</h2>
+                                    <p>
+                                        Different background transitions are available via the backgroundTransition option. This one's called "zoom".
+                                    </p>
+                                    <pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
+                                </section>
+                
+                                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+                                    <h2>Background Transitions</h2>
+                                    <p>
+                                        You can override background transitions per-slide.
+                                    </p>
+                                    <pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
+                                </section>
+                
+                                <section>
+                                    <h2>Pretty Code</h2>
+                                    <pre><code data-trim contenteditable>
+                function linkify( selector ) {
+                  if( supports3DTransforms ) {
+                
+                    var nodes = document.querySelectorAll( selector );
+                
+                    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+                      var node = nodes[i];
+                
+                      if( !node.className ) {
+                        node.className += ' roll';
+                      }
+                    }
+                  }
+                }
+                                                        </code></pre>
+                                    <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+                                </section>
+                
+                                <section>
+                                    <h2>Marvelous List</h2>
+                                    <ul>
+                                        <li>No order here</li>
+                                        <li>Or here</li>
+                                        <li>Or here</li>
+                                        <li>Or here</li>
+                                    </ul>
+                                </section>
+                
+                                <section>
+                                    <h2>Fantastic Ordered List</h2>
+                                    <ol>
+                                        <li>One is smaller than...</li>
+                                        <li>Two is smaller than...</li>
+                                        <li>Three!</li>
+                                    </ol>
+                                </section>
+                
+                                <section>
+                                    <h2>Tabular Tables</h2>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Value</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Apples</td>
+                                                <td>$1</td>
+                                                <td>7</td>
+                                            <tr>
+                                            <tr>
+                                                <td>Lemonade</td>
+                                                <td>$2</td>
+                                                <td>18</td>
+                                            <tr>
+                                            <tr>
+                                                <td>Bread</td>
+                                                <td>$3</td>
+                                                <td>2</td>
+                                            <tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                
+                                <section>
+                                    <h2>Clever Quotes</h2>
+                                    <p>
+                                        These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                                            &ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
+                                    </p>
+                                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                                        &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+                                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
+                                    </blockquote>
+                                </section>
+                
+                                <section>
+                                    <h2>Intergalactic Interconnections</h2>
+                                    <p>
+                                        You can link between slides internally,
+                                        <a href="#/2/3">like this</a>.
+                                    </p>
+                                </section>
+                
+                                <section>
+                                    <h2>Speaker View</h2>
+                                    <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
+                                    <p>Press the <em>S</em> key to try it out.</p>
+                
+                                    <aside class="notes">
+                                        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+                                    </aside>
+                                </section>
+                
+                                <section>
+                                    <h2>Export to PDF</h2>
+                                    <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
+                                    <iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+                                </section>
+                
+                                <section>
+                                    <h2>Global State</h2>
+                                    <p>
+                                        Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+                                        will be added as a class to the document element when the slide is open. This lets you
+                                        apply broader style changes, like switching the page background.
+                                    </p>
+                                </section>
+                
+                                <section data-state="customevent">
+                                    <h2>State Events</h2>
+                                    <p>
+                                        Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+                                    </p>
+                                    <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
+                Reveal.addEventListener( 'customevent', function() {
+                        console.log( '"customevent" has fired' );
+                } );
+                                                        </code></pre>
+                                </section>
+                
+                                <section>
+                                    <h2>Take a Moment</h2>
+                                    <p>
+                                        Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
+                                    </p>
+                                </section>
+                
+                                <section>
+                                    <h2>Much more</h2>
+                                    <ul>
+                                        <li>Right-to-left support</li>
+                                        <li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
+                                        <li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
+                                        <li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
+                                        <li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
+                                    </ul>
+                                </section>
+                
+                                <section style="text-align: left;">
+                                    <h1>THE END</h1>
+                                    <p>
+                                        - <a href="http://slides.com">Try the online editor</a> <br>
+                                        - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+                                    </p>
+                                </section>-->
 
-                <section>
-                    <h1>Reveal.js</h1>
-                    <h3>The HTML Presentation Framework</h3>
-                    <p>
-                        <small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Hello There</h2>
-                    <p>
-                        reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-                    </p>
-                </section>
-
-                <!-- Example of nested vertical slides -->
-                <section>
-                    <section>
-                        <h2>Vertical Slides</h2>
-                        <p>Slides can be nested inside of each other.</p>
-                        <p>Use the <em>Space</em> key to navigate through all slides.</p>
-                        <br>
-                        <a href="#" class="navigate-down">
-                            <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-                        </a>
-                    </section>
-                    <section>
-                        <h2>Basement Level 1</h2>
-                        <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-                    </section>
-                    <section>
-                        <h2>Basement Level 2</h2>
-                        <p>That's it, time to go back up.</p>
-                        <br>
-                        <a href="#/2">
-                            <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-                        </a>
-                    </section>
-                </section>
-
-                <section>
-                    <h2>Slides</h2>
-                    <p>
-                        Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Point of View</h2>
-                    <p>
-                        Press <strong>ESC</strong> to enter the slide overview.
-                    </p>
-                    <p>
-                        Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Touch Optimized</h2>
-                    <p>
-                        Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-                    </p>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Markdown support
-
-                        Write content using inline or external Markdown.
-                        Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-                        ```
-                        <section data-markdown>
-                        ## Markdown support
-
-                        Write content using inline or external Markdown.
-                        Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-                        </section>
-                        ```
-                    </script>
-                </section>
-
-                <section>
-                    <section id="fragments">
-                        <h2>Fragments</h2>
-                        <p>Hit the next arrow...</p>
-                        <p class="fragment">... to step through ...</p>
-                        <p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-                        <aside class="notes">
-                            This slide has fragments which are also stepped through in the notes window.
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>Fragment Styles</h2>
-                        <p>There's different types of fragments, like:</p>
-                        <p class="fragment grow">grow</p>
-                        <p class="fragment shrink">shrink</p>
-                        <p class="fragment fade-out">fade-out</p>
-                        <p class="fragment current-visible">current-visible</p>
-                        <p class="fragment highlight-red">highlight-red</p>
-                        <p class="fragment highlight-blue">highlight-blue</p>
-                    </section>
-                </section>
-
-                <section id="transitions">
-                    <h2>Transition Styles</h2>
-                    <p>
-                        You can select from different transitions, like: <br>
-                        <a href="?transition=none#/transitions">None</a> -
-                        <a href="?transition=fade#/transitions">Fade</a> -
-                        <a href="?transition=slide#/transitions">Slide</a> -
-                        <a href="?transition=convex#/transitions">Convex</a> -
-                        <a href="?transition=concave#/transitions">Concave</a> -
-                        <a href="?transition=zoom#/transitions">Zoom</a>
-                    </p>
-                </section>
-
-                <section id="themes">
-                    <h2>Themes</h2>
-                    <p>
-                        reveal.js comes with a few themes built in: <br>
-                        <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/black.css');
-                return false;">Black (default)</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/white.css');
-                                return false;">White</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/league.css');
-                                return false;">League</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/sky.css');
-                                return false;">Sky</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/beige.css');
-                                return false;">Beige</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/simple.css');
-                                return false;">Simple</a> <br>
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/serif.css');
-                                return false;">Serif</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/blood.css');
-                                return false;">Blood</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/night.css');
-                                return false;">Night</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/moon.css');
-                                return false;">Moon</a> -
-                        <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/solarized.css');
-                                return false;">Solarized</a>
-                    </p>
-                </section>
-
-                <section>
-                    <section data-background="#dddddd">
-                        <h2>Slide Backgrounds</h2>
-                        <p>
-                            Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-                        </p>
-                        <a href="#" class="navigate-down">
-                            <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-                        </a>
-                    </section>
-                    <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-                        <h2>Image Backgrounds</h2>
-                        <pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-                    </section>
-                    <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-                        <h2>Tiled Backgrounds</h2>
-                        <pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-                    </section>
-                    <section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-                        <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-                            <h2>Video Backgrounds</h2>
-                            <pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-                        </div>
-                    </section>
-                    <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-                        <h2>... and GIFs!</h2>
-                    </section>
-                </section>
-
-                <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-                    <h2>Background Transitions</h2>
-                    <p>
-                        Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-                    </p>
-                    <pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-                </section>
-
-                <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-                    <h2>Background Transitions</h2>
-                    <p>
-                        You can override background transitions per-slide.
-                    </p>
-                    <pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-                </section>
-
-                <section>
-                    <h2>Pretty Code</h2>
-                    <pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-                    <p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-                </section>
-
-                <section>
-                    <h2>Marvelous List</h2>
-                    <ul>
-                        <li>No order here</li>
-                        <li>Or here</li>
-                        <li>Or here</li>
-                        <li>Or here</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Fantastic Ordered List</h2>
-                    <ol>
-                        <li>One is smaller than...</li>
-                        <li>Two is smaller than...</li>
-                        <li>Three!</li>
-                    </ol>
-                </section>
-
-                <section>
-                    <h2>Tabular Tables</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Value</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Apples</td>
-                                <td>$1</td>
-                                <td>7</td>
-                            <tr>
-                            <tr>
-                                <td>Lemonade</td>
-                                <td>$2</td>
-                                <td>18</td>
-                            <tr>
-                            <tr>
-                                <td>Bread</td>
-                                <td>$3</td>
-                                <td>2</td>
-                            <tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section>
-                    <h2>Clever Quotes</h2>
-                    <p>
-                        These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                            &ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-                    </p>
-                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                        &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-                    </blockquote>
-                </section>
-
-                <section>
-                    <h2>Intergalactic Interconnections</h2>
-                    <p>
-                        You can link between slides internally,
-                        <a href="#/2/3">like this</a>.
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Speaker View</h2>
-                    <p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-                    <p>Press the <em>S</em> key to try it out.</p>
-
-                    <aside class="notes">
-                        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-                    </aside>
-                </section>
-
-                <section>
-                    <h2>Export to PDF</h2>
-                    <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-                    <iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-                </section>
-
-                <section>
-                    <h2>Global State</h2>
-                    <p>
-                        Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-                        will be added as a class to the document element when the slide is open. This lets you
-                        apply broader style changes, like switching the page background.
-                    </p>
-                </section>
-
-                <section data-state="customevent">
-                    <h2>State Events</h2>
-                    <p>
-                        Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-                    </p>
-                    <pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-                </section>
-
-                <section>
-                    <h2>Take a Moment</h2>
-                    <p>
-                        Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-                    </p>
-                </section>
-
-                <section>
-                    <h2>Much more</h2>
-                    <ul>
-                        <li>Right-to-left support</li>
-                        <li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-                        <li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-                        <li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-                        <li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-                    </ul>
-                </section>
-
-                <section style="text-align: left;">
-                    <h1>THE END</h1>
-                    <p>
-                        - <a href="http://slides.com">Try the online editor</a> <br>
-                        - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-                    </p>
-                </section>
 
             </div>
 
@@ -713,35 +1015,38 @@ Reveal.addEventListener( 'customevent', function() {
 
         <script>
 
-                            // Full list of configuration options available at:
-                            // https://github.com/hakimel/reveal.js#configuration
-                            Reveal.initialize({
-                                controls: true,
-                                progress: true,
-                                history: true,
-                                center: true,
-                                transition: 'convex', // none/fade/slide/convex/concave/zoom
+                    // Full list of configuration options available at:
+                    // https://github.com/hakimel/reveal.js#configuration
+                    Reveal.initialize({
+                        controls: true,
+                        progress: true,
+                        history: true,
+                        center: true,
+                        slideNumber: 'c / t',
+                        mouseWheel: true,
+                        help: true,
+                        transition: 'convex', // none/fade/slide/convex/concave/zoom
 
-                                // Optional reveal.js plugins
-                                dependencies: [
-                                    {src: 'lib/js/classList.js', condition: function () {
-                                            return !document.body.classList;
-                                        }},
-                                    {src: 'plugin/markdown/marked.js', condition: function () {
-                                            return !!document.querySelector('[data-markdown]');
-                                        }},
-                                    {src: 'plugin/markdown/markdown.js', condition: function () {
-                                            return !!document.querySelector('[data-markdown]');
-                                        }},
-                                    {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
-                                            return !!document.querySelector('pre code');
-                                        }, callback: function () {
-                                            hljs.initHighlightingOnLoad();
-                                        }},
-                                    {src: 'plugin/zoom-js/zoom.js', async: true},
-                                    {src: 'plugin/notes/notes.js', async: true}
-                                ]
-                            });
+                        // Optional reveal.js plugins
+                        dependencies: [
+                            {src: 'lib/js/classList.js', condition: function () {
+                                    return !document.body.classList;
+                                }},
+                            {src: 'plugin/markdown/marked.js', condition: function () {
+                                    return !!document.querySelector('[data-markdown]');
+                                }},
+                            {src: 'plugin/markdown/markdown.js', condition: function () {
+                                    return !!document.querySelector('[data-markdown]');
+                                }},
+                            {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                                    return !!document.querySelector('pre code');
+                                }, callback: function () {
+                                    hljs.initHighlightingOnLoad();
+                                }},
+                            {src: 'plugin/zoom-js/zoom.js', async: true},
+                            {src: 'plugin/notes/notes.js', async: true}
+                        ]
+                    });
 
         </script>
 
