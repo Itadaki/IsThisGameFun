@@ -19,17 +19,16 @@ $(document).ready(function () {
     var offset = 1;
     var type;
     $('.load-more').click(function () {
-        label++;
-        var url = $(location).attr('href');
-        url = url.split('/');
-        var last_pos = url.length - 1;
-        if (url[last_pos] === 'top') {
+        label++;        
+        var gametype = $('.breadcrumb').children('.active').text();
+        console.log(gametype);
+        if (gametype === 'Top') {
             type = 1;
         }
-        if (url[last_pos] === 'newest') {
+        if (gametype === 'New') {
             type = 2;
         }
-        if (url[last_pos] === 'all') {
+        if (gametype === 'All') {
             type = 3;
         }
         offset = offset + 20;
