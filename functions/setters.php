@@ -42,7 +42,7 @@ function insertGame($name, $description, $platform_ids, $saga_id = null, $cover 
     }
 
     //Define platforms
-    redefinePlatformsRelationships($game_id, $platform_ids, true);
+    redefinePlatformsRelationships($game_id, $platform_ids);
     return handleError();
 
     //Define saga
@@ -91,17 +91,14 @@ function updateGame($game_id, $name, $description, $platform_ids, $saga_id = nul
  * Insert a game-platform relationship on db
  * @param type $game_id ID of the game
  * @param type $platform_ids An array with the platform IDs
- * @param type $is_new If true, delete the former relationship
  */
-function redefinePlatformsRelationships($game_id, $platform_ids, $is_new = false) {
+function redefinePlatformsRelationships($game_id, $platform_ids) {
     global $db, $config;
     //Delete all former game-platform relationships
-    if ($is_new) {
         $db->delete($config['t_game_platform'], [
             "game" => $game_id
         ]);
         $debug_error = $db->error();
-    }
 
     if (!empty($platform_ids)) {
         //Generate data array for the insert
@@ -118,17 +115,14 @@ function redefinePlatformsRelationships($game_id, $platform_ids, $is_new = false
  * Insert a game-saga relationship on db
  * @param type $game_id ID of the game
  * @param type $saga_id The saga ID
- * @param type $is_new If true, delete the former relationship
  */
-function redefineSagasRelationships($game_id, $saga_id, $is_new = false) {
+function redefineSagasRelationships($game_id, $saga_id) {
     global $db, $config;
-    if ($is_new) {
         //Delete all former game-saga relationships
         $db->delete($config['t_game_saga'], [
             "game" => $game_id
         ]);
         $debug_error = $db->error();
-    }
     //Insert the game-saga relationship
     if ($saga_id != null && !empty($saga_id)) {
         $db->insert($config['t_game_saga'], ["game" => $game_id, "saga" => $saga_id]);
