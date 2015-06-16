@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of sitemap
+ * Controller for about section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

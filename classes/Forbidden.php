@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Forbidden
+ * Forbidden class for send forbbidden headers
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

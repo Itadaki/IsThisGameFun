@@ -62,17 +62,16 @@ error_reporting(E_ALL);
 //ini_set( "display_errors", 0); 
 
 register_shutdown_function('CatchFatalError');
+
 function CatchFatalError() {
     global $config;
     $error = error_get_last();
-    
+
     if ($error['type']) {
         // handle the error - but DO NOT THROW ANY EXCEPTION HERE.
-//        d($error);
         $log = "Type: {$error['type']}; Message: {$error['message']}; File: {$error['file']}; Line: {$error['line']}";
         header("Location: {$config['server_root']}error");
-        file_put_contents('logs/log_'.date("j.n.Y").'.txt', $log, FILE_APPEND);
+        file_put_contents('logs/log_' . date("j.n.Y") . '.txt', $log, FILE_APPEND);
     }
     die;
 }
-

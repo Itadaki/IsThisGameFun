@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of admin
+ * Controller for admin section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */
@@ -44,18 +44,8 @@ class admin extends Controller {
      * 
      */
     public function index($args = array()) {
-        $data['body'] = file_get_contents('templates/admin/index.html');
-
-        $template = "templates/generic.html";
-        $this->body = replace($data, $template);
-
-        $this->generateBreadcrumbs([
-            "Home" => '{server_root}',
-            "C-Panel" => '{server_root}admin',
-            "Games" => '{server_root}admin/games'
-        ]);
-        
-        return $this->build();
+        global $config;
+        header("Location: ".$config['server_root']."admin/games");
     }
 
     /**
@@ -392,7 +382,7 @@ class admin extends Controller {
 
         $cover = proccessUploadedImage($name); //name or false
         
-        if ($cover == false && $logo != null) {
+        if ($cover == false && $cover != null) {
             $messages[] = (new Message('danger', 'Error', "Unexpected error."))->getMessage();
             unset($_POST['action']);
             return $this->games([], $messages);

@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of error
+ * Controller for error
  *
  * @author drodriguezsuarezbust
  */

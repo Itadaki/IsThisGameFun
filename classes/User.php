@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of User
+ * User model. Stores the info from DB
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

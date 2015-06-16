@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Controller
+ * Base controller class for each controller
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

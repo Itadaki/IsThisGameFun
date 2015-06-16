@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of router
+ * Router class. Routes the requests.
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

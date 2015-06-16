@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Saga
+ * Saga model. Stores the info from DB
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

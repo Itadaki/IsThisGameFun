@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of user
+ * Controller for user section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Model
+ * Base class for e very model
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */
@@ -48,8 +48,9 @@ class Model {
      * @return array
      */
     private function object_to_array($obj) {
-        if (is_object($obj))
+        if (is_object($obj)) {
             $obj = (array) $obj;
+        }
         if (is_array($obj)) {
             $new = array();
             foreach ($obj as $key => $val) {

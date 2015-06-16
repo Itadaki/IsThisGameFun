@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of signin
+ * Controller for singin section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

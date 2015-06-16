@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Error
+ * Error class
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

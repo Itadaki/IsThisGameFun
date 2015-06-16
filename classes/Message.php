@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Message
+ * Message class to display alerts on site
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

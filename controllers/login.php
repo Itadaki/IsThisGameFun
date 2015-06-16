@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of login
+ * Controller for login section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

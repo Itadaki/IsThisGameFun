@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of Platform
+ * Platform model. Stores the info from DB
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

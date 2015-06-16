@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of main
+ * Controller for main section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

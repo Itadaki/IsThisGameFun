@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of games
+ * Controller for games section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

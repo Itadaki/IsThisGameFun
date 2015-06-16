@@ -8,7 +8,7 @@
 
 
 /**
- * Description of cookies
+ * Controller for cookies section
  *
  * @author drodriguezsuarezbust
  */

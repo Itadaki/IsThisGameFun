@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of sagas
+ * Controller for sagas section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of NotFound
+ * NotFound class
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

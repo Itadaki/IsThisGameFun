@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of VoteBalance
+ * Vote Balance model. Stores the info from DB
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */

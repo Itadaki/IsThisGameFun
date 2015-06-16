@@ -18,7 +18,7 @@
  */
 
 /**
- * Description of api
+ * Controller for api section
  *
  * @author Diego Rodríguez Suárez-Bustillo
  */
