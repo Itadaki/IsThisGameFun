@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Is This Game Fun? - Proyecto Final</title>
+
+        <meta name="description" content="Presentación para la defensa del proyecto 'Is This Game Fun?' de final de ciclo">
+        <meta name="author" content="Diego Rodríguez">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <style>
+            @import url("//fonts.googleapis.com/css?family=Lato:300,400,700");
+            .brand, .brand-lg{
+                font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+                text-transform: none;
+            }
+            .brand:before, .brand-lg:before{
+                color: #01A7C2;
+            }
+            .brand:after, .brand-lg:after{
+                color: #d9534f;
+            }
+            .brand:before{
+                content: 'ITG';
+            }
+            .brand:after{
+                content: 'F?';
+            }
+            .brand-lg:before{
+                content: 'Is This Game';
+            }
+            .brand-lg:after{
+                content: ' Fun?';
+            }
+        </style>
+
+        <!-- Printing and PDF exports -->
+        <!-- To export, open with querystring ?print-pdf and 'print' -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+            <div style="position: absolute; z-index: 99999; top:0; font-size: 14px">
+                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/black.css');
+                        return false;">Black </a> -
+                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/white.css');
+                        return false;">White</a> -
+                <!--                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/league.css');
+                                                return false;">League</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/sky.css');
+                                                return false;">Sky</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/beige.css');
+                                                return false;">Beige</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/simple.css');
+                                                return false;">Simple</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/serif.css');
+                                                return false;">Serif</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/blood.css');
+                                                return false;">Blood</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/night.css');
+                                                return false;">Night</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/moon.css');
+                                                return false;">Moon</a> -
+                                <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/solarized.css');
+                                                return false;">Solarized</a>-->
+            </div>
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1><span class="brand-lg"></span></h1>
+                    <h3>Web de ranking de videojuegos</h3>
+                    <p>
+                        <small>Javier Oltra - Diego Rodríguez - Sergio Serrano</small>
+                    </p>
+                </section>
+
+                <section>
+                    <h1>Índice</h1>
+                    <div style="display: table; text-align: left">
+                        <div style="display: table-row">
+                            <div style="display: table-cell">
+                                1-Introducción
+                                <ul>
+                                    <li><a href="#que-es">¿Qué es?</a></li>
+                                    <li><a href="#objetivo">Objetivo</a></li>
+                                </ul>
+                            </div>
+                            <div style="display: table-cell; vertical-align: top">
+                                2-Servidor
+                                <ul>
+                                    <li><a href="#bd">Estructura de BD</a></li>
+                                    <li><a href="#arquitectura">Arquitectura</a></li>
+                                    <li><a href="#configuracion">Configuración</a></li>
+                                    <li><a href="#directorios">Directorios</a></li>
+                                    <li><a href="#ejecucion">Ejecución</a></li>
+                                </ul>
+                            </div>
+                            <div style="display: table-cell; vertical-align: top">
+                                3-Interfaces
+                                <ul>
+                                    <li><a href="#bootstrap">Bootstrap</a></li>
+                                    <li><a href="#colores">Colores</a></li>
+                                    <li><a href="#secciones">Secciones</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="display: table-row">
+                            <div style="display: table-cell; vertical-align: top">
+                                4-Cliente
+                                <ul>
+                                    <li><a href="#jquery">jQuery</a></li>
+                                    <li><a href="#usos">Usos</a></li>
+                                </ul>
+                            </div>
+                            <div style="display: table-cell; vertical-align: top">
+                                5-Conclusiones
+                                <ul>
+                                    <li><a href="#recursos">Recursos</a></li>
+                                    <li><a href="#planificacion">Planificación</a></li>
+                                    <li><a href="#descartes">Descartes y mejoras</a></li>
+                                    <li><a href="#conclusion">Conclusión</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <section id="que-es">
+                        <h1>¿Qué es <span class="brand"></span></h1>                                
+                    </section>
+                    <section>
+                        <h2><span class="brand"></span> es...</h2>                                
+                        <p>
+                            Web de ranking simple de videojuegos.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>¿Por qué?</h2>                  
+                        <p>
+                            Existen otras webs con densos análisis, detallados y con valoraciones complejas.
+                        </p>
+                        <p class="fragment">
+                            Nosotros ofrecemos sencillez.
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="objetivo">
+                        <h1>Objetivo</h1>                                
+                    </section>
+                    <section>  
+                        <h2>Primero</h2>
+                        <p>
+                            Responder de manera simple una pregunta simple.
+                        </p>
+                        <h4 class="fragment">¿Es divertido?</h4>
+                        <h4 class="fragment">¿Merece la pena?</h4>
+                    </section>
+                    <section>
+                        <h2>Segundo</h2>
+                        <p>
+                            Crear un medio de opinion pública lejos de los "lobbys" influyentes del periodismo de videojuegos.
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>¿Qué me ofrece?</h1>  
+                        <p class="fragment">
+                            Información básica acerca de un videojuego
+                        </p>
+                        <p class="fragment">
+                        <u>Contribuir con tu opinión.</u>
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>¿Qué puedo hacer?</h1>   
+                        <ul>
+                            <li class="fragment">Navegar sin compromiso</li>
+                            <li class="fragment">Resgistrarme y participar</li>
+                            <li class="fragment">Personalizar mi perfil</li>
+                            <li class="fragment">Administración</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <div style="display: table-cell">
+                            <h5>Usuarios anónimos</h5>
+                            <ul>
+                                <li>Navegar</li>
+                                <li>Consultar información</li>
+                                <li>Registrarse</li>
+                            </ul> 
+                        </div>
+                        <div style="display: table-cell">
+                            <h5>Usuarios registrados</h5>
+                            <ul>
+                                <li>Votar</li>
+                                <li>Cambiar avatar</li>
+                            </ul>
+                        </div>
+                        <div style="display: table-cell">
+                            <h5>Usuarios administradores</h5>
+                            <ul>
+                                <li>Acciones CRUD</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Muestras</h1>
+                    </section>
+
+                    <section>
+                        <h2></h2>
+                        <img data-src="images/pill.png" alt="Pastillas">
+                    </section>
+
+                    <section>
+                        <h2></h2>
+                        <img data-src="images/profile.png" alt="Perfil de juego">
+                    </section>
+
+                    <section>
+                        <h2></h2>
+                        <img data-src="images/user.png" alt="Perfil de usuario">
+                    </section>
+
+                    <section>
+                        <h2></h2>
+                        <img data-src="images/admin.png" alt="Panel de administración">
+                    </section>
+
+                    <section>
+                        <h2></h2>
+                        <img data-src="images/add.png" alt="Modal">
+                    </section>
+                </section>
+
+
+
+
+
+
+
+
+
+                <section>
+                    <section id="bd">
+                        <h1>Estructura de la Base de Datos</h1>                                
+                    </section>
+                    <section>
+                        <h2>Entidades</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center"><!--Entidades--></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Juegos</td>
+                                    <td>Plataformas</td>
+                                </tr>
+                                <tr>
+                                    <td>Sagas</td>
+                                    <td>Usuarios</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section>   
+                        <h2>Diagrama Entidad-Relación</h2>
+                        <img height="400" data-src="images/er-diagram-solid.png" alt="Diagrama ER">
+                    </section>
+                    <section>   
+                        <h2>Esquema de la Base de Datos</h2>
+                        <img height="600" data-src="images/db-scheme.png" alt="Esquema BD">
+                    </section>                    
+                </section>
+
+                <section>
+                    <section id="arquitectura">
+                        <h1>Arquitectura</h1>                                
+                    </section>
+                    <section>   
+                        <h2>MVC</h2>
+                        <h4>Modelo - Vista - Controlador</h4>
+                        <img data-src="images/mvc.png" alt="Esquema MVC">
+                    </section>
+                    <section>   
+                        <!--<h2>Diagrama de flujo</h2>-->
+                        <img data-src="images/mvc-uml.png" alt="UML MVc">
+                    </section>                    
+                </section>
+                <section>
+                    <section id="configuracion">   
+                        <h1>Configuración</h1>
+                        <pre><code data-trim contenteditable>
+$config = array();
+...
+$config['db_server'] = 'localhost';
+...
+$config['t_games'] = 'games';
+...
+$config['server_root'] = '/';
+					</code></pre>
+                    </section>                    
+                </section>
+
+                <section>
+                    <section id="directorios">
+                        <h2>Estructura de directorios</h2> 
+                        <pre><code data-trim contenteditable>
+.
+├── ...
+├── classes
+├── controllers
+│   ├── controller1.php
+│   ├── ...
+│   └── controllerN.php
+├── ...
+├── functions
+├── ...
+└── templates
+     └── controller1
+         ├── template1.html
+         └── ...
+...
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="ejecucion">
+                        <h1>Construcción y ejecución del script</h1>                                
+                    </section>
+                    <section>
+                        <h2>Autoinclude</h2>
+                        <p style="text-align: left;"><small>index.php</small></p>
+                        <pre><code data-trim contenteditable>
+//Include all needed files
+include_once './autoinclude.php';
+                        </code></pre>
+                        <p style="text-align: left;"><small>autoinclude.php</small></p>
+                        <pre><code data-trim contenteditable>
+//Include all the controllers
+foreach (glob("./controllers/*.php") as $filename)
+{
+    include_once $filename;
+}
+                        </code></pre>
+                    </section>      
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Enrutamiento</h1>
+                        <h3>Cómo funciona</h3>
+                    </section>
+                    <section>
+                        <h2>URL</h2>
+                        <p>Original</p>
+                        <a>http://isthisgamefun.com/games/top/page/2</a>
+                        <p>Resuelta</p>
+                        <a>http://isthisgamefun.com/index.php?section=games&action=top&args=page/2</a>
+                    </section>
+                    <section>
+                        <h2>URL</h2>
+                        <p style="text-align: left;"><small>.htaccess</small></p>
+                        <pre><code data-trim contenteditable>
+RewriteRule ^(\w+)/(\w+)/((\w+/?)+)/?$ index.php?section=$1&action=$2&args=$3 [L]
+                        </code></pre>
+                        <p style="text-align: left;"><small>index.php</small></p>
+                        <pre><code data-trim contenteditable>
+$_GET["section"] //string - P.E. "games"
+$_GET["action"] //string - P.E. "top"
+$_GET["args"] //string - P.E. "page/2"
+                        </code></pre>
+                        <pre><code data-trim contenteditable>
+//Set the router
+$router = new Router($section, $action, $args);
+                        </code></pre>
+                    </section>
+                    <section>   
+                        <img data-src="images/mvc-uml.png" alt="UML MVC">
+                    </section>   
+                    <section>
+                        <h2>Ejecución</h2>
+                        <pre><code data-trim contenteditable>
+//If the class exist
+if (class_exists($this->controller)) {
+    //Invoke the new class
+    $c = new $this->controller();
+    //If the class has the action method
+    if (method_exists($c, $this->action)) {
+        //Invoke the method
+        return $c->{$this->action}($this->args);
+    } else {
+        //Manage "Method doesn't exists"
+    }
+} else {
+    //Manage "Class doesn't exists"
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <img data-src="images/router-uml.png" alt="UML Enrutación">
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Seguridad</h1>
+                        <h3>¿Cómo se evita la ejecución de clases y funciones sensibles?</h3>
+                    </section>
+                    <section>
+                        <h2>Utilizando el constructor</h2>
+                        <pre><code data-trim contenteditable>
+public function __construct() {
+        global $config;
+        parent::__construct();
+        if (!$this->isAdmin()) {
+            //Manage "not allowed"
+        }
+    }
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Utilizando visibilidad</h2>
+                        <pre><code data-trim contenteditable>
+protected function isAdmin() {...}
+
+private function build() {...}
+                        </code></pre>
+                        <p>
+                            <small>Generan excepciones controladas</small>
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <hr>
+                </section>
+
+                <!----------------------SERGIO------------------------>
+
+                <section>
+                    <h1>Interfaz</h1>
+                </section>
+
+                <section>
+                    <section id="bootstrap">
+                        <h1>Bootstrap</h1>
+                        <h4>¿Qué es?</h4>
+                    </section>
+                    <section>
+                        <h2>Motivos</h2>
+                        <ul>
+                            <li class="fragment">Agiliza el desarrollo</li>
+                            <li class="fragment">Es un "estandar"</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="colores">
+                        <h1>Colores</h1>
+                        <div style="width: 100px; height: 100px; display: inline-block; margin: 5px; background: #01A7C2;"></div>
+                        <div style="width: 100px; height: 100px; display: inline-block; margin: 5px; background: #d9534f;"></div>
+                        <div style="width: 100px; height: 100px; display: inline-block; margin: 5px; background: #333;"></div>
+                        <div style="width: 100px; height: 100px; display: inline-block; margin: 5px; background: #555;"></div>
+                        <div style="width: 100px; height: 100px; display: inline-block; margin: 5px; background: #777;"></div>
+                    </section>
+                </section>
+                
+                <section>
+                    <section id="secciones">
+                        <h1>Secciones</h1>
+                    </section>
+                    
+                    <section>
+                        <h2>Página principal</h2>
+                        <img height="500" data-src="images/main.png" alt="">
+                    </section>
+                    
+                    <section>
+                        <h2>Pastillas</h2>
+                        <img data-src="images/pills.png" alt="">
+                    </section>
+                    
+                    <section>
+                        <h2>Detalles</h2>
+                        <img data-src="images/profile.png" alt="">
+                    </section>
+                    
+                    <section>
+                        <h2>Perfil usuario</h2>
+                        <img data-src="images/user.png" alt="">
+                    </section>
+                    
+                    <section>
+                        <h2>Panel de administación</h2>
+                        <img data-src="images/admin_2.png" alt="">
+                    </section>
+                    
+                    <section>
+                        <h2>Modal</h2>
+                        <img data-src="images/add.png" alt="">
+                    </section>
+                </section>
+
+                <!----------------------OLTRA------------------------>
+
+                <section>
+                    <section>
+                        <h1>Cliente</h1>                                
+                    </section>      
+                </section>
+
+                <section>
+                    <section id="jquery">
+                        <h1>jQuery</h1>                                
+                    </section>
+                    <section>
+                        <h1>Qué es jQuery</h1>
+                        <p>
+                            Descripci&oacute;n
+                        </p>
+                    </section>
+                    <section>
+                        <h1>Cómo incluir jQuery</h1>                                
+                        <pre><code data-trim contenteditable>
+<script src="https:// CDN / ... /jquery.min.js"></script>
+</code></pre>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section id="usos">
+                        <h1>Usos</h1>                                
+                    </section>
+                    <section>
+                        <h2>Votación</h2>
+                        <ol>
+                            <li>El usuario hace clic</li>
+                            <li class="fragment">El script recaba la información y la envía al servidor</li>
+                            <li class="fragment">Se mantiene a la espera de respuesta</li>
+                            <li class="fragment">Actua en función de la respuesta del servidor</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>Cargar mas juegos</h2>
+                        <ol>
+                            <li>El usuario solicita mas juegos</li>
+                            <li class="fragment">El script envia una petición al servidor</li>
+                            <li class="fragment">Procesa el JSON con los datos</li>
+                            <li class="fragment">Añade nuevos nodos al DOM</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>Validaciones</h2>
+                        <p>Utilizamos jQuery para validar los campos del formulario de registro.</p>
+                        <p>Impedimos el envio del formulario mientras haya campos erroneos.</p>
+                        <p>Además gestionamos alertas visuales de las validaciones.</p>
+                    </section>
+                    <section>
+                        <h2>Comprobar Nick</h2>
+                        <p>Hacemos consultas AJAX al servidor para comprobar la disponibilidad de un Nick.</p>
+                        <p>Si no esta disponible, el campo no es valido.</p>
+                    </section>
+                    <section>
+                        <h2>Varios</h2>
+                        <ul>
+                            <li class="fragment">Menú de navegacion pegajoso</li>
+                            <li class="fragment">Despliegue de paneles</li>
+                            <li class="fragment">Checkboxes personalizados</li>
+                        </ul>
+                    </section>
+                </section>
+
+
+
+                <!----------------------CONCLUSIONES------------------------>
+
+
+
+                <section>
+                    <section id="planificacion">
+                        <h1>Planificación</h1>
+                        <p>
+                            Establecimos una estimación de tiempo de 30 horas por miembro (90h).
+                        </p>
+                        <p class="fragment">
+                            Esa estimación no se cumplió.
+                        </p>
+                    </section>
+                    <section data-transition="Fade">
+                        <h2>Diagrama de Grantt Estimado</h2>
+                        <p>90h</p>
+                        <img data-src="images/grantt-1.png" alt="Diagrama de Grantt inicial">
+                    </section>
+                    <section data-transition="Fade">
+                        <h2>Diagrama de Grantt Final</h2>
+                        <p>110h</p>
+                        <img data-src="images/grantt-2.png" alt="Diagrama de Grantt final">
+                    </section>
+                </section>
+
+                <section>
+                    <section id="recursos">
+                        <h1>Recursos utilizados</h1>                                
+                    </section>
+                    <section>   
+                        <h2>Servidor</h2>
+                        <div style="display: inline-block">
+                            <h6>Base</h6>
+                            <ul>
+                                <li>PHP 5.5</li>
+                                <li>MySQL 5.6</li>
+                                <li>Apache 2.2</li>
+                            </ul>
+                        </div>
+                        <div style="display: inline-block">
+                            <h6>Frameworks</h6>
+                            <ul>
+                                <li>Medoo</li>
+                                <li>Kint</li>
+                                <li>XDebug</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section>   
+                        <h2>Interfaces</h2>
+                        <div style="display: inline-block">
+                            <h6>Base</h6>
+                            <ul>
+                                <li>HTML 5</li>
+                                <li>CSS 3</li>
+                            </ul>
+                        </div>
+                        <div style="display: inline-block">
+                            <h6>Frameworks</h6>
+                            <ul>
+                                <li>Bootstrap 3</li>
+                                <li style="list-style: none">&NonBreakingSpace;</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section>   
+                        <h2>Cliente</h2>
+                        <div style="display: inline-block">
+                            <h6>Base</h6>
+                            <ul>
+                                <li>Javascript</li>
+                            </ul>
+                        </div>
+                        <div style="display: inline-block">
+                            <h6>Frameworks</h6>
+                            <ul>
+                                <li>jQuery</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="descartes">
+                        <h1>Funcionalidades descartadas</h1>
+                        <ul>
+                            <li>Voto a sagas</li>
+                            <li>Juegos con multiples sagas</li>
+                            <li>Thumbnails con PHP</li>
+                            <li>Perfil usuario con mas datos</li>
+                            <li>Amigos</li>
+                            <li>Proponer juegos</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Mejoras futuras</h1>
+                        <ul>
+                            <li>Implementar las funcionalidades descartadas</li>
+                            <li>Extender la aplicación a otros ámbitos</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section id="conclusion">
+                        <h1>Conclusiones</h1>
+                    </section>
+                    <section>
+                        <h2>Hemos aprendido lo importante que son</h2>
+                        <ul>
+                            <li>Metodología</li>
+                            <li class="fragment highlight-green">Organización</li>
+                            <li>Colaboración</li>
+                            <li>Investigación</li>
+                            <li>Dedicación</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section>
+                    <h1><span class="brand-lg"></span></h1>
+                    <h1>Fin</h1>
+                </section>
+
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+                    // Full list of configuration options available at:
+                    // https://github.com/hakimel/reveal.js#configuration
+                    Reveal.initialize({
+                        controls: true,
+                        progress: true,
+                        history: true,
+                        center: true,
+                        slideNumber: 'c / t',
+                        mouseWheel: true,
+                        help: true,
+                        transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+                        // Optional reveal.js plugins
+                        dependencies: [
+                            {src: 'lib/js/classList.js', condition: function () {
+                                    return !document.body.classList;
+                                }},
+                            {src: 'plugin/markdown/marked.js', condition: function () {
+                                    return !!document.querySelector('[data-markdown]');
+                                }},
+                            {src: 'plugin/markdown/markdown.js', condition: function () {
+                                    return !!document.querySelector('[data-markdown]');
+                                }},
+                            {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                                    return !!document.querySelector('pre code');
+                                }, callback: function () {
+                                    hljs.initHighlightingOnLoad();
+                                }},
+                            {src: 'plugin/zoom-js/zoom.js', async: true},
+                            {src: 'plugin/notes/notes.js', async: true}
+                        ]
+                    });
+
+        </script>
+
+    </body>
+</html>
