@@ -258,14 +258,14 @@ fieldset[disabled] .btn-add.active {
 .btn-primary:active,
 .btn-primary.active,
 .open>.dropdown-toggle.btn-primary {
-  background-color: #31b0d5;
-  color: #ebebeb;
+    background-color: #31b0d5;
+    color: #ebebeb;
 }
 .saga-name:hover{
     text-decoration: underline;
 }
 .btn-primary {
-  background-color: #01A7C2;
+    background-color: #01A7C2;
 }
 /*DIEGO*/
 .game a:hover,.game-small span:hover{
@@ -401,4 +401,13 @@ span.brand:after{
 }
 .dropdown-menu>li>a:hover{
     background-color: #535353;
+}
+body{
+    background-image: url('../images/background.png');
+}
+p{
+    font-size: 18px;
+}
+form label{
+    font-size: 15px;
 }
