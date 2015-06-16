@@ -411,3 +411,12 @@ p{
 form label{
     font-size: 15px;
 }
+
+p a {
+    color: #01A7C2;
+    font-weight: bold;
+}
+
+.profile-vote-list-item a{
+    font-weight: bold;
+}
