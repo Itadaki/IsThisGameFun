@@ -41,7 +41,7 @@ $(document).ready(function () {
             addGames(parent, data);
 //Añade el metodo vote() para que puedan votar
             vote();
-//Añade el metodo extendSaga() para que desplegarse las sagas
+//Añade el metodo extendSaga() para que puedan desplegarse las sagas
             extendSaga();
 //Si ya no hay mas juegos inhabilita boton y cambia texto
             if (data.full_quota === false) {
@@ -82,7 +82,6 @@ function addSaga(item) {
 
         });
         div_saga = '<span class="bg-gray2" style="min-height: 25px; display: block;"><span>' + saga.name + '</span></span>\n\
-                        <button class="btn btn-block btn-danger close-saga"><span class="glyphicon glyphicon-eye-close"></span></button>\n\
                         <img class="img-responsive" style="margin:0px auto 15px auto;max-height: 50px" src="' + server_root + 'logos/' + saga.logo + '" alt="Game-Cover" />\n\
                         <div style=" overflow:auto; height: 195px">\n\
                         ' + saga.description + '\n\
@@ -96,7 +95,7 @@ function addImg(item) {
         saga = 'Saga<span class="caret"></span>';
     }
     var div_img = '<div style="position: relative; height: 368px; overflow:hidden">\n\
-                    <div class="bg-gray2 saga-name" style="cursor: pointer" >' + saga + '</div>\n\
+                    <div class="bg-gray2 saga-name saga-name'+label+'" style="cursor: pointer" >' + saga + '</div>\n\
                     <a href="' + server_root + 'games/details/' + item.id + '">\n\
                         <img class="img-responsive" style="margin:0px auto 15px auto;position: absolute;" src="' + server_root + 'covers/' + item.cover + '" alt="' + item.name + '" />\n\
                     </a>\n\

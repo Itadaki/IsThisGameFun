@@ -27,13 +27,15 @@ $(document).ready(function() {
     extendSaga();
 });
 function extendSaga() {
-    $('.saga-name').click(function() {
+    $('.saga-name'+ label).click(function() {
         var open = $(this).find('.caret').parent().hasClass('dropup');
         if (!open) {
+            console.log(open);
             //Si la saga no esta desplegada se despliega y cambia la flecha hacia arriba.
             $(this).siblings('.saga').animate({height: '100%'}, 500);
             $(this).find('.caret').parent().addClass('dropup');
             open = $(this).find('.caret').parent().hasClass('dropup');
+            console.log(open);
         } else {
             //Si la saga esta desplegada se cierra y cambia la flecha hacia abajo.
             $(this).siblings('.saga').animate({height: '0px'}, 500);
