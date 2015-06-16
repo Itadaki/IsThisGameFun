@@ -27,7 +27,7 @@ class license extends Controller {
         $template = 'templates/license/index.html';
         $this->generateBreadcrumbs([
             "Home" => '{server_root}',
-            "About" => '{server_root}about'
+            "License" => '{server_root}license'
         ]);
         $this->body = file_get_contents($template);
         return $this->build();
